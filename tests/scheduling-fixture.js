@@ -3,12 +3,17 @@ import { readFile } from "node:fs/promises";
 export const migrations = ["schema", "hardening", "quality", "multiservice", "booking_readiness", "product_completion",
   "team", "custom_links", "clara", "clara_reschedule", "clara_dialogue", "production_readiness", "billing", "scheduling_integrity"];
 
-export async function migrateScheduling(db) {
+// Order in which production receives the pending scheduling migration: after the
+// billing plans and platform administration migrations already published.
+export const productionMigrations = [...migrations.filter((name) => name !== "scheduling_integrity"),
+  "billing_plans", "platform_admin", "scheduling_integrity"];
+
+export async function migrateScheduling(db, names = productionMigrations) {
   await db.exec(`create role anon; create role authenticated; create role service_role bypassrls;
     create schema auth; create schema extensions; create table auth.users(id uuid primary key,email text);
     create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
     grant usage on schema auth,public to anon,authenticated,service_role; set search_path=public,extensions;`);
-  for (const name of migrations) {
+  for (const name of names) {
     try { await db.exec(await readFile(new URL(`../supabase/${name}.sql`, import.meta.url), "utf8")); }
     catch (error) { throw new Error(`Migration ${name}: ${error.message}`, { cause: error }); }
     if (name === "quality") await db.exec("alter table public.studios add column image_url text not null default ''; alter table public.services add column image_url text not null default '';");
