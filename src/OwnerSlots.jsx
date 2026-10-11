@@ -26,9 +26,11 @@ export default function OwnerSlots({ studioId, professionalId, services, date, a
     <select name="time" required value={currentValue} disabled={loading || !!state.error || !state.slots.length}
       onChange={(e) => onChange(e.target.value)}>
       <option value="">{loading ? "Consultando agenda..." : "Selecione um horário livre"}</option>
-      {!loading && state.slots.map((slot) => <option key={slot.starts_at} value={time(slot.starts_at)}>{time(slot.starts_at)}</option>)}
+      {!loading && state.slots.map((slot) => <option key={slot.starts_at} value={time(slot.starts_at)}>{time(slot.starts_at)}{slot.shared ? " · encaixe" : ""}</option>)}
     </select>
     {!loading && state.error && <small role="alert">{state.error}</small>}
+    {!loading && !state.error && state.slots.find((slot) => time(slot.starts_at) === currentValue)?.shared &&
+      <small>Encaixe: esta profissional já terá outra pessoa sendo atendida neste horário.</small>}
     {!loading && !state.error && !state.slots.length && <small>Selecione serviços, profissional e uma data com espaço para atendimento e limpeza.</small>}
     <button type="button" className="text-button" onClick={() => setRetry((n) => n + 1)}>Atualizar horários</button>
   </label>;

@@ -136,3 +136,8 @@
     font-size: 8px;
   }
 }
+
+/* Encaixes: service and team options. */
+.parallel-fields { min-width: 0; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin: 4px 0 12px; display: grid; gap: 8px; }
+.parallel-fields legend { padding: 0 8px; font-weight: 600; }
+.parallel-fields .check-field:has(input:disabled) { color: var(--muted); }

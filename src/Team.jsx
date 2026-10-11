@@ -243,7 +243,7 @@ export default function Team({
       {person && (
         <>
           <form
-            key={person.id + person.name + person.active}
+            key={[person.id, person.name, person.active, person.accepts_parallel, person.parallel_online].join()}
             className="panel"
             onSubmit={(e) => {
               e.preventDefault();
@@ -256,7 +256,14 @@ export default function Team({
               const values =
                 !capacity?.can_use && person.active && !active
                   ? { active: false }
-                  : { name: f.get("name").trim(), active };
+                  : {
+                      name: f.get("name").trim(),
+                      active,
+                      accepts_parallel: f.get("accepts_parallel") === "on",
+                      parallel_online:
+                        f.get("accepts_parallel") === "on" &&
+                        f.get("parallel_online") === "on",
+                    };
               protect(() =>
                 mutate(
                   () =>
@@ -291,6 +298,7 @@ export default function Team({
               />{" "}
               Disponível para novos agendamentos
             </label>
+            <ParallelFields person={person} />
             <p className="micro">
               Desativar mantém os atendimentos e o histórico existentes. Confira
               a agenda antes de desativar. A mensalidade só muda quando você
@@ -447,5 +455,41 @@ export default function Team({
         </>
       )}
     </>
+  );
+}
+
+// "Faz encaixes": the online release only makes sense while encaixes are on.
+function ParallelFields({ person }) {
+  const [accepts, setAccepts] = useState(!!person.accepts_parallel);
+  const [online, setOnline] = useState(!!person.parallel_online);
+  return (
+    <fieldset className="parallel-fields">
+      <legend>Encaixes</legend>
+      <label className="check-field">
+        <input
+          name="accepts_parallel"
+          type="checkbox"
+          checked={accepts}
+          onChange={(e) => setAccepts(e.target.checked)}
+        />{" "}
+        Faz encaixes
+      </label>
+      <label className="check-field">
+        <input
+          name="parallel_online"
+          type="checkbox"
+          checked={accepts && online}
+          onChange={(e) => setOnline(e.target.checked)}
+          disabled={!accepts}
+        />{" "}
+        Liberar encaixes no agendamento online
+      </label>
+      <p className="micro">
+        Com encaixes, esta profissional pode atender mais de uma pessoa ao mesmo
+        tempo nos serviços marcados com “Posso atender outra pessoa junto”,
+        até o limite de cada serviço. Sem a liberação online, só você marca
+        encaixes pelo painel; as clientes veem apenas horários livres.
+      </p>
+    </fieldset>
   );
 }

@@ -4,6 +4,22 @@ import { PGlite } from "@electric-sql/pglite";
 import { btree_gist } from "@electric-sql/pglite/contrib/btree_gist";
 import { migrateScheduling, schedulingFixture } from "./scheduling-fixture.js";
 import { sameInstant } from "../src/scheduling.js";
+import { parallelServiceData, sharedAppointmentIds } from "../src/parallel.js";
+
+test("service form values become encaixe columns within the database limits", () => {
+  assert.deepEqual(parallelServiceData({ allows_parallel: "on", parallel_limit: "3" }), { allows_parallel: true, parallel_limit: 3 });
+  assert.deepEqual(parallelServiceData({ allows_parallel: "on", parallel_limit: "40" }), { allows_parallel: true, parallel_limit: 10 });
+  assert.deepEqual(parallelServiceData({}, { parallel_limit: 4 }), { allows_parallel: false, parallel_limit: 4 });
+  assert.deepEqual(parallelServiceData({}), { allows_parallel: false, parallel_limit: 2 });
+});
+
+test("agenda marks only appointments served together by the same professional", () => {
+  const at = (id, start, end, professional_id = "p1", status = "confirmed") =>
+    ({ id, professional_id, status, starts_at: `2026-10-20T${start}:00-03:00`, ends_at: `2026-10-20T${end}:00-03:00` });
+  const ids = sharedAppointmentIds([at("a", "09:00", "10:00"), at("b", "09:30", "10:30"), at("c", "10:30", "11:00"),
+    at("d", "09:00", "10:00", "p2"), at("e", "09:00", "10:00", "p1", "cancelled")]);
+  assert.deepEqual([...ids].sort(), ["a", "b"]);
+});
 
 test("encaixes: parallel capacity per professional across all write paths", { timeout: 120000 }, async (t) => {
   const db = new PGlite({ extensions: { btree_gist } });

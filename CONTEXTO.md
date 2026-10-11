@@ -1,5 +1,11 @@
 # Minha Clara — leia primeiro ao retomar
 
+## Git + encaixes — 11/10/2026, LOCAL, nada publicado
+- Repositório Git criado (branch main, LF fixo via .gitattributes/core.autocrlf=false, .local/dist/.env ignorados; nenhum segredo encontrado nos arquivos versionados). Commits usam a identidade global do Git (Alan Vinicius). Sem remoto configurado.
+- scheduling_integrity.sql verificada na ordem REAL de produção (após billing_plans e platform_admin): testes PGlite e 9 testes PostgreSQL nativo concorrentes passaram. Continua NÃO aplicada no Supabase; leitura remota não refeita nesta sessão.
+- Encaixes implementados localmente: supabase/parallel_bookings.sql (aplicar depois da scheduling_integrity), Serviços (chave + limite 2–10), Equipe (Faz encaixes + liberar online), painel/Clara/página pública respeitam a regra. Detalhes, decisões e roteiro em ENCAIXES.md. 436 testes + 12 concorrentes passaram; build aprovado.
+- Publicação exige aprovação explícita (regra abaixo). Pacote de release ainda não preparado.
+
 ## Auditoria de pagamentos — 08/10/2026, correção LOCAL aguardando publicação
 - Pedido atual: verificar pagamentos, expiração e demais fluxos. Resultado detalhado em VERIFICACAO-PAGAMENTOS-20261008.md. 44 testes automatizados passaram,7 verificações remotas de expiração em transação revertida; código de billing/webhook produção(v5) e sandbox(v7) iguais ao local. Nenhuma alteração de backend ou dados reais.
 - Novo teste Stripe real sandbox: cartão vencido recusado; checkout team3 R$59,90 pago, renovação paga, renovação recusada/past_due bloqueou, fatura regularizada restaurou acesso, portal cancelou ao fim do período e avanço encerrou/bloqueou. Nova assinatura sub_1UOKZiCHmArYgc52XnFiNZ0V, fatura recuperada in_1UOKfvCHmArYgc527ZUTkuWv. Relógio existente clock_1UO1AlCHmArYgc52pEEedago agora07/04/2027 23:33:20UTC. Fixture final canceled/team3/can_use=false,paid_until07/04/2027 21:33:20UTC,45eventos processados,5profissionais preservados. Não apagar objetos de QA.

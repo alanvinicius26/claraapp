@@ -50,11 +50,13 @@ export const demoServices = [
     price: 85,
     duration: 60,
     description: "Esfoliação, hidratação e uma pausa para renovar as energias.",
+    allows_parallel: true,
+    parallel_limit: 2,
     active: true,
   },
 ];
 export const demoProfessionals = [
-  { id: "demo-primary", name: "Juliana", active: true, is_default: true },
+  { id: "demo-primary", name: "Juliana", active: true, is_default: true, accepts_parallel: true, parallel_online: false },
   { id: "demo-second", name: "Renata", active: true, is_default: false },
 ];
 export const demoClients = [
@@ -77,10 +79,12 @@ export const demoAppointments = [
   ["11:00", 2, 1, "confirmed"],
   ["14:00", 3, 0, "confirmed"],
   ["15:00", 4, 3, "confirmed"],
-].map(([t, c, s, status], i) => ({
+  // Encaixe: Juliana serves a second Spa dos pés together with the 15:00 one.
+  ["15:15", 1, 3, "confirmed", 0],
+].map(([t, c, s, status, professional], i) => ({
   id: "a" + i,
   studio_id: "demo",
-  professional_id: demoProfessionals[i % 2].id,
+  professional_id: demoProfessionals[professional ?? i % 2].id,
   client_id: "c" + c,
   service_id: demoServices[s].id,
   service_name: demoServices[s].name,

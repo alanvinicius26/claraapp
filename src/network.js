@@ -64,6 +64,9 @@ export function errorMessage(error) {
   const code = error?.code;
   if (["40001", "40P01", "55P03"].includes(code))
     return "A agenda mudou durante a confirmação. Atualize os horários e tente novamente.";
+  // Encaixe conflicts carry their own explanation for the owner.
+  if (code === "23P01" && /^Este (horário|encaixe) /.test(message))
+    return message.slice(0, 240);
   if (/exclusion|23P01|overlap/i.test(message) || code === "23P01")
     return "Esse horário acabou de ser ocupado. Escolha outro horário.";
   if (/duplicate key|23505/i.test(message) || code === "23505")

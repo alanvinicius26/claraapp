@@ -1,5 +1,6 @@
 import OwnerSlots from "./OwnerSlots";
 import { ResourceField } from "./Resources";
+import { ServiceParallelFields, parallelServiceData, sharedAppointmentIds } from "./ParallelService";
 import { studioInstant, hasSlot } from "./scheduling";
 import { rescheduleMessage } from "./clara-whatsapp";
 import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
@@ -795,6 +796,7 @@ function Dashboard({ session, demo, path, notify }) {
         timeZone: "America/Sao_Paulo",
       }) === day,
   );
+  const sharedIds = sharedAppointmentIds(selectedDay);
   const paid = (id) => payments.find((p) => p.appointment_id === id);
   const stats = totals(
     selectedDay,
@@ -1135,6 +1137,7 @@ function Dashboard({ session, demo, path, notify }) {
                                 ? "Reserva online"
                                 : "Agendamento do estúdio"}
                             </span>
+                            {sharedIds.has(a.id) && <span className="micro"> · Encaixe</span>}
                           </div>
                           {a.status !== "blocked" && (
                             <div className="appointment-price">
@@ -1560,6 +1563,12 @@ function Services({ services, open, protect, mutate, studio, copyLink, demo, onC
                   {s.duration} min de atendimento · {studio.buffer} min de
                   intervalo
                 </span>
+                {s.allows_parallel && (
+                  <span className="service-timing">
+                    <Users size={14} />
+                    Encaixe: até {s.parallel_limit} pessoas ao mesmo tempo
+                  </span>
+                )}
                 <p>
                   {s.description ||
                     "Um cuidado especial para as suas clientes."}
@@ -2381,6 +2390,7 @@ function Editor({
         price: Number(f.price),
         duration: Number(f.duration),
         resource_id: f.resource_id === "none" ? null : f.resource_id,
+        ...parallelServiceData(f, item),
         active: f.active === "on",
       };
       return mutate(
@@ -2761,6 +2771,7 @@ function Editor({
                   defaultValue={item?.description}
                 />
               </Field>
+              <ServiceParallelFields item={item} />
               <label className="check-field">
                 <input
                   name="active"
