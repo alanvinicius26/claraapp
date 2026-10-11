@@ -1,0 +1,859 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Encaixa — Gestão &amp; Agenda Studio Juliana</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-high": "#ece7e2",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "surface-variant": "#e6e2dc",
+            "outline-variant": "#dac0c4",
+            "on-surface-variant": "#544245",
+            "inverse-on-surface": "#f5f0ea",
+            "on-primary-fixed": "#3f0018",
+            "primary-fixed": "#ffd9e0",
+            "on-primary-fixed-variant": "#7e2642",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#32302c",
+            "on-secondary-fixed-variant": "#7f2543",
+            "surface-container-low": "#f8f3ed",
+            "on-primary-container": "#f2829f",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary-fixed": "#3d0606",
+            "on-tertiary-fixed-variant": "#76312d",
+            "primary-container": "#6e1936",
+            "surface-dim": "#ded9d4",
+            "on-tertiary": "#ffffff",
+            "on-background": "#1d1b18",
+            "surface-container": "#f2ede7",
+            "inverse-primary": "#ffb1c2",
+            "background": "#fef9f3",
+            "secondary-fixed-dim": "#ffb1c3",
+            "tertiary": "#4a0f0e",
+            "secondary": "#9d3d5a",
+            "on-secondary-container": "#781f3e",
+            "surface-tint": "#9c3e59",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "surface": "#fef9f3",
+            "on-secondary-fixed": "#3f0019",
+            "on-error": "#ffffff",
+            "surface-bright": "#fef9f3",
+            "secondary-fixed": "#ffd9e0",
+            "tertiary-container": "#662521",
+            "primary": "#500021",
+            "on-surface": "#1d1b18",
+            "primary-fixed-dim": "#ffb1c2",
+            "secondary-container": "#ff8aa9",
+            "outline": "#877275",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#e78b84",
+            "surface-container-highest": "#e6e2dc",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-xl": "2.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-2xl": "3rem",
+            "space-md": "1rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-warm-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.06), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+    .striped-pattern {
+      background-image: repeating-linear-gradient(45deg, #f8f3ed, #f8f3ed 10px, #ffffff 10px, #ffffff 20px);
+    }
+
+    /* Animações e Acabamento Premium */
+    @keyframes shimmerSlide {
+      0% { transform: translateX(-150%); }
+      100% { transform: translateX(250%); }
+    }
+    .animate-shimmer {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+      animation: shimmerSlide 2.6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes liveRadialPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(110, 25, 54, 0.55);
+        transform: scale(0.97);
+      }
+      70% {
+        box-shadow: 0 0 0 9px rgba(110, 25, 54, 0);
+        transform: scale(1.05);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(110, 25, 54, 0);
+        transform: scale(0.97);
+      }
+    }
+    .pulse-live-ring {
+      animation: liveRadialPulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes liveGlowEmerald {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+      }
+    }
+    .live-emerald-pulse {
+      animation: liveGlowEmerald 2s infinite ease-in-out;
+    }
+
+    /* Curva elástica ultra suave para feedback tátil */
+    .btn-spring {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-spring:active {
+      transform: scale(0.96);
+    }
+
+    /* Cards interativos com realce no tom vinho */
+    .timeline-card-interactive {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .timeline-card-interactive:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(110, 25, 54, 0.08), 0 3px 10px -2px rgba(47, 41, 40, 0.05);
+      border-color: #dac0c4;
+    }
+
+    /* Partículas de Sucesso Animadas */
+    @keyframes particleBurst {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
+    .confetti-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      pointer-events: none;
+      animation: particleBurst 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      z-index: 50;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-shimmer, .pulse-live-ring, .live-emerald-pulse, .confetti-dot {
+        animation: none !important;
+      }
+      .btn-spring, .timeline-card-interactive {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-secondary-fixed selection:text-primary font-body-md min-h-screen flex overflow-x-hidden">
+<!-- ========================================================================= -->
+<!-- 1. BARRA LATERAL (SideNavBar - Executada via Shared Components & Style) -->
+<!-- ========================================================================= -->
+<aside class="fixed top-0 left-0 h-screen w-64 flex flex-col justify-between border-r border-outline-variant bg-surface-container-lowest z-30 select-none">
+<!-- Topo da Barra Lateral -->
+<div class="p-5 flex flex-col gap-5">
+<!-- Marca & Subtexto Editorial -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined text-headline-sm" style="font-variation-settings: &quot;FILL&quot; 1;">spa</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Encaixa</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm font-bold bg-secondary-fixed text-primary">PRO</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline tracking-wide">studio-juliana</p>
+</div>
+</div>
+</div>
+<!-- Card Compacto: Link Público de Reservas -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/60 transition-all hover:border-primary-container/40 hover:shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 live-emerald-pulse"></span>
+            Página de agendamento
+          </span>
+<button class="text-outline hover:text-primary transition-colors flex items-center p-0.5 rounded hover:bg-surface-container" title="Copiar link">
+<span class="material-symbols-outlined text-[17px]">content_copy</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm font-medium text-on-surface truncate mb-2">encaixa.me/studio-juliana</p>
+<a class="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-2 bg-surface-container-lowest text-primary rounded-lg border border-outline-variant font-label-sm text-label-sm hover:bg-surface-container-high hover:border-primary-container/30 transition-all duration-200 active:scale-[0.98]" href="#link-reservas">
+<span class="">Minha página de reservas</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+<!-- Navegação Principal -->
+<nav class="space-y-1">
+<!-- Agenda (Item Ativo conforme Especificação e JSON) -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface-container-high text-primary font-label-md font-semibold relative transition-all duration-150 shadow-xs" href="#agenda">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">calendar_today</span>
+<span class="">Agenda</span>
+</div>
+<span class="w-1.5 h-5 rounded-full bg-primary-container"></span>
+</a>
+<!-- Clientes -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#clientes">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-on-surface">groups</span>
+<span class="">Clientes</span>
+</div>
+<span class="text-[11px] font-label-sm px-1.5 py-0.5 rounded-full bg-surface-container text-outline">128</span>
+</a>
+<!-- Serviços -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#servicos">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-on-surface">spa</span>
+<span class="">Serviços</span>
+</a>
+<!-- Recebimentos -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#recebimentos">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-on-surface">payments</span>
+<span class="">Recebimentos</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse" title="Pendências financeiras"></span>
+</a>
+<!-- Meu Espaço -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#meuespaco">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-on-surface">storefront</span>
+<span class="">Meu Espaço</span>
+</a>
+<!-- Minha Assinatura -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#assinatura">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-on-surface">loyalty</span>
+<span class="">Minha Assinatura</span>
+</div>
+<span class="text-[10px] font-label-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">R$ 19,90/mês</span>
+</a>
+</nav>
+</div>
+<!-- Rodapé da Barra Lateral: Perfil e Status Juliana Silva -->
+<div class="p-4 border-t border-outline-variant bg-surface-container-lowest/60">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Close-up professional portrait of Juliana Silva, a warm aesthetician and manicurist with gentle, welcoming eyes and subtle natural makeup. The scene is bathed in warm editorial boutique studio light with soft terracotta and blush tones, evoking calm elegance and professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC61y2Q23lNGWY5qv0rFE_aKRCdGO-FhWyitmvYOUKr32NGb5XMltNFZK63vEhnBKRgQ62Yd2YSsS6eVMGOvYe0DoWnh_gaXssmYBTqaWqhVY7zulMSHF0KYPYUVkNbXB4RZD4S0FFROgnB7JgYbHESK5lV7yNyugB20b7rQIzDbZMI6dLnqeCx0_OmesCwE7gT18ty56l6-AdukzWC5ow5KbjPoh6HwCAiSnA1EbXUWmrsG_VWxDgMpg">
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full live-emerald-pulse" title="Atendendo agora"></span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Juliana Silva</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<p class="font-body-sm text-[11px] text-outline font-medium">Atendendo agora</p>
+</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Configurações">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- 2. CANVAS PRINCIPAL & CONTEÚDO (Desktop Workspace) -->
+<!-- ========================================================================= -->
+<div class="ml-64 flex-1 flex flex-col min-w-0">
+<!-- TopNavBar Sticky -->
+<header class="fixed top-0 left-64 right-0 z-30 bg-background/95 backdrop-blur-md px-8 py-3.5 border-b border-outline-variant/60 flex items-center justify-between shadow-xs">
+<!-- Seletor de Data & Visualização -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:border-primary-container hover:text-primary transition-all shadow-sm active:scale-95">
+            Hoje
+          </button>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg p-0.5 shadow-sm">
+<button class="w-8 h-8 flex items-center justify-center rounded text-outline hover:text-on-surface hover:bg-surface-container-low transition-all active:scale-90" title="Dia anterior">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="px-2.5 font-label-md text-label-md text-on-surface font-semibold select-none flex items-center gap-1.5">
+              Sábado, 24 de Maio de 2025
+            </span>
+<button class="w-8 h-8 flex items-center justify-center rounded text-outline hover:text-on-surface hover:bg-surface-container-low transition-all active:scale-90" title="Próximo dia">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Seletor de Abas Dia / Semana com micro-interações -->
+<div class="bg-surface-container-high p-1 rounded-xl flex items-center gap-1 border border-outline-variant/40">
+<button class="px-4 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-semibold shadow-xs transition-all duration-200">
+            Dia
+          </button>
+<button class="px-4 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all duration-200 hover:bg-surface-container-low">
+            Semana
+          </button>
+</div>
+</div>
+<!-- Ações do Topo -->
+<div class="flex items-center gap-3">
+<button class="hidden xl:flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary-container/40 rounded-xl font-label-md text-label-md transition-all shadow-sm active:scale-98">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span class="">Minha página de reservas</span>
+</button>
+<button class="px-3.5 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md rounded-xl hover:border-primary-container hover:text-primary transition-all flex items-center gap-1.5 shadow-sm active:scale-98">
+<span class="material-symbols-outlined text-[18px] text-outline">lock_clock</span>
+<span class="">Bloquear horário</span>
+</button>
+<button class="px-4 py-2 bg-primary-container text-on-primary font-label-md text-label-md font-semibold rounded-xl hover:bg-[#8C2F4D] hover:shadow-md transition-all flex items-center gap-2 shadow-sm active:scale-95 group">
+<span class="material-symbols-outlined text-[20px] transition-transform duration-200 group-hover:rotate-90">add</span>
+<span class="">+ Novo agendamento</span>
+</button>
+</div>
+</header>
+<!-- Área Principal de Scroll com Layout Dividido (Agenda + Drawer Lateral) -->
+<main class="p-8 pt-24 flex gap-8 items-start max-w-[1720px] w-full mx-auto">
+<!-- Coluna da Esquerda: Resumo de Métricas + Lista de Atendimentos -->
+<section class="flex-1 min-w-0 space-y-6">
+<!-- Mensagem de Saudação & Contexto -->
+<div class="flex flex-col gap-1">
+<h1 class="font-headline-xl text-headline-xl text-primary font-bold tracking-tight">
+            Bom dia, Juliana. Veja seus próximos atendimentos.
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Você tem 6 horários organizados para hoje no seu estúdio. 2 clientes já foram atendidas e liberadas.
+          </p>
+</div>
+<!-- 4. Resumo do Dia (3 Cards de Métricas em Bento Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Card 1: Atendimentos & Progresso com Shimmer Sofisticado -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 custom-warm-shadow flex flex-col justify-between transition-all hover:border-primary-container/30">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-md text-label-md text-outline">Atendimentos</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-number-metric text-number-metric font-bold text-on-surface">6</span>
+<span class="font-label-md text-label-md text-on-surface-variant">agendadas</span>
+<span class="text-outline">·</span>
+<span class="font-label-md text-label-md text-emerald-800 font-semibold">2 atendidas</span>
+</div>
+<!-- Barra de Progresso Elegante com Gradiente Bordô/Champagne e Shimmer Suave -->
+<div class="relative w-full bg-surface-container h-2.5 rounded-full mt-3 overflow-hidden shadow-inner">
+<div class="relative h-full rounded-full overflow-hidden transition-all duration-700 bg-gradient-to-r from-primary-container via-[#8C2F4D] to-[#E7A572]" style="width: 33.33%;">
+<div class="animate-shimmer"></div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<p class="font-body-sm text-[12px] text-outline flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+                Próxima cliente em 15 minutos
+              </p>
+<span class="text-[11px] font-label-sm font-semibold text-primary">33% concluído</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Recebido -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 custom-warm-shadow flex flex-col justify-between transition-all hover:border-emerald-300">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-md text-label-md text-outline">Recebido</span>
+<span class="px-2.5 py-0.5 rounded-full text-[12px] font-label-md font-semibold bg-[#E5EADD] text-[#2F2928] border border-[#d2dbcb]">
+                Confirmado
+              </span>
+</div>
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-number-metric text-number-metric font-bold text-on-surface">R$ 185,00</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant flex items-center gap-1.5 mt-2">
+<span class="material-symbols-outlined text-[15px] text-emerald-700">check_circle</span>
+                Pagamento registrado pela profissional
+              </p>
+</div>
+</div>
+<!-- Card 3: A Receber -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 custom-warm-shadow flex flex-col justify-between transition-all hover:border-[#CB746D]/40">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-md text-label-md text-outline">A receber</span>
+<span class="px-2.5 py-0.5 rounded-full text-[12px] font-label-md font-semibold bg-[#FAF5EF] text-[#CB746D] border border-[#CB746D]/40">
+                3 pendentes
+              </span>
+</div>
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-number-metric text-number-metric font-bold text-[#CB746D]">R$ 210,00</span>
+</div>
+<p class="font-body-sm text-[12px] text-outline flex items-center gap-1.5 mt-2">
+<span class="material-symbols-outlined text-[15px] text-[#CB746D]">pending</span>
+                Previsto até as 15h30 de hoje
+              </p>
+</div>
+</div>
+</div>
+<!-- 5. Timeline / Lista Principal de Atendimentos -->
+<div class="space-y-4">
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Cronograma do Dia</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-outline text-[12px] font-label-sm">24 de Maio</span>
+</div>
+<div class="flex items-center gap-3 text-body-sm text-outline">
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#E5EADD] border border-outline-variant"></span> Concluído</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span> Em andamento</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-white border border-outline-variant"></span> Agendado</span>
+</div>
+</div>
+<!-- Item 1: 08h30 Mariana Souza -->
+<div class="timeline-card-interactive bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-85 hover:opacity-100">
+<div class="flex items-start gap-4">
+<!-- Horário -->
+<div class="w-24 text-left border-l-2 border-emerald-600 pl-3">
+<p class="font-label-md text-label-md font-bold text-on-surface">08:30</p>
+<p class="font-body-sm text-[12px] text-outline">09:15 (45 min)</p>
+</div>
+<!-- Dados Cliente & Serviço -->
+<div>
+<div class="flex items-center gap-2.5">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Mariana Souza</h3>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-[#E5EADD] text-on-surface font-semibold">Concluído</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-surface-container text-on-surface-variant font-medium">Pix</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Manicure clássica com esmaltação</p>
+</div>
+</div>
+<!-- Preço e Ações -->
+<div class="flex items-center justify-between md:justify-end gap-5">
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">R$ 35,00</p>
+<span class="text-[12px] text-emerald-800 font-medium">Recebido integral</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-xl border border-outline-variant flex items-center justify-center text-outline hover:text-emerald-700 hover:border-emerald-600 transition-colors btn-spring" title="WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded-xl text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors btn-spring">
+                  Ver ficha
+                </button>
+</div>
+</div>
+</div>
+<!-- Item 2: 09h30 Camila Duarte -->
+<div class="timeline-card-interactive bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-85 hover:opacity-100">
+<div class="flex items-start gap-4">
+<!-- Horário -->
+<div class="w-24 text-left border-l-2 border-emerald-600 pl-3">
+<p class="font-label-md text-label-md font-bold text-on-surface">09:30</p>
+<p class="font-body-sm text-[12px] text-outline">10:15 (45 min)</p>
+</div>
+<!-- Dados Cliente & Serviço -->
+<div>
+<div class="flex items-center gap-2.5">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Camila Duarte</h3>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-[#E5EADD] text-on-surface font-semibold">Concluído</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-surface-container text-on-surface-variant font-medium">Dinheiro</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Design de Sobrancelhas com Henna</p>
+</div>
+</div>
+<!-- Preço e Ações -->
+<div class="flex items-center justify-between md:justify-end gap-5">
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">R$ 40,00</p>
+<span class="text-[12px] text-emerald-800 font-medium">Recebido integral</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-xl border border-outline-variant flex items-center justify-center text-outline hover:text-emerald-700 hover:border-emerald-600 transition-colors btn-spring" title="WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded-xl text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors btn-spring">
+                  Ver ficha
+                </button>
+</div>
+</div>
+</div>
+<!-- Item 3: 10h30 Beatriz Ferreira (CARD ATIVO / DESTAQUE / EM TRATAMENTO COM PROGRESSO FLUIDO E LIVE BADGE) -->
+<div class="relative bg-surface-container-lowest border-2 border-primary-container rounded-2xl p-5 custom-warm-shadow overflow-hidden transition-all duration-300 shadow-md">
+<div class="absolute top-0 left-0 bottom-0 w-2.5 bg-gradient-to-b from-primary to-primary-container"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pl-2">
+<div class="flex items-start gap-4">
+<div class="w-24 text-left border-l-2 border-primary-container pl-3">
+<p class="font-label-md text-label-md font-bold text-primary">10:30</p>
+<p class="font-body-sm text-[12px] text-outline font-medium">12:00 (1h30)</p>
+<!-- Tag AGORA com Live Pulse -->
+<div class="inline-flex items-center gap-1 mt-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-white shadow-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-white pulse-live-ring"></span>
+<span class="">AGORA</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2.5 flex-wrap">
+<h3 class="font-headline-md text-headline-md font-bold text-primary">Beatriz Ferreira</h3>
+<!-- Badge Em andamento com indicador de atividade 'Live' -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-label-md bg-primary-container text-white font-semibold shadow-xs">
+<span class="w-2 h-2 rounded-full bg-emerald-400 live-emerald-pulse"></span>
+                    Em andamento
+                  </span>
+<span class="px-2.5 py-0.5 rounded-full text-[12px] font-label-md bg-surface text-[#CB746D] border border-[#CB746D]/50 font-semibold">A receber</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1">Alongamento em Gel com Fibra de Vidro (Manutenção completa)</p>
+<div class="flex items-center gap-2 mt-2 text-body-sm text-outline">
+<span class="material-symbols-outlined text-[16px] text-primary">auto_awesome</span>
+<span class="">Cliente recorrente (4º mês) · Formato amendoado clássico</span>
+</div>
+<!-- BARRA DE PROGRESSO DO TEMPO FLUIDA E ELEGANTE (Tempo decorrido: 45 de 90 min) -->
+<div class="mt-3.5 pt-3 border-t border-outline-variant/40 max-w-lg">
+<div class="flex items-center justify-between text-body-sm mb-1.5">
+<span class="text-[12px] font-medium text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-primary">timelapse</span>
+                      Tempo decorrido: <strong class="text-primary font-bold">45 de 90 min</strong>
+</span>
+<span class="text-[11px] font-label-sm font-bold text-primary bg-secondary-fixed/50 px-2 py-0.5 rounded-full">50% finalizado</span>
+</div>
+<div class="relative w-full bg-surface-container h-2 rounded-full overflow-hidden shadow-inner">
+<!-- Gradiente Bordô / Vinho / Dourado Champagne com Shimmer Fluido -->
+<div class="relative h-full rounded-full overflow-hidden transition-all duration-500 bg-gradient-to-r from-primary via-[#8C2F4D] to-[#E7A572]" style="width: 50%;">
+<div class="animate-shimmer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Preço & Ações em Destaque -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:self-center">
+<div class="text-left sm:text-right">
+<p class="font-headline-md text-headline-md font-bold text-primary">R$ 110,00</p>
+<span class="text-[12px] text-[#CB746D] font-medium">Pendente de pagamento</span>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<!-- Botão Concluir com animação de confirmação interativa -->
+<button class="action-btn-concluir relative overflow-hidden px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-label-sm text-label-sm font-semibold btn-spring flex items-center gap-1.5 shadow-sm hover:shadow-md cursor-pointer">
+<span class="btn-icon material-symbols-outlined text-[16px] transition-transform duration-300">check</span>
+<span class="btn-label">Concluir</span>
+</button>
+<!-- Botão Registrar Pagamento com efeito shimmer sutil e elevação -->
+<button class="action-btn-pagar relative overflow-hidden px-3.5 py-2 bg-surface-container-high hover:bg-surface-variant text-primary rounded-xl font-label-sm text-label-sm font-semibold btn-spring flex items-center gap-1.5 hover:shadow-sm border border-outline-variant/50">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span class="">Registrar R$ 110</span>
+</button>
+<button class="w-9 h-9 rounded-xl border border-outline-variant flex items-center justify-center text-emerald-800 hover:bg-emerald-50 transition-colors btn-spring" title="Abrir WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 4: [CARD DE BLOQUEIO PESSOAL DIFERENCIADO] 12h00 - 13h00 -->
+<div class="timeline-card-interactive striped-pattern border border-dashed border-outline-variant rounded-2xl p-4.5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-24 text-left border-l-2 border-outline pl-3">
+<p class="font-label-md text-label-md font-semibold text-outline">12:00</p>
+<p class="font-body-sm text-[12px] text-outline">13:00 (1h)</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold text-on-surface">Intervalo de Almoço &amp; Descanso</h4>
+<p class="font-body-sm text-[12px] text-outline">Horário Bloqueado / Indisponível para clientes na página de agendamento</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-outline text-[12px] font-label-sm">Bloqueio Pessoal</span>
+<button class="text-outline hover:text-primary p-1.5 rounded-lg hover:bg-surface-container transition-colors btn-spring" title="Editar bloqueio">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+<!-- Item 5: 13h30 Fernanda Lima -->
+<div class="timeline-card-interactive bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="w-24 text-left border-l-2 border-outline-variant pl-3">
+<p class="font-label-md text-label-md font-bold text-on-surface">13:30</p>
+<p class="font-body-sm text-[12px] text-outline">14:15 (45 min)</p>
+</div>
+<div>
+<div class="flex items-center gap-2.5">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Fernanda Lima</h3>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-surface-container text-on-surface font-semibold">Confirmado</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-[#FAF5EF] text-[#CB746D] border border-[#CB746D]/40 font-semibold">A receber</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Manicure + Pedicure Express</p>
+<p class="font-body-sm text-[12px] text-[#8C2F4D] mt-1 flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[14px]">sticky_note_2</span>
+                  Obs interna: Prefere esmalte nude e cutícula fina
+                </p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-5">
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">R$ 65,00</p>
+<span class="text-[12px] text-outline">A cobrar</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-xl border border-outline-variant flex items-center justify-center text-outline hover:text-emerald-700 transition-colors btn-spring" title="WhatsApp com mensagem pronta">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded-xl text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors btn-spring">
+                  Detalhes
+                </button>
+</div>
+</div>
+</div>
+<!-- Item 6: 15h00 Larissa Ramos -->
+<div class="timeline-card-interactive bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="w-24 text-left border-l-2 border-outline-variant pl-3">
+<p class="font-label-md text-label-md font-bold text-on-surface">15:00</p>
+<p class="font-body-sm text-[12px] text-outline">15:30 (30 min)</p>
+</div>
+<div>
+<div class="flex items-center gap-2.5">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Larissa Ramos</h3>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-surface-container text-on-surface font-semibold">Confirmado</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-[#FAF5EF] text-[#CB746D] border border-[#CB746D]/40 font-semibold">A receber</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Design de Sobrancelhas Simples</p>
+<p class="font-body-sm text-[12px] text-outline mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                  Obs: Trazer referência do formato desejado
+                </p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-5">
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">R$ 40,00</p>
+<span class="text-[12px] text-outline">A cobrar</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-xl border border-outline-variant flex items-center justify-center text-outline hover:text-emerald-700 transition-colors btn-spring" title="WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded-xl text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors btn-spring">
+                  Detalhes
+                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===================================================================== -->
+<!-- 6. PAINEL LATERAL DE DETALHES DO ATENDIMENTO (Ficha Rápida Contextual) -->
+<!-- ===================================================================== -->
+<aside class="w-[390px] bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 custom-warm-shadow sticky top-20 hidden lg:flex flex-col gap-6 transition-all duration-300">
+<!-- Cabeçalho do Painel -->
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant/60">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500 live-emerald-pulse"></span>
+            Atendimento em foco
+          </span>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-0.5">Ficha da Cliente</h3>
+</div>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors btn-spring" title="Fechar painel">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Identificação da Cliente Selecionada (Beatriz Ferreira) -->
+<div class="flex items-center gap-3.5">
+<div class="w-14 h-14 rounded-2xl bg-secondary-fixed flex items-center justify-center text-primary font-bold text-headline-md shadow-xs ring-2 ring-primary-container/20">
+            BF
+          </div>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Beatriz Ferreira</h4>
+<p class="font-body-sm text-body-sm text-outline">+55 11 98452-1920</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm font-semibold text-emerald-800 bg-[#E5EADD] px-2 py-0.5 rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                Cliente fiel
+              </span>
+<span class="text-[11px] text-outline">12 visitas</span>
+</div>
+</div>
+</div>
+<!-- Detalhes do Serviço & Agendamento -->
+<div class="bg-surface-container-low rounded-xl p-4 space-y-3 border border-outline-variant/50">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-sm text-[11px] text-outline font-semibold">SERVIÇO</p>
+<p class="font-label-md text-label-md font-semibold text-on-surface mt-0.5">Alongamento em Gel</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Fibra de vidro + blindagem</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-[11px] text-outline font-semibold">VALOR TOTAL</p>
+<p class="font-headline-sm text-headline-sm font-bold text-primary mt-0.5">R$ 110,00</p>
+</div>
+</div>
+<div class="pt-2 border-t border-outline-variant/40 flex justify-between items-center text-body-sm">
+<span class="text-outline">Horário reservado</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">10:30 às 12:00 (90 min)</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-outline">Status do Pagamento</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#FAF5EF] text-[#CB746D] border border-[#CB746D]/40">Pendente no local</span>
+</div>
+</div>
+<!-- Observações Internas (Exclusivas da Profissional) -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm font-semibold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">lock</span>
+              Observações Internas (Só você vê)
+            </label>
+<span class="text-[11px] text-outline flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              Salvo automaticamente
+            </span>
+</div>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-3 text-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all resize-none" placeholder="Anote detalhes de cutícula, tonalidade de esmalte ou preferências..." rows="3">Prefere lixamento amendoado suave. Alérgica a acetona com perfume forte. Usar sempre higienizador neutro.</textarea>
+</div>
+<!-- Grupo de Ações Primárias da Especificação -->
+<div class="space-y-2.5 pt-2">
+<button class="action-btn-concluir relative overflow-hidden w-full py-2.5 bg-primary-container hover:bg-[#8C2F4D] text-on-primary rounded-xl font-label-md text-label-md font-semibold btn-spring flex items-center justify-center gap-2 shadow-sm hover:shadow-md cursor-pointer">
+<span class="btn-icon material-symbols-outlined text-[18px] transition-transform duration-300">check_circle</span>
+<span class="btn-label">Concluir atendimento</span>
+</button>
+<button class="action-btn-pagar relative overflow-hidden w-full py-2.5 bg-[#E5EADD] hover:bg-[#d6decb] text-[#2F2928] rounded-xl font-label-md text-label-md font-semibold btn-spring flex items-center justify-center gap-2 hover:shadow-sm">
+<span class="material-symbols-outlined text-[18px]">point_of_sale</span>
+<span class="">Registrar pagamento (R$ 110)</span>
+</button>
+<button class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 rounded-xl font-label-md text-label-md font-semibold btn-spring flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-emerald-700">chat</span>
+<span class="">Abrir WhatsApp com mensagem pronta</span>
+</button>
+</div>
+<!-- Ações Secundárias Refinadas -->
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/60 text-body-sm">
+<button class="text-outline hover:text-primary flex items-center gap-1 text-[13px] font-medium transition-colors btn-spring">
+<span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+            Remarcar
+          </button>
+<button class="text-error hover:text-red-700 flex items-center gap-1 text-[13px] font-medium transition-colors btn-spring">
+<span class="material-symbols-outlined text-[16px]">event_busy</span>
+            Cancelar horário
+          </button>
+</div>
+</aside>
+</main>
+</div>
+<!-- ========================================================================= -->
+<!-- Script Leve de Interatividade e Micro-Animações -->
+<!-- ========================================================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Efeito de feedback com confetes sutis e confirmação ao clicar em "Concluir"
+    const concluirButtons = document.querySelectorAll('.action-btn-concluir');
+    
+    concluirButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const rect = btn.getBoundingClientRect();
+        
+        // Criar micro-partículas refinadas nas cores da paleta
+        const colors = ['#6E1936', '#E7A572', '#10B981', '#FFD9E0', '#500021'];
+        for (let i = 0; i < 14; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'confetti-dot';
+          const angle = (Math.PI * 2 / 14) * i + (Math.random() * 0.4 - 0.2);
+          const distance = Math.floor(Math.random() * 45) + 30;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+          
+          dot.style.setProperty('--tx', `${tx}px`);
+          dot.style.setProperty('--ty', `${ty}px`);
+          dot.style.backgroundColor = colors[i % colors.length];
+          dot.style.left = `${e.clientX - rect.left}px`;
+          dot.style.top = `${e.clientY - rect.top}px`;
+          
+          btn.appendChild(dot);
+          setTimeout(() => dot.remove(), 700);
+        }
+
+        // Alterar estado do botão com confirmação sutil
+        const label = btn.querySelector('.btn-label');
+        const icon = btn.querySelector('.btn-icon');
+        if (label && icon) {
+          const prevText = label.textContent;
+          label.textContent = 'Atendimento Concluído!';
+          icon.textContent = 'verified';
+          btn.classList.add('bg-emerald-800', 'ring-2', 'ring-emerald-400');
+          
+          setTimeout(() => {
+            label.textContent = prevText;
+            icon.textContent = prevText.includes('Concluir atendimento') ? 'check_circle' : 'check';
+            btn.classList.remove('bg-emerald-800', 'ring-2', 'ring-emerald-400');
+          }, 2400);
+        }
+      });
+    });
+
+    // Efeito no botão registrar pagamento
+    const pagarButtons = document.querySelectorAll('.action-btn-pagar');
+    pagarButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.add('scale-95');
+        setTimeout(() => btn.classList.remove('scale-95'), 180);
+      });
+    });
+  });
+</script>
+
+
+</body></html>

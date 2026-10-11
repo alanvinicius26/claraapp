@@ -1,0 +1,32 @@
+.clara-launcher{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;align-items:center;gap:0;width:76px;height:76px;padding:3px;border:2px solid #fff9f3;border-radius:50%;background:#6e1936;color:#fff9f3;box-shadow:0 8px 28px #6e193640;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s}
+.clara-launcher:hover{transform:translateY(-3px);box-shadow:0 12px 32px #6e193655}
+.clara-backdrop{position:fixed;inset:0;z-index:200;background:#28151b30;display:flex;align-items:flex-end;justify-content:flex-end;padding:24px;backdrop-filter:blur(3px)}
+.clara-panel{width:410px;height:600px;max-height:calc(100dvh - 48px);display:flex;flex-direction:column;background:#fffaf7;border:1px solid #e8d7d8;border-radius:25px;box-shadow:0 24px 80px #35132030;overflow:hidden;animation:clara-open .25s ease-out}
+.clara-header{display:flex;align-items:center;gap:12px;padding:20px;background:linear-gradient(120deg,#6e1936,#933b59);color:#fff9f3}
+.clara-avatar{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:#ffffff20}
+.clara-header h2{margin:0;font-size:21px;color:inherit}.clara-panel .clara-header p{margin:4px 0 0;font-size:12px;color:#f7dfe8}
+.clara-header button{margin-left:auto;background:transparent;border:0;color:inherit;width:40px;height:40px;cursor:pointer;display:grid;place-items:center}
+.clara-messages{flex:1;min-height:0;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.clara-message{font-size:14px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;padding:14px 16px;border-radius:17px;max-width:94%}
+.clara-message.assistant{background:#f3e9e7;color:#442731;align-self:flex-start;border-bottom-left-radius:5px}.clara-message.user{background:#6e1936;color:white;align-self:flex-end;border-bottom-right-radius:5px}
+.clara-suggestions{display:grid;gap:8px}.clara-suggestions button{display:flex;justify-content:space-between;gap:10px;text-align:left;padding:12px 14px;border:1px solid #e9d9dc;border-radius:12px;background:#fff;color:#6e1936;cursor:pointer;font-size:12px}
+.clara-thinking{display:flex;gap:8px;align-items:center;font-size:12px;color:#785963}.clara-thinking svg{animation:clara-spin 1s linear infinite}
+.clara-form{padding:15px 18px;border-top:1px solid #ecdedf;background:#fffaf7}.clara-label{display:block;font-size:11px;color:#735a62;margin-bottom:8px}
+.clara-compose{display:flex;gap:8px;align-items:center}.clara-compose input{min-width:0;flex:1;border:1px solid #e4d6d9;border-radius:13px;padding:12px;background:white;color:#38232b;font-size:14px}
+.clara-compose button{width:43px;height:43px;border:0;border-radius:13px;background:#6e1936;color:white;display:grid;place-items:center;cursor:pointer}.clara-compose button:disabled{opacity:.4;cursor:default}
+.clara-form small{display:block;text-align:center;margin-top:9px;font-size:10px;color:#80666f}.clara-error{color:#922d42;font-size:12px;line-height:1.6}
+.clara-panel button:focus-visible,.clara-panel input:focus-visible,.clara-launcher:focus-visible{outline:3px solid #cc9b6e;outline-offset:3px}
+@keyframes clara-open{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}@keyframes clara-spin{to{transform:rotate(360deg)}}
+@media(max-width:700px){.clara-launcher{right:16px;bottom:calc(85px + env(safe-area-inset-bottom));width:68px;height:68px;padding:3px}.clara-backdrop{padding:10px 10px calc(10px + env(safe-area-inset-bottom));align-items:flex-end}.clara-panel{width:100%;height:620px;max-height:calc(100dvh - 30px - env(safe-area-inset-bottom));border-radius:22px}.clara-compose input{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.clara-panel,.clara-thinking svg{animation:none}.clara-launcher{transition:none}}
+
+.clara-portrait{display:block;position:relative;overflow:hidden;border-radius:50%;background:#fff9f3;width:100%;height:100%}
+.clara-portrait img{position:absolute;width:185%;max-width:none;height:auto;left:50%;top:-4%;transform:translateX(-50%);pointer-events:none}
+.clara-help-badge{position:absolute;right:-3px;bottom:-2px;width:27px;height:27px;display:grid;place-items:center;background:#6e1936;color:#fff9f3;border:2px solid #fff9f3;border-radius:50%;font-size:19px;font-weight:800;line-height:1;box-shadow:0 3px 8px #40112425}
+.clara-header .clara-avatar{width:46px;height:46px;flex-shrink:0;border:2px solid #ffffff60}
+.clara-action{display:block;width:100%;margin-top:10px;padding:10px;border:1px solid #dec5ce;border-radius:10px;background:#fff9f3;color:#6e1936;text-align:left;font:inherit;cursor:pointer;text-decoration:none;white-space:normal}
+.clara-action:disabled{opacity:.45;cursor:default}.clara-slots{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;max-height:230px;overflow:auto;white-space:normal}.clara-slots .clara-action{margin:0;font-size:12px;text-align:center}.clara-confirmation .clara-action:first-child{background:#6e1936;color:white;font-weight:600}
+.clara-whatsapp textarea{display:block;box-sizing:border-box;width:100%;margin:8px 0;padding:10px;border:1px solid #dec5ce;border-radius:10px;font:inherit;resize:vertical;background:white;color:#38232b}.clara-whatsapp small{display:block;margin-top:8px}
+.clara-draft-intro{position:relative;min-height:120px;padding:72px 0 12px;white-space:normal}
+.clara-draft-intro img{position:absolute;right:-8px;top:0;width:145px;height:auto;pointer-events:none}
+.clara-draft-intro strong{display:block;position:relative;max-width:calc(100% - 45px);font-size:13px;line-height:1.5;color:#6e1936}

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Financeiro - Encaixa Studio</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "background": "#fef9f3",
+            "secondary-container": "#ff8aa9",
+            "surface-bright": "#fef9f3",
+            "tertiary-container": "#662521",
+            "on-tertiary-container": "#e78b84",
+            "inverse-on-surface": "#f5f0ea",
+            "on-secondary-fixed": "#3f0019",
+            "surface-container-low": "#f8f3ed",
+            "surface-container": "#f2ede7",
+            "primary-container": "#6e1936",
+            "primary": "#500021",
+            "surface-dim": "#ded9d4",
+            "secondary": "#9d3d5a",
+            "surface-variant": "#e6e2dc",
+            "on-primary-fixed": "#3f0018",
+            "on-tertiary-fixed": "#3d0606",
+            "surface": "#fef9f3",
+            "on-primary-fixed-variant": "#7e2642",
+            "on-tertiary-fixed-variant": "#76312d",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#32302c",
+            "tertiary": "#4a0f0e",
+            "on-secondary-container": "#781f3e",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#ffb1c2",
+            "on-secondary-fixed-variant": "#7f2543",
+            "on-error-container": "#93000a",
+            "surface-tint": "#9c3e59",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#f2829f",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-background": "#1d1b18",
+            "primary-fixed": "#ffd9e0",
+            "secondary-fixed-dim": "#ffb1c3",
+            "on-surface": "#1d1b18",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#ffd9e0",
+            "on-error": "#ffffff",
+            "outline-variant": "#dac0c4",
+            "surface-container-high": "#ece7e2",
+            "outline": "#877275",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#e6e2dc",
+            "on-surface-variant": "#544245",
+            "primary-fixed-dim": "#ffb1c2"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-xl": "2.25rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-28">
+<!-- TopAppBar (Shared Component) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-3 bg-surface/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex items-center gap-3">
+<!-- Leading: Avatar da profissional Juliana Silva -->
+<div class="relative">
+<img alt="Foto de perfil da profissional Juliana Silva com indicador verde de Atendendo agora" class="w-10 h-10 rounded-full object-cover border border-outline-variant/40" data-alt="A warm, luminous close portrait of Juliana Silva, an aesthetic beauty professional smiling gently in her boutique treatment studio. The setting features warm wood slatted panels, soft muted beige lighting, and clean luxury skincare bottles in the background. The visual style is premium editorial photography with soft, warm skin tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALPK4iou2RShIZeOkWznih_iosUAQtSxedDPVSX3gGAa72g29MmTKjgcNxldWrWWzoFlQqvf6ZLFt9M9SZkSEQTivwfBdwdLR1b1mFmVpO8H1D4TctEzisYfYANzNvilkqIwnpKuR05s2PPP48ooG0lEwwoU-NQ5jqNb5A87LMBAOn9ItbsqqG_AwFP1ZelpOCfuX7Ki7_ELS99jVJHiJAAQCkUFIZtsnT6JoTv0DHH9QRwjceeS11Vw"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-surface rounded-full"></span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block leading-tight">Espaço &amp; Gestão</span>
+<h1 class="text-headline-sm font-headline-sm font-semibold text-primary dark:text-inverse-primary leading-tight">Encaixa Studio</h1>
+</div>
+</div>
+<!-- Trailing Action: Compartilhar -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant/30 text-primary dark:text-inverse-primary bg-surface text-label-md font-label-md hover:bg-surface-container-high transition-colors duration-150 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Compartilhar</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-4 max-w-lg mx-auto space-y-6">
+<!-- Header Section & Period Selector -->
+<section class="space-y-3 pt-2">
+<div class="flex items-baseline justify-between">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-primary tracking-tight">Financeiro</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Fluxo de caixa &amp; conciliação de recebíveis</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-primary text-label-sm font-label-sm font-semibold border border-outline-variant/30">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+          Outubro
+        </span>
+</div>
+<!-- Pill Segmented Control -->
+<div class="flex p-1 bg-surface-container rounded-xl gap-1">
+<button class="flex-1 py-1.5 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-colors text-center" type="button">
+          Hoje
+        </button>
+<button class="flex-1 py-1.5 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-colors text-center" type="button">
+          Esta Semana
+        </button>
+<button class="flex-1 py-1.5 rounded-lg bg-surface-container-lowest text-primary shadow-sm font-semibold text-label-md font-label-md text-center" type="button">
+          Este Mês
+        </button>
+</div>
+</section>
+<!-- Card Principal de Destaque (Bordô Elegante) -->
+<section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-container via-primary to-[#3a0018] text-on-primary p-6 shadow-[0_12px_32px_-6px_rgba(110,25,54,0.35)]">
+<!-- Glow ambient background decoration -->
+<div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-secondary-container/20 blur-2xl pointer-events-none"></div>
+<div class="absolute -left-10 -bottom-10 w-36 h-36 rounded-full bg-primary/40 blur-xl pointer-events-none"></div>
+<div class="relative z-10 space-y-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#f2829f]"></span>
+<span class="text-label-sm font-label-sm tracking-wider uppercase text-on-primary-container font-semibold">Total Recebido no Mês</span>
+</div>
+<span class="material-symbols-outlined text-on-primary-container/80 text-[20px]">trending_up</span>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="text-headline-md font-headline-md text-on-primary-container font-normal">R$</span>
+<span class="text-[2.5rem] leading-none font-bold tracking-tight text-on-primary">4.820,00</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-primary-container/90 mt-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-emerald-300">verified</span>
+            54 atendimentos realizados
+          </p>
+</div>
+<!-- Metric divider block: A Receber / Pendente -->
+<div class="pt-4 border-t border-white/10 flex items-center justify-between">
+<div>
+<span class="text-label-sm font-label-sm text-on-primary-container/80 block">A Receber / Pendente</span>
+<span class="text-headline-sm font-headline-sm font-semibold text-white">R$ 380,00</span>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-on-primary-container/80 block">Previsão Total</span>
+<span class="text-label-md font-label-md font-semibold text-[#ffd9e0]">R$ 5.200,00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Ações Rápidas de 1 Toque -->
+<section class="grid grid-cols-2 gap-3">
+<button class="group flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary text-on-primary font-semibold text-label-md font-label-md shadow-sm hover:bg-[#8C2F4D] active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">add_circle</span>
+<span>+ Registrar Pagamento</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant/40 text-on-surface hover:border-primary hover:text-primary active:scale-[0.98] transition-all text-label-md font-label-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary">assessment</span>
+<span>Ver Relatório</span>
+</button>
+</section>
+<!-- Pendências de Hoje -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-700 text-[20px]">notification_important</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Pendências de Hoje</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-label-sm font-label-sm font-semibold">1 pendente</span>
+</div>
+<!-- Card de Recebimento Pendente -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm space-y-3">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-amber-50 text-amber-800 flex items-center justify-center font-bold text-label-md border border-amber-200">
+              CS
+            </div>
+<div>
+<h4 class="text-label-md font-label-md font-bold text-on-surface">Camila Santos</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Design de Sobrancelhas • 14:00</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-sm font-headline-sm font-bold text-primary">R$ 140,00</span>
+<span class="block text-label-sm font-label-sm text-amber-800 font-semibold">Aguardando</span>
+</div>
+</div>
+<div class="pt-2 border-t border-surface-container flex items-center gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-secondary-fixed/40 hover:bg-secondary-fixed/70 text-primary text-label-sm font-label-sm font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+<span>Pix</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-sm font-label-sm font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">credit_card</span>
+<span>Cartão</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-sm font-label-sm font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span>Dinheiro</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Últimos Recebimentos -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Últimos Recebimentos</h3>
+<button class="text-label-sm font-label-sm font-semibold text-primary hover:underline flex items-center gap-0.5" type="button">
+<span>Ver histórico</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="space-y-2.5">
+<!-- Item 1: Beatriz Ferreira -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-between shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-200">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">qr_code_2</span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface">Beatriz Ferreira</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Pix confirmado • Hoje 11:32
+              </p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-md font-label-md font-bold text-on-surface">+ R$ 110,00</span>
+<span class="block text-label-sm font-label-sm text-emerald-700 font-medium">Recebido</span>
+</div>
+</div>
+<!-- Item 2: Mariana Oliveira -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-between shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center border border-sky-200">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">credit_card</span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface">Mariana Oliveira</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+                Cartão de Débito • Hoje 09:35
+              </p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-md font-label-md font-bold text-on-surface">+ R$ 60,00</span>
+<span class="block text-label-sm font-label-sm text-sky-700 font-medium">Liquidado</span>
+</div>
+</div>
+<!-- Item 3: Juliana Paes -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-between shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface">Juliana Paes</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                Dinheiro • Ontem
+              </p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-md font-label-md font-bold text-on-surface">+ R$ 90,00</span>
+<span class="block text-label-sm font-label-sm text-on-surface-variant font-medium">Em caixa</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Shared Component) -->
+<!-- Destino ativo contextual: 'Financeiro' -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-[0_-4px_16px_rgba(110,25,54,0.04)] dark:shadow-none">
+<!-- Tab 1: Agenda -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<span class="text-label-sm font-label-sm">Agenda</span>
+</a>
+<!-- Tab 2: Clientes -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">group</span>
+<span class="text-label-sm font-label-sm">Clientes</span>
+</a>
+<!-- Tab 3: Financeiro (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-3 py-1.5 font-semibold transition-all active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="text-label-sm font-label-sm">Financeiro</span>
+</a>
+<!-- Tab 4: Serviços -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">spa</span>
+<span class="text-label-sm font-label-sm">Serviços</span>
+</a>
+<!-- Tab 5: Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">storefront</span>
+<span class="text-label-sm font-label-sm">Perfil</span>
+</a>
+</nav>
+</body></html>

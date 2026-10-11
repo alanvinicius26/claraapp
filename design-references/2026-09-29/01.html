@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Minha Assinatura | Encaixa Studio</title>
+<!-- Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#1d1b18",
+            "primary-fixed": "#ffd9e0",
+            "on-secondary-fixed": "#3f0019",
+            "on-tertiary-container": "#e78b84",
+            "primary-container": "#6e1936",
+            "surface": "#fef9f3",
+            "secondary-fixed-dim": "#ffb1c3",
+            "surface-bright": "#fef9f3",
+            "on-error-container": "#93000a",
+            "surface-container": "#f2ede7",
+            "surface-container-highest": "#e6e2dc",
+            "error-container": "#ffdad6",
+            "surface-container-high": "#ece7e2",
+            "primary": "#500021",
+            "background": "#fef9f3",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#ffb1c2",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed": "#3d0606",
+            "on-primary-fixed": "#3f0018",
+            "on-primary-fixed-variant": "#7e2642",
+            "on-secondary-fixed-variant": "#7f2543",
+            "secondary-container": "#ff8aa9",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#f5f0ea",
+            "on-primary-container": "#f2829f",
+            "error": "#ba1a1a",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-background": "#1d1b18",
+            "secondary": "#9d3d5a",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdad6",
+            "outline": "#877275",
+            "surface-container-low": "#f8f3ed",
+            "tertiary-container": "#662521",
+            "on-surface-variant": "#544245",
+            "on-secondary-container": "#781f3e",
+            "surface-tint": "#9c3e59",
+            "outline-variant": "#dac0c4",
+            "inverse-surface": "#32302c",
+            "surface-dim": "#ded9d4",
+            "tertiary": "#4a0f0e",
+            "surface-variant": "#e6e2dc",
+            "inverse-primary": "#ffb1c2",
+            "on-tertiary-fixed-variant": "#76312d",
+            "secondary-fixed": "#ffd9e0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.25rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "space-2xl": "3rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* 3D Flip Card Styles */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    
+    /* Subtle touch polish */
+    input:focus {
+      outline: none;
+    }
+    
+    /* Micro-glow Shimmer */
+    @keyframes subtleShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .btn-shimmer {
+      background-size: 200% auto;
+    }
+    .btn-shimmer:active {
+      transform: scale(0.98);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased font-body-md min-h-screen pb-28 select-none">
+<!-- TOP APP BAR (Shared Component Anchor) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-3 bg-surface/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-3">
+<!-- Profile Leading Avatar with Active Status Dot -->
+<div class="relative w-10 h-10 rounded-full overflow-hidden border border-outline-variant/60 flex-shrink-0 bg-surface-container">
+<img alt="Foto de perfil da profissional Juliana Silva" class="w-full h-full object-cover" data-alt="Foto de perfil da profissional de estética e beleza Juliana Silva com iluminação quente de estúdio boutique, vestindo jaleco linho rosé minimalista e sorriso acolhedor em alta resolução." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsBNo7pEJ7OxH4ReqX4k6o1LzPZwg-cbrOgSEld3Ode80QKMBGqtw8cEo61XbAtHdolpJfdz62LaA6pnIvLEMbR3-V8T5Gr-FjSl9jM4Xz6iD4u6vtQo9LCh1CHnY_CUI1WgdxEZ_k2HYuVSGG-JAgtaugfRp67fT1C3KQOjtpwqvds7gQzzbqoTsDBq4XC2nJp-J7GaqDbfBZAIRyNdJsTSKbkcE-OpPzmK3-RIPx-t7nvEujHihDWQ"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-[#3BAA5C] border-2 border-surface rounded-full shadow-sm" title="Atendendo agora"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold tracking-tight">Encaixa Studio</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#3BAA5C]"></span>
+          Juliana Silva • Atendendo agora
+        </p>
+</div>
+</div>
+<!-- Action Trailing -->
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md transition-colors duration-150 active:scale-95" type="button">
+<span class="material-symbols-outlined text-lg leading-none" data-icon="share">share</span>
+<span>Compartilhar</span>
+</button>
+</header>
+<!-- MAIN CANVAS CONTAINER (Mobile Optimized) -->
+<main class="pt-20 px-4 max-w-md mx-auto space-y-5">
+<!-- PAGE HERO & STATUS -->
+<section class="space-y-1.5 mt-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">Minha Assinatura</h1>
+<span class="inline-flex items-center gap-1 bg-[#E5EADD] text-[#245834] font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-semibold border border-[#c4d6b6]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#245834] animate-pulse"></span>
+            Plano Ativo
+          </span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Sua assinatura Encaixa mantém sua agenda online, notificações automáticas no WhatsApp e catálogo de serviços sempre ativos, sem reter ou deduzir nenhuma porcentagem dos seus atendimentos.
+      </p>
+</section>
+<!-- PLAN SUMMARY CARD (Warm Editorial Style) -->
+<section class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/40 shadow-sm relative overflow-hidden">
+<!-- Ambient subtle wine accent top line -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-container to-secondary"></div>
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-bold">Plano Mensal Individual</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold mt-0.5">Profissional Autônoma</h2>
+</div>
+<div class="text-right">
+<div class="flex items-baseline justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant mr-0.5">R$</span>
+<span class="font-number-metric text-number-metric text-primary font-bold">19,90</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/mês</span>
+</div>
+<span class="font-label-sm text-label-sm text-[#2F2928] bg-[#E5EADD] px-2 py-0.5 rounded-full inline-block mt-0.5 font-medium">Cobrança Mensal</span>
+</div>
+</div>
+<!-- Feature checklist -->
+<div class="mt-4 pt-3.5 border-t border-surface-container space-y-2">
+<div class="flex items-center gap-2 text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-primary text-base leading-none" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Agenda ilimitada com reservas e confirmações automáticas</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-primary text-base leading-none" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="truncate">Link próprio: <strong class="text-primary font-semibold">encaixa.me/studio-juliana</strong></span>
+</div>
+<div class="flex items-center gap-2 text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-primary text-base leading-none" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span><strong>0% de taxa</strong> sobre o dinheiro dos seus procedimentos</span>
+</div>
+</div>
+<!-- Renewal info badge -->
+<div class="mt-4 p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="event_repeat">event_repeat</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface font-semibold">Próxima renovação</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">15 de Junho de 2025 • Mastercard •••• 4821</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="lock" title="Ambiente protegido">lock</span>
+</div>
+<div class="mt-2.5 flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm px-1">
+<span class="material-symbols-outlined text-[#3BAA5C] text-sm" data-icon="verified_user">verified_user</span>
+<span>Garantia de continuidade: 7 dias de tolerância com aviso prévio</span>
+</div>
+</section>
+<!-- SECTION TITLE: 3D INTERACTIVE CREDIT CARD -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Cartão de Pagamento</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Toque no cartão para conferir dados e verso</p>
+</div>
+<button class="inline-flex items-center gap-1 text-primary hover:text-secondary font-label-sm text-label-sm font-semibold p-1 transition-colors" id="toggle-flip-btn-header" type="button">
+<span class="material-symbols-outlined text-base" data-icon="sync">sync</span>
+<span>Virar</span>
+</button>
+</div>
+<!-- 3D CARD WRAPPER (Perspective Container) -->
+<div class="perspective-1000 w-full select-none cursor-pointer" id="interactive-credit-card-container">
+<div class="relative w-full h-52 rounded-2xl transform-style-preserve-3d transition-transform duration-700 ease-in-out shadow-[0_12px_32px_-6px_rgba(110,25,54,0.22)]" id="interactive-credit-card">
+<!-- FRONT OF CARD -->
+<div class="absolute inset-0 w-full h-full rounded-2xl p-5 bg-gradient-to-br from-[#500021] via-[#6E1936] to-[#300514] text-white flex flex-col justify-between backface-hidden border border-white/10 overflow-hidden">
+<!-- Background subtle pattern watermark -->
+<div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-white/5 pointer-events-none blur-xl"></div>
+<div class="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-[#f2829f]/10 pointer-events-none blur-lg"></div>
+<!-- Top Row: Chip, Contactless & Brand -->
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Gold EMV Chip -->
+<div class="w-10 h-7 rounded-md bg-gradient-to-br from-[#ECC880] via-[#FCE4A6] to-[#BA9347] border border-[#a1782e] flex flex-col justify-between p-1 shadow-inner">
+<div class="w-full h-px bg-[#85601d]/40"></div>
+<div class="w-2.5 h-2 rounded-sm border border-[#85601d]/50 mx-auto"></div>
+<div class="w-full h-px bg-[#85601d]/40"></div>
+</div>
+<!-- Contactless Icon -->
+<span class="material-symbols-outlined text-white/70 text-lg leading-none rotate-90" data-icon="wifi">wifi</span>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm tracking-widest font-black uppercase text-white/90">ENCAIXA</span>
+</div>
+</div>
+<!-- Middle Row: Masked Card Number -->
+<div class="relative z-10 my-auto pt-2">
+<p class="font-label-sm text-[0.6875rem] text-white/60 tracking-wider uppercase">Número do Cartão</p>
+<div class="font-mono text-lg tracking-[0.2em] font-semibold text-white/95 mt-0.5" id="card-display-number">
+                •••• •••• •••• 4821
+              </div>
+</div>
+<!-- Bottom Row: Holder Name, Expiry & Mastercard Logo -->
+<div class="relative z-10 flex items-end justify-between">
+<div>
+<p class="font-label-sm text-[0.625rem] text-white/60 uppercase tracking-wider">Titular</p>
+<p class="font-label-md text-label-md font-bold tracking-wider uppercase text-white truncate max-w-[160px]" id="card-display-name">
+                  JULIANA SILVA
+                </p>
+</div>
+<div>
+<p class="font-label-sm text-[0.625rem] text-white/60 uppercase tracking-wider">Validade</p>
+<p class="font-mono text-label-md text-label-md font-semibold text-white" id="card-display-expiry">
+                  08/29
+                </p>
+</div>
+<!-- Mastercard Circles -->
+<div class="flex items-center -space-x-2.5 pr-1">
+<div class="w-6 h-6 rounded-full bg-[#EB001B] opacity-90 shadow-sm"></div>
+<div class="w-6 h-6 rounded-full bg-[#F79E1B] opacity-90 shadow-sm mix-blend-screen"></div>
+</div>
+</div>
+<!-- Flip indicator tag -->
+<div class="absolute bottom-2 right-16 flex items-center gap-1 text-[10px] text-white/50 bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-full">
+<span>Girar para o verso</span>
+<span class="material-symbols-outlined text-[12px]" data-icon="touch_app">touch_app</span>
+</div>
+</div>
+<!-- BACK OF CARD -->
+<div class="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-[#2a0312] via-[#500021] to-[#1d010b] text-white flex flex-col justify-between backface-hidden rotate-y-180 border border-white/10 overflow-hidden shadow-2xl">
+<!-- Magnetic Stripe -->
+<div class="w-full h-10 bg-neutral-900 mt-4 border-y border-white/5"></div>
+<!-- CVV & Signature Area -->
+<div class="px-5">
+<div class="flex items-center justify-between text-[10px] text-white/60 uppercase mb-1">
+<span>Assinatura Autorizada</span>
+<span class="font-mono">CVV SEGREDO</span>
+</div>
+<div class="flex items-center">
+<div class="h-8 flex-1 bg-surface-container-high rounded-l flex items-center px-3">
+<span class="italic font-serif text-neutral-600 text-xs tracking-wider select-none font-semibold">Juliana Silva</span>
+</div>
+<div class="h-8 w-14 bg-white text-neutral-900 rounded-r flex items-center justify-center font-mono font-bold text-sm tracking-widest border-l border-neutral-300">
+<span id="card-display-cvv">821</span>
+</div>
+</div>
+</div>
+<!-- Hologram & Security text footer -->
+<div class="px-5 pb-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-5 rounded bg-gradient-to-r from-teal-300 via-pink-400 to-amber-200 opacity-60 border border-white/20"></div>
+<p class="text-[9px] text-white/60 leading-tight max-w-[170px]">
+                  Criptografia PCI-DSS nível bancário. Proteção ativa Encaixa Pay.
+                </p>
+</div>
+<span class="material-symbols-outlined text-white/40 text-xl" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Interactive Flip Button -->
+<div class="flex justify-center">
+<button class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant/40 text-primary font-label-md text-label-md font-semibold hover:bg-surface-container-high active:scale-95 transition-all shadow-sm" id="btn-manual-flip" type="button">
+<span class="material-symbols-outlined text-base transition-transform group-hover:rotate-180" data-icon="restart_alt">restart_alt</span>
+<span>Girar cartão ↺</span>
+</button>
+</div>
+</section>
+<!-- FORM: UPDATE CARD DETAILS (Ergonomic Mobile Layout) -->
+<section class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/40 shadow-sm space-y-4">
+<div class="border-b border-surface-container pb-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="credit_card">credit_card</span>
+          Atualizar Cartão de Cobrança
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Insira os dados do novo cartão. O valor de R$ 19,90 só será cobrado no dia da próxima renovação.
+        </p>
+</div>
+<form class="space-y-3.5" id="payment-form" onsubmit="event.preventDefault(); handleCardUpdate();">
+<!-- Card Number Input -->
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="input-card-number">
+            Número do Cartão
+          </label>
+<div class="relative">
+<input autocomplete="cc-number" class="w-full h-[42px] px-3.5 pl-10 rounded-[10px] border border-outline-variant/60 bg-surface-container-lowest text-on-surface text-body-md font-body-md placeholder:text-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-mono" id="input-card-number" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" required="" type="tel"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-lg" data-icon="payment">payment</span>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1" id="card-brand-icon">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="credit_card">credit_card</span>
+</div>
+</div>
+</div>
+<!-- Cardholder Name Input -->
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="input-card-name">
+            Nome impresso no Cartão
+          </label>
+<div class="relative">
+<input autocomplete="cc-name" class="w-full h-[42px] px-3.5 pl-10 rounded-[10px] border border-outline-variant/60 bg-surface-container-lowest text-on-surface text-body-md font-body-md placeholder:text-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all uppercase" id="input-card-name" placeholder="Ex: JULIANA SILVA" required="" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-lg" data-icon="person">person</span>
+</div>
+</div>
+<!-- CPF of the Cardholder -->
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="input-card-cpf">
+            CPF do Titular
+          </label>
+<div class="relative">
+<input class="w-full h-[42px] px-3.5 pl-10 rounded-[10px] border border-outline-variant/60 bg-surface-container-lowest text-on-surface text-body-md font-body-md placeholder:text-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-mono" id="input-card-cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required="" type="tel"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-lg" data-icon="badge">badge</span>
+</div>
+</div>
+<!-- Dual Column: Expiry & CVV -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Expiry Date -->
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="input-card-expiry">
+              Validade (MM/AA)
+            </label>
+<div class="relative">
+<input class="w-full h-[42px] px-3.5 pl-9 rounded-[10px] border border-outline-variant/60 bg-surface-container-lowest text-on-surface text-body-md font-body-md placeholder:text-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-mono" id="input-card-expiry" inputmode="numeric" maxlength="5" placeholder="MM/AA" required="" type="tel"/>
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-outline-variant text-lg" data-icon="calendar_month">calendar_month</span>
+</div>
+</div>
+<!-- CVV with auto flip trigger -->
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="input-card-cvv">
+                Código CVV
+              </label>
+<span class="font-label-sm text-[10px] text-primary">3 ou 4 dígitos</span>
+</div>
+<div class="relative">
+<input class="w-full h-[42px] px-3.5 pl-9 rounded-[10px] border border-outline-variant/60 bg-surface-container-lowest text-on-surface text-body-md font-body-md placeholder:text-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-mono" id="input-card-cvv" inputmode="numeric" maxlength="4" placeholder="123" required="" type="tel"/>
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-outline-variant text-lg" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+<!-- Automatic statement descriptor alert -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/30 space-y-1.5">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base mt-0.5 leading-none" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              A cobrança virá identificada na sua fatura como: 
+              <strong class="text-on-surface font-semibold tracking-wider font-mono">ENCAIXA*ASSINATURA</strong>
+</p>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm pl-6">
+<span class="material-symbols-outlined text-primary text-xs" data-icon="mail">mail</span>
+<span>Comprovante e recibo fiscal enviados no seu e-mail a cada mês.</span>
+</div>
+</div>
+<!-- Primary & Secondary Buttons -->
+<div class="pt-2 space-y-2">
+<button class="w-full h-12 bg-primary-container hover:bg-secondary text-on-primary rounded-[10px] font-label-md text-label-md font-semibold shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer" id="btn-submit-card" type="submit">
+<span class="material-symbols-outlined text-lg leading-none" data-icon="check_circle">check_circle</span>
+<span>Salvar Novo Cartão</span>
+</button>
+<button class="w-full h-11 bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-[10px] font-label-md text-label-md font-medium border border-outline-variant/40 transition-colors" onclick="resetForm()" type="button">
+            Cancelar
+          </button>
+</div>
+</form>
+</section>
+<!-- BILLING HISTORY SECTION -->
+<section class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/40 shadow-sm space-y-3.5">
+<div class="flex items-center justify-between border-b border-surface-container pb-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Histórico de Cobranças</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Recibos e pagamentos liquidados</p>
+</div>
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="receipt_long">receipt_long</span>
+</div>
+<!-- History Items -->
+<div class="space-y-2.5">
+<!-- Item 1: Maio 2025 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#E5EADD] text-[#245834] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-base" data-icon="check">check</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Maio / 2025</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">15/05/2025 • Mastercard •••• 4821</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold text-on-surface">R$ 19,90</p>
+<span class="font-label-sm text-[11px] text-[#245834] font-semibold bg-[#E5EADD] px-1.5 py-0.2 rounded">Pago</span>
+</div>
+</div>
+<!-- Item 2: Abril 2025 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#E5EADD] text-[#245834] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-base" data-icon="check">check</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Abril / 2025</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">15/04/2025 • Mastercard •••• 4821</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold text-on-surface">R$ 19,90</p>
+<span class="font-label-sm text-[11px] text-[#245834] font-semibold bg-[#E5EADD] px-1.5 py-0.2 rounded">Pago</span>
+</div>
+</div>
+<!-- Item 3: Março 2025 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#E5EADD] text-[#245834] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-base" data-icon="check">check</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Março / 2025</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">15/03/2025 • Mastercard •••• 4821</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold text-on-surface">R$ 19,90</p>
+<span class="font-label-sm text-[11px] text-[#245834] font-semibold bg-[#E5EADD] px-1.5 py-0.2 rounded">Pago</span>
+</div>
+</div>
+</div>
+<!-- Quick Action Buttons for Receipts -->
+<div class="pt-1 flex gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 transition-colors border border-outline-variant/30" onclick="toastNotification('Comprovante reenviado para seu e-mail cadastrado!')" type="button">
+<span class="material-symbols-outlined text-base" data-icon="forward_to_inbox">forward_to_inbox</span>
+<span>Reenviar E-mail</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 transition-colors border border-outline-variant/30" onclick="toastNotification('Download da fatura PDF iniciado')" type="button">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+<span>Baixar PDF</span>
+</button>
+</div>
+</section>
+<!-- FOOTER CARDS: NO CONTRACT & SUPPORT -->
+<section class="space-y-3 pt-1">
+<div class="grid grid-cols-2 gap-3">
+<!-- No fine card -->
+<div class="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/30">
+<div class="w-7 h-7 rounded-lg bg-secondary-fixed text-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-base" data-icon="handshake">handshake</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Sem Fidelidade</h4>
+<p class="font-body-sm text-xs text-on-surface-variant mt-0.5 leading-snug">
+            Cancele ou pause sua assinatura com 1 clique a qualquer momento sem taxas.
+          </p>
+</div>
+<!-- NF-e & Fiscal Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/30">
+<div class="w-7 h-7 rounded-lg bg-primary-fixed text-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-base" data-icon="description">description</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Emissão de NF-e</h4>
+<p class="font-body-sm text-xs text-on-surface-variant mt-0.5 leading-snug">
+            Notas fiscais eletrônicas de serviços geradas automaticamente.
+          </p>
+</div>
+</div>
+<!-- WhatsApp Help Drawer Trigger -->
+<a class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/40 hover:bg-surface-container-low transition-colors shadow-sm" href="https://wa.me/" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-[#E5EADD] text-[#245834] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="chat">chat</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Precisa de ajuda com sua fatura?</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Fale com o suporte Encaixa via WhatsApp</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+</section>
+<!-- Bottom Spacing for fixed navigation bar -->
+<div class="h-10"></div>
+</main>
+<!-- TOAST NOTIFICATION POPUP -->
+<div class="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-primary text-white font-label-md text-label-md px-4 py-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2" id="toast">
+<span class="material-symbols-outlined text-base" data-icon="task_alt">task_alt</span>
+<span id="toast-message">Cartão atualizado com sucesso!</span>
+</div>
+<!-- BOTTOM NAVIGATION BAR (Shared Component Anchor) -->
+<!-- Semantic Active Tab: 'Perfil' is active for subscription and account management -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-[0_-4px_16px_rgba(110,25,54,0.04)]">
+<!-- Tab 1: Agenda -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="calendar_today">calendar_today</span>
+<span class="text-label-sm font-label-sm mt-0.5">Agenda</span>
+</button>
+<!-- Tab 2: Clientes -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="group">group</span>
+<span class="text-label-sm font-label-sm mt-0.5">Clientes</span>
+</button>
+<!-- Tab 3: Financeiro -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+<span class="text-label-sm font-label-sm mt-0.5">Financeiro</span>
+</button>
+<!-- Tab 4: Serviços -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="spa">spa</span>
+<span class="text-label-sm font-label-sm mt-0.5">Serviços</span>
+</button>
+<!-- Tab 5: Perfil (ACTIVE STATE MATCHING PAGE CONTEXT) -->
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-3 py-1.5 font-semibold transition-all active:scale-95 shadow-sm" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="storefront" data-weight="fill" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-label-sm font-label-sm mt-0.5">Perfil</span>
+</button>
+</nav>
+<!-- JAVASCRIPT: 3D FLIP LOGIC & LIVE INPUT SYNCHRONIZATION -->
+<script>
+    // 3D Card Elements
+    const cardContainer = document.getElementById('interactive-credit-card-container');
+    const creditCard = document.getElementById('interactive-credit-card');
+    const btnManualFlip = document.getElementById('btn-manual-flip');
+    const toggleFlipBtnHeader = document.getElementById('toggle-flip-btn-header');
+
+    // Input Elements
+    const inputNumber = document.getElementById('input-card-number');
+    const inputName = document.getElementById('input-card-name');
+    const inputCpf = document.getElementById('input-card-cpf');
+    const inputExpiry = document.getElementById('input-card-expiry');
+    const inputCvv = document.getElementById('input-card-cvv');
+
+    // Card Display Elements
+    const displayNum = document.getElementById('card-display-number');
+    const displayName = document.getElementById('card-display-name');
+    const displayExpiry = document.getElementById('card-display-expiry');
+    const displayCvv = document.getElementById('card-display-cvv');
+
+    let isFlipped = false;
+
+    // Flip toggle functions
+    function flipCardToBack() {
+      if (!isFlipped) {
+        creditCard.classList.add('rotate-y-180');
+        isFlipped = true;
+      }
+    }
+
+    function flipCardToFront() {
+      if (isFlipped) {
+        creditCard.classList.remove('rotate-y-180');
+        isFlipped = false;
+      }
+    }
+
+    function toggleFlip() {
+      if (isFlipped) {
+        flipCardToFront();
+      } else {
+        flipCardToBack();
+      }
+    }
+
+    // Event Listeners for Clicking / Tapping the Card or Flip buttons
+    cardContainer.addEventListener('click', toggleFlip);
+    btnManualFlip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFlip();
+    });
+    toggleFlipBtnHeader.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFlip();
+    });
+
+    // Auto flip when focusing on CVV input
+    inputCvv.addEventListener('focus', () => {
+      flipCardToBack();
+    });
+
+    // Auto flip back to front when leaving CVV or focusing on front-facing fields
+    inputNumber.addEventListener('focus', flipCardToFront);
+    inputName.addEventListener('focus', flipCardToFront);
+    inputCpf.addEventListener('focus', flipCardToFront);
+    inputExpiry.addEventListener('focus', flipCardToFront);
+
+    // Live Formatting & Sync for Card Number
+    inputNumber.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      val = val.substring(0, 16);
+      let formatted = val.match(/.{1,4}/g)?.join(' ') || '';
+      e.target.value = formatted;
+
+      if (val.length > 0) {
+        // Mask first 12 digits if length >= 4
+        let visible = formatted;
+        displayNum.innerText = visible;
+      } else {
+        displayNum.innerText = '•••• •••• •••• 4821';
+      }
+    });
+
+    // Live Sync for Cardholder Name
+    inputName.addEventListener('input', (e) => {
+      const val = e.target.value;
+      displayName.innerText = val.trim() ? val.toUpperCase() : 'JULIANA SILVA';
+    });
+
+    // Live Formatting for CPF
+    inputCpf.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').substring(0, 11);
+      if (val.length > 9) {
+        val = val.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+      } else if (val.length > 6) {
+        val = val.replace(/^(\d{3})(\d{3})(\d+)$/, "$1.$2.$3");
+      } else if (val.length > 3) {
+        val = val.replace(/^(\d{3})(\d+)$/, "$1.$2");
+      }
+      e.target.value = val;
+    });
+
+    // Live Formatting for Expiry (MM/AA)
+    inputExpiry.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').substring(0, 4);
+      if (val.length >= 2) {
+        val = val.substring(0, 2) + '/' + val.substring(2);
+      }
+      e.target.value = val;
+      displayExpiry.innerText = val || '08/29';
+    });
+
+    // Live Sync for CVV
+    inputCvv.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').substring(0, 4);
+      e.target.value = val;
+      displayCvv.innerText = val || '821';
+    });
+
+    // Toast helper
+    function toastNotification(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3200);
+    }
+
+    // Handle Form Submit
+    function handleCardUpdate() {
+      const btn = document.getElementById('btn-submit-card');
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined text-lg animate-spin">refresh</span><span>Processando...</span>`;
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+        flipCardToFront();
+        toastNotification('Cartão salvo e validado com sucesso!');
+      }, 1200);
+    }
+
+    // Reset Form
+    function resetForm() {
+      document.getElementById('payment-form').reset();
+      displayNum.innerText = '•••• •••• •••• 4821';
+      displayName.innerText = 'JULIANA SILVA';
+      displayExpiry.innerText = '08/29';
+      displayCvv.innerText = '821';
+      flipCardToFront();
+    }
+  </script>
+</body></html>

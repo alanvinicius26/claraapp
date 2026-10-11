@@ -1,0 +1,138 @@
+.media-upload {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border: 1px dashed #dccbc1;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  background: #fcf9f5;
+}
+.media-upload > img {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.media-upload .micro {
+  margin: 8px 0 0;
+  font-size: 9px;
+}
+.media-upload .button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+}
+.media-upload .text-button {
+  font-size: 9px;
+  margin-top: 8px;
+}
+.service-photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  z-index: 2;
+}
+.service-art .category-pill,
+.service-art .service-duration,
+.service-art > strong {
+  z-index: 3;
+}
+.service-art:has(.service-photo) .service-duration {
+  background: #fffddd;
+  padding: 4px 6px;
+  border-radius: 5px;
+}
+.studio-photo {
+  object-fit: cover;
+  border-radius: 50%;
+}
+.booking-service-photo {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+.booking-service-list button > div {
+  flex: 1;
+}
+.section-head p,
+.page-title p,
+.appointment-body p {
+  color: #8b7269;
+}
+.metric > p {
+  color: #92786c;
+}
+.appointment-body .micro {
+  color: #9b8073;
+}
+.sidebar .nav-label,
+.sidebar .workspace-label {
+  color: #997d73;
+}
+.today-note {
+  color: #94806f;
+}
+.micro {
+  color: #88776c;
+}
+@media (max-width: 720px) {
+  .metric > strong {
+    font-size: 20px;
+  }
+  .media-upload {
+    gap: 12px;
+    padding: 13px;
+  }
+  .media-upload > img {
+    width: 58px;
+    height: 58px;
+  }
+  .booking-service-photo {
+    width: 44px;
+    height: 44px;
+  }
+}
+@media (max-width: 380px) {
+  .metric > strong {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    visibility: hidden;
+  }
+  .sidebar.is-open {
+    visibility: visible;
+  }
+  .metric > div {
+    font-size: 9px;
+  }
+  .metric > p {
+    font-size: 8px;
+  }
+  .appointment-name {
+    font-size: 12px;
+  }
+  .appointment-body p {
+    font-size: 10px;
+  }
+  .appointment-body .micro {
+    font-size: 8px;
+  }
+  .appointment-price span {
+    font-size: 8px;
+  }
+}

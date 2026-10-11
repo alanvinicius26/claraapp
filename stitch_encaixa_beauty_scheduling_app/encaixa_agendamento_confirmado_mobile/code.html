@@ -1,0 +1,360 @@
+<!DOCTYPE html><html class="light" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Confirmação de Agendamento - Studio Juliana Silva</title>
+<!-- Material Symbols Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#ffb1c3",
+            "secondary": "#9d3d5a",
+            "primary": "#500021",
+            "secondary-fixed": "#ffd9e0",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "on-background": "#1d1b18",
+            "error": "#ba1a1a",
+            "surface-container-low": "#f8f3ed",
+            "background": "#fef9f3",
+            "surface-dim": "#ded9d4",
+            "secondary-container": "#ff8aa9",
+            "on-surface-variant": "#544245",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#f2ede7",
+            "inverse-surface": "#32302c",
+            "on-primary-fixed-variant": "#7e2642",
+            "on-primary-container": "#f2829f",
+            "surface-variant": "#e6e2dc",
+            "surface-bright": "#fef9f3",
+            "surface-tint": "#9c3e59",
+            "tertiary-fixed": "#ffdad6",
+            "tertiary-container": "#662521",
+            "outline-variant": "#dac0c4",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#3f0018",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#ffb1c2",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed": "#3d0606",
+            "surface": "#fef9f3",
+            "surface-container-high": "#ece7e2",
+            "outline": "#877275",
+            "on-tertiary-container": "#e78b84",
+            "inverse-on-surface": "#f5f0ea",
+            "primary-fixed-dim": "#ffb1c2",
+            "on-secondary-container": "#781f3e",
+            "on-secondary-fixed-variant": "#7f2543",
+            "error-container": "#ffdad6",
+            "tertiary": "#4a0f0e",
+            "surface-container-highest": "#e6e2dc",
+            "primary-container": "#6e1936",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-surface": "#1d1b18",
+            "on-tertiary-fixed-variant": "#76312d",
+            "on-secondary-fixed": "#3f0019",
+            "primary-fixed": "#ffd9e0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "space-2xl": "3rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-xl": ["2.25rem", { lineHeight: "2.75rem", letterSpacing: "-0.025em", fontWeight: "600" }],
+            "headline-sm": ["1.125rem", { lineHeight: "1.625rem", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "body-sm": ["0.8125rem", { lineHeight: "1.25rem", fontWeight: "400" }],
+            "label-md": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em", fontWeight: "600" }],
+            "headline-md": ["1.375rem", { lineHeight: "1.875rem", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "body-md": ["0.875rem", { lineHeight: "1.375rem", fontWeight: "400" }],
+            "label-sm": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.02em", fontWeight: "600" }],
+            "headline-lg": ["1.75rem", { lineHeight: "2.25rem", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "body-lg": ["1rem", { lineHeight: "1.625rem", fontWeight: "400" }],
+            "number-metric": ["2rem", { lineHeight: "2.25rem", letterSpacing: "-0.03em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FAF5EF;
+      color: #1d1b18;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+    }
+    .warm-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.06), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+    .ticket-rip {
+      background-image: radial-gradient(circle at 0.5rem 0, transparent 0.5rem, #ffffff 0.55rem);
+    }
+    .dashed-divider {
+      background-image: linear-gradient(to right, #dac0c4 50%, rgba(255,255,255,0) 0%);
+      background-position: bottom;
+      background-size: 10px 1px;
+      background-repeat: repeat-x;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface flex justify-center min-h-screen">
+<!-- Container Principal do Smartphone (Mobile Frame 390px) -->
+<div class="w-full max-w-[420px] bg-surface min-h-screen flex flex-col relative pb-28">
+<!-- TopBar Web Navegação do Navegador / Encaixa App -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 w-full bg-surface/95 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<a class="p-1 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</a>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant text-[11px] font-medium border border-outline-variant/40">
+<span class="material-symbols-outlined text-[13px] text-primary" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-mono tracking-tight">encaixa.me/studio-juliana</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-full text-primary hover:bg-surface-container-low transition-colors duration-150 active:scale-95" title="Compartilhar">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+</button>
+</div>
+</header>
+<!-- Conteúdo da Página -->
+<main class="px-4 pt-5 pb-6 space-y-6">
+<!-- Banner de Celebração & Sucesso -->
+<section class="flex flex-col items-center text-center pt-2 pb-1">
+<!-- Ícone Animado de Sucesso Suave -->
+<div class="relative mb-3 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center text-primary-container shadow-inner">
+<span class="material-symbols-outlined text-4xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="absolute -top-1 -right-1 text-lg">✨</span>
+</div>
+<span class="inline-block px-3 py-0.5 mb-2 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm tracking-wider uppercase">
+          Localizador #ENC-8492
+        </span>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">
+          Agendamento Confirmado!
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5 max-w-[320px]">
+          Tudo pronto, <strong class="text-on-surface font-semibold">Mariana</strong>! Seu horário já está reservado e bloqueado na agenda do estúdio.
+        </p>
+<!-- Alerta de WhatsApp de Apoio -->
+<div class="mt-4 w-full bg-[#EBF4E8] rounded-xl p-3 border border-[#CDE3C6] flex items-center gap-3 text-left"><div class="w-8 h-8 rounded-full bg-[#3B823E]/15 flex items-center justify-center shrink-0 text-[#2D6630]">
+<span class="material-symbols-outlined text-[18px]" data-icon="mark_email_read" style="font-variation-settings: 'FILL' 1;">mark_email_read</span>
+</div>
+<div class="flex-1">
+<p class="text-label-sm font-label-sm text-[#1C4320]">Confirmação e comprovante enviados por e-mail</p>
+<p class="text-body-sm font-body-sm text-[#2D5A32] leading-tight">Resumo completo encaminhado para <span class="font-semibold">mariana.oliveira@email.com</span>.</p>
+</div></div>
+</section>
+<!-- Card de Comprovante / Ingresso Digital Estilizado -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 warm-shadow overflow-hidden relative">
+<!-- Header do Estúdio no Card -->
+<div class="p-4 bg-surface-container-low flex items-center justify-between border-b border-outline-variant/40">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Foto de Juliana Silva" class="w-12 h-12 rounded-full object-cover border-2 border-surface-container-lowest shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1XXv7Zu81QGWhyG6sHqfzv2TITo4_wY1Bdd-iTMI9dUh0PQDEC5dSbBnVT5j3MFzoj1DqYXMUir_hs8VuBJFWa88UdDF63vKDOxbhAevjKgtFvojlo3jVoJ3IAE-w6bWatlv2Bepg3xsmmTpv3_saMbBzTYk452-gE-jbvAfE4UJ1omvrzX4WTB5HrLMapo200NkzKiKGbfdwBvCNS7LnVwKNMf6s3SxOXYS1bljlRYUrSMGgz_SJ9VPzFE">
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-600 rounded-full border-2 border-white" title="Estúdio Aberto"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-headline-sm text-primary leading-tight font-semibold">Studio Juliana Silva</h2>
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Especialista Nails &amp; Cuidados Naturais</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-surface-container-lowest rounded-lg border border-outline-variant/50 text-[11px] font-semibold text-primary">
+            Confirmado
+          </span>
+</div>
+<!-- Destaque: Data e Horário em Bloco de Alto Contraste -->
+<div class="p-4 bg-primary-container text-on-primary flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px] text-secondary-fixed" data-icon="calendar_month">calendar_month</span>
+</div>
+<div>
+<p class="text-[11px] font-medium uppercase tracking-wider text-secondary-fixed opacity-90">Data &amp; Horário</p>
+<p class="font-headline-sm text-headline-sm font-bold text-white">Terça, 15 de Outubro</p>
+</div>
+</div>
+<div class="text-right pl-2 border-l border-white/15">
+<p class="font-headline-md text-headline-md font-extrabold text-white">10:30</p>
+<p class="text-[11px] text-secondary-fixed opacity-90">Duração 1h 15m</p>
+</div>
+</div>
+<!-- Linha pontilhada estilo ticket / bilhete -->
+<div class="relative py-1 bg-surface-container-lowest">
+<div class="w-full dashed-divider h-[1px]"></div>
+<!-- Entalhes circulares bilaterais de ingresso -->
+<div class="absolute -left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 bg-surface rounded-full border-r border-outline-variant/50"></div>
+<div class="absolute -right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 bg-surface rounded-full border-l border-outline-variant/50"></div>
+</div>
+<!-- Especificações do Serviço e Pagamento -->
+<div class="p-4 space-y-4">
+<!-- Item do Serviço -->
+<div class="flex items-start justify-between pb-3 border-b border-outline-variant/30">
+<div class="space-y-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Procedimento Escolhido</span>
+<p class="font-headline-sm text-headline-sm text-on-background font-semibold">Esmaltação em Gel Completa</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> 1h 15min com cutilagem e finalização nutritiva
+              </p>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Valor</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">R$ 90,00</span>
+</div>
+</div>
+<!-- Forma de Pagamento no Local -->
+<div class="bg-surface-container-low p-3 rounded-xl flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="payments">payments</span>
+<div>
+<p class="font-label-md text-on-surface">Pagamento no Local</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Pix, Débito, Crédito ou Dinheiro</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">
+              Ao finalizar
+            </span>
+</div>
+<!-- Observação Registrada da Cliente -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl p-3 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5" data-icon="edit_note">edit_note</span>
+<div class="space-y-0.5">
+<p class="font-label-sm text-on-surface font-semibold">Sua observação para a Juliana:</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+                “Primeira vez no estúdio, cutículas sensíveis...”
+              </p>
+</div>
+</div>
+<!-- Endereço com botão de rota direta -->
+<div class="pt-1">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5" data-icon="pin_drop" style="font-variation-settings: 'FILL' 1;">pin_drop</span>
+<div class="flex-1">
+<p class="font-label-md text-on-surface font-semibold">Studio Juliana Silva • Sala 42</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+                  Rua Domingos de Morais, 1200 - Vila Mariana, São Paulo - SP
+                </p>
+<p class="text-[11px] text-secondary font-medium mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]" data-icon="directions_subway">directions_subway</span> A apenas 250m do Metrô Ana Rosa
+                </p>
+</div>
+</div>
+<!-- Botão de Mapa / Rotas -->
+<a class="mt-3 w-full py-2.5 px-3 bg-surface-container-high hover:bg-surface-container transition-colors rounded-xl text-primary font-label-md font-label-md flex items-center justify-center gap-2 border border-outline-variant/40 active:scale-[0.98]" href="https://maps.google.com" target="_blank">
+<span class="material-symbols-outlined text-[18px]" data-icon="navigation">navigation</span>
+<span class="">Abrir no Google Maps / Waze</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Ações Rápidas de Conveniência para a Cliente -->
+<section class="space-y-2.5">
+<!-- Adicionar à Agenda Pessoal -->
+<button class="w-full py-3.5 px-4 bg-primary-container text-white rounded-xl font-label-md font-label-md flex items-center justify-center gap-2.5 shadow-sm hover:bg-primary transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]" data-icon="event">event</span>
+<span class="">Adicionar à Minha Agenda (Google / Apple)</span>
+</button>
+<!-- Conversar no WhatsApp com a Profissional -->
+<a class="w-full py-3 px-4 bg-surface-container-lowest text-primary border border-outline-variant/70 rounded-xl font-label-md font-label-md flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors active:scale-[0.98]" href="https://wa.me/5511987654321" target="_blank">
+<span class="material-symbols-outlined text-[#25D366] text-[20px]" data-icon="chat">chat</span>
+<span class="">Falar com Juliana no WhatsApp</span>
+</a>
+</section>
+<!-- Dicas e Políticas do Estúdio (Card Acolhedor) -->
+<section class="bg-surface-container-low rounded-2xl p-4 border border-outline-variant/40 space-y-3">
+<h3 class="font-label-md text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]" data-icon="info">info</span>
+          Orientações para o seu atendimento
+        </h3>
+<div class="space-y-2.5 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-start gap-2.5">
+<span class="text-base leading-tight">☕</span>
+<p class="">Chegue de <strong class="text-on-surface">5 a 10 minutos antes</strong> para relaxar e saborear um café ou chá de boas-vindas especial.</p>
+</div>
+<div class="flex items-start gap-2.5"><span class="text-base leading-tight">⏰</span>
+<p class="">Precisa reagendar ou cancelar? Solicitamos aviso com pelo menos <strong class="text-on-surface">2 horas de antecedência</strong> pelo link de agendamento ou e-mail.</p></div>
+<div class="flex items-start gap-2.5">
+<span class="text-base leading-tight">✨</span>
+<p class="">Garantia de 7 dias para retoques de esmaltação em gel sem custos adicionais.</p>
+</div>
+</div>
+</section>
+<!-- Ações de Navegação Secundária -->
+<div class="pt-2 text-center space-y-3">
+<button class="text-label-md font-label-md text-secondary hover:text-primary transition-colors underline underline-offset-4 decoration-outline-variant/60">
+          Fazer outro agendamento no Studio
+        </button>
+<!-- Selo de Rodapé da Plataforma -->
+<div class="flex items-center justify-center gap-1.5 text-label-sm font-label-sm text-outline pt-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="verified_user">verified_user</span>
+<span class="">Agendado via <strong class="text-on-surface-variant">Encaixa</strong> • Confirmação instantânea</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar de Finalização Contextual do Fluxo -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-outline-variant/40 shadow-sm max-w-[420px] left-1/2 -translate-x-1/2">
+<!-- 1. Serviços -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 opacity-70 cursor-pointer">
+<span class="material-symbols-outlined text-[22px]" data-icon="spa">spa</span>
+<span class="text-label-sm font-label-sm">Serviços</span>
+</div>
+<!-- 2. Data & Hora -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 opacity-70 cursor-pointer">
+<span class="material-symbols-outlined text-[22px]" data-icon="calendar_today">calendar_today</span>
+<span class="text-label-sm font-label-sm">Data &amp; Hora</span>
+</div>
+<!-- 3. Confirmação (Destino Ativo Concluído) -->
+<div class="flex flex-col items-center justify-center text-primary font-semibold py-1">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px] text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="w-1.5 h-1.5 bg-primary rounded-full absolute -top-0.5 -right-0.5"></span>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-semibold">Confirmação</span>
+</div>
+</nav>
+</div>
+
+
+</body></html>

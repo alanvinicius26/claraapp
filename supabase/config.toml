@@ -1,0 +1,13 @@
+project_id = "encaixa"
+
+[functions.booking]
+verify_jwt = false
+
+[functions.clara]
+verify_jwt = false
+
+[functions.billing]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false

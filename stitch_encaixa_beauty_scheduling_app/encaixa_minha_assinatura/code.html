@@ -1,0 +1,711 @@
+<!DOCTYPE html><html lang="pt-BR" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Minha Assinatura | Encaixa PRO</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration verbatim as requested -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#ffd9e0",
+            "surface-variant": "#e6e2dc",
+            "on-tertiary-fixed-variant": "#76312d",
+            "primary": "#500021",
+            "on-primary-container": "#f2829f",
+            "error": "#ba1a1a",
+            "on-tertiary-container": "#e78b84",
+            "outline": "#877275",
+            "tertiary-container": "#662521",
+            "surface": "#fef9f3",
+            "tertiary-fixed": "#ffdad6",
+            "secondary-container": "#ff8aa9",
+            "on-error": "#ffffff",
+            "secondary": "#9d3d5a",
+            "on-secondary-container": "#781f3e",
+            "primary-fixed-dim": "#ffb1c2",
+            "primary-fixed": "#ffd9e0",
+            "surface-container-high": "#ece7e2",
+            "on-primary-fixed": "#3f0018",
+            "on-secondary-fixed": "#3f0019",
+            "on-primary-fixed-variant": "#7e2642",
+            "surface-tint": "#9c3e59",
+            "on-surface": "#1d1b18",
+            "error-container": "#ffdad6",
+            "inverse-primary": "#ffb1c2",
+            "tertiary": "#4a0f0e",
+            "on-primary": "#ffffff",
+            "secondary-fixed-dim": "#ffb1c3",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#32302c",
+            "on-background": "#1d1b18",
+            "surface-bright": "#fef9f3",
+            "on-tertiary-fixed": "#3d0606",
+            "surface-container-highest": "#e6e2dc",
+            "surface-dim": "#ded9d4",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "outline-variant": "#dac0c4",
+            "background": "#fef9f3",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#7f2543",
+            "surface-container": "#f2ede7",
+            "surface-container-low": "#f8f3ed",
+            "on-surface-variant": "#544245",
+            "inverse-on-surface": "#f5f0ea",
+            "primary-container": "#6e1936"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .warm-card-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.04), 0 2px 8px -2px rgba(47, 41, 40, 0.03);
+    }
+    .credit-card-gradient {
+      background: linear-gradient(135deg, #6E1936 0%, #8C2F4D 65%, #9d3d5a 100%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex selection:bg-secondary-fixed selection:text-primary">
+<!-- ========================================================================= -->
+<!-- 1. SIDE NAVIGATION BAR (Shared Component: SideNavBar)                      -->
+<!-- ========================================================================= -->
+<aside class="fixed top-0 left-0 h-screen w-64 flex flex-col justify-between bg-surface-container-lowest border-r border-outline-variant z-30 select-none">
+<!-- Top Branding & Quick Share Card -->
+<div class="px-5 pt-6 flex flex-col gap-5">
+<!-- Brand & Studio Tag -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">Encaixa</span>
+<span class="text-[10px] font-bold px-1.5 py-0.2 bg-secondary-fixed text-primary rounded tracking-wider">PRO</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline">studio-juliana</p>
+</div>
+</div>
+</div>
+<!-- Quick Public Link Card -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/60 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Página online</span>
+</div>
+<a class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-0.5" href="#">
+<span class="">Ver</span>
+<span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+</div>
+<div class="bg-surface-container-lowest rounded-lg px-2.5 py-1.5 border border-outline-variant/50 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface truncate">encaixa.me/studio-juliana</span>
+<button class="text-outline hover:text-primary transition-colors duration-150 p-0.5" onclick="navigator.clipboard.writeText('encaixa.me/studio-juliana')" title="Copiar link da página pública">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Navigation Menu -->
+<nav class="flex flex-col gap-1 mt-1">
+<!-- 1. Agenda -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="">Agenda</span>
+</div>
+</a>
+<!-- 2. Clientes -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+<span class="">Clientes</span>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-medium">128</span>
+</a>
+<!-- 3. Serviços -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+<span class="">Serviços</span>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-medium">14</span>
+</a>
+<!-- 4. Recebimentos -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="">Recebimentos</span>
+</div>
+</a>
+<!-- 5. Meu Espaço -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span class="">Meu Espaço</span>
+</div>
+</a>
+<!-- 6. Minha Assinatura (ACTIVE NAVIGATION ITEM) -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface-container-high text-primary font-label-md transition-all shadow-sm" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">loyalty</span>
+<span class="font-bold">Minha Assinatura</span>
+</div>
+<span class="text-[11px] font-bold px-2 py-0.5 bg-primary-container text-on-primary rounded-full">R$ 19,90</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footer: Juliana Silva & Configurações -->
+<div class="p-4 border-t border-outline-variant flex flex-col gap-2">
+<div class="flex items-center justify-between p-2 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Fotografia de perfil suave e profissional em estúdio de Juliana Silva, especialista em beleza e manicure contemporânea. Ela exibe um sorriso caloroso e sereno, com iluminação delicada em tons rosados e fundo clean em bege e creme suave. O acabamento transmite sofisticação, higiene impecável e acolhimento." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmcqWVHgUvLWNShvibIXf7fHri5YMattNoGaaTtXpG2SesYJ_mKECV4IfXjsnPIKm-zJRDzrDjAXAzr1MJ7MO-s2fgnNPaw4e8YYDyOg5GpinnfJ-mnQD7uVfFhwnpjcAyZ46KIMgaFLxdznDWzIG4ahsTqBNJK4yM7xNGhodmMWoPqiXkPUS5Lr16VKMNrJ_It3FemQTfQjBVf-kYTij97CyqYPqSfjx92YbupSrs6M5jnrzzzc2Cvg">
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="overflow-hidden">
+<p class="text-label-md font-label-md text-on-surface truncate">Juliana Silva</p>
+<p class="text-label-sm font-label-sm text-outline truncate">Especialista Nails • Hoje</p>
+</div>
+</div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="">Configurações</span>
+</a>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- MAIN WORKSPACE CANVAS (Left-offset by sidebar width 256px / 64 tailwind) -->
+<!-- ========================================================================= -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- Top Bar Header with Standard Actions -->
+<header class="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-outline-variant px-8 py-3.5 flex items-center justify-between">
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="">Início</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Minha Assinatura &amp; Faturamento</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full text-label-sm font-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="">Plataforma 100% online</span>
+</div>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative" title="Notificações">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<a class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary rounded-lg text-label-sm font-label-sm transition-colors shadow-sm" href="https://wa.me" target="_blank">
+<span class="material-symbols-outlined text-[16px]">help</span>
+<span class="">Ajuda &amp; Suporte</span>
+</a>
+</div>
+</header>
+<!-- Page Content Container -->
+<div class="px-8 py-7 max-w-7xl w-full mx-auto flex flex-col gap-8">
+<!-- Section Title & Reassurance Subtitle -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-outline-variant/40">
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-headline-lg font-headline-lg font-bold text-primary tracking-tight">Minha Assinatura</h1>
+<!-- Pill Status Ativo -->
+<span class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-label-sm font-label-sm bg-[#E5EADD] text-[#2F2928] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-700"></span>
+              Plano Ativo
+            </span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 max-w-3xl leading-relaxed">
+            A mensalidade do Encaixa mantém sua agenda online, lembretes por WhatsApp e reservas automáticas. Esse valor é a assinatura da plataforma e <strong class="text-primary font-semibold">não se mistura</strong> com o que você recebe das clientes nos atendimentos.
+          </p>
+</div>
+<!-- Secondary CTA: Dados Fiscais -->
+<div class="flex items-center gap-2 self-start md:self-auto">
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md rounded-lg hover:border-primary hover:text-primary transition-all flex items-center gap-2 shadow-sm text-sm">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span class="">Dados da NF-e</span>
+</button>
+</div>
+</div>
+<!-- ===================================================================== -->
+<!-- 2. SUMMARY HERO CARD (Plano Atual)                                    -->
+<!-- ===================================================================== -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow relative overflow-hidden">
+<!-- Soft Tint Background Pattern Accent -->
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- Plan Main Highlights -->
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-secondary font-bold">Plano Contratado</span>
+<span class="text-outline-variant">•</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Cobrança Recorrente</span>
+</div>
+<div class="flex items-baseline gap-3">
+<h2 class="text-headline-md font-headline-md font-bold text-on-surface">Plano Profissional Autônoma</h2>
+<div class="flex items-baseline gap-1 text-primary">
+<span class="text-number-metric font-number-metric font-bold">R$ 19,90</span>
+<span class="text-label-md font-label-md text-on-surface-variant">/ mês</span>
+</div>
+</div>
+<!-- Features Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Agenda online ilimitada 24/7</span>
+</div>
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Página própria (<code class="text-xs bg-surface-container-high px-1.5 py-0.5 rounded text-primary">studio-juliana</code>)</span>
+</div>
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Gestão financeira &amp; recebimentos</span>
+</div>
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class=""><strong>0% de taxa</strong> sobre seus serviços</span>
+</div>
+</div>
+<!-- Reassurance Callout Box -->
+<div class="mt-2 p-3 bg-surface-container-low rounded-xl border border-outline-variant/60 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">verified_user</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface font-semibold">Garantia de continuidade:</strong> Sua agenda nunca é apagada em caso de falha temporária no pagamento. Você conta com <span class="font-semibold text-primary">7 dias de tolerância com aviso prévio</span> para atualizar seus dados com tranquilidade.
+              </p>
+</div>
+</div>
+<!-- Plan Metadata & Next Billing Box -->
+<div class="lg:col-span-5 bg-surface-container-low rounded-xl p-5 border border-outline-variant flex flex-col justify-between gap-4">
+<div>
+<div class="flex items-center justify-between text-label-sm font-label-sm pb-3 border-b border-outline-variant">
+<span class="text-on-surface-variant font-medium">Próxima Renovação</span>
+<span class="text-primary font-bold">15 de Junho de 2025</span>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm py-3 border-b border-outline-variant">
+<span class="text-on-surface-variant font-medium">Forma Padrão Atual</span>
+<div class="flex items-center gap-1.5 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">credit_card</span>
+<span class="">Mastercard •••• 4821</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm pt-3">
+<span class="text-on-surface-variant font-medium">Status de Cobrança</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#E5EADD] text-[#2F2928]">Em dia</span>
+</div>
+</div>
+<!-- Fast Action buttons in plan card -->
+<div class="flex items-center gap-2 pt-2">
+<button class="flex-1 py-2 px-3 bg-primary-container text-on-primary hover:bg-[#8C2F4D] transition-all font-label-md rounded-lg text-center text-xs font-semibold shadow-sm active:scale-95" onclick="document.getElementById('card-tab-btn').click(); window.location.hash='#pagamento';">
+                Alterar Pagamento
+              </button>
+<button class="py-2 px-3 bg-surface-container-lowest border border-outline-variant hover:border-primary text-on-surface font-label-md rounded-lg text-center text-xs font-semibold transition-all">
+                Histórico de Cobrança
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- ===================================================================== -->
+<!-- 3. PAYMENT METHODS SECTION (Tabs: Cartão / Pix)                       -->
+<!-- ===================================================================== -->
+<section class="flex flex-col gap-4" id="pagamento">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div>
+<h2 class="text-headline-md font-headline-md font-bold text-on-surface">Forma de Pagamento da Mensalidade</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Escolha como prefere manter ativa a sua assinatura do Encaixa.</p>
+</div>
+<!-- Payment Tabs Trigger -->
+
+</div>
+<!-- TAB 1: CARTÃO DE CRÉDITO -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6" id="tab-content-card">
+<!-- Registered Card Graphic Representation -->
+<div class="lg:col-span-5 flex flex-col gap-4">
+<div class="credit-card-gradient text-white rounded-2xl p-6 relative overflow-hidden shadow-lg flex flex-col justify-between h-56 border border-primary/20">
+<!-- Background Ambient Orbs -->
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between relative z-10">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[24px]">contactless</span>
+<span class="text-xs tracking-wider uppercase opacity-80 font-semibold">Crédito Recorrente</span>
+</div>
+<!-- Mastercard-like Circles -->
+<div class="flex items-center -space-x-2">
+<div class="w-7 h-7 rounded-full bg-rose-400/80"></div>
+<div class="w-7 h-7 rounded-full bg-amber-400/80"></div>
+</div>
+</div>
+<!-- Chip & Card Number -->
+<div class="flex flex-col gap-2 relative z-10">
+<div class="w-9 h-7 rounded bg-amber-200/60 border border-amber-300/40 mb-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-amber-900/60 text-[18px]">memory</span>
+</div>
+<div class="font-mono text-lg tracking-widest text-white/95">
+                  •••• &nbsp;•••• &nbsp;•••• &nbsp;4821
+                </div>
+</div>
+<!-- Cardholder & Expiry -->
+<div class="flex items-center justify-between text-xs tracking-wider relative z-10">
+<div>
+<p class="text-[10px] text-white/60 uppercase">Titular</p>
+<p class="font-semibold uppercase tracking-wide">Juliana Silva</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-white/60 uppercase">Validade</p>
+<p class="font-semibold">08/29</p>
+</div>
+</div>
+</div>
+<!-- Card Actions -->
+<div class="flex items-center justify-between px-2 text-label-sm font-label-sm">
+<span class="inline-flex items-center gap-1 text-emerald-800 font-semibold">
+<span class="material-symbols-outlined text-[16px] text-emerald-700" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+                Cartão padrão ativo
+              </span>
+<button class="text-primary hover:underline font-bold flex items-center gap-1" onclick="toggleCardForm()">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span class="">Trocar cartão</span>
+</button>
+</div><div class="bg-surface-container-low rounded-xl p-3.5 border border-outline-variant/60 flex items-start gap-3 mt-1"><div class="p-1.5 rounded-lg bg-surface-container-lowest text-primary border border-outline-variant/40 shrink-0 mt-0.5"><span class="material-symbols-outlined text-[18px]">autorenew</span></div><div class="flex flex-col gap-1"><div class="flex items-center gap-1.5"><span class="text-label-sm font-label-sm font-bold text-on-surface">Cobrança automática na fatura</span><span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#E5EADD] text-[#2F2928]">Sem ação manual</span></div><p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">A assinatura de <strong class="text-primary font-semibold">R$ 19,90/mês</strong> é lançada automaticamente em seu cartão cadastrado, aparecendo na fatura como <code class="text-xs bg-surface-container-high px-1 py-0.5 rounded text-primary font-mono font-semibold">ENCAIXA*ASSINATURA</code>.</p><p class="text-label-sm font-label-sm text-outline mt-0.5 flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-emerald-700">check_circle</span> Próximo débito em <span class="font-semibold text-on-surface">15 de Junho de 2025</span>. Seu link e agenda continuam ativos sem interrupção.</p></div></div><div class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/60 flex items-start gap-3 shadow-sm"><div class="p-1.5 rounded-lg bg-primary-fixed/30 text-primary border border-primary/20 shrink-0 mt-0.5"><span class="material-symbols-outlined text-[18px]">mark_email_read</span></div><div class="flex flex-col gap-1"><div class="flex items-center gap-1.5"><span class="text-label-sm font-label-sm font-bold text-on-surface">Comprovante enviado por e-mail</span><span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-secondary-fixed text-primary">Instantâneo</span></div></div></div>
+</div>
+<!-- Add / Edit Card Form Panel -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">add_card</span>
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-surface">Atualizar Cartão de Cobrança</h3>
+</div>
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Criptografia de ponta a ponta
+              </span>
+</div>
+<form class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4" onsubmit="event.preventDefault(); alert('Cartão atualizado com sucesso no Encaixa!');">
+<!-- Card Number -->
+<div class="sm:col-span-2 flex flex-col gap-1.5">
+<label class="text-label-sm font-label-sm text-on-surface font-semibold">Número do Cartão</label>
+<div class="relative">
+<input class="w-full h-[42px] px-4 pr-10 rounded-[10px] border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" maxlength="19" placeholder="0000 0000 0000 0000" type="text" value="•••• •••• •••• 4821">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline text-[20px]">credit_card</span>
+</div>
+</div>
+<!-- Card Name -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-sm font-label-sm text-on-surface font-semibold">Nome impresso no Cartão</label>
+<input class="w-full h-[42px] px-4 rounded-[10px] border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="Como no cartão" type="text" value="JULIANA SILVA">
+</div>
+<!-- CPF -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-sm font-label-sm text-on-surface font-semibold">CPF do Titular</label>
+<input class="w-full h-[42px] px-4 rounded-[10px] border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="000.000.000-00" type="text" value="***.429.818-**">
+</div>
+<!-- Expiry -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-sm font-label-sm text-on-surface font-semibold">Validade</label>
+<input class="w-full h-[42px] px-4 rounded-[10px] border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" maxlength="5" placeholder="MM/AA" type="text" value="08/29">
+</div>
+<!-- CVV -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-sm font-label-sm text-on-surface font-semibold">Código CVV</label>
+<span class="text-label-sm font-label-sm text-outline cursor-help" title="3 dígitos no verso do cartão">O que é?</span>
+</div>
+<input class="w-full h-[42px] px-4 rounded-[10px] border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" maxlength="4" placeholder="•••" type="password" value="882">
+</div>
+<!-- Submit & Clear buttons -->
+<div class="sm:col-span-2 pt-2 flex items-center justify-end gap-3">
+<button class="px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-md text-sm hover:bg-surface-container transition-colors" type="button">
+                  Cancelar
+                </button>
+<button class="px-5 py-2 rounded-[10px] bg-primary-container text-on-primary font-label-md text-sm hover:bg-[#8C2F4D] transition-colors shadow-sm active:scale-98 flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span class="">Salvar Novo Cartão</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- TAB 2: PIX MENSAL (Initially hidden, toggled via JS) -->
+
+</section>
+<!-- ===================================================================== -->
+<!-- 4. INVOICES HISTORY TABLE (Histórico de Faturas)                       -->
+<!-- ===================================================================== -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow flex flex-col gap-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-outline-variant/60">
+<div>
+<h2 class="text-headline-sm font-headline-sm font-bold text-on-surface">Histórico de Cobranças da Plataforma</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Baixe comprovantes para a contabilidade da sua empresa ou imposto de renda.</p>
+</div>
+<div class="flex items-center gap-3 self-start sm:self-auto flex-wrap"><button class="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest hover:border-primary hover:bg-surface-container-low text-primary text-label-sm font-label-sm font-semibold transition-all flex items-center gap-1.5 shadow-sm active:scale-95" onclick="alert('Comprovante de Maio/2025 reenviado com sucesso para seu e-mail cadastrado!')" title="Reenviar o comprovante mais recente para seu e-mail"><span class="material-symbols-outlined text-[16px]">forward_to_inbox</span><span class="">Reenviar último por e-mail</span></button><button class="text-label-sm font-label-sm text-primary font-semibold hover:underline flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">file_download</span><span class="">Exportar todos (CSV)</span></button></div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant text-label-sm font-label-sm text-on-surface-variant bg-surface-container-low/60">
+<th class="py-3 px-4 font-semibold rounded-l-lg">Referência</th>
+<th class="py-3 px-4 font-semibold">Data da Cobrança</th>
+<th class="py-3 px-4 font-semibold">Valor</th>
+<th class="py-3 px-4 font-semibold">Método</th>
+<th class="py-3 px-4 font-semibold">Status</th>
+<th class="py-3 px-4 font-semibold text-right rounded-r-lg">Comprovante</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50 text-body-sm font-body-sm">
+<!-- Row 1: Maio 2025 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+<span class="">Maio / 2025</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">15 de Maio de 2025</td>
+<td class="py-3.5 px-4 font-bold text-on-surface">R$ 19,90</td>
+<td class="py-3.5 px-4 text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">credit_card</span>
+<span class="">Mastercard •••• 4821</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#E5EADD] text-[#2F2928]">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Pago
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right"><div class="flex items-center justify-end gap-1.5"><button class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:text-[#8C2F4D] font-medium p-1 rounded hover:bg-surface-container transition-colors" onclick="alert('Comprovante de Maio/2025 reenviado com sucesso para seu e-mail cadastrado!')" title="Reenviar comprovante por e-mail"><span class="material-symbols-outlined text-[18px]">forward_to_inbox</span></button><button class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:text-[#8C2F4D] font-medium p-1 rounded hover:bg-surface-container transition-colors" title="Baixar Recibo em PDF"><span class="material-symbols-outlined text-[18px]">download</span><span class="">PDF</span></button></div></td>
+</tr>
+<!-- Row 2: Abril 2025 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+<span class="">Abril / 2025</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">15 de Abril de 2025</td>
+<td class="py-3.5 px-4 font-bold text-on-surface">R$ 19,90</td>
+<td class="py-3.5 px-4 text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">credit_card</span>
+<span class="">Mastercard •••• 4821</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#E5EADD] text-[#2F2928]">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Pago
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:text-[#8C2F4D] font-medium p-1 rounded hover:bg-surface-container transition-colors" title="Baixar Recibo em PDF">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">PDF</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Março 2025 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+<span class="">Março / 2025</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">15 de Março de 2025</td>
+<td class="py-3.5 px-4 font-bold text-on-surface">R$ 19,90</td>
+<td class="py-3.5 px-4 text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-outline">credit_card</span>
+<span class="">Mastercard •••• 4821</span></td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#E5EADD] text-[#2F2928]">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Pago
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:text-[#8C2F4D] font-medium p-1 rounded hover:bg-surface-container transition-colors" title="Baixar Recibo em PDF">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">PDF</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Fevereiro 2025 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+<span class="">Fevereiro / 2025</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">15 de Fevereiro de 2025</td>
+<td class="py-3.5 px-4 font-bold text-on-surface">R$ 19,90</td>
+<td class="py-3.5 px-4 text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">credit_card</span>
+<span class="">Mastercard •••• 4821</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#E5EADD] text-[#2F2928]">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Pago
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:text-[#8C2F4D] font-medium p-1 rounded hover:bg-surface-container transition-colors" title="Baixar Recibo em PDF">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">PDF</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- ===================================================================== -->
+<!-- 5. SAFETY, TRANSPARENCY & HELP FOOTER ZONE                            -->
+<!-- ===================================================================== -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 pb-12">
+<!-- Cancel Anytime Transparency Card -->
+<div class="bg-surface-container-low rounded-2xl p-5 border border-outline-variant flex flex-col justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="p-2 rounded-lg bg-surface-container-lowest text-primary border border-outline-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">handshake</span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface font-bold">Sem fidelidade ou multas</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+                Você pode pausar ou cancelar sua assinatura a qualquer momento com apenas um clique.
+              </p>
+</div>
+</div>
+<button class="text-left text-label-sm font-label-sm text-outline hover:text-error transition-colors underline pt-2" onclick="if(confirm('Tem certeza de que deseja pausar seu plano? Suas clientes não conseguirão agendar horários online até a reativação.')) alert('Solicitação registrada.');">
+            Pausar ou cancelar assinatura
+          </button>
+</div>
+<!-- Fiscal Data / NF-e -->
+<div class="bg-surface-container-low rounded-2xl p-5 border border-outline-variant flex flex-col justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="p-2 rounded-lg bg-surface-container-lowest text-primary border border-outline-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface font-bold">Emissão de Nota Fiscal</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+                Todas as mensalidades geram NF-e emitida pela Encaixa Tecnologia contra seu CPF/CNPJ.
+              </p>
+</div>
+</div>
+<button class="text-left text-label-sm font-label-sm text-primary hover:underline font-semibold pt-2 flex items-center gap-1">
+<span class="">Gerenciar dados fiscais</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<!-- Dedicated WhatsApp Concierge Support -->
+<div class="bg-surface-container-low rounded-2xl p-5 border border-outline-variant flex flex-col justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="p-2 rounded-lg bg-surface-container-lowest text-emerald-700 border border-outline-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface font-bold">Suporte a Faturamento</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+                Dúvidas sobre cobranças ou notas? Fale diretamente com nossa equipe no WhatsApp.
+              </p>
+</div>
+</div>
+<a class="text-left text-label-sm font-label-sm text-emerald-800 hover:underline font-bold pt-2 flex items-center gap-1" href="https://wa.me" target="_blank">
+<span class="">Chamar especialista Encaixa</span>
+<span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<!-- ========================================================================= -->
+<!-- LIGHTWEIGHT INLINE JAVASCRIPT FOR MICRO-INTERACTIONS                      -->
+<!-- ========================================================================= -->
+<script>
+    // Tab switching for payment methods (Card vs Pix)
+    function switchPaymentTab(tab) {
+      const cardTabBtn = document.getElementById('card-tab-btn');
+      const pixTabBtn = document.getElementById('pix-tab-btn');
+      const cardContent = document.getElementById('tab-content-card');
+      const pixContent = document.getElementById('tab-content-pix');
+
+      if (tab === 'card') {
+        // Activate Card Tab
+        cardTabBtn.className = "flex items-center gap-2 px-4 py-1.5 rounded-lg text-label-sm font-label-sm font-bold bg-surface-container-lowest text-primary shadow-sm transition-all duration-150";
+        pixTabBtn.className = "flex items-center gap-2 px-4 py-1.5 rounded-lg text-label-sm font-label-sm font-medium text-on-surface-variant hover:text-on-surface transition-all duration-150";
+        cardContent.classList.remove('hidden');
+        cardContent.classList.add('grid');
+        pixContent.classList.add('hidden');
+        pixContent.classList.remove('grid');
+      } else {
+        // Activate Pix Tab
+        pixTabBtn.className = "flex items-center gap-2 px-4 py-1.5 rounded-lg text-label-sm font-label-sm font-bold bg-surface-container-lowest text-primary shadow-sm transition-all duration-150";
+        cardTabBtn.className = "flex items-center gap-2 px-4 py-1.5 rounded-lg text-label-sm font-label-sm font-medium text-on-surface-variant hover:text-on-surface transition-all duration-150";
+        pixContent.classList.remove('hidden');
+        pixContent.classList.add('grid');
+        cardContent.classList.add('hidden');
+        cardContent.classList.remove('grid');
+      }
+    }
+
+    // Smooth toggle focus on card input
+    function toggleCardForm() {
+      const input = document.querySelector('input[placeholder="0000 0000 0000 0000"]');
+      if (input) {
+        input.focus();
+        input.select();
+      }
+    }
+  </script>
+
+
+</body></html>

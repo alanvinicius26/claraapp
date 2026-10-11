@@ -1,0 +1,192 @@
+.admin-page {
+  max-width: 1280px;
+  margin: auto;
+  padding: 36px 28px 80px;
+  color: #392b31;
+}
+.admin-header,
+.admin-actions,
+.admin-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.admin-header {
+  margin-bottom: 28px;
+}
+.admin-header h1 {
+  margin: 6px 0;
+  font-size: 36px;
+}
+.admin-header p {
+  color: #74666b;
+}
+.admin-tabs {
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+.admin-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 24px;
+  align-items: start;
+}
+.admin-card {
+  border: 1px solid #e9dfe0;
+  background: #fff;
+  border-radius: 20px;
+  padding: 26px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.admin-card h2 {
+  margin: 0 0 16px;
+  font-size: 23px;
+}
+.admin-card h3 {
+  margin: 20px 0 8px;
+}
+.admin-card p {
+  line-height: 1.65;
+}
+.admin-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.admin-card input,
+.admin-card select,
+.admin-card textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #d8cbd0;
+  border-radius: 10px;
+  font: inherit;
+  background: white;
+  color: inherit;
+}
+.admin-card textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+.admin-card fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.admin-card fieldset:disabled {
+  opacity: 0.65;
+}
+.admin-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.admin-search {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.admin-search label {
+  flex: 1;
+  margin: 0;
+}
+.admin-accounts {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.admin-account {
+  text-align: left;
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid #e9dfe0;
+  background: #fff;
+  border-radius: 12px;
+  color: inherit;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.admin-account.selected {
+  border-color: #762a46;
+  background: #fcf4f6;
+}
+.admin-account span,
+.admin-account small {
+  color: #74666b;
+}
+.admin-confirm {
+  border: 2px solid #762a46;
+  margin-bottom: 24px;
+  background: #fff9fa;
+}
+.admin-revoke {
+  margin: 24px 0;
+  padding-top: 20px;
+  border-top: 1px solid #e9dfe0;
+}
+.admin-history {
+  padding-left: 20px;
+}
+.admin-history li {
+  padding: 8px 0;
+}
+.admin-history span {
+  display: block;
+  font-size: 12px;
+  color: #74666b;
+}
+.admin-history p {
+  margin: 4px 0;
+}
+.admin-coupon {
+  padding: 4px 0 20px;
+  border-bottom: 1px solid #e9dfe0;
+}
+.admin-coupon:last-child {
+  border: 0;
+}
+.admin-page button:focus-visible,
+.admin-page a:focus-visible,
+.admin-page input:focus-visible,
+.admin-page select:focus-visible,
+.admin-page textarea:focus-visible {
+  outline: 3px solid #9a4668;
+  outline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .admin-page {
+    padding: 24px 16px 60px;
+  }
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .admin-card {
+    padding: 20px;
+  }
+  .admin-header h1 {
+    font-size: 30px;
+  }
+  .admin-fields {
+    grid-template-columns: 1fr;
+  }
+  .admin-search {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .admin-actions .button {
+    white-space: normal;
+  }
+}

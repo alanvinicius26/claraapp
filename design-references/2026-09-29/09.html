@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Encaixa Studio - Meus Serviços</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "background": "#fef9f3",
+            "secondary-container": "#ff8aa9",
+            "surface-bright": "#fef9f3",
+            "tertiary-container": "#662521",
+            "on-tertiary-container": "#e78b84",
+            "inverse-on-surface": "#f5f0ea",
+            "on-secondary-fixed": "#3f0019",
+            "surface-container-low": "#f8f3ed",
+            "surface-container": "#f2ede7",
+            "primary-container": "#6e1936",
+            "primary": "#500021",
+            "surface-dim": "#ded9d4",
+            "secondary": "#9d3d5a",
+            "surface-variant": "#e6e2dc",
+            "on-primary-fixed": "#3f0018",
+            "on-tertiary-fixed": "#3d0606",
+            "surface": "#fef9f3",
+            "on-primary-fixed-variant": "#7e2642",
+            "on-tertiary-fixed-variant": "#76312d",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#32302c",
+            "tertiary": "#4a0f0e",
+            "on-secondary-container": "#781f3e",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#ffb1c2",
+            "on-secondary-fixed-variant": "#7f2543",
+            "on-error-container": "#93000a",
+            "surface-tint": "#9c3e59",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#f2829f",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-background": "#1d1b18",
+            "primary-fixed": "#ffd9e0",
+            "secondary-fixed-dim": "#ffb1c3",
+            "on-surface": "#1d1b18",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#ffd9e0",
+            "on-error": "#ffffff",
+            "outline-variant": "#dac0c4",
+            "surface-container-high": "#ece7e2",
+            "outline": "#877275",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#e6e2dc",
+            "on-surface-variant": "#544245",
+            "primary-fixed-dim": "#ffb1c2"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-xl": "2.25rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Ambient warm boutique shadow */
+    .warm-card-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.05), 0 2px 8px -2px rgba(47, 41, 40, 0.03);
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 1rem);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-28 selection:bg-primary-fixed selection:text-primary">
+<!-- TopAppBar Shared Component (Mobile First Docked Full-Width) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-3 bg-surface/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover border-2 border-surface-container-highest" data-alt="Close up warm studio portrait of Juliana Silva, smiling professional beauty aesthetician with warm skin tone, wearing an ivory silk blouse in a soft terracotta and blush illuminated boutique salon." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeBJFGwSjgin_6VePnb1ZW50I7DgxQcvYOiEZb46Z-1hovgG-ceRQegs22az_d7lcX1_P47hfiUPJIgPmzk7ttHa7Gy9PP1bVdKg0K7mKQObOoLSs32HIjeZEvQ5TXSOCQ0nl4NWik5P3SJiqs2OwUD3pufyiMo7kZoxwhTJu4AHzXbbYwQpjc2rBirjK_cLfnIUeW_nDvptovqhhOvl4oePhI_ZqCT5KyHtRT6bGpEWh4Ee6cJ_Ghaw"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-600 rounded-full ring-2 ring-surface" title="Atendendo agora"></span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-semibold text-primary dark:text-inverse-primary leading-tight tracking-tight">
+          Encaixa Studio
+        </h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+          Juliana Silva • Atendendo agora
+        </p>
+</div>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container-high text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors duration-150 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Compartilhar</span>
+</button>
+</header>
+<!-- Main Container -->
+<main class="max-w-md mx-auto pt-20 px-4 space-y-5">
+<!-- Page Header & Action -->
+<div class="pt-2 flex items-start justify-between">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-primary tracking-tight">Meus Serviços</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Gerencie procedimentos, preços e duração</p>
+</div>
+<button class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-[10px] bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:bg-[#8C2F4D] active:scale-98 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Adicionar</span>
+</button>
+</div>
+<!-- Catálogo Quick Metric & Booking Link Card -->
+<div class="bg-surface-container-lowest border border-[#E7DAD3] rounded-[16px] p-4 warm-card-shadow space-y-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-[#FAF5EF] text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Catálogo Online</p>
+<p class="text-body-md font-body-md font-semibold text-on-surface">8 serviços ativos disponíveis</p>
+</div>
+</div>
+<span class="bg-[#E5EADD] text-[#2F2928] text-label-sm font-label-sm font-semibold px-2.5 py-1 rounded-full">
+          Online
+        </span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3 border border-[#E7DAD3]/60 flex items-center justify-between">
+<div class="truncate mr-2">
+<p class="text-label-sm font-label-sm text-outline">Seu link para clientes:</p>
+<p class="text-label-md font-label-md font-semibold text-primary truncate">encaixa.me/studio-juliana</p>
+</div>
+<button class="shrink-0 px-2.5 py-1.5 bg-surface-container-lowest text-primary border border-[#E7DAD3] rounded-lg text-label-sm font-label-sm font-semibold hover:border-primary transition-colors flex items-center gap-1 active:scale-95" onclick="copyLink(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span>Copiar</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-0.5">
+<button class="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-[10px] bg-[#25D366]/10 text-[#075E54] border border-[#25D366]/20 font-label-sm text-label-sm font-semibold active:scale-98 transition-transform" onclick="shareLink()" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>No WhatsApp</span>
+</button>
+<button class="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-[10px] bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-variant active:scale-98 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+<span>Ver Página</span>
+</button>
+</div>
+</div>
+<!-- Section Title & Filter Tabs -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Procedimentos</h3>
+<span class="px-2 py-0.5 text-label-sm font-label-sm rounded-full bg-surface-variant text-on-surface-variant">5 de 8</span>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-primary font-semibold cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Filtrar</span>
+</div>
+</div>
+<!-- Services List (5 Mobile Cards with Tactile thumb-switches) -->
+<div class="space-y-3.5">
+<!-- Item 1: Esmaltação em Gel Completa -->
+<article class="bg-surface-container-lowest border-l-4 border-l-primary border-t border-r border-b border-[#E7DAD3] rounded-[16px] p-4 warm-card-shadow transition-all">
+<div class="flex gap-3.5">
+<img class="w-20 h-20 rounded-xl object-cover border border-[#E7DAD3] shrink-0" data-alt="Editorial close up macro view of luxury gel manicure with immaculate glossy blush polish, refined aesthetic lighting, delicate hand resting over textured linen in a beauty studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbt3n-zC7nFwf9EXcFV6YhgcB-SrPzczKFmkbnWTI8qnRlgzkY3ImGeZGsXkIQxqJ1tBgeX4ks2rtAd2On4vcITU3nrLF4vjL4eRqVfYaQFdRH5rBK7aYn--H5SRRr8gpItNGnOyqZyWo9MDoZ_9SEn0DAYlr2EeEUfbhRhE2iJFVH9GO1UyW0eac5WwkV-2U7YROIVj5-vPB9lt5-rSz7iHbn3DzJT-SXVcQhA8AnCI8ovvAWDmx70A"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between gap-1">
+<div>
+<span class="inline-block bg-[#F3DCD7] text-primary text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mb-1">
+                  Mais pedido
+                </span>
+<h4 class="text-body-lg font-body-lg font-semibold text-on-surface leading-tight truncate">Esmaltação em Gel Completa</h4>
+</div>
+</div>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-headline-sm font-headline-sm text-primary">R$ 90,00</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">/ sessão</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline">schedule</span>
+              1h 15m <span class="text-outline text-xs">(+15m intervalo)</span>
+</p>
+</div>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#E7DAD3]/70 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="sr-only peer" onchange="toggleServiceStatus(this)" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container relative"></div>
+<span class="text-label-md font-label-md text-on-surface font-medium status-label">Visível online</span>
+</label>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-[10px] bg-white border border-[#E7DAD3] text-on-surface text-label-sm font-label-sm font-semibold hover:border-primary hover:text-primary transition-all flex items-center gap-1 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+              Editar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 2: Manicure Tradicional & Spa -->
+<article class="bg-surface-container-lowest border-l-4 border-l-primary border-t border-r border-b border-[#E7DAD3] rounded-[16px] p-4 warm-card-shadow transition-all">
+<div class="flex gap-3.5">
+<img class="w-20 h-20 rounded-xl object-cover border border-[#E7DAD3] shrink-0" data-alt="Sensual aesthetic spa manicure treatment with warm organic essential oils, gentle exfoliation and floral botanical accents in high-end treatment bowl, calm warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0RKSxbM455JxejUlnwN5VA6wL8UOvZuYh_c14wES0byXdohaHwzAYNdAwKu1CeXR3Bd1MmGBIIou9Y_o1aiNDuFmFFDi3_5IUahjrSB0x0PR5wfMkIgsBI9fljytM5IT25AZSkgw03o9zWag8zfwgHm8gzBDBW-ve9c5htodW9J7sEhpPAmUHmhzWK9ju7A9pin5Q5WUBm3FzA91ikbEqC6y5NW7DeBlzC-gNvTCr9yRD9Dt85LyghQ"/>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-lg font-body-lg font-semibold text-on-surface leading-tight truncate">Manicure Tradicional &amp; Spa</h4>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-headline-sm font-headline-sm text-primary">R$ 60,00</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">/ sessão</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline">schedule</span>
+              50m
+            </p>
+</div>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#E7DAD3]/70 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="sr-only peer" onchange="toggleServiceStatus(this)" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container relative"></div>
+<span class="text-label-md font-label-md text-on-surface font-medium status-label">Visível online</span>
+</label>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-[10px] bg-white border border-[#E7DAD3] text-on-surface text-label-sm font-label-sm font-semibold hover:border-primary hover:text-primary transition-all flex items-center gap-1 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+              Editar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 3: Alongamento em Fibra de Vidro -->
+<article class="bg-surface-container-lowest border-l-4 border-l-primary border-t border-r border-b border-[#E7DAD3] rounded-[16px] p-4 warm-card-shadow transition-all">
+<div class="flex gap-3.5">
+<img class="w-20 h-20 rounded-xl object-cover border border-[#E7DAD3] shrink-0" data-alt="Delicate high-end fiberglass nail extension craftsmanship, transparent structure with subtle nude ombre finish on elegant hands, warm boutique studio atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9SXJEptQt1-oOw4RZKtls83o_GJ_r0oj-Ns326_q_KLzN1sHZqQb_GlI-mAcYRed_9GVYVbnC8Ogjo2tM-SujUN5xZSoLWImecIkF9gwvsI4RBszd-kGI2usWVEwP2lWSQtxjPlunuYyD9Js5JSbeBSNBIW55MEJ1Fwf8UPsudS6UHW8zqgTMIGGu4p1H5dsV_LRFrhkNWw6eJiYz3mEI7vOvLYf-jeS6eaR0MowauL2-Dp-WZFJlgA"/>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-lg font-body-lg font-semibold text-on-surface leading-tight truncate">Alongamento em Fibra de Vidro</h4>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-headline-sm font-headline-sm text-primary">R$ 160,00</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">/ sessão</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline">schedule</span>
+              2h 00m
+            </p>
+</div>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#E7DAD3]/70 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="sr-only peer" onchange="toggleServiceStatus(this)" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container relative"></div>
+<span class="text-label-md font-label-md text-on-surface font-medium status-label">Visível online</span>
+</label>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-[10px] bg-white border border-[#E7DAD3] text-on-surface text-label-sm font-label-sm font-semibold hover:border-primary hover:text-primary transition-all flex items-center gap-1 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+              Editar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 4: Banho de Gel Natural -->
+<article class="bg-surface-container-lowest border-l-4 border-l-primary border-t border-r border-b border-[#E7DAD3] rounded-[16px] p-4 warm-card-shadow transition-all">
+<div class="flex gap-3.5">
+<img class="w-20 h-20 rounded-xl object-cover border border-[#E7DAD3] shrink-0" data-alt="Pristine natural gel overlay on healthy natural fingernails, soft neutral ceramic tones, delicate ring jewellery, clean serene studio aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjtXVA7Trba-C25VYoZmK0MvusWja8EZaFjTgYtudlMfphL2s_Qo3WKszseA8GMCNOS1x6WNeB3fZ7HxX02ECD_-0QDvaEz0L0guhwvoyDgSmcvhfM0idJrj2LrsQo8mSy1CsBm6GSZj7ZAX2u3GZsLmEtlAfBKZHVUz5ks57t7_af1JSuaIXZ29BHKwV-zsOenqsJ0C_7VpNVL_A9zV2wyqf5FyBv4PiW5CDxQ_4_8dmHFB5kuehVzQ"/>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-lg font-body-lg font-semibold text-on-surface leading-tight truncate">Banho de Gel Natural</h4>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-headline-sm font-headline-sm text-primary">R$ 110,00</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">/ sessão</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline">schedule</span>
+              1h 15m
+            </p>
+</div>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#E7DAD3]/70 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="sr-only peer" onchange="toggleServiceStatus(this)" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container relative"></div>
+<span class="text-label-md font-label-md text-on-surface font-medium status-label">Visível online</span>
+</label>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-[10px] bg-white border border-[#E7DAD3] text-on-surface text-label-sm font-label-sm font-semibold hover:border-primary hover:text-primary transition-all flex items-center gap-1 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+              Editar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 5: Spa dos Pés & Parafina -->
+<article class="bg-surface-container-lowest border-l-4 border-l-primary border-t border-r border-b border-[#E7DAD3] rounded-[16px] p-4 warm-card-shadow transition-all">
+<div class="flex gap-3.5">
+<img class="w-20 h-20 rounded-xl object-cover border border-[#E7DAD3] shrink-0" data-alt="Boutique foot spa ritual with botanical herbs, warm paraffin therapy and rolled plush towels in a serene Japanese-inspired aesthetic treatment lounge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCld_j33P2SCaLf6i-_KjxCd9z1xa5h2BfsGWl9rxhfw1OsZC9eMdOCCF0cXewshUI06cz7QoAHxRrn__BHtCIHwqci0MSDcUcZy-kdILr_pesVjSkDfgWQLCOuWQpPJ8G1OcRN_b7cjFFQm1tdGi0JxA8nmuTRWgi5PR4G3jL6xzqsb7pLmdA0s4ss25ADf3_7MFubR1PHFMAPfUsed2fyCAfEh-phapUor6uiP5dx5IuYTKKA7FyI7A"/>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-lg font-body-lg font-semibold text-on-surface leading-tight truncate">Spa dos Pés &amp; Parafina</h4>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-headline-sm font-headline-sm text-primary">R$ 80,00</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">/ sessão</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline">schedule</span>
+              1h 00m
+            </p>
+</div>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#E7DAD3]/70 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="sr-only peer" onchange="toggleServiceStatus(this)" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container relative"></div>
+<span class="text-label-md font-label-md text-on-surface font-medium status-label">Visível online</span>
+</label>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-[10px] bg-white border border-[#E7DAD3] text-on-surface text-label-sm font-label-sm font-semibold hover:border-primary hover:text-primary transition-all flex items-center gap-1 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+              Editar
+            </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Quick Insights Footer Banner -->
+<div class="p-4 rounded-[16px] bg-[#FAF5EF] border border-[#E7DAD3] flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-[#E5EADD] text-[#2F2928] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Dica Encaixa</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Serviços com fotos de alta qualidade recebem até 38% mais agendamentos pelo link.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Shared Component -->
+<!-- Active state strictly mapped to 'Serviços' index -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-[0_-4px_16px_rgba(110,25,54,0.04)] dark:shadow-none">
+<!-- Agenda -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<span class="text-label-sm font-label-sm mt-0.5">Agenda</span>
+</a>
+<!-- Clientes -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">group</span>
+<span class="text-label-sm font-label-sm mt-0.5">Clientes</span>
+</a>
+<!-- Financeiro -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+<span class="text-label-sm font-label-sm mt-0.5">Financeiro</span>
+</a>
+<!-- Serviços (ACTIVE LOCK: style_active_navigation) -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-3 py-1.5 font-semibold transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+<span class="text-label-sm font-label-sm mt-0.5">Serviços</span>
+</a>
+<!-- Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">storefront</span>
+<span class="text-label-sm font-label-sm mt-0.5">Perfil</span>
+</a>
+</nav>
+<!-- Interactive script for tactile controls -->
+<script>
+    function copyLink(btn) {
+      navigator.clipboard?.writeText("encaixa.me/studio-juliana");
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[16px] text-emerald-600">check</span><span class="text-emerald-700">Copiado</span>`;
+      btn.classList.add("bg-emerald-50", "border-emerald-200");
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove("bg-emerald-50", "border-emerald-200");
+      }, 2000);
+    }
+
+    function shareLink() {
+      const msg = encodeURIComponent("Olá! Agende seu horário no Encaixa Studio com Juliana Silva através do link: https://encaixa.me/studio-juliana");
+      window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+    }
+
+    function toggleServiceStatus(checkbox) {
+      const parentCard = checkbox.closest('article');
+      const label = parentCard.querySelector('.status-label');
+      if (checkbox.checked) {
+        label.textContent = "Visível online";
+        label.classList.remove("text-outline");
+        label.classList.add("text-on-surface");
+        parentCard.classList.remove("opacity-60");
+      } else {
+        label.textContent = "Oculto no link";
+        label.classList.remove("text-on-surface");
+        label.classList.add("text-outline");
+        parentCard.classList.add("opacity-60");
+      }
+    }
+  </script>
+</body></html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio Juliana Silva - Gerenciar Agendamento</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-tint": "#9c3e59",
+            "on-tertiary-container": "#e78b84",
+            "outline-variant": "#dac0c4",
+            "surface-container-highest": "#e6e2dc",
+            "surface-container-high": "#ece7e2",
+            "on-tertiary-fixed": "#3d0606",
+            "tertiary-fixed": "#ffdad6",
+            "on-primary-container": "#f2829f",
+            "secondary": "#9d3d5a",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed": "#3f0019",
+            "inverse-primary": "#ffb1c2",
+            "on-primary-fixed-variant": "#7e2642",
+            "primary-container": "#6e1936",
+            "error-container": "#ffdad6",
+            "primary-fixed": "#ffd9e0",
+            "surface-container": "#f2ede7",
+            "on-error": "#ffffff",
+            "background": "#fef9f3",
+            "secondary-fixed": "#ffd9e0",
+            "tertiary": "#4a0f0e",
+            "primary": "#500021",
+            "primary-fixed-dim": "#ffb1c2",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed-variant": "#76312d",
+            "on-background": "#1d1b18",
+            "inverse-on-surface": "#f5f0ea",
+            "on-surface": "#1d1b18",
+            "surface-dim": "#ded9d4",
+            "tertiary-container": "#662521",
+            "on-primary": "#ffffff",
+            "outline": "#877275",
+            "inverse-surface": "#32302c",
+            "surface": "#fef9f3",
+            "surface-bright": "#fef9f3",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-surface-variant": "#544245",
+            "on-secondary-fixed-variant": "#7f2543",
+            "surface-container-low": "#f8f3ed",
+            "on-secondary-container": "#781f3e",
+            "surface-variant": "#e6e2dc",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#3f0018",
+            "secondary-fixed-dim": "#ffb1c3",
+            "secondary-container": "#ff8aa9"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "space-2xl": "3rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.25rem"
+          },
+          fontFamily: {
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "headline-lg": ["1.75rem", { lineHeight: "2.25rem", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "headline-sm": ["1.125rem", { lineHeight: "1.625rem", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "label-sm": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.02em", fontWeight: "600" }],
+            "body-sm": ["0.8125rem", { lineHeight: "1.25rem", fontWeight: "400" }],
+            "body-lg": ["1rem", { lineHeight: "1.625rem", fontWeight: "400" }],
+            "body-md": ["0.875rem", { lineHeight: "1.375rem", fontWeight: "400" }],
+            "headline-md": ["1.375rem", { lineHeight: "1.875rem", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "number-metric": ["2rem", { lineHeight: "2.25rem", letterSpacing: "-0.03em", fontWeight: "600" }],
+            "headline-xl": ["2.25rem", { lineHeight: "2.75rem", letterSpacing: "-0.025em", fontWeight: "600" }],
+            "label-md": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #fef9f3;
+      color: #1d1b18;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .warm-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.06), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+
+    .warm-card-border {
+      border: 1px solid #dac0c4;
+    }
+
+    /* Custom scrollbar for horizontal date list */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-background flex flex-col items-center justify-start py-0 sm:py-6 text-on-surface">
+<!-- Mobile Viewport Frame Container -->
+<div class="w-full max-w-md bg-surface sm:rounded-[32px] sm:shadow-2xl overflow-hidden flex flex-col min-h-screen sm:min-h-0 sm:border border-outline-variant">
+<!-- In-App Mock Browser / URL Header -->
+<div class="bg-surface-container-high px-4 py-2 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="font-label-sm text-label-sm tracking-tight text-on-surface-variant font-medium">encaixa.me/studio-juliana/gerenciar</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-surface-container-lowest text-primary border border-outline-variant">
+          #ENC-8492
+        </span>
+</div>
+</div>
+<!-- Top Navigation Bar (Shared Component Anchor) -->
+<header class="sticky top-0 z-40 flex items-center justify-between px-4 py-3 w-full bg-surface/95 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<button aria-label="Voltar" class="p-1.5 rounded-full hover:bg-surface-container transition-colors duration-150 active:scale-95 text-on-surface" onclick="window.history.back()">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-semibold text-primary tracking-tight">Studio Juliana Silva</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Gerenciamento de Reserva</p>
+</div>
+</div>
+<button aria-label="Compartilhar" class="p-2 rounded-full hover:bg-surface-container-low transition-colors duration-150 active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-4 py-5 space-y-4 overflow-y-auto">
+<!-- Saudação Cliente & Localizador -->
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Olá, <span class="font-bold text-on-surface">Mariana Oliveira</span></p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Altere ou cancele seu horário com autonomia e conforto.</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#E5EADD] text-[#2F2928]">
+<span class="material-symbols-outlined text-[14px] text-green-700 font-bold">check_circle</span>
+          Confirmado
+        </span>
+</div>
+<!-- Card: Atendimento Atual -->
+<section class="bg-surface-container-lowest warm-card-border rounded-[20px] p-4 warm-shadow space-y-3 relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 w-28 h-28 bg-surface-container-low rounded-full opacity-60 pointer-events-none"></div>
+<!-- Identificação Juliana -->
+<div class="flex items-center gap-3 pb-3 border-b border-outline-variant/60">
+<div class="relative w-12 h-12 rounded-full overflow-hidden border border-outline-variant shrink-0">
+<img alt="Foto profissional de Juliana Silva em seu studio de beleza" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XXv7Zu81QGWhyG6sHqfzv2TITo4_wY1Bdd-iTMI9dUh0PQDEC5dSbBnVT5j3MFzoj1DqYXMUir_hs8VuBJFWa88UdDF63vKDOxbhAevjKgtFvojlo3jVoJ3IAE-w6bWatlv2Bepg3xsmmTpv3_saMbBzTYk452-gE-jbvAfE4UJ1omvrzX4WTB5HrLMapo200NkzKiKGbfdwBvCNS7LnVwKNMf6s3SxOXYS1bljlRYUrSMGgz_SJ9VPzFE"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold truncate">Juliana Silva</h2>
+<span class="material-symbols-outlined text-[16px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Especialista em Estética &amp; Unhas • Vila Mariana</p>
+</div>
+</div>
+<!-- Procedimento & Detalhes -->
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">Esmaltação em Gel Completa</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Duração: 1h 15min • Cutilagem russa e hidratação</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">R$ 90,00</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">No local</p>
+</div>
+</div>
+<!-- Highlight de Horário Atual Agendado -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-surface-container-lowest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">calendar_clock</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Horário Marcado</p>
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">Terça, 15 de Outubro às 10:30</p>
+</div>
+</div>
+<!-- Endereço -->
+<div class="flex items-start gap-2 pt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] shrink-0 text-primary mt-0.5">location_on</span>
+<p class="font-body-sm text-body-sm leading-snug">
+              Rua Domingos de Morais, 1200 - Sala 42 • Próximo ao Metrô Ana Rosa (Estacionamento conveniado)
+            </p>
+</div>
+</div>
+</section>
+<!-- Política do Estúdio (Acolhedora & Flexível) -->
+<section class="bg-surface-container-low warm-card-border rounded-[16px] p-3.5 flex items-start gap-3">
+<div class="p-2 rounded-xl bg-surface-container-lowest text-primary shrink-0 border border-outline-variant">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-label-md text-label-md font-bold text-primary">Política Amigável de Alteração</h3>
+<span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded">Sem Custo</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Cancelamentos ou remarcações sem taxa com até <strong class="text-on-surface font-semibold">2 horas de antecedência</strong>. Seu horário atual está a mais de 24h de distância, totalmente livre para ajustes.
+          </p>
+</div>
+</section>
+<!-- Alternador de Ação (Tabs: Remarcar vs Cancelar) -->
+<section class="space-y-3">
+<div class="grid grid-cols-2 p-1 bg-surface-container warm-card-border rounded-xl">
+<button class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-headline-sm text-[14px] font-bold transition-all duration-200 bg-surface-container-lowest text-primary shadow-sm" id="tab-reschedule" onclick="switchAction('reschedule')">
+<span class="material-symbols-outlined text-[18px]">event_repeat</span>
+            Quero Remarcar
+          </button>
+<button class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-headline-sm text-[14px] font-medium text-on-surface-variant hover:text-on-surface transition-all duration-200" id="tab-cancel" onclick="switchAction('cancel')">
+<span class="material-symbols-outlined text-[18px]">event_busy</span>
+            Quero Cancelar
+          </button>
+</div>
+<!-- PAINEL 1: REMARCAR FLUXO (ATIVO POR PADRÃO) -->
+<div class="space-y-4" id="panel-reschedule">
+<div class="bg-surface-container-lowest warm-card-border rounded-[20px] p-4 warm-shadow space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">1. Escolha a nova data</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Próximos dias com vagas disponíveis</p>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-primary bg-primary-fixed/40 px-2 py-1 rounded-full">Outubro 2024</span>
+</div>
+<!-- Seleção Horizontal de Datas -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1">
+<!-- Quarta 16 -->
+<button class="date-chip flex flex-col items-center justify-center min-w-[76px] py-3 px-2 rounded-xl border border-primary bg-primary text-white transition-all transform active:scale-95 shadow-sm" onclick="selectDate(this, 'Quarta, 16 de Outubro')">
+<span class="font-label-sm text-xs opacity-90">Qua</span>
+<span class="font-headline-md text-headline-md font-bold my-0.5">16</span>
+<span class="text-[10px] font-medium bg-white/20 px-1.5 py-0.2 rounded-full">4 vagas</span>
+</button>
+<!-- Quinta 17 -->
+<button class="date-chip flex flex-col items-center justify-center min-w-[76px] py-3 px-2 rounded-xl border border-outline-variant bg-surface hover:bg-surface-container-low text-on-surface transition-all transform active:scale-95" onclick="selectDate(this, 'Quinta, 17 de Outubro')">
+<span class="font-label-sm text-xs text-on-surface-variant">Qui</span>
+<span class="font-headline-md text-headline-md font-bold my-0.5">17</span>
+<span class="text-[10px] font-medium text-primary bg-primary-fixed/50 px-1.5 py-0.2 rounded-full">3 vagas</span>
+</button>
+<!-- Sexta 18 -->
+<button class="date-chip flex flex-col items-center justify-center min-w-[76px] py-3 px-2 rounded-xl border border-outline-variant bg-surface hover:bg-surface-container-low text-on-surface transition-all transform active:scale-95" onclick="selectDate(this, 'Sexta, 18 de Outubro')">
+<span class="font-label-sm text-xs text-on-surface-variant">Sex</span>
+<span class="font-headline-md text-headline-md font-bold my-0.5">18</span>
+<span class="text-[10px] font-medium text-primary bg-primary-fixed/50 px-1.5 py-0.2 rounded-full">2 vagas</span>
+</button>
+<!-- Sábado 19 -->
+<button class="date-chip flex flex-col items-center justify-center min-w-[76px] py-3 px-2 rounded-xl border border-outline-variant bg-surface hover:bg-surface-container-low text-on-surface transition-all transform active:scale-95" onclick="selectDate(this, 'Sábado, 19 de Outubro')">
+<span class="font-label-sm text-xs text-on-surface-variant">Sáb</span>
+<span class="font-headline-md text-headline-md font-bold my-0.5">19</span>
+<span class="text-[10px] font-medium text-emerald-800 bg-emerald-100 px-1.5 py-0.2 rounded-full">1 vaga</span>
+</button>
+<!-- Terça 22 -->
+<button class="date-chip flex flex-col items-center justify-center min-w-[76px] py-3 px-2 rounded-xl border border-outline-variant bg-surface hover:bg-surface-container-low text-on-surface transition-all transform active:scale-95" onclick="selectDate(this, 'Terça, 22 de Outubro')">
+<span class="font-label-sm text-xs text-on-surface-variant">Ter</span>
+<span class="font-headline-md text-headline-md font-bold my-0.5">22</span>
+<span class="text-[10px] font-medium text-primary bg-primary-fixed/50 px-1.5 py-0.2 rounded-full">5 vagas</span>
+</button>
+</div>
+<!-- Grade de Horários -->
+<div class="space-y-2 pt-2">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">2. Horários disponíveis</h4>
+<span class="font-label-sm text-label-sm text-primary font-semibold" id="selected-date-label">Qua, 16/10</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<button class="time-slot py-2.5 px-3 rounded-xl border border-primary bg-primary-container text-white flex items-center justify-between font-headline-sm text-[15px] font-semibold transition-all" onclick="selectTime(this, '09:30')">
+<span>09:30</span>
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</button>
+<button class="time-slot py-2.5 px-3 rounded-xl border border-outline-variant bg-surface hover:border-primary text-on-surface flex items-center justify-between font-headline-sm text-[15px] font-medium transition-all" onclick="selectTime(this, '11:00')">
+<span>11:00</span>
+<span class="text-[11px] text-on-surface-variant font-normal">Manhã</span>
+</button>
+<button class="time-slot py-2.5 px-3 rounded-xl border border-outline-variant bg-surface hover:border-primary text-on-surface flex items-center justify-between font-headline-sm text-[15px] font-medium transition-all" onclick="selectTime(this, '14:30')">
+<span>14:30</span>
+<span class="text-[11px] text-on-surface-variant font-normal">Tarde</span>
+</button>
+<button class="time-slot py-2.5 px-3 rounded-xl border border-outline-variant bg-surface hover:border-primary text-on-surface flex items-center justify-between font-headline-sm text-[15px] font-medium transition-all" onclick="selectTime(this, '16:00')">
+<span>16:00</span>
+<span class="text-[11px] text-on-surface-variant font-normal">Tarde</span>
+</button>
+</div>
+</div>
+<!-- Motivo Opcional -->
+<div class="pt-2">
+<label class="block font-label-md text-label-md font-semibold text-on-surface mb-1.5" for="reason-select">
+                Motivo da remarcação <span class="text-on-surface-variant font-normal text-xs">(Opcional)</span>
+</label>
+<select class="w-full h-[42px] px-3 rounded-[10px] bg-white border border-outline-variant text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" id="reason-select">
+<option value="none">Selecione se desejar...</option>
+<option value="work">Imprevisto no trabalho ou reunião</option>
+<option value="health">Questão médica / de saúde</option>
+<option value="personal">Outro compromisso pessoal</option>
+<option value="weather">Dificuldade de locomoção / trânsito</option>
+</select>
+</div>
+<!-- Resumo da Alteração -->
+<div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant/70 text-body-sm text-on-surface-variant flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0">info</span>
+<span>Ao confirmar, seu horário original de <strong class="text-on-surface">15/10 às 10:30</strong> será liberado na agenda da Juliana.</span>
+</div>
+<!-- Botão de Ação Primário -->
+<button class="w-full py-3.5 px-4 bg-primary-container hover:bg-[#8C2F4D] text-white font-headline-sm text-[15px] font-bold rounded-[10px] transition-all duration-150 active:scale-98 shadow-sm flex items-center justify-center gap-2" onclick="confirmReschedule()">
+<span class="material-symbols-outlined text-[20px]">check</span>
+              Confirmar Nova Data e Horário
+            </button>
+</div>
+</div>
+<!-- PAINEL 2: CANCELAMENTO DIRETO (CONDICIONAL/OCULTO INICIALMENTE) -->
+<div class="space-y-4 hidden" id="panel-cancel">
+<div class="bg-surface-container-lowest warm-card-border rounded-[20px] p-5 warm-shadow space-y-4">
+<div class="flex items-center gap-3 text-secondary">
+<div class="w-10 h-10 rounded-full bg-error-container text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">event_busy</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Cancelar Agendamento</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lamentamos que não possa comparecer!</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+              Tem certeza que deseja cancelar seu atendimento de <strong class="font-semibold text-primary">Esmaltação em Gel Completa</strong> marcado para <strong class="font-semibold text-primary">Terça, 15/10 às 10:30</strong>?
+            </p>
+<div class="p-3.5 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-2.5 text-amber-900 text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-amber-700 shrink-0 mt-0.5">warning</span>
+<span>Esta vaga será imediatamente ofertada para as 3 clientes que aguardam na <strong>lista de espera</strong> para esta terça-feira.</span>
+</div>
+<div>
+<label class="block font-label-md text-label-md font-semibold text-on-surface mb-1.5" for="cancel-reason">
+                Por que você precisa cancelar?
+              </label>
+<select class="w-full h-[42px] px-3 rounded-[10px] bg-white border border-outline-variant text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" id="cancel-reason">
+<option value="none">Selecione um motivo...</option>
+<option value="date">Não consigo em nenhuma outra data</option>
+<option value="financial">Imprevisto financeiro momentâneo</option>
+<option value="health">Sintomas gripais ou recomendação médica</option>
+<option value="other">Outro motivo particular</option>
+</select>
+</div>
+<div class="pt-2 space-y-2.5">
+<button class="w-full py-3.5 px-4 bg-error text-white font-headline-sm text-[15px] font-bold rounded-[10px] hover:bg-red-800 transition-all active:scale-98 flex items-center justify-center gap-2" onclick="triggerCancelModal()">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+                Confirmar Cancelamento Definitivo
+              </button>
+<button class="w-full py-3 px-4 bg-surface hover:bg-surface-container text-on-surface font-headline-sm text-[14px] font-semibold rounded-[10px] border border-outline-variant transition-all" onclick="switchAction('reschedule')">
+                Mudei de ideia, prefiro remarcar
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Atalho WhatsApp Juliana -->
+<section class="bg-surface-container-lowest warm-card-border rounded-[18px] p-4 flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-500/20">
+<span class="material-symbols-outlined text-[22px]">chat</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[14px] font-bold text-on-surface">Dúvidas com o horário?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Converse diretamente com a Juliana</p>
+</div>
+</div>
+<a class="px-3.5 py-2 rounded-[10px] bg-emerald-600 hover:bg-emerald-700 text-white font-headline-sm text-[13px] font-bold flex items-center gap-1.5 transition-colors shadow-sm shrink-0 active:scale-95" href="https://wa.me/5511999999999?text=Oi%20Juliana,%20sou%20a%20Mariana%20Oliveira%20(Agendamento%20%23ENC-8492)" target="_blank">
+<span>WhatsApp</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</section>
+<!-- Rodapé Institucional do Serviço Encaixa -->
+<footer class="pt-4 pb-6 text-center space-y-2">
+<div class="flex items-center justify-center gap-2 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">verified_user</span>
+<span>Horário protegido contra duplicidade • Encaixa.me</span>
+</div>
+<p class="text-[11px] text-outline">
+          Studio Juliana Silva © 2024 • CNPJ 38.291.849/0001-10<br/>
+          Comprovante digital emitido em conformidade com o CDC
+        </p>
+</footer>
+</main>
+</div>
+<!-- Modal Interativo de Confirmação de Cancelamento -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-end sm:items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200" id="cancel-modal">
+<div class="w-full max-w-sm bg-surface-container-lowest rounded-[24px] p-5 space-y-4 shadow-2xl border border-outline-variant transform translate-y-4 transition-all duration-200">
+<div class="text-center space-y-2">
+<div class="w-12 h-12 rounded-full bg-error-container text-error flex items-center justify-center mx-auto">
+<span class="material-symbols-outlined text-[28px]">delete_forever</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Confirmar cancelamento?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Seu horário para <strong>Terça, 15/10 às 10:30</strong> será cancelado e o aviso enviado ao WhatsApp da Juliana.
+        </p>
+</div>
+<div class="space-y-2 pt-2">
+<button class="w-full py-3 px-4 bg-error text-white font-headline-sm text-[14px] font-bold rounded-[10px] hover:bg-red-800 transition-colors" onclick="executeCancellation()">
+          Sim, cancelar definitivamente
+        </button>
+<button class="w-full py-3 px-4 bg-surface hover:bg-surface-container text-on-surface font-headline-sm text-[14px] font-semibold rounded-[10px] border border-outline-variant transition-colors" onclick="closeCancelModal()">
+          Voltar e manter meu horário
+        </button>
+</div>
+</div>
+</div>
+<!-- Toast Notification Feedback -->
+<div class="fixed bottom-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-primary text-white px-5 py-3 rounded-full shadow-lg flex items-center gap-2 text-sm font-medium" id="toast">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span id="toast-message">Agendamento atualizado com sucesso!</span>
+</div>
+<!-- Client-side Logic for Mock State and Interactions -->
+<script>
+    let selectedDateText = "Quarta, 16 de Outubro";
+    let selectedTimeText = "09:30";
+
+    function switchAction(type) {
+      const rescheduleBtn = document.getElementById('tab-reschedule');
+      const cancelBtn = document.getElementById('tab-cancel');
+      const reschedulePanel = document.getElementById('panel-reschedule');
+      const cancelPanel = document.getElementById('panel-cancel');
+
+      if (type === 'reschedule') {
+        rescheduleBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-headline-sm text-[14px] font-bold transition-all duration-200 bg-surface-container-lowest text-primary shadow-sm";
+        cancelBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-headline-sm text-[14px] font-medium text-on-surface-variant hover:text-on-surface transition-all duration-200";
+        reschedulePanel.classList.remove('hidden');
+        cancelPanel.classList.add('hidden');
+      } else {
+        cancelBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-headline-sm text-[14px] font-bold transition-all duration-200 bg-surface-container-lowest text-error shadow-sm";
+        rescheduleBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-headline-sm text-[14px] font-medium text-on-surface-variant hover:text-on-surface transition-all duration-200";
+        cancelPanel.classList.remove('hidden');
+        reschedulePanel.classList.add('hidden');
+      }
+    }
+
+    function selectDate(element, dateStr) {
+      document.querySelectorAll('.date-chip').forEach(chip => {
+        chip.className = "date-chip flex flex-col items-center justify-center min-w-[76px] py-3 px-2 rounded-xl border border-outline-variant bg-surface hover:bg-surface-container-low text-on-surface transition-all transform active:scale-95";
+        chip.querySelector('.font-label-sm').classList.add('text-on-surface-variant');
+      });
+
+      element.className = "date-chip flex flex-col items-center justify-center min-w-[76px] py-3 px-2 rounded-xl border border-primary bg-primary text-white transition-all transform active:scale-95 shadow-sm";
+      element.querySelector('.font-label-sm').classList.remove('text-on-surface-variant');
+
+      selectedDateText = dateStr;
+      document.getElementById('selected-date-label').innerText = dateStr.split(',')[0];
+    }
+
+    function selectTime(element, timeStr) {
+      document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.className = "time-slot py-2.5 px-3 rounded-xl border border-outline-variant bg-surface hover:border-primary text-on-surface flex items-center justify-between font-headline-sm text-[15px] font-medium transition-all";
+        const iconOrText = slot.querySelector('.material-symbols-outlined');
+        if (iconOrText) {
+          iconOrText.remove();
+          const span = document.createElement('span');
+          span.className = "text-[11px] text-on-surface-variant font-normal";
+          span.innerText = "Livre";
+          slot.appendChild(span);
+        }
+      });
+
+      element.className = "time-slot py-2.5 px-3 rounded-xl border border-primary bg-primary-container text-white flex items-center justify-between font-headline-sm text-[15px] font-semibold transition-all";
+      const lastChild = element.lastElementChild;
+      if (lastChild) lastChild.remove();
+      const checkIcon = document.createElement('span');
+      checkIcon.className = "material-symbols-outlined text-[18px]";
+      checkIcon.innerText = "check_circle";
+      element.appendChild(checkIcon);
+
+      selectedTimeText = timeStr;
+    }
+
+    function confirmReschedule() {
+      showToast(`Remarcado para ${selectedDateText} às ${selectedTimeText}! Notificação enviada ao WhatsApp.`);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1000);
+    }
+
+    function triggerCancelModal() {
+      const modal = document.getElementById('cancel-modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.querySelector('div').classList.remove('translate-y-4');
+    }
+
+    function closeCancelModal() {
+      const modal = document.getElementById('cancel-modal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.querySelector('div').classList.add('translate-y-4');
+    }
+
+    function executeCancellation() {
+      closeCancelModal();
+      showToast("Agendamento #ENC-8492 cancelado com sucesso.");
+      setTimeout(() => {
+        document.body.innerHTML = `
+          <div class="min-h-screen bg-[#FEF9F3] flex flex-col items-center justify-center p-6 text-center space-y-4 max-w-sm mx-auto">
+            <div class="w-16 h-16 bg-[#F3D7DE] text-[#6E1936] rounded-full flex items-center justify-center mx-auto">
+              <span class="material-symbols-outlined text-[32px]">check</span>
+            </div>
+            <h2 class="text-2xl font-bold text-[#500021]">Agendamento Cancelado</h2>
+            <p class="text-[#544245] text-sm">Seu horário anterior foi liberado para a lista de espera. Juliana Silva recebeu a confirmação do cancelamento.</p>
+            <div class="pt-4 w-full">
+              <a href="https://encaixa.me/studio-juliana" class="block w-full py-3 rounded-xl bg-[#6E1936] text-white font-bold text-sm">Fazer Novo Agendamento</a>
+            </div>
+          </div>
+        `;
+      }, 1200);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+</body></html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Encaixa Studio - Clientes</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "background": "#fef9f3",
+            "secondary-container": "#ff8aa9",
+            "surface-bright": "#fef9f3",
+            "tertiary-container": "#662521",
+            "on-tertiary-container": "#e78b84",
+            "inverse-on-surface": "#f5f0ea",
+            "on-secondary-fixed": "#3f0019",
+            "surface-container-low": "#f8f3ed",
+            "surface-container": "#f2ede7",
+            "primary-container": "#6e1936",
+            "primary": "#500021",
+            "surface-dim": "#ded9d4",
+            "secondary": "#9d3d5a",
+            "surface-variant": "#e6e2dc",
+            "on-primary-fixed": "#3f0018",
+            "on-tertiary-fixed": "#3d0606",
+            "surface": "#fef9f3",
+            "on-primary-fixed-variant": "#7e2642",
+            "on-tertiary-fixed-variant": "#76312d",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#32302c",
+            "tertiary": "#4a0f0e",
+            "on-secondary-container": "#781f3e",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#ffb1c2",
+            "on-secondary-fixed-variant": "#7f2543",
+            "on-error-container": "#93000a",
+            "surface-tint": "#9c3e59",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#f2829f",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-background": "#1d1b18",
+            "primary-fixed": "#ffd9e0",
+            "secondary-fixed-dim": "#ffb1c3",
+            "on-surface": "#1d1b18",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#ffd9e0",
+            "on-error": "#ffffff",
+            "outline-variant": "#dac0c4",
+            "surface-container-high": "#ece7e2",
+            "outline": "#877275",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#e6e2dc",
+            "on-surface-variant": "#544245",
+            "primary-fixed-dim": "#ffb1c2"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-xl": "2.25rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-24 selection:bg-secondary-container selection:text-on-secondary-fixed">
+<!-- TopAppBar Shared Component Executed with JSON tokens -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-3 bg-surface/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant/60 shadow-sm" data-alt="Close-up portrait of aesthetician Juliana Silva with radiant healthy skin, warm smile and soft salon lighting in an elegant studio background with blush warm tones and delicate indoor olive branches." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4kgzWxlU1L8Jp2SyDahgWZNMxUZuT1PtlOronPDpkFlVUlGyALby0hQ171vZ_g71lww59izb9OS4NhUqjkWJuTPAYD3f-WuTogCxM2i7FuuaPS4MzPvqx3l9IJ56U_9WfeY7qNQ2gWo7JtIjjJjKYQ6BiOpJ_Y0cxAdS687V2LuDzsKwi8XUYlt4mFwx5fUdDslXswgZXVo8dTHlPFuC4HPUlPFkNUPK1WjpnjXzV1jWTcFDxLfLOHA"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-600 rounded-full border-2 border-surface" title="Atendendo agora"></span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+          Atendendo agora
+        </p>
+<h1 class="text-headline-sm font-headline-sm text-primary dark:text-inverse-primary leading-tight">Encaixa Studio</h1>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 text-label-md font-label-md rounded-xl bg-surface-container-high hover:bg-surface-variant text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Compartilhar</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas Mobile Content Container -->
+<main class="pt-20 px-4 max-w-md mx-auto space-y-4">
+<!-- Header Block: Title & Action -->
+<div class="flex items-center justify-between pt-1">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface">Clientes <span class="text-primary-container text-label-md font-label-md bg-primary-fixed px-2 py-0.5 rounded-full ml-1">128</span></h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Gestão do relacionamento e agendamentos</p>
+</div>
+<button class="bg-primary-container text-on-primary hover:bg-[#8C2F4D] transition-colors duration-150 active:scale-95 rounded-xl px-3.5 py-2 flex items-center gap-1.5 shadow-sm text-label-md font-label-md">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span>+ Nova Cliente</span>
+</button>
+</div>
+<!-- Quick Search Field -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px] pointer-events-none">search</span>
+<input class="w-full h-[44px] pl-10 pr-10 text-body-md font-body-md rounded-xl bg-surface-container-lowest border border-outline-variant/60 focus:border-[#8C2F4D] focus:ring-2 focus:ring-[#8C2F4D]/15 text-on-surface placeholder:text-outline transition-all duration-150 outline-none shadow-sm" placeholder="Buscar por nome ou WhatsApp..." type="text"/>
+<button class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface text-[18px] transition-colors" title="Limpar">
+        tune
+      </button>
+</div>
+<!-- Touch Filter Chips (Horizontal Scrollable) -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-4 px-4">
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary shadow-sm flex items-center gap-1 transition-all">
+<span>Todas (128)</span>
+</button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-outline-variant/50 transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">star</span>
+<span>Mais frequentes</span>
+</button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-outline-variant/50 transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">schedule</span>
+<span>Com retorno pendente</span>
+</button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-outline-variant/50 transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">celebration</span>
+<span>Novas este mês</span>
+</button>
+</div>
+<!-- Client Cards Mobile List -->
+<div class="space-y-3 pt-1">
+<!-- Card 1: Beatriz Ferreira -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)] hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary-container font-headline-sm font-semibold text-lg flex-shrink-0">
+              BF
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Beatriz Ferreira</h3>
+<span class="bg-[#E5EADD] text-on-surface text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary">verified</span>
+                  Frequente
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">14 visitas • Preferência: Manicure Spa</p>
+</div>
+</div>
+<button aria-label="Mais opções" class="text-outline hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<div class="mt-3.5 grid grid-cols-2 gap-2 bg-surface-container-low rounded-xl p-2.5 text-body-sm font-body-sm">
+<div>
+<span class="text-label-sm font-label-sm text-outline block">Último atendimento</span>
+<span class="text-on-surface font-semibold flex items-center gap-1 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+              Hoje, 10:00
+            </span>
+</div>
+<div class="border-l border-outline-variant/40 pl-3">
+<span class="text-label-sm font-label-sm text-outline block">Próximo agendado</span>
+<span class="text-primary-container font-semibold flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">event</span>
+              29/Out • 14h
+            </span>
+</div>
+</div>
+<div class="mt-3.5 flex items-center gap-2 pt-1 border-t border-outline-variant/20">
+<a class="flex-1 h-9 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors border border-emerald-200" href="https://wa.me/">
+<span class="material-symbols-outlined text-[18px] text-emerald-700">chat</span>
+<span>WhatsApp</span>
+</a>
+<button class="flex-1 h-9 rounded-xl bg-primary-container text-on-primary hover:bg-[#8C2F4D] text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Agendar</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Mariana Oliveira -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)] hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-headline-sm font-semibold text-lg flex-shrink-0">
+              MO
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Mariana Oliveira</h3>
+<span class="text-outline text-label-sm font-label-sm">• 6 visitas</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">check_circle</span>
+                Atendida Hoje, 08:30
+              </p>
+</div>
+</div>
+<button aria-label="Mais opções" class="text-outline hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<div class="mt-3 flex items-center justify-between text-body-sm font-body-sm bg-surface-container-low/60 rounded-xl px-3 py-2">
+<span class="text-on-surface-variant">Design de Sobrancelha c/ Henna</span>
+<span class="font-semibold text-primary">R$ 85,00</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<a class="w-full h-9 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors border border-emerald-200" href="https://wa.me/">
+<span class="material-symbols-outlined text-[18px] text-emerald-700">chat</span>
+<span>Mensagem rápida WhatsApp</span>
+</a>
+</div>
+</article>
+<!-- Card 3: Camila Santos -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)] hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface font-headline-sm font-semibold text-lg flex-shrink-0">
+              CS
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Camila Santos</h3>
+<span class="text-outline text-label-sm font-label-sm">• 3 visitas</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Última há 12 dias</p>
+</div>
+</div>
+<button aria-label="Mais opções" class="text-outline hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<div class="mt-3 bg-secondary-fixed/30 border border-outline-variant/30 rounded-xl p-2.5">
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px]">favorite</span>
+<span class="font-semibold">Procedimento favorito:</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface mt-0.5">Alongamento em Fibra de Vidro (Manutenção 20 dias)</p>
+</div>
+<div class="mt-3.5 flex items-center gap-2 pt-1 border-t border-outline-variant/20">
+<a class="flex-1 h-9 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors border border-emerald-200" href="https://wa.me/">
+<span class="material-symbols-outlined text-[18px] text-emerald-700">chat</span>
+<span>WhatsApp</span>
+</a>
+<button class="flex-1 h-9 rounded-xl bg-primary-container text-on-primary hover:bg-[#8C2F4D] text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Agendar</span>
+</button>
+</div>
+</article>
+<!-- Card 4: Fernanda Lima (Alert: Retention Opportunity) -->
+<article class="bg-surface-container-lowest rounded-2xl border border-secondary-container/60 p-4 shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)] hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary-container"></div>
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed-dim/40 flex items-center justify-center text-primary-container font-headline-sm font-semibold text-lg flex-shrink-0">
+              FL
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Fernanda Lima</h3>
+<span class="text-outline text-label-sm font-label-sm">• 8 visitas</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Geralmente agenda sextas às 17h</p>
+</div>
+</div>
+<button aria-label="Mais opções" class="text-outline hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<!-- Retention Alert Box -->
+<div class="mt-3 bg-[#FAF5EF] border border-[#CB746D]/40 rounded-xl p-2.5 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[#CB746D] text-[20px] flex-shrink-0 mt-0.5">notification_important</span>
+<div>
+<p class="text-body-sm font-body-sm font-semibold text-[#8C2F4D]">Sem agendamento há 28 dias</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">O ciclo ideal de manutenção de Fernanda costuma ser a cada 21 dias.</p>
+</div>
+</div>
+<div class="mt-3">
+<a class="w-full h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-on-primary text-label-md font-label-md flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95" href="https://wa.me/">
+<span class="material-symbols-outlined text-[19px]">mark_chat_unread</span>
+<span>Chamar para retorno via WhatsApp</span>
+</a>
+</div>
+</article>
+<!-- Card 5: Larissa Mendes (New Client) -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 shadow-[0_2px_8px_-2px_rgba(47,41,40,0.04)] hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant font-headline-sm font-semibold text-lg flex-shrink-0">
+              LM
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Larissa Mendes</h3>
+<span class="bg-primary-fixed text-primary-container text-[11px] font-semibold px-2 py-0.5 rounded-full">
+                  1ª visita
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Cadastrada ontem • Indicada por Beatriz F.</p>
+</div>
+</div>
+<button aria-label="Mais opções" class="text-outline hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<div class="mt-3 bg-surface-container-low rounded-xl p-2.5 text-body-sm font-body-sm flex items-center justify-between">
+<span class="text-on-surface-variant">Primeiro procedimento agendado</span>
+<span class="text-primary-container font-semibold">Amanhã • 16:30</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<a class="flex-1 h-9 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors border border-emerald-200" href="https://wa.me/">
+<span class="material-symbols-outlined text-[18px] text-emerald-700">chat</span>
+<span>Confirmar</span>
+</a>
+<button class="h-9 px-3.5 rounded-xl border border-outline-variant/50 hover:border-primary text-on-surface text-label-md font-label-md flex items-center justify-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Ficha</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Micro Stats Footer Capsule -->
+<div class="pt-2 pb-6">
+<div class="bg-surface-container rounded-2xl p-4 border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">insights</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Taxa de retorno: 84%</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">+6 clientes novas este mês</p>
+</div>
+</div>
+<button class="text-label-sm font-label-sm text-primary font-semibold hover:underline">
+          Ver relatório
+        </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar Shared Component (Destination Count: 5) -->
+<!-- Strict semantic mapping: Current screen is 'Clientes', hence index 1 ('Clientes') is active -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur-md shadow-[0_-4px_16px_rgba(110,25,54,0.04)] dark:shadow-none">
+<!-- Agenda -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<span class="text-label-sm font-label-sm mt-0.5">Agenda</span>
+</a>
+<!-- Clientes (ACTIVE MAPPING) -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-3 py-1.5 font-semibold transition-all active:scale-95 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-label-sm font-label-sm mt-0.5">Clientes</span>
+</a>
+<!-- Financeiro -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+<span class="text-label-sm font-label-sm mt-0.5">Financeiro</span>
+</a>
+<!-- Serviços -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">spa</span>
+<span class="text-label-sm font-label-sm mt-0.5">Serviços</span>
+</a>
+<!-- Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container dark:hover:bg-surface-variant active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">storefront</span>
+<span class="text-label-sm font-label-sm mt-0.5">Perfil</span>
+</a>
+</nav>
+<!-- Interactive script for filter chips toggle -->
+<script>
+    document.querySelectorAll('.no-scrollbar button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.no-scrollbar button').forEach(b => {
+          b.className = 'whitespace-nowrap px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-outline-variant/50 transition-all flex items-center gap-1.5';
+        });
+        button.className = 'whitespace-nowrap px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary shadow-sm flex items-center gap-1.5 transition-all';
+      });
+    });
+  </script>
+</body></html>

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clientes | Encaixa - Gestão para Estúdios de Beleza</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config verbatim according to Design System -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#32302c",
+            "surface-bright": "#fef9f3",
+            "surface-container-highest": "#e6e2dc",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary-container": "#e78b84",
+            "secondary": "#9d3d5a",
+            "secondary-fixed": "#ffd9e0",
+            "primary": "#500021",
+            "secondary-container": "#ff8aa9",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#ded9d4",
+            "primary-fixed-dim": "#ffb1c2",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "error": "#ba1a1a",
+            "on-background": "#1d1b18",
+            "on-primary": "#ffffff",
+            "tertiary-container": "#662521",
+            "on-primary-fixed-variant": "#7e2642",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#1d1b18",
+            "surface": "#fef9f3",
+            "surface-variant": "#e6e2dc",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-surface-variant": "#544245",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#dac0c4",
+            "on-secondary-fixed-variant": "#7f2543",
+            "inverse-primary": "#ffb1c2",
+            "surface-container-low": "#f8f3ed",
+            "on-secondary-fixed": "#3f0019",
+            "on-tertiary-fixed": "#3d0606",
+            "on-secondary-container": "#781f3e",
+            "outline": "#877275",
+            "on-primary-container": "#f2829f",
+            "surface-container-high": "#ece7e2",
+            "on-error": "#ffffff",
+            "background": "#fef9f3",
+            "tertiary": "#4a0f0e",
+            "inverse-on-surface": "#f5f0ea",
+            "secondary-fixed-dim": "#ffb1c3",
+            "surface-container": "#f2ede7",
+            "primary-fixed": "#ffd9e0",
+            "surface-tint": "#9c3e59",
+            "on-primary-fixed": "#3f0018",
+            "primary-container": "#6e1936",
+            "on-tertiary-fixed-variant": "#76312d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-2xl": "3rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "label-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "body-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "body-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-xl": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-md": [
+              "Plus Jakarta Sans"
+            ],
+            "body-md": [
+              "Plus Jakarta Sans"
+            ],
+            "number-metric": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "label-md": [
+              "Plus Jakarta Sans"
+            ]
+          },
+          "fontSize": {
+            "label-sm": [
+              "0.75rem",
+              {
+                "lineHeight": "1rem",
+                "letterSpacing": "0.02em",
+                "fontWeight": "600"
+              }
+            ],
+            "body-sm": [
+              "0.8125rem",
+              {
+                "lineHeight": "1.25rem",
+                "fontWeight": "400"
+              }
+            ],
+            "body-lg": [
+              "1rem",
+              {
+                "lineHeight": "1.625rem",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-sm": [
+              "1.125rem",
+              {
+                "lineHeight": "1.625rem",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-xl": [
+              "2.25rem",
+              {
+                "lineHeight": "2.75rem",
+                "letterSpacing": "-0.025em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-md": [
+              "1.375rem",
+              {
+                "lineHeight": "1.875rem",
+                "letterSpacing": "-0.015em",
+                "fontWeight": "600"
+              }
+            ],
+            "body-md": [
+              "0.875rem",
+              {
+                "lineHeight": "1.375rem",
+                "fontWeight": "400"
+              }
+            ],
+            "number-metric": [
+              "2rem",
+              {
+                "lineHeight": "2.25rem",
+                "letterSpacing": "-0.03em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-lg": [
+              "1.75rem",
+              {
+                "lineHeight": "2.25rem",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "600"
+              }
+            ],
+            "label-md": [
+              "0.875rem",
+              {
+                "lineHeight": "1.25rem",
+                "letterSpacing": "0.01em",
+                "fontWeight": "600"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    
+    .warm-ambient-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.06), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #dac0c4;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #877275;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md flex min-h-screen selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- ========================================================================= -->
+<!-- SHARED COMPONENT: SideNavBar (Fixed desktop sidebar 260px)                 -->
+<!-- ========================================================================= -->
+<aside class="fixed top-0 left-0 h-screen w-64 flex flex-col justify-between bg-surface-container-lowest dark:bg-surface-container-low border-r border-outline-variant dark:border-outline z-50">
+<div class="h-full flex flex-col justify-between py-6 px-4">
+<!-- Top Group: Logo & Workspace Info -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[22px]" data-icon="spa">spa</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">Encaixa</span>
+<span class="text-label-sm font-label-sm text-outline">studio-juliana</span>
+</div>
+</div>
+</div>
+<!-- CTA: Minha página de reservas (Public studio link) -->
+<a class="group flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors duration-150 border border-outline-variant/60" href="#public-link">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="storefront">storefront</span>
+<span class="text-label-sm font-label-sm font-semibold">Minha página de reservas</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:translate-x-0.5 transition-transform" data-icon="open_in_new">open_in_new</span>
+</a>
+<!-- Navigation Tab Items -->
+<nav aria-label="Navegação Principal" class="flex flex-col gap-1.5">
+<!-- 1. Agenda (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface dark:hover:text-on-surface-variant transition-colors duration-150" href="#agenda">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_today">calendar_today</span>
+<span>Agenda</span>
+</a>
+<!-- 2. Clientes (ACTIVE TAB) -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface-container-high dark:bg-surface-variant text-primary dark:text-inverse-primary font-label-md text-label-md" href="#clientes">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-bold">Clientes</span>
+</div>
+<!-- Total count badge -->
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary">128</span>
+</a>
+<!-- 3. Serviços (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface dark:hover:text-on-surface-variant transition-colors duration-150" href="#servicos">
+<span class="material-symbols-outlined text-[20px]" data-icon="spa">spa</span>
+<span>Serviços</span>
+</a>
+<!-- 4. Recebimentos (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface dark:hover:text-on-surface-variant transition-colors duration-150" href="#recebimentos">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span>Recebimentos</span>
+</a>
+<!-- 5. Meu Espaço (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface dark:hover:text-on-surface-variant transition-colors duration-150" href="#espaco">
+<span class="material-symbols-outlined text-[20px]" data-icon="storefront">storefront</span>
+<span>Meu Espaço</span>
+</a>
+<!-- 6. Minha Assinatura (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface dark:hover:text-on-surface-variant transition-colors duration-150" href="#assinatura">
+<span class="material-symbols-outlined text-[20px]" data-icon="loyalty">loyalty</span>
+<span>Minha Assinatura</span>
+</a>
+</nav>
+</div>
+<!-- Footer Group: User Info & Settings -->
+<div class="flex flex-col gap-1 border-t border-outline-variant/50 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low text-label-md font-label-md transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span>Configurações</span>
+</a>
+<div class="flex items-center justify-between p-2 rounded-xl bg-surface-container-low/70 border border-outline-variant/40 mt-2">
+<div class="flex items-center gap-2.5">
+<img class="w-9 h-9 rounded-full object-cover border border-outline-variant shadow-sm" data-alt="Close-up professional portrait of Juliana Silva, a Brazilian aesthetician with radiant warm skin, delicate gold earrings, smiling gently against a sunlit neutral studio background. Soft natural illumination highlighting natural elegance and warmth in a light-mode editorial palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvSYmhCNRM0OFH6Yqz8xeOflw3THvN2oEnAcKQCwDpyOfUv25Ef6OVWS_nGacKA_GAjXAgc9jxfSqWVJcrom8KLm69LpNqg8D18pKX7BTqfTMA1-H0lYvVwiAOHJCwtmCsY6Ogm8ANl9I9zEreziDKglugPPPgnJcd9QsqDetisLmq2RhyX9NkiYOdEB5nOA13TBoBATCUzi1EuAuEHfVERx_gqXjTav_oTgEQluPOFLj8SXvnzy3ISw"/>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md font-bold text-on-surface leading-snug">Juliana Silva</span>
+<span class="text-label-sm font-label-sm text-outline">Especialista Nails</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] hover:text-primary cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- MAIN WORKSPACE CANVAS                                                     -->
+<!-- ========================================================================= -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen bg-background pb-12">
+<!-- Top Bar: Header & Primary Actions -->
+<header class="sticky top-0 z-40 bg-surface-bright/95 backdrop-blur-md border-b border-outline-variant px-8 py-5">
+<div class="flex items-center justify-between gap-6">
+<!-- Title & Subtitle -->
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Clientes</h1>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-primary font-bold">128 ativas</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Consulte contatos, preferências e histórico completo de atendimentos do seu estúdio.</p>
+</div>
+<!-- Trailing Actions Cluster -->
+<div class="flex items-center gap-3">
+<!-- WhatsApp Blast / Notification icon -->
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary-container flex items-center justify-center transition-all duration-150" title="Notificações">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary-container flex items-center justify-center transition-all duration-150" title="Compartilhar catálogo">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+</button>
+<!-- Primary Action Button -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-[#8C2F4D] transition-colors duration-150 text-label-md font-label-md shadow-sm active:scale-98">
+<span class="material-symbols-outlined text-[18px]" data-icon="person_add">person_add</span>
+<span>+ Nova cliente</span>
+</button>
+</div>
+</div>
+<!-- Search & Segment Filters Row -->
+<div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+<!-- Search Input with Keyboard Shortcut -->
+<div class="relative w-full max-w-md">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</div>
+<input class="w-full h-[42px] pl-10 pr-12 rounded-xl bg-surface-container-lowest border border-outline-variant text-on-surface text-body-md font-body-md placeholder:text-outline focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15 transition-all shadow-sm" placeholder="Buscar por nome, WhatsApp ou procedimento..." type="text" value="Beatriz"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<kbd class="px-1.5 py-0.5 text-[10px] font-semibold text-outline bg-surface-container border border-outline-variant rounded">⌘K</kbd>
+</div>
+</div>
+<!-- Filter Chips (Segregated Statuses) -->
+<div class="flex items-center gap-2 overflow-x-auto py-0.5">
+<button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary font-bold shadow-sm flex items-center gap-1.5">
+<span>Todas</span>
+<span class="text-[11px] opacity-85 font-medium">(128)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface-variant flex items-center gap-1.5 transition-colors">
+<span class="w-2 h-2 rounded-full bg-[#E5EADD] border border-outline"></span>
+<span>Com agendamento futuro</span>
+<span class="text-outline text-[11px]">(14)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface-variant flex items-center gap-1.5 transition-colors">
+<span>Clientes recorrentes</span>
+<span class="text-outline text-[11px]">(42)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface-variant flex items-center gap-1.5 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-[#CB746D]"></span>
+<span>Inativas (+60 dias)</span>
+<span class="text-outline text-[11px]">(19)</span>
+</button>
+</div>
+</div>
+</header>
+<!-- ======================================================================= -->
+<!-- SPLIT VIEW CONTAINER (Col 1: List / Col 2: Detailed Profile Dossier)     -->
+<!-- ======================================================================= -->
+<div class="px-8 mt-6">
+<div class="grid grid-cols-12 gap-6 items-start">
+<!-- =================================================================== -->
+<!-- COLUMN 1: Client Directory List (5 cols)                            -->
+<!-- =================================================================== -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-3">
+<!-- Summary count bar -->
+<div class="flex items-center justify-between px-1 text-label-sm font-label-sm text-outline">
+<span>Mostrando 6 de 128 cadastradas</span>
+<div class="flex items-center gap-1 text-primary cursor-pointer hover:underline font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="swap_vert">swap_vert</span>
+<span>Ordenar: Mais recentes</span>
+</div>
+</div>
+<!-- CLIENT CARD 1: Beatriz Ferreira (SELECTED / IN FOCUS) -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border-2 border-primary-container warm-ambient-shadow cursor-pointer relative overflow-hidden transition-all duration-150">
+<!-- Active indicator ribbon -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+<div class="flex items-start justify-between gap-3 pl-1">
+<div class="flex items-start gap-3">
+<!-- Avatar with soft blush tone -->
+<div class="w-12 h-12 rounded-full bg-secondary-fixed text-primary font-bold text-headline-sm flex items-center justify-center shrink-0 border border-secondary-container/40">
+                  BF
+                </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Beatriz Ferreira</h3>
+<!-- Frequent tag -->
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-[#E5EADD] text-on-surface font-semibold">
+                      Frequente
+                    </span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="call">call</span>
+                    (11) 98721-4409
+                  </span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold bg-primary-fixed/60 px-2 py-0.5 rounded-lg">
+                12 visitas
+              </span>
+</div>
+<!-- Footer info: Upcoming next booking -->
+<div class="mt-3.5 pt-3 border-t border-outline-variant/60 flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5 text-primary font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="event_upcoming">event_upcoming</span>
+<span>Próximo: <strong>Amanhã, 14:30</strong></span>
+</div>
+<span class="text-outline text-label-sm font-label-sm">Fibra em Gel</span>
+</div>
+</div>
+<!-- CLIENT CARD 2: Mariana Souza -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant hover:border-outline hover:bg-surface-container-low/40 cursor-pointer transition-all duration-150">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high text-on-surface-variant font-bold text-headline-sm flex items-center justify-center shrink-0">
+                  MS
+                </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Mariana Souza</h3>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-[#E5EADD] text-on-surface font-semibold">
+                      Frequente
+                    </span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="call">call</span>
+                    (11) 97103-8821
+                  </span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline bg-surface-container px-2 py-0.5 rounded-lg">
+                8 visitas
+              </span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/40 flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="check_circle">check_circle</span>
+                Último: 04 de Junho (R$ 130)
+              </span>
+<span class="text-primary text-label-sm font-label-sm font-semibold">Agendar</span>
+</div>
+</div>
+<!-- CLIENT CARD 3: Camila Duarte -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant hover:border-outline hover:bg-surface-container-low/40 cursor-pointer transition-all duration-150">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-12 h-12 rounded-full bg-[#F3DCD7] text-[#6E1936] font-bold text-headline-sm flex items-center justify-center shrink-0">
+                  CD
+                </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Camila Duarte</h3>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary-fixed text-on-primary-fixed-variant font-semibold">
+                      Nova
+                    </span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="call">call</span>
+                    (11) 99420-1175
+                  </span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline bg-surface-container px-2 py-0.5 rounded-lg">
+                1 visita
+              </span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/40 flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="history">history</span>
+                Primeira visita: 22 de Maio
+              </span>
+<span class="text-outline text-label-sm font-label-sm">Spa dos Pés</span>
+</div>
+</div>
+<!-- CLIENT CARD 4: Fernanda Lima (Inativa) -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest/80 border border-outline-variant hover:border-outline cursor-pointer transition-all duration-150">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container text-outline font-bold text-headline-sm flex items-center justify-center shrink-0">
+                  FL
+                </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Fernanda Lima</h3>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container border border-[#CB746D]/60 text-[#CB746D] font-semibold">
+                      Sumida (+65 dias)
+                    </span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="call">call</span>
+                    (11) 96314-5590
+                  </span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline bg-surface-container px-2 py-0.5 rounded-lg">
+                5 visitas
+              </span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/40 flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-[#CB746D] text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="schedule">schedule</span>
+                Última visita: 24 de Março
+              </span>
+<button class="text-primary text-label-sm font-label-sm font-semibold hover:underline">Reativar cliente</button>
+</div>
+</div>
+<!-- CLIENT CARD 5: Larissa Ramos -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant hover:border-outline hover:bg-surface-container-low/40 cursor-pointer transition-all duration-150">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high text-on-surface-variant font-bold text-headline-sm flex items-center justify-center shrink-0">
+                  LR
+                </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Larissa Ramos</h3>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-[#E5EADD] text-on-surface font-semibold">
+                      Frequente
+                    </span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="call">call</span>
+                    (11) 98112-9092
+                  </span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline bg-surface-container px-2 py-0.5 rounded-lg">
+                19 visitas
+              </span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/40 flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-primary font-medium text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="event_upcoming">event_upcoming</span>
+                Próximo: Sex, 16:00
+              </span>
+<span class="text-outline text-label-sm font-label-sm">Esmaltação em Gel</span>
+</div>
+</div>
+<!-- CLIENT CARD 6: Patrícia Alves -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant hover:border-outline hover:bg-surface-container-low/40 cursor-pointer transition-all duration-150">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-12 h-12 rounded-full bg-[#FAF5EF] text-on-surface font-bold text-headline-sm flex items-center justify-center shrink-0 border border-outline-variant">
+                  PA
+                </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Patrícia Alves</h3>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface font-semibold">
+                      Ocasional
+                    </span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="call">call</span>
+                    (11) 97754-0012
+                  </span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline bg-surface-container px-2 py-0.5 rounded-lg">
+                4 visitas
+              </span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/40 flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline text-label-sm font-label-sm">Sem agendamentos futuros</span>
+<span class="text-primary text-label-sm font-label-sm font-semibold">Enviar lembrete</span>
+</div>
+</div>
+</div>
+<!-- =================================================================== -->
+<!-- COLUMN 2: Selected Client Dossier (7 cols - "Beatriz Ferreira")    -->
+<!-- =================================================================== -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-6">
+<!-- MAIN CLIENT DOSSIER HEADER CARD -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 warm-ambient-shadow">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<!-- Left: Avatar & Identity -->
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-2xl bg-secondary-fixed text-primary font-bold text-headline-lg flex items-center justify-center shrink-0 border-2 border-secondary-container/50 shadow-sm">
+                  BF
+                </div>
+<div>
+<div class="flex items-center gap-2.5">
+<h2 class="text-headline-md font-headline-md text-on-surface font-bold tracking-tight">Beatriz Ferreira</h2>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#E5EADD] text-on-surface font-bold">
+                      Cliente VIP • Frequente
+                    </span>
+</div>
+<div class="flex flex-wrap items-center gap-3 text-body-sm font-body-sm text-on-surface-variant mt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="call">call</span>
+                      (11) 98721-4409
+                    </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="mail">mail</span>
+                      beatriz.ferreira@email.com
+                    </span>
+<span>•</span>
+<span class="text-outline">Desde Outubro/2023</span>
+</div>
+</div>
+</div>
+<!-- Right: Direct Quick Actions -->
+<div class="flex items-center gap-2">
+<a class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#E5EADD] text-on-surface hover:bg-[#d8dfce] transition-colors text-label-md font-label-md font-bold" href="https://wa.me/5511987214409" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-[#2F2928]" data-icon="chat">chat</span>
+<span>WhatsApp</span>
+</a>
+<button class="p-2 rounded-xl border border-outline-variant hover:border-primary-container text-on-surface-variant hover:text-primary transition-colors" title="Editar dados da cliente">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-xl border border-outline-variant hover:border-primary-container text-on-surface-variant hover:text-primary transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Bento Quick Metrics Row (4 Metrics) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 pt-6 border-t border-outline-variant/60">
+<!-- Metric 1: Total Investido -->
+<div class="p-3.5 rounded-xl bg-surface-container-low/70 border border-outline-variant/50">
+<span class="text-label-sm font-label-sm text-outline block">Total investido</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary mt-0.5 block">R$ 1.420,00</span>
+<span class="text-[11px] text-outline font-medium mt-0.5 block">Ticket médio: R$ 118,33</span>
+</div>
+<!-- Metric 2: Visitas Realizadas -->
+<div class="p-3.5 rounded-xl bg-surface-container-low/70 border border-outline-variant/50">
+<span class="text-label-sm font-label-sm text-outline block">Atendimentos</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface mt-0.5 block">12 visitas</span>
+<span class="text-[11px] text-[#2F2928] font-medium mt-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px] text-secondary" data-icon="verified">verified</span> Fidelizada
+                </span>
+</div>
+<!-- Metric 3: Frequência Média -->
+<div class="p-3.5 rounded-xl bg-surface-container-low/70 border border-outline-variant/50">
+<span class="text-label-sm font-label-sm text-outline block">Ciclo de retorno</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface mt-0.5 block">A cada 21 dias</span>
+<span class="text-[11px] text-outline font-medium mt-0.5 block">Previsão: Manutenção pontual</span>
+</div>
+<!-- Metric 4: Taxa de Presença / Pontualidade -->
+<div class="p-3.5 rounded-xl bg-surface-container-low/70 border border-outline-variant/50">
+<span class="text-label-sm font-label-sm text-outline block">Pontualidade</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface mt-0.5 block">100% presença</span>
+<span class="text-[11px] text-[#2F2928] font-medium mt-0.5 block">Zero faltas ou no-shows</span>
+</div>
+</div>
+</div>
+<!-- HIGHLIGHT SECTION: Próximo Atendimento Agendado -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest border-l-4 border-l-primary-container border-y border-r border-outline-variant warm-ambient-shadow">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<h4 class="text-label-md font-label-md font-bold uppercase tracking-wider text-primary">
+                  Próximo atendimento agendado
+                </h4>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#E5EADD] text-on-surface font-bold">
+                Confirmado
+              </span>
+</div>
+<div class="bg-surface-container-low/60 rounded-xl p-4 border border-outline-variant/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed/80 text-primary flex flex-col items-center justify-center shrink-0 border border-primary-fixed-dim">
+<span class="text-[11px] font-bold uppercase leading-none">Amanhã</span>
+<span class="text-headline-sm font-bold leading-tight">14:30</span>
+</div>
+<div>
+<h5 class="text-headline-sm font-headline-sm font-bold text-on-surface">Alongamento em Gel com Fibra de Vidro</h5>
+<div class="flex flex-wrap items-center gap-3 text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline" data-icon="person">person</span>
+                      Profissional: Juliana Silva
+                    </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline" data-icon="schedule">schedule</span>
+                      Duração aprox: 1h45m
+                    </span>
+<span>•</span>
+<span class="font-bold text-on-surface">R$ 110,00</span>
+</div>
+</div>
+</div>
+<!-- Action buttons for booking -->
+<div class="flex items-center gap-2 shrink-0">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest hover:border-secondary text-label-md font-label-md text-on-surface transition-colors">
+                  Remarcar
+                </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold text-label-md font-label-md transition-colors flex items-center gap-1">
+<span>Ver na agenda</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- PRIVATE INTERNAL NOTES (Só você vê) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 warm-ambient-shadow">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="lock">lock</span>
+<h4 class="text-label-md font-label-md font-bold text-on-surface">
+                  Observações Internas (Só você vê)
+                </h4>
+</div>
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="cloud_done">cloud_done</span>
+                Salvo automaticamente
+              </span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mb-2">
+              Fórmula de produtos, sensibilidades e detalhes de atendimento para encantar a cliente.
+            </p>
+<div class="relative">
+<textarea class="w-full rounded-xl bg-surface-container-low/60 border border-outline-variant text-on-surface text-body-md font-body-md p-3.5 focus:bg-surface-container-lowest focus:border-secondary focus:ring-2 focus:ring-secondary/15 transition-all outline-none resize-none leading-relaxed" rows="3">Prefere lixamento amendoado suave. Alérgica a acetona com perfume forte. Usar sempre higienizador neutro. Gosta de café sem açúcar e água com gás bem gelada.</textarea>
+<div class="absolute bottom-2.5 right-3 text-label-sm font-label-sm text-outline">
+                Última edição: 10 de Maio
+              </div>
+</div>
+</div>
+<!-- DUAL SECTION: Último Atendimento Realizado & Histórico Completo -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 warm-ambient-shadow">
+<!-- Último Atendimento Realizado banner -->
+<div class="mb-6 pb-6 border-b border-outline-variant/60">
+<div class="flex items-center justify-between mb-3">
+<h4 class="text-label-md font-label-md font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="history">history</span>
+                  Último atendimento realizado
+                </h4>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-semibold">
+                  Concluído há 16 dias
+                </span>
+</div>
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-low/40 border border-outline-variant/50">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-[#E5EADD] text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="check">check</span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface">Manutenção de Fibra em Gel</span>
+<span class="text-body-sm font-body-sm text-outline block">10 de Maio de 2024 às 10:00 • Atendido por Juliana Silva</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface block">R$ 90,00</span>
+<span class="text-label-sm font-label-sm text-outline flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="paid">paid</span>
+                    Pago via Pix
+                  </span>
+</div>
+</div>
+</div>
+<!-- Histórico Completo de Atendimentos (Timeline / Tabela limpa) -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-headline-sm font-headline-sm font-bold text-on-surface">
+                  Histórico completo de atendimentos
+                </h4>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant text-label-sm font-label-sm text-outline hover:text-on-surface hover:bg-surface-container flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="filter_list">filter_list</span>
+                    Filtrar histórico
+                  </button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant text-label-sm font-label-sm text-outline hover:text-on-surface hover:bg-surface-container flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="download">download</span>
+                    Exportar
+                  </button>
+</div>
+</div>
+<!-- Clear Distinction Table / List -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant text-label-sm font-label-sm text-outline">
+<th class="pb-2.5 font-semibold">Data &amp; Horário</th>
+<th class="pb-2.5 font-semibold">Procedimento Realizado</th>
+<th class="pb-2.5 font-semibold">Status</th>
+<th class="pb-2.5 font-semibold text-right">Valor</th>
+<th class="pb-2.5 font-semibold text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/40 text-body-sm font-body-sm">
+<!-- Row 1: 10 de Maio -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 font-medium text-on-surface">
+<div>10 Mai 2024</div>
+<span class="text-outline text-label-sm font-label-sm">10:00 - 11:15</span>
+</td>
+<td class="py-3">
+<div class="font-semibold text-on-surface">Manutenção de Fibra</div>
+<span class="text-outline text-label-sm font-label-sm">Cor: Nude Essencial + Top Coat</span>
+</td>
+<td class="py-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#E5EADD] text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Concluído
+                        </span>
+</td>
+<td class="py-3 text-right font-bold text-on-surface">
+                        R$ 90,00
+                      </td>
+<td class="py-3 text-right">
+<button class="text-primary hover:text-secondary p-1 rounded hover:bg-surface-container" title="Ver detalhes do atendimento">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: 19 de Abril -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 font-medium text-on-surface">
+<div>19 Abr 2024</div>
+<span class="text-outline text-label-sm font-label-sm">14:00 - 15:45</span>
+</td>
+<td class="py-3">
+<div class="font-semibold text-on-surface">Manicure + Spa dos Pés</div>
+<span class="text-outline text-label-sm font-label-sm">Esfoliação marroquina e hidratação parafina</span>
+</td>
+<td class="py-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#E5EADD] text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Concluído
+                        </span>
+</td>
+<td class="py-3 text-right font-bold text-on-surface">
+                        R$ 130,00
+                      </td>
+<td class="py-3 text-right">
+<button class="text-primary hover:text-secondary p-1 rounded hover:bg-surface-container" title="Ver detalhes do atendimento">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: 28 de Março -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 font-medium text-on-surface">
+<div>28 Mar 2024</div>
+<span class="text-outline text-label-sm font-label-sm">09:30 - 11:30</span>
+</td>
+<td class="py-3">
+<div class="font-semibold text-on-surface">Alongamento Inicial em Gel</div>
+<span class="text-outline text-label-sm font-label-sm">Aplicação completa fibra de vidro fio a fio</span>
+</td>
+<td class="py-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#E5EADD] text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Concluído
+                        </span>
+</td>
+<td class="py-3 text-right font-bold text-on-surface">
+                        R$ 180,00
+                      </td>
+<td class="py-3 text-right">
+<button class="text-primary hover:text-secondary p-1 rounded hover:bg-surface-container" title="Ver detalhes do atendimento">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: 08 de Março (Cancelamento anterior registrado sem ruído) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors opacity-75">
+<td class="py-3 font-medium text-on-surface">
+<div>08 Mar 2024</div>
+<span class="text-outline text-label-sm font-label-sm">16:00</span>
+</td>
+<td class="py-3">
+<div class="font-medium text-outline line-through">Manutenção Regular</div>
+<span class="text-outline text-label-sm font-label-sm">Desmarcado com 48h de antecedência</span>
+</td>
+<td class="py-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-surface-container border border-outline-variant text-outline">
+                          Cancelado pela cliente
+                        </span>
+</td>
+<td class="py-3 text-right font-medium text-outline">
+                        R$ 0,00
+                      </td>
+<td class="py-3 text-right">
+<button class="text-outline p-1 rounded hover:bg-surface-container" title="Ver motivo">
+<span class="material-symbols-outlined text-[18px]" data-icon="info">info</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / More history records indicator -->
+<div class="mt-4 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>Exibindo 4 de 12 atendimentos registrados</span>
+<button class="text-primary font-bold hover:underline flex items-center gap-1">
+<span>Carregar atendimentos anteriores</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

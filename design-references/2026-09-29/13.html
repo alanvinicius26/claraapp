@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Minha Agenda Diária - Encaixa Studio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "background": "#fef9f3",
+            "secondary-container": "#ff8aa9",
+            "surface-bright": "#fef9f3",
+            "tertiary-container": "#662521",
+            "on-tertiary-container": "#e78b84",
+            "inverse-on-surface": "#f5f0ea",
+            "on-secondary-fixed": "#3f0019",
+            "surface-container-low": "#f8f3ed",
+            "surface-container": "#f2ede7",
+            "primary-container": "#6e1936",
+            "primary": "#500021",
+            "surface-dim": "#ded9d4",
+            "secondary": "#9d3d5a",
+            "surface-variant": "#e6e2dc",
+            "on-primary-fixed": "#3f0018",
+            "on-tertiary-fixed": "#3d0606",
+            "surface": "#fef9f3",
+            "on-primary-fixed-variant": "#7e2642",
+            "on-tertiary-fixed-variant": "#76312d",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#32302c",
+            "tertiary": "#4a0f0e",
+            "on-secondary-container": "#781f3e",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#ffb1c2",
+            "on-secondary-fixed-variant": "#7f2543",
+            "on-error-container": "#93000a",
+            "surface-tint": "#9c3e59",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#f2829f",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-background": "#1d1b18",
+            "primary-fixed": "#ffd9e0",
+            "secondary-fixed-dim": "#ffb1c3",
+            "on-surface": "#1d1b18",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#ffd9e0",
+            "on-error": "#ffffff",
+            "outline-variant": "#dac0c4",
+            "surface-container-high": "#ece7e2",
+            "outline": "#877275",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#e6e2dc",
+            "on-surface-variant": "#544245",
+            "primary-fixed-dim": "#ffb1c2"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-xl": "2.25rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 1rem);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-fixed min-h-screen flex flex-col font-body-md">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-3 bg-surface/95 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Juliana Silva" class="w-11 h-11 rounded-full object-cover ring-2 ring-outline-variant/40 shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1WESa1kY_MiGoCYkuLaeNNcq3JPWyAejKDcUqFT58nyowioFi0n2KtkVyB05W2SOYop-ImUzHmLPfq1deotq2Mwas5-Qm7Nlc7l6VQXdUIj8r0pluFISLCb53wyXPcpXtUt2C8tKjweLnkBxtmNSdP6G5UeCxe6IB5f3uf8jhlu6niFJTW8tqM-HSD_cIt5hUFgFGrQLCbBLYQp9RQjrhvJKvIvYlEh5KQA5x9ezVwER9xduBVH4uvrDbDC"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-surface rounded-full">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">Olá, Juliana ✨</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Atendendo agora</span>
+</div>
+</div>
+</div>
+<!-- Quick action buttons -->
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-primary font-label-sm text-label-sm flex items-center gap-1.5 hover:bg-surface-container active:scale-95 transition-all shadow-sm" id="copy-btn" onclick="navigator.clipboard?.writeText(window.location.href); alert('Link da agenda copiado com sucesso!');" title="Copiar link da agenda">
+<span class="material-symbols-outlined text-[18px]">link</span>
+<span class="hidden sm:inline">Copiar link</span>
+</button>
+<button class="h-9 px-3.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 hover:bg-primary-container active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Novo</span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 w-full max-w-md mx-auto pt-20 pb-28 px-4 flex flex-col gap-5">
+<!-- Seletor Horizontal de Dias da Semana -->
+<section class="w-full">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Outubro 2024</span>
+<span class="material-symbols-outlined text-outline text-[20px]">expand_more</span>
+</div>
+<button class="text-secondary font-label-sm text-label-sm flex items-center gap-0.5 hover:underline">
+<span>Ver mês</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<!-- Seg 14 -->
+<button class="flex flex-col items-center justify-center min-w-[56px] py-2 px-1 rounded-xl bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant hover:border-primary-container/40 transition-all active:scale-95">
+<span class="font-label-sm text-label-sm text-outline font-medium">Seg</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">14</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container mt-1"></span>
+</button>
+<!-- Ter 15 (Active / Selected) -->
+<button class="flex flex-col items-center justify-center min-w-[56px] py-2 px-1 rounded-xl bg-primary text-on-primary shadow-md ring-2 ring-primary/20 transition-all active:scale-95">
+<span class="font-label-sm text-label-sm text-primary-fixed-dim font-medium">Ter</span>
+<span class="font-headline-sm text-headline-sm text-on-primary font-bold mt-0.5">15</span>
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary mt-1"></span>
+</button>
+<!-- Qua 16 -->
+<button class="flex flex-col items-center justify-center min-w-[56px] py-2 px-1 rounded-xl bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant hover:border-primary-container/40 transition-all active:scale-95">
+<span class="font-label-sm text-label-sm text-outline font-medium">Qua</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">16</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container mt-1"></span>
+</button>
+<!-- Qui 17 -->
+<button class="flex flex-col items-center justify-center min-w-[56px] py-2 px-1 rounded-xl bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant hover:border-primary-container/40 transition-all active:scale-95">
+<span class="font-label-sm text-label-sm text-outline font-medium">Qui</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">17</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container mt-1"></span>
+</button>
+<!-- Sex 18 -->
+<button class="flex flex-col items-center justify-center min-w-[56px] py-2 px-1 rounded-xl bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant hover:border-primary-container/40 transition-all active:scale-95">
+<span class="font-label-sm text-label-sm text-outline font-medium">Sex</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">18</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container mt-1"></span>
+</button>
+<!-- Sab 19 -->
+<button class="flex flex-col items-center justify-center min-w-[56px] py-2 px-1 rounded-xl bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant hover:border-primary-container/40 transition-all active:scale-95 opacity-80">
+<span class="font-label-sm text-label-sm text-outline font-medium">Sáb</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">19</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant mt-1"></span>
+</button>
+</div>
+</section>
+<!-- Métricas Rápidas do Dia -->
+<section class="grid grid-cols-3 gap-2.5">
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/40 shadow-sm flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Agendados</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-primary font-bold">6</span>
+<span class="font-body-sm text-body-sm text-outline">sessões</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/40 shadow-sm flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Previsão</span>
+<div class="flex items-baseline gap-0.5 mt-1">
+<span class="font-body-sm text-body-sm text-primary font-semibold">R$</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">540</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/40 shadow-sm flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-tertiary-container font-medium">Pendente</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-tertiary font-bold">1</span>
+<span class="font-body-sm text-body-sm text-on-tertiary-container">sinal</span>
+</div>
+</div>
+</section>
+<!-- Card de Destaque: ATENDIMENTO ATUAL -->
+<section class="w-full">
+<div class="relative bg-gradient-to-br from-primary-container to-primary text-on-primary p-4 rounded-2xl shadow-md overflow-hidden">
+<!-- Decorative subtle radial glow -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-secondary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-2">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-on-primary/15 backdrop-blur-sm border border-on-primary/20">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-primary font-semibold tracking-wider uppercase">Atendimento Atual</span>
+</div>
+<span class="font-label-md text-label-md text-primary-fixed-dim font-medium">10:00 - 11:30</span>
+</div>
+<div class="mt-2">
+<h2 class="font-headline-md text-headline-md text-on-primary font-bold tracking-tight">Beatriz Ferreira</h2>
+<p class="font-body-md text-body-md text-primary-fixed-dim mt-0.5">Esmaltação em Gel • Cabine LED</p>
+</div>
+<!-- Progress Bar (45/90 min) -->
+<div class="mt-4 pt-3 border-t border-on-primary/15">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-primary-fixed-dim mb-1.5">
+<span>Progresso do procedimento</span>
+<span class="font-bold text-on-primary">45 / 90 min (50%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-on-primary/20 overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-2 mt-4">
+<a class="h-10 rounded-xl bg-on-primary/10 hover:bg-on-primary/20 border border-on-primary/20 flex items-center justify-center gap-1.5 text-on-primary font-label-md text-label-md active:scale-95 transition-all" href="https://wa.me/5511999999999" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp</span>
+</a>
+<button class="h-10 rounded-xl bg-on-primary text-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-surface-container active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Concluir</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Linha do Tempo Vertical do Dia -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Cronograma de Hoje</h3>
+<span class="font-label-sm text-label-sm text-outline">Terça-feira, 15 Out</span>
+</div>
+<div class="relative pl-6 border-l-2 border-outline-variant/50 flex flex-col gap-4 ml-2">
+<!-- Item 1: Concluído -->
+<div class="relative">
+<div class="absolute -left-[31px] top-3 w-3.5 h-3.5 rounded-full bg-emerald-600 ring-4 ring-background"></div>
+<div class="bg-surface-container-lowest p-3.5 rounded-xl border border-outline-variant/40 shadow-sm opacity-90">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline font-semibold">08:30 - 09:30</span>
+<span class="px-2 py-0.5 rounded-full bg-[#E5EADD] text-on-surface text-[11px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-emerald-800">done</span>
+                Concluído
+              </span>
+</div>
+<div class="mt-1 flex items-baseline justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Mariana Oliveira</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manicure Clássica</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-semibold">R$ 60</span>
+<p class="text-[11px] text-emerald-700 font-medium">Pago via Pix</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2: Em andamento (Beatriz) -->
+<div class="relative">
+<div class="absolute -left-[32px] top-3.5 w-4 h-4 rounded-full bg-primary ring-4 ring-primary-fixed"></div>
+<div class="bg-surface-container-lowest p-3.5 rounded-xl border-l-4 border-l-primary-container border-y border-r border-outline-variant/40 shadow-sm ring-1 ring-primary/10">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-bold">10:00 - 11:30</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[11px] font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                Em andamento
+              </span>
+</div>
+<div class="mt-1.5 flex items-start justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Beatriz Ferreira</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Esmaltação em Gel</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-semibold">R$ 110</span>
+<p class="text-[11px] text-outline font-medium">Cartão presencial</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3: Intervalo / Higienização -->
+<div class="relative">
+<div class="absolute -left-[29px] top-2.5 w-2.5 h-2.5 rounded-full bg-outline-variant ring-4 ring-background"></div>
+<div class="py-2 px-3 rounded-lg bg-surface-container-high/60 border border-dashed border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-outline">cleaning_services</span>
+<span class="font-label-sm text-label-sm font-medium">11:30 - 12:00 • Intervalo &amp; Esterilização de instrumentos</span>
+</div>
+</div>
+</div>
+<!-- Item 4: Confirmado (Camila) -->
+<div class="relative">
+<div class="absolute -left-[31px] top-3.5 w-3.5 h-3.5 rounded-full bg-outline ring-4 ring-background"></div>
+<div class="bg-surface-container-lowest p-3.5 rounded-xl border border-outline-variant/40 shadow-sm hover:border-primary/40 transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">13:00 - 14:15</span>
+<span class="px-2 py-0.5 rounded-full bg-[#FAF5EF] border border-[#CB746D] text-[#CB746D] text-[11px] font-semibold">
+                Sinal Pendente
+              </span>
+</div>
+<div class="mt-1.5 flex items-start justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Camila Santos</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Alongamento Fibra de Vidro</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-semibold">R$ 140</span>
+<p class="text-[11px] text-tertiary font-medium">R$ 40 em aberto</p>
+</div>
+</div>
+<!-- Quick reminder WhatsApp button -->
+<div class="mt-2.5 pt-2 border-t border-outline-variant/20 flex justify-end">
+<a class="h-8 px-2.5 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm font-semibold flex items-center gap-1.5 hover:bg-surface-variant transition-colors" href="https://wa.me/5511999999999?text=Oi%20Camila,%20tudo%20bem?%20Confirmando%20seu%20horario%20das%2013h" target="_blank">
+<span class="material-symbols-outlined text-[16px]">send</span>
+<span>Lembrete WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Item 5: Confirmado (Larissa) -->
+<div class="relative">
+<div class="absolute -left-[31px] top-3.5 w-3.5 h-3.5 rounded-full bg-outline ring-4 ring-background"></div>
+<div class="bg-surface-container-lowest p-3.5 rounded-xl border border-outline-variant/40 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">15:00 - 16:00</span>
+<span class="px-2 py-0.5 rounded-full bg-[#E5EADD] text-on-surface text-[11px] font-semibold">
+                Confirmado
+              </span>
+</div>
+<div class="mt-1.5 flex items-start justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Larissa Mendes</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Spa dos Pés Completo</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-semibold">R$ 80</span>
+<p class="text-[11px] text-emerald-700 font-medium">Integral Pago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Shared Component Anchor) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_-4px_16px_rgba(110,25,54,0.04)]">
+<!-- Tab 0: Agenda (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-3 py-1.5 font-semibold transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="text-label-sm font-label-sm mt-0.5">Agenda</span>
+</a>
+<!-- Tab 1: Clientes -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-label-sm font-label-sm mt-0.5">Clientes</span>
+</a>
+<!-- Tab 2: Financeiro -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-label-sm font-label-sm mt-0.5">Financeiro</span>
+</a>
+<!-- Tab 3: Serviços -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+<span class="text-label-sm font-label-sm mt-0.5">Serviços</span>
+</a>
+<!-- Tab 4: Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 transition-all hover:bg-surface-container active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span class="text-label-sm font-label-sm mt-0.5">Perfil</span>
+</a>
+</nav>
+</body></html>

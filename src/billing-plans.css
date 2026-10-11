@@ -1,0 +1,72 @@
+.billing-plan-options {
+  border: 0;
+  padding: 0;
+  margin: 24px 0;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.billing-plan-options legend {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.billing-plan-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid currentColor;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.billing-plan-option.selected {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.billing-plan-option:has(input:disabled) {
+  opacity: 0.65;
+  cursor: default;
+}
+.billing-plan-option input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  accent-color: #741936;
+}
+.billing-plan-option span {
+  display: grid;
+  gap: 5px;
+}
+.billing-plan-option strong {
+  font-size: 22px;
+}
+.billing-plan-option small {
+  font-size: 12px;
+  font-weight: 400;
+}
+.billing-confirmation {
+  border: 1px solid #dbc7ce;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 16px 0;
+}
+.billing-confirmation h3 {
+  margin-top: 0;
+}
+.billing-confirmation .button,
+.payment-method > .button {
+  margin: 6px 6px 6px 0;
+  white-space: normal;
+}
+.billing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.team-capacity {
+  margin-bottom: 20px;
+}
+.team-capacity .button {
+  margin-top: 8px;
+}

@@ -1,0 +1,53 @@
+.brand {
+  max-width: 100%;
+  flex-shrink: 1;
+}
+.brand-logo {
+  display: block;
+  width: 188px;
+  max-width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.sidebar-brand {
+  align-items: center;
+  gap: 12px;
+}
+.sidebar-brand .brand {
+  min-width: 0;
+}
+.sidebar-brand .brand-logo {
+  flex-shrink: 1;
+}
+.sidebar-brand > button {
+  flex-shrink: 0;
+}
+.clara-brand-mark {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  background-color: currentColor;
+  -webkit-mask: url("/clara-icon-v3.png") center / contain no-repeat;
+  mask: url("/clara-icon-v3.png") center / contain no-repeat;
+}
+.auth-story .brand-logo {
+  width: 218px;
+  filter: brightness(0) invert(1);
+  opacity: 0.94;
+}
+.public-header .brand-logo {
+  width: 174px;
+}
+.preview-top .brand-logo {
+  width: 110px;
+}
+.card-brand .brand-logo {
+  width: 135px;
+  filter: brightness(0) invert(1);
+}
+@media (max-width: 720px) {
+  .auth-story .brand-logo { width: 185px; }
+  .public-header .brand-logo { width: 140px; }
+  .public-header { gap: 15px; }
+}

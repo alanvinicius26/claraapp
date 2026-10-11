@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Encaixa - Página de Agendamento Online</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#f5f0ea",
+            "outline-variant": "#dac0c4",
+            "error": "#ba1a1a",
+            "on-primary-fixed-variant": "#7e2642",
+            "background": "#fef9f3",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#3d0606",
+            "surface-container-highest": "#e6e2dc",
+            "primary-fixed-dim": "#ffb1c2",
+            "primary-container": "#6e1936",
+            "secondary": "#9d3d5a",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#781f3e",
+            "on-primary-fixed": "#3f0018",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-surface-variant": "#544245",
+            "tertiary-fixed": "#ffdad6",
+            "on-surface": "#1d1b18",
+            "primary": "#500021",
+            "on-background": "#1d1b18",
+            "surface-container": "#f2ede7",
+            "inverse-surface": "#32302c",
+            "secondary-container": "#ff8aa9",
+            "outline": "#877275",
+            "on-primary-container": "#f2829f",
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "inverse-primary": "#ffb1c2",
+            "on-secondary-fixed-variant": "#7f2543",
+            "on-error-container": "#93000a",
+            "tertiary": "#4a0f0e",
+            "surface": "#fef9f3",
+            "secondary-fixed-dim": "#ffb1c3",
+            "surface-container-high": "#ece7e2",
+            "tertiary-container": "#662521",
+            "surface-tint": "#9c3e59",
+            "on-tertiary-container": "#e78b84",
+            "on-tertiary-fixed-variant": "#76312d",
+            "surface-variant": "#e6e2dc",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#ded9d4",
+            "on-secondary-fixed": "#3f0019",
+            "error-container": "#ffdad6",
+            "surface-bright": "#fef9f3",
+            "secondary-fixed": "#ffd9e0",
+            "primary-fixed": "#ffd9e0",
+            "surface-container-low": "#f8f3ed"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "space-2xl": "3rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-warm-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.06), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#FAF5EF] text-on-surface antialiased min-h-screen flex justify-center selection:bg-secondary-container selection:text-primary">
+<!-- Mobile Simulator Canvas Container (Max-w 390px) -->
+<div class="w-full max-w-[420px] bg-background min-h-screen flex flex-col relative pb-28 border-x border-[#E7DAD3] shadow-xl">
+<!-- 1. Header / Top App Bar Mobile (Fixed semantic shell top) -->
+<header class="sticky top-0 z-40 bg-background/95 backdrop-blur-md px-4 pt-3 pb-3 border-b border-[#E7DAD3]/70">
+<!-- Status bar mockup indication -->
+<div class="flex items-center justify-between text-[11px] font-label-md text-on-surface-variant font-semibold px-1 pb-2">
+<span>09:41</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[15px]">wifi</span>
+<span class="material-symbols-outlined text-[16px]">battery_full</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-2 mt-1">
+<div class="flex items-center gap-2.5">
+<button aria-label="Voltar" class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">Agendamento Online</h1>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#E5EADD] text-[#24482B] text-[10px] font-label-sm font-semibold tracking-wide border border-[#cad3be]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34A853] animate-pulse"></span>
+                Ativo 24/7
+              </span>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant">Studio Juliana Silva</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-surface-container-lowest border border-[#E7DAD3] text-primary hover:border-primary-container text-[11px] font-label-md font-semibold transition-all active:scale-95 shadow-sm" title="Ver como cliente" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Ver</span>
+</button>
+<button aria-label="Compartilhar" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Content -->
+<main class="px-4 pt-4 space-y-4">
+<!-- 2. Banner do Link Exclusivo -->
+<section class="bg-surface-container-lowest rounded-2xl p-4 border border-[#E7DAD3] custom-warm-shadow space-y-3.5 relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-28 h-28 bg-[#F3D7DE]/40 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div class="space-y-0.5">
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-secondary font-bold">Seu link oficial</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">link</span>
+<span class="font-headline-sm text-body-lg font-bold text-primary tracking-tight">encaixa.me/studio-juliana</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-md bg-surface-container text-on-surface-variant text-[10px] font-label-sm font-semibold border border-[#E7DAD3]">SSL Seguro</span>
+</div>
+<!-- WhatsApp Quick Direct Action Button -->
+<a class="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white py-2.5 px-4 rounded-xl font-label-md text-body-md font-semibold transition-transform duration-100 active:scale-98 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">send</span>
+<span>Enviar no WhatsApp</span>
+</a>
+<!-- Secondary Buttons: Copiar Link & QR Code -->
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center justify-center gap-1.5 bg-surface-container-lowest hover:bg-surface-container-low text-on-surface border border-[#E7DAD3] py-2 px-3 rounded-xl font-label-md text-[13px] font-semibold transition-all active:scale-98" onclick="navigator.clipboard.writeText('https://encaixa.me/studio-juliana')" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">content_copy</span>
+<span>Copiar Link</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 bg-surface-container-lowest hover:bg-surface-container-low text-on-surface border border-[#E7DAD3] py-2 px-3 rounded-xl font-label-md text-[13px] font-semibold transition-all active:scale-98" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">qr_code_2</span>
+<span>Ver QR Code</span>
+</button>
+</div>
+<!-- Texto Pronto para WhatsApp -->
+<div class="bg-surface-container-low/70 rounded-xl p-3 border border-[#E7DAD3]/80 space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] text-on-surface-variant font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">chat</span>
+              Mensagem pronta para clientes
+            </span>
+<button class="text-secondary hover:text-primary text-[11px] font-label-sm font-semibold flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[13px]">copy_all</span>
+              Copiar texto
+            </button>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed italic bg-white/70 p-2 rounded-lg border border-[#E7DAD3]/40">
+            "Olá! Para facilitar seu agendamento e ver todos os meus horários disponíveis em tempo real, acesse meu link: encaixa.me/studio-juliana ✨"
+          </p>
+</div>
+</section>
+<!-- 3. Métricas Rápidas (3 cards compactos em grid horizontal) -->
+<section class="grid grid-cols-3 gap-2">
+<div class="bg-surface-container-lowest p-3 rounded-2xl border border-[#E7DAD3] text-center flex flex-col justify-between custom-warm-shadow">
+<div class="flex justify-center mb-1 text-secondary">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+<span class="font-headline-md text-headline-sm font-bold text-primary tracking-tight">142</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant leading-tight">Visualizações do link</span>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl border border-[#E7DAD3] text-center flex flex-col justify-between custom-warm-shadow">
+<div class="flex justify-center mb-1 text-[#24482B]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">event_available</span>
+</div>
+<span class="font-headline-md text-headline-sm font-bold text-[#24482B] tracking-tight">38</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant leading-tight">Agendamentos diretos</span>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl border border-[#E7DAD3] text-center flex flex-col justify-between custom-warm-shadow">
+<div class="flex justify-center mb-1 text-primary">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<span class="font-headline-md text-headline-sm font-bold text-primary tracking-tight">0</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant leading-tight">Horários duplicados</span>
+</div>
+</section>
+<!-- 4. Acesso Rápido à Prévia do Cliente -->
+<section class="bg-gradient-to-r from-primary-container to-secondary p-3.5 rounded-2xl text-white shadow-sm flex items-center justify-between relative overflow-hidden">
+<div class="space-y-0.5 z-10 max-w-[210px]">
+<span class="inline-block px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-label-sm font-semibold tracking-wide">
+            Experiência VIP
+          </span>
+<h2 class="font-headline-sm text-body-md font-bold tracking-tight text-white">Visualização da Cliente</h2>
+<p class="font-body-sm text-[11px] text-white/80 leading-snug">Veja o passo a passo exato que sua cliente realiza no celular dela.</p>
+</div>
+<button class="z-10 bg-white text-primary px-3 py-2 rounded-xl text-[12px] font-label-md font-bold shadow-sm active:scale-95 flex items-center gap-1 whitespace-nowrap" type="button">
+<span>Testar Fluxo</span>
+<span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+</button>
+<span class="material-symbols-outlined absolute -bottom-3 -right-2 text-[80px] text-white/10 pointer-events-none">smartphone</span>
+</section>
+<!-- 5. Regras da Agenda Aberta (Formulário mobile-friendly) -->
+<section class="bg-surface-container-lowest rounded-2xl p-4 border border-[#E7DAD3] space-y-4 custom-warm-shadow">
+<div class="flex items-center justify-between border-b border-[#E7DAD3] pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+<h2 class="font-headline-sm text-body-lg font-bold text-primary">Regras de Agendamento</h2>
+</div>
+<span class="text-[11px] font-label-sm text-on-surface-variant">Sincronizado</span>
+</div>
+<!-- Toggle: Pausar Agendamentos -->
+<div class="flex items-center justify-between bg-surface-container-low/60 p-3 rounded-xl border border-[#E7DAD3]">
+<div class="space-y-0.5 max-w-[240px]">
+<label class="font-label-md text-body-sm font-semibold text-on-surface block cursor-pointer" for="toggle-pause">
+              Pausar agendamentos temporariamente
+            </label>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-tight">Útil para férias, cursos ou reformas de espaço.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="toggle-pause" type="checkbox"/>
+<div class="w-11 h-6 bg-[#DAC0C4] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Campos de Seleção -->
+<div class="space-y-3.5">
+<!-- Antecedência Mínima -->
+<div>
+<label class="block font-label-sm text-body-sm font-semibold text-[#716765] mb-1.5 flex items-center justify-between">
+<span>Antecedência mínima para marcar</span>
+<span class="text-[11px] text-secondary font-normal">Evita sustos</span>
+</label>
+<div class="relative">
+<select class="w-full h-[44px] bg-white border border-[#E7DAD3] text-on-surface rounded-xl px-3.5 pr-9 font-body-sm text-body-md appearance-none focus:outline-none focus:border-[#8C2F4D] focus:ring-2 focus:ring-[#8C2F4D]/20">
+<option selected="">Mínimo de 2 horas de antecedência</option>
+<option>Mínimo de 1 hora de antecedência</option>
+<option>Mínimo de 4 horas de antecedência</option>
+<option>Mínimo de 24 horas (1 dia antes)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Intervalo dos Horários (Slots) -->
+<div>
+<label class="block font-label-sm text-body-sm font-semibold text-[#716765] mb-1.5 flex items-center justify-between">
+<span>Intervalo dos horários (slots)</span>
+<span class="text-[11px] text-secondary font-normal">Cadência</span>
+</label>
+<div class="relative">
+<select class="w-full h-[44px] bg-white border border-[#E7DAD3] text-on-surface rounded-xl px-3.5 pr-9 font-body-sm text-body-md appearance-none focus:outline-none focus:border-[#8C2F4D] focus:ring-2 focus:ring-[#8C2F4D]/20">
+<option selected="">De 30 em 30 minutos (Recomendado)</option>
+<option>De 15 em 15 minutos</option>
+<option>De 45 em 45 minutos</option>
+<option>De 1 em 1 hora cheia</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Janela Futura Aberta -->
+<div>
+<label class="block font-label-sm text-body-sm font-semibold text-[#716765] mb-1.5 flex items-center justify-between">
+<span>Janela futura aberta</span>
+<span class="text-[11px] text-secondary font-normal">Previsibilidade</span>
+</label>
+<div class="relative">
+<select class="w-full h-[44px] bg-white border border-[#E7DAD3] text-on-surface rounded-xl px-3.5 pr-9 font-body-sm text-body-md appearance-none focus:outline-none focus:border-[#8C2F4D] focus:ring-2 focus:ring-[#8C2F4D]/20">
+<option selected="">Até 30 dias à frente</option>
+<option>Até 15 dias à frente</option>
+<option>Até 60 dias à frente</option>
+<option>Mês corrente apenas</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Campo de Texto: Mensagem de Acolhimento -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-label-sm text-body-sm font-semibold text-[#716765]" for="welcome-msg">
+                Mensagem de acolhimento (topo do link)
+              </label>
+<span class="text-[11px] font-label-sm text-on-surface-variant">97 / 160</span>
+</div>
+<textarea class="w-full bg-white border border-[#E7DAD3] text-on-surface rounded-xl p-3 font-body-sm text-body-sm focus:outline-none focus:border-[#8C2F4D] focus:ring-2 focus:ring-[#8C2F4D]/20 transition-all resize-none leading-relaxed" id="welcome-msg" rows="3">Olá! Escolha seus serviços e o melhor horário para seu atendimento no Studio Juliana. Te espero! ✨</textarea>
+</div>
+</div>
+<!-- Banner Informativo: Congelamento Instantâneo -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-[#FAF5EF] border border-[#E7DAD3]">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">lock_clock</span>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface font-semibold">Trava anti-duplicidade:</strong> Assim que a cliente clica para agendar, o horário é congelado automaticamente na sua agenda, sem risco de sobreposição.
+          </p>
+</div>
+<!-- Botão Primário Salvar Alterações -->
+<button class="w-full py-3 px-4 bg-primary-container hover:bg-[#8C2F4D] text-white rounded-xl font-label-md text-body-md font-semibold transition-all duration-150 active:scale-98 shadow-sm flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Salvar Alterações</span>
+</button>
+</section>
+<!-- 6. Atalho "Serviços Habilitados" -->
+<section>
+<a class="flex items-center justify-between bg-surface-container-lowest p-4 rounded-2xl border border-[#E7DAD3] hover:border-[#8C2F4D] transition-all custom-warm-shadow group" href="#">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-[#F3DCD7] transition-colors">
+<span class="material-symbols-outlined text-[22px]">spa</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-body-md font-bold text-on-surface">6 Serviços Habilitados</h3>
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Esmaltação em Gel, Spa dos Pés, Blindagem...</p>
+</div>
+</div>
+<div class="flex items-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</a>
+</section>
+<!-- 7. Dicas para Divulgar seu Link (Carrossel Horizontal) -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between px-0.5">
+<h3 class="font-headline-sm text-body-md font-bold text-primary">Dicas para Divulgar seu Link</h3>
+<span class="font-label-sm text-[11px] text-secondary">Boas práticas</span>
+</div>
+<div class="flex gap-2.5 overflow-x-auto pb-2 no-scrollbar -mx-4 px-4 snap-x">
+<!-- Card Dica 1 -->
+<div class="snap-start shrink-0 w-[240px] bg-surface-container-lowest p-3.5 rounded-2xl border border-[#E7DAD3] flex flex-col justify-between custom-warm-shadow">
+<div class="space-y-1.5">
+<div class="w-8 h-8 rounded-lg bg-[#FAF5EF] text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</div>
+<h4 class="font-label-md text-body-sm font-bold text-on-surface">Bio do Instagram</h4>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-snug">
+                Insira o link na bio com a chamada: "Reserve seu horário 24h sem esperar resposta no direct".
+              </p>
+</div>
+<span class="mt-2 text-[11px] font-label-sm text-primary font-semibold flex items-center gap-0.5">
+              Como adicionar <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+<!-- Card Dica 2 -->
+<div class="snap-start shrink-0 w-[240px] bg-surface-container-lowest p-3.5 rounded-2xl border border-[#E7DAD3] flex flex-col justify-between custom-warm-shadow">
+<div class="space-y-1.5">
+<div class="w-8 h-8 rounded-lg bg-[#FAF5EF] text-[#25D366] flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">mark_chat_unread</span>
+</div>
+<h4 class="font-label-md text-body-sm font-bold text-on-surface">Ausência no WhatsApp</h4>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-snug">
+                Ative mensagem automática: enquanto você atende, a cliente já escolhe e confirma o horário dela.
+              </p>
+</div>
+<span class="mt-2 text-[11px] font-label-sm text-primary font-semibold flex items-center gap-0.5">
+              Configurar recado <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+<!-- Card Dica 3 -->
+<div class="snap-start shrink-0 w-[240px] bg-surface-container-lowest p-3.5 rounded-2xl border border-[#E7DAD3] flex flex-col justify-between custom-warm-shadow">
+<div class="space-y-1.5">
+<div class="w-8 h-8 rounded-lg bg-[#FAF5EF] text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</div>
+<h4 class="font-label-md text-body-sm font-bold text-on-surface">Zero Choque de Agenda</h4>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-snug">
+                Se você marcar na sua mão ou bloquear um intervalo pessoal, o link online fecha o horário na hora.
+              </p>
+</div>
+<span class="mt-2 text-[11px] font-label-sm text-primary font-semibold flex items-center gap-0.5">
+              Entenda o bloqueio <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</section>
+</main>
+<!-- 8. Bottom Navigation Bar Mobile padrão do app Encaixa -->
+<!-- Fixed bar with 5 destinations: Agenda, Clientes, Serviços, Meu Espaço (ativo), Assinatura -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[420px] bg-surface-container-lowest/95 backdrop-blur-md z-50 px-2 py-2 shadow-[0_-4px_16px_rgba(47,41,40,0.06)] flex justify-around items-center border-t border-[#E7DAD3]/60">
+<!-- Tab 1: Agenda -->
+<a class="flex flex-col items-center justify-center py-1 px-2 rounded-xl text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<span class="text-[10px] font-label-md font-medium mt-0.5">Agenda</span>
+</a>
+<!-- Tab 2: Clientes -->
+<a class="flex flex-col items-center justify-center py-1 px-2 rounded-xl text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">groups</span>
+<span class="text-[10px] font-label-md font-medium mt-0.5">Clientes</span>
+</a>
+<!-- Tab 3: Serviços -->
+<a class="flex flex-col items-center justify-center py-1 px-2 rounded-xl text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">spa</span>
+<span class="text-[10px] font-label-md font-medium mt-0.5">Serviços</span>
+</a>
+<!-- Tab 4: Meu Espaço (ATIVO - contexto da Página de Agendamento Online da Juliana) -->
+<a class="flex flex-col items-center justify-center py-1 px-3 rounded-xl bg-surface-container-high text-primary font-bold shadow-sm transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-[10px] font-label-md mt-0.5 font-bold">Meu Espaço</span>
+</a>
+<!-- Tab 5: Assinatura -->
+<a class="flex flex-col items-center justify-center py-1 px-2 rounded-xl text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]">loyalty</span>
+<span class="text-[10px] font-label-md font-medium mt-0.5">Assinatura</span>
+</a>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meu Espaço | Encaixa - Gestão de Beleza &amp; Estética</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#ffb1c3",
+            "primary-fixed-dim": "#ffb1c2",
+            "primary-container": "#6e1936",
+            "on-tertiary-container": "#e78b84",
+            "on-error-container": "#93000a",
+            "background": "#fef9f3",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#ffd9e0",
+            "inverse-surface": "#32302c",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary-fixed-variant": "#76312d",
+            "outline": "#877275",
+            "on-tertiary-fixed": "#3d0606",
+            "on-background": "#1d1b18",
+            "on-secondary-container": "#781f3e",
+            "surface-container-highest": "#e6e2dc",
+            "on-surface": "#1d1b18",
+            "surface-dim": "#ded9d4",
+            "error-container": "#ffdad6",
+            "primary-fixed": "#ffd9e0",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#3f0018",
+            "on-secondary": "#ffffff",
+            "secondary": "#9d3d5a",
+            "on-error": "#ffffff",
+            "secondary-container": "#ff8aa9",
+            "inverse-on-surface": "#f5f0ea",
+            "on-secondary-fixed": "#3f0019",
+            "on-primary-container": "#f2829f",
+            "on-primary-fixed-variant": "#7e2642",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f8f3ed",
+            "on-surface-variant": "#544245",
+            "surface-tint": "#9c3e59",
+            "surface-bright": "#fef9f3",
+            "surface-variant": "#e6e2dc",
+            "primary": "#500021",
+            "on-tertiary": "#ffffff",
+            "surface-container-high": "#ece7e2",
+            "on-secondary-fixed-variant": "#7f2543",
+            "inverse-primary": "#ffb1c2",
+            "tertiary": "#4a0f0e",
+            "surface": "#fef9f3",
+            "outline-variant": "#dac0c4",
+            "surface-container": "#f2ede7",
+            "tertiary-container": "#662521"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "space-xl": "2.25rem",
+            "space-xs": "0.25rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FAF5EF;
+      color: #2F2928;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .warm-card-shadow {
+      box-shadow: 0 4px 20px -2px rgba(110, 25, 54, 0.04), 0 2px 6px -1px rgba(47, 41, 40, 0.03);
+    }
+    .warm-ambient-hover:hover {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.08), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF5EF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #DAC0C4;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #877275;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased h-full flex overflow-hidden">
+<!-- SIDEBAR NAVIGATION (Shared Component: SideNavBar) -->
+<aside class="fixed top-0 left-0 h-screen w-64 flex flex-col justify-between bg-surface-container-lowest border-r border-outline-variant z-30">
+<div class="h-full flex flex-col justify-between py-6 px-4">
+<!-- Top Section: Brand & Public link -->
+<div class="flex flex-col gap-6">
+<!-- Brand Header -->
+<div class="px-2 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">Encaixa</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold tracking-wider uppercase">PRO</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant block -mt-0.5">studio-juliana</span>
+</div>
+</div>
+</div>
+<!-- Quick Access Public Booking Card -->
+<div class="p-3 rounded-xl bg-surface-container-low border border-outline-variant flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+              Página online
+            </span>
+<span class="text-[11px] font-semibold text-primary">encaixa.me/studio-juliana</span>
+</div>
+<div class="flex items-center gap-1.5">
+<a class="flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant rounded-lg text-primary text-label-sm font-label-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[15px]">open_in_new</span>
+<span>Minha página de reservas</span>
+</a>
+<button class="p-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface-variant hover:text-primary transition-colors" title="Copiar link">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<!-- Agenda -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-primary transition-colors">calendar_today</span>
+<span>Agenda</span>
+</a>
+<!-- Clientes -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-primary transition-colors">groups</span>
+<span>Clientes</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-semibold">128</span>
+</a>
+<!-- Serviços -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-primary transition-colors">spa</span>
+<span>Serviços</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-semibold">14</span>
+</a>
+<!-- Recebimentos -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-primary transition-colors">payments</span>
+<span>Recebimentos</span>
+</a>
+<!-- Meu Espaço (ACTIVE) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container-high text-primary font-label-md font-semibold shadow-xs relative" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="flex-1">Meu Espaço</span>
+<span class="w-1.5 h-4 rounded-full bg-primary-container"></span>
+</a>
+<!-- Minha Assinatura -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150 group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-primary transition-colors">loyalty</span>
+<span>Minha Assinatura</span>
+</div>
+<span class="text-[10px] font-medium text-outline">R$ 19,90</span>
+</a>
+</nav>
+</div>
+<!-- Footer Section: Profile & Configurações -->
+<div class="pt-4 border-t border-outline-variant flex flex-col gap-1">
+<a class="flex items-center justify-between p-2 rounded-xl hover:bg-surface-container-low transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-9 h-9 rounded-full object-cover border border-outline-variant" data-alt="Portrait photography of Juliana Silva, an elegant Brazilian beauty professional and nail designer with hair tied back in a warm lit aesthetics studio with blush tones and subtle greenery in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP9gksZPDf0GT-bjtckJ3DOZLRKklsDYgDzIJUmi3zxb7spmc6n9d12AC47J92Y_1LTZmt6kN-Yh-TLZZ-o5CyfPmJLqqgnu9YdM2INyP70u-FhV9XfwRHCVmvA12ehBRABKtIXew7o73UDc6MgoAadmLwbYhUHYBao47iX2N4xsYkQV-VAMbysccFPfLupUuS3Su5VeWExx44MUjBTiUVl-fE9MywfppEw2Ijm7fUXUb024A2OJBaZA"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-600 ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col text-left">
+<span class="text-label-md font-label-md text-on-surface font-semibold leading-tight">Juliana Silva</span>
+<span class="text-[11px] text-emerald-700 font-medium">Atendendo hoje</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">unfold_more</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[19px] text-outline">settings</span>
+<span>Configurações</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- MAIN WRAPPER (Shifted 260px left margin) -->
+<div class="flex-1 ml-64 flex flex-col h-screen overflow-hidden bg-background">
+<!-- Top Header Bar (Shared Component Anchor) -->
+<header class="sticky top-0 z-20 w-full bg-background/90 backdrop-blur-md px-8 py-3.5 border-b border-outline-variant/60 flex items-center justify-between">
+<!-- Breadcrumb & Page Scope -->
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-primary font-semibold">Meu Espaço &amp; Configurações do Negócio</span>
+</div>
+<!-- Top Right Action Controls -->
+<div class="flex items-center gap-3">
+<a class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-label-md transition-all duration-150 shadow-xs" href="https://encaixa.me/studio-juliana" target="_blank">
+<span class="material-symbols-outlined text-[17px] text-primary">visibility</span>
+<span>Ver como cliente</span>
+<span class="material-symbols-outlined text-[14px] text-outline">open_in_new</span>
+</a>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-container hover:bg-[#8C2F4D] text-on-primary font-label-md text-label-md transition-all duration-150 shadow-sm active:scale-98" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Salvar alterações</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Workspace Canvas -->
+<main class="flex-1 overflow-y-auto px-8 py-7">
+<div class="max-w-[1240px] mx-auto flex flex-col gap-6">
+<!-- Title Banner Area -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-outline-variant/40">
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight font-bold">Meu Espaço</h1>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                Online em encaixa.me/studio-juliana
+              </span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 max-w-2xl">
+              Personalize a identidade do seu estúdio, configure horários de expediente, regras de agendamento e o link público de reservas.
+            </p>
+</div>
+<!-- Quick Stat / Mode Badge -->
+<div class="flex items-center gap-2 self-start md:self-auto bg-surface-container-lowest border border-outline-variant px-3 py-1.5 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="text-label-sm font-label-sm text-on-surface">Página pública verificada e ativa</span>
+</div>
+</div>
+<!-- 2-COLUMN MODULAR BENTO GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- COLUMN 1: Visual Identity & Booking URL (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Card 1: Identidade do Espaço -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow warm-ambient-hover transition-shadow duration-200">
+<div class="flex items-center justify-between pb-4 mb-5 border-b border-outline-variant/60">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary font-semibold">Identidade do Espaço</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Como os clientes verão o seu estúdio na página de reservas</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm px-2.5 py-1 bg-surface-container rounded-md text-on-surface-variant">Etapa 1 de 2</span>
+</div>
+<div class="flex flex-col gap-5">
+<!-- Logo & Avatar Uploader -->
+<div class="flex items-center gap-5 p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/60">
+<div class="relative group">
+<img class="w-20 h-20 rounded-2xl object-cover border-2 border-white shadow-sm ring-1 ring-outline-variant" data-alt="Chic and minimalist studio branding logo badge showing elegant typography Studio Juliana Silva surrounded by soft blush floral contour lines on a crisp warm white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOaqulGkoDZgr25_89DBaqJOF1BfEkIeFYOCgeRpakAWloYUrfXlqBhifyDrsa2SGlz4lkVP-J7iXptV3kUYOBzs9rOArB_opAeGH_DMc7Kif0U-w48-8ajvyRiRmN9QYWB7Y9Ds58VczfOXwR2EgVF0T_YuC0-9MRaW05e-DlOvSC5Eij3AAWvtV40JzTyWeqJBiKHzSm42kt667bfItyZXf0ePSlFY2FjkC7RVXBZkUU56LwwgirEw"/>
+<button class="absolute inset-0 bg-primary/40 rounded-2xl opacity-0 group-hover:opacity-100 flex items-center justify-center text-white transition-opacity duration-150">
+<span class="material-symbols-outlined text-[22px]">photo_camera</span>
+</button>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<button class="px-3.5 py-1.5 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant rounded-lg text-primary text-label-sm font-label-sm font-semibold transition-colors shadow-xs" type="button">
+                        Alterar foto
+                      </button>
+<button class="text-body-sm font-body-sm text-outline hover:text-error transition-colors" type="button">
+                        Remover
+                      </button>
+</div>
+<p class="text-[12px] text-on-surface-variant mt-1.5">
+                      Recomendado 500x500px JPG ou PNG. Use a logo do estúdio ou sua melhor foto profissional.
+                    </p>
+</div>
+</div>
+<!-- Form Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Nome do Espaço -->
+<div class="md:col-span-2">
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1.5">
+                      Nome do Espaço / Estúdio <span class="text-error">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" type="text" value="Studio Juliana Silva - Nail Designer &amp; Beauty"/>
+</div>
+<!-- Nome da Profissional responsável -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1.5">
+                      Profissional Responsável <span class="text-error">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" type="text" value="Juliana Silva"/>
+</div>
+<!-- WhatsApp / Telefone de Contato -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1.5">
+                      WhatsApp Profissional <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 pl-10 pr-3.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" type="text" value="(11) 98721-4409"/>
+<span class="material-symbols-outlined absolute left-3 top-3 text-[18px] text-emerald-600">chat</span>
+</div>
+</div>
+</div>
+<!-- Bio / Apresentação curta -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<label class="text-label-sm font-label-sm text-on-surface font-semibold">
+                      Bio / Apresentação Curta
+                    </label>
+<span class="text-[11px] text-on-surface-variant font-medium">178/300 caracteres</span>
+</div>
+<textarea class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-sm font-body-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none resize-none transition-all" rows="3">Especialista em Alongamento em Gel com Fibra de Vidro, blindagem de unhas naturais e design de sobrancelhas. Atendimento humanizado e personalizado no coração dos Jardins.</textarea>
+<span class="text-[11px] text-on-surface-variant mt-1 block">Aparece no topo da sua página de agendamentos para transmitir confiança.</span>
+</div>
+<!-- Endereço / Localização -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1.5">
+                    Endereço / Localização do Atendimento
+                  </label>
+<div class="relative">
+<input class="w-full h-11 pl-10 pr-3.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-md font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" type="text" value="Rua Oscar Freire, 1420 - Sala 42, Jardins - São Paulo, SP"/>
+<span class="material-symbols-outlined absolute left-3 top-3 text-[18px] text-primary">pin_drop</span>
+</div>
+</div>
+<!-- Switch: Exibir botão de WhatsApp -->
+<div class="pt-2 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Botão de WhatsApp visível</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Permite que a cliente tire dúvidas diretamente no WhatsApp antes de fechar o horário.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Card 2: Endereço da Página de Reservas (Link Público) -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow warm-ambient-hover transition-shadow duration-200">
+<div class="flex items-center justify-between pb-4 mb-5 border-b border-outline-variant/60">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary font-semibold">Endereço da Página de Reservas (Link Público)</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">O link que você coloca na bio do Instagram e envia por WhatsApp</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Slug Editor -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1.5">
+                    Link personalizado
+                  </label>
+<div class="flex items-center">
+<span class="inline-flex items-center h-11 px-3.5 rounded-l-xl border border-r-0 border-outline-variant bg-surface-container text-on-surface-variant text-label-md font-semibold font-label-md select-none">
+                      encaixa.me/
+                    </span>
+<div class="relative flex-1">
+<input class="w-full h-11 px-3.5 border border-outline-variant bg-surface-container-lowest text-on-surface font-medium text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none" type="text" value="studio-juliana"/>
+<div class="absolute right-3 top-2.5 flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md text-[11px] font-semibold border border-emerald-200">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>Disponível</span>
+</div>
+</div>
+<button class="h-11 px-4 rounded-r-xl bg-surface-container-high hover:bg-surface-variant border border-l-0 border-outline-variant text-primary font-label-md text-label-md transition-colors font-semibold" type="button">
+                      Atualizar link
+                    </button>
+</div>
+</div>
+<!-- QR Code & Share Cluster -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant flex flex-col sm:flex-row items-center gap-5">
+<!-- Stylized QR Code Graphic Container -->
+<div class="w-24 h-24 p-2 bg-white rounded-xl border border-outline-variant flex items-center justify-center shadow-xs shrink-0">
+<!-- SVG vector QR code pattern representation -->
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewbox="0 0 100 100">
+<path d="M10 10h30v30h-30zM16 16v18h18v-18zM60 10h30v30h-30zM66 16v18h18v-18zM10 60h30v30h-30zM16 66v18h18v-18z"></path>
+<path d="M22 22h6v6h-6zM72 22h6v6h-6zM22 72h6v6h-6zM46 10h8v15h-8zM46 35h8v20h-8zM10 46h15v8h-15zM35 46h20v8h-20zM60 46h10v8h-10zM78 46h12v8h-12zM60 60h12v12h-12zM78 60h12v30h-12zM46 65h8v25h-8zM60 80h12v10h-12z"></path>
+</svg>
+</div>
+<div class="flex-1 flex flex-col justify-between text-center sm:text-left">
+<div>
+<h4 class="text-label-md font-label-md font-bold text-on-surface">QR Code para Balcão &amp; Cartões</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                        Imprima e deixe na recepção do seu estúdio para clientes escanearem e agendarem o retorno sozinhas.
+                      </p>
+</div>
+<div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mt-3">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-primary text-label-sm font-label-sm font-semibold transition-colors shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+                        Copiar link público
+                      </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface text-label-sm font-label-sm font-semibold transition-colors shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                        Baixar QR Code (PNG)
+                      </button>
+</div>
+</div>
+</div>
+<!-- Switch: Página ativa -->
+<div class="pt-2 border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Página de reservas ativa</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Clientes podem acessar seu link e solicitar horários online 24h por dia.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- COLUMN 2: Business Hours & Booking Protection (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Card 3: Expediente & Horários de Atendimento -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow warm-ambient-hover transition-shadow duration-200">
+<div class="flex items-center justify-between pb-4 mb-5 border-b border-outline-variant/60">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary font-semibold">Expediente &amp; Horários</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Defina quando você está disponível para atender</p>
+</div>
+</div>
+</div>
+<!-- Fast Action: Copiar horários -->
+<div class="flex items-center justify-between p-2.5 mb-4 rounded-xl bg-surface-container-low border border-outline-variant/80">
+<span class="text-label-sm font-label-sm text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">auto_fix_high</span>
+                  Configuração rápida
+                </span>
+<button class="text-[11px] font-bold text-primary hover:text-secondary hover:underline transition-colors" type="button">
+                  Copiar horários para os dias úteis
+                </button>
+</div>
+<!-- Days List Table -->
+<div class="flex flex-col divide-y divide-outline-variant/50">
+<!-- Segunda-feira (Closed) -->
+<div class="py-3 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2.5 w-24">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-label-sm font-label-sm font-semibold text-outline">Segunda</span>
+</div>
+<div class="flex-1 text-right">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-medium">
+                      Fechado para descanso
+                    </span>
+</div>
+</div>
+<!-- Terça-feira (Open) -->
+<div class="py-3 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5 w-24">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Terça</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm">
+<span class="font-medium text-on-surface">09:00</span>
+<span class="text-outline">às</span>
+<span class="font-medium text-on-surface">19:00</span>
+<span class="ml-1 text-[11px] text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">Almoço 12-13h</span>
+</div>
+</div>
+</div>
+<!-- Quarta-feira (Open) -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center gap-2.5 w-24">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Quarta</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm">
+<span class="font-medium text-on-surface">09:00</span>
+<span class="text-outline">às</span>
+<span class="font-medium text-on-surface">19:00</span>
+<span class="ml-1 text-[11px] text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">Almoço 12-13h</span>
+</div>
+</div>
+<!-- Quinta-feira (Open) -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center gap-2.5 w-24">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Quinta</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm">
+<span class="font-medium text-on-surface">09:00</span>
+<span class="text-outline">às</span>
+<span class="font-medium text-on-surface">19:00</span>
+<span class="ml-1 text-[11px] text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">Almoço 12-13h</span>
+</div>
+</div>
+<!-- Sexta-feira (Open) -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center gap-2.5 w-24">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Sexta</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm">
+<span class="font-medium text-on-surface">09:00</span>
+<span class="text-outline">às</span>
+<span class="font-medium text-on-surface">19:00</span>
+<span class="ml-1 text-[11px] text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">Almoço 12-13h</span>
+</div>
+</div>
+<!-- Sábado (Special Schedule) -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center gap-2.5 w-24">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Sábado</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm">
+<span class="font-medium text-on-surface">09:00</span>
+<span class="text-outline">às</span>
+<span class="font-medium text-on-surface">16:00</span>
+<span class="ml-1 text-[11px] text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">Intervalo 12:30</span>
+</div>
+</div>
+<!-- Domingo (Closed) -->
+<div class="py-3 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2.5 w-24">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-label-sm font-label-sm font-semibold text-outline">Domingo</span>
+</div>
+<div class="flex-1 text-right">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-medium">
+                      Fechado para descanso
+                    </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 4: Regras de Agendamento & Proteção de Horários -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow warm-ambient-hover transition-shadow duration-200">
+<div class="flex items-center justify-between pb-4 mb-5 border-b border-outline-variant/60">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary font-semibold">Regras &amp; Proteção da Agenda</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Evite furos, no-shows e imprevistos na sua rotina</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Antecedência mínima para agendar -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1">
+                    Antecedência mínima para agendar
+                  </label>
+<select class="w-full h-10 px-3 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-sm font-body-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none">
+<option>Pelo menos 2 horas antes</option>
+<option>Pelo menos 4 horas antes</option>
+<option>Pelo menos 24 horas antes</option>
+</select>
+<span class="text-[11px] text-on-surface-variant mt-1 block">Impede que clientes marquem um horário de última hora sem seu consentimento.</span>
+</div>
+<!-- Janela de agenda aberta -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1">
+                    Janela de agenda aberta
+                  </label>
+<select class="w-full h-10 px-3 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-sm font-body-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none">
+<option>Até 30 dias no futuro</option>
+<option>Até 15 dias no futuro</option>
+<option>Até 60 dias no futuro</option>
+</select>
+</div>
+<!-- Intervalo automático entre clientes -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1">
+                    Intervalo entre clientes (Limpeza &amp; Preparação)
+                  </label>
+<select class="w-full h-10 px-3 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface text-body-sm font-body-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none">
+<option>15 minutos</option>
+<option>10 minutos</option>
+<option>20 minutos</option>
+<option>Sem intervalo automático</option>
+</select>
+<span class="text-[11px] text-on-surface-variant mt-1 block">Tempo reservado para esterilização de alicates e organização da bancada.</span>
+</div>
+<!-- Switch Cancelamento / Remarcação -->
+<div class="pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex flex-col pr-4">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Permitir cancelamento com 24h</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Cliente pode remarcar de forma autônoma até 24h antes do atendimento.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Card 5: Chave Pix para Sinal / Pagamentos -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-6 warm-card-shadow warm-ambient-hover transition-shadow duration-200">
+<div class="flex items-center justify-between pb-4 mb-4 border-b border-outline-variant/60">
+<div class="flex items-center gap-2.5">
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary font-semibold">Chave Pix para Sinal / Balcão</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Facilite o pagamento de taxa de reserva ou finalização</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-semibold">Opcional</span>
+</div>
+<div class="flex flex-col gap-3.5">
+<div class="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-emerald-700">qr_code_2</span>
+                      Chave cadastrada (Telefone)
+                    </span>
+<span class="text-[11px] font-semibold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-md">Ativa</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-2.5 rounded-lg border border-outline-variant/80">
+<div>
+<span class="text-label-md font-label-md font-semibold text-on-surface block">(11) 98721-4409</span>
+<span class="text-[11px] text-on-surface-variant">Favorecido: Juliana Silva ME</span>
+</div>
+<button class="text-label-sm font-label-sm text-primary hover:underline font-semibold" type="button">
+                      Editar
+                    </button>
+</div>
+</div>
+<div class="flex items-start gap-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">info</span>
+<span>Exibido como opção de pagamento no balcão e no comprovante do agendamento enviado por WhatsApp.</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Sticky Floating Save Bar on Mobile/Desktop Footer Accent -->
+<div class="mt-2 pt-4 pb-8 flex items-center justify-between border-t border-outline-variant/60">
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+<span>Todas as alterações são sincronizadas com sua página pública de agendamento em tempo real.</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface text-label-md font-label-md font-semibold transition-colors" type="button">
+              Descartar
+            </button>
+<button class="px-5 py-2 rounded-xl bg-primary-container hover:bg-[#8C2F4D] text-on-primary text-label-md font-label-md font-semibold transition-all shadow-sm active:scale-98" type="button">
+              Salvar alterações
+            </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

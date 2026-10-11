@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Studio Juliana Silva | Encaixa.me</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-container": "#f2829f",
+            "surface-container-high": "#ece7e2",
+            "tertiary-fixed": "#ffdad6",
+            "on-tertiary-fixed-variant": "#76312d",
+            "surface-tint": "#9c3e59",
+            "on-secondary-fixed-variant": "#7f2543",
+            "inverse-on-surface": "#f5f0ea",
+            "on-background": "#1d1b18",
+            "tertiary-container": "#662521",
+            "surface-container-lowest": "#ffffff",
+            "surface-variant": "#e6e2dc",
+            "primary": "#500021",
+            "tertiary": "#4a0f0e",
+            "secondary": "#9d3d5a",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#7e2642",
+            "surface-container-low": "#f8f3ed",
+            "on-surface-variant": "#544245",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#3f0018",
+            "on-surface": "#1d1b18",
+            "on-error": "#ffffff",
+            "inverse-surface": "#32302c",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#3f0019",
+            "on-tertiary-container": "#e78b84",
+            "background": "#fef9f3",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "surface-container-highest": "#e6e2dc",
+            "primary-container": "#6e1936",
+            "secondary-container": "#ff8aa9",
+            "secondary-fixed-dim": "#ffb1c3",
+            "on-tertiary-fixed": "#3d0606",
+            "secondary-fixed": "#ffd9e0",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#fef9f3",
+            "surface-dim": "#ded9d4",
+            "outline": "#877275",
+            "outline-variant": "#dac0c4",
+            "primary-fixed-dim": "#ffb1c2",
+            "surface": "#fef9f3",
+            "inverse-primary": "#ffb1c2",
+            "on-secondary-container": "#781f3e",
+            "primary-fixed": "#ffd9e0",
+            "surface-container": "#f2ede7"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-2xl": "3rem",
+            "space-xl": "2.25rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .ambient-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.08), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md selection:bg-primary selection:text-on-primary min-h-screen flex justify-center">
+<!-- Mobile Screen Container (Emulates smartphone viewport on larger screens, full width on mobile) -->
+<div class="w-full max-w-md bg-surface min-h-screen flex flex-col relative pb-36 shadow-2xl">
+<!-- Top Web Bar (Secure Encaixa link & share action) -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 w-full bg-surface/95 backdrop-blur-md border-b border-outline-variant/40">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-base">spa</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-label-sm font-semibold tracking-tight text-primary">encaixa.me</span>
+<span class="text-outline-variant">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">studio-juliana</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="font-label-sm text-[10px] text-emerald-800 font-medium">Online • Horários em tempo real</span>
+</div>
+</div>
+</div>
+<button aria-label="Compartilhar link de agendamento" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="px-4 pt-4 flex flex-col gap-6">
+<!-- Profile & Welcome Banner -->
+<section class="bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/60 shadow-sm relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-tertiary-fixed/40 blur-2xl pointer-events-none"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="relative">
+<img alt="Juliana Silva" class="w-20 h-20 rounded-full object-cover border-2 border-primary-container shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoH6jx45tRrMfj7fNrn3s8M1p8Z9j1LaBpcLZkbQ3ibg9bdoT3gQ6AUaGWKSmM1mC513D6-TL8IwHYQk1eLgIEuDTeOvWh6gJGWthQp_tBGoMWHrc3jAc6lz7TAtKwlKPSWGYVkLMmcSGNb6aiPT0TFhvHfXL5Xb60LeBryicGQcsKXtzChWecFf5dtUR_1AV3Td0UUojXg-oMNImTSyF3JFzCqkZNKj4egBB4v6InCPOuEjt2Ab0A-g">
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary rounded-full p-1 border-2 border-surface-container-lowest flex items-center justify-center" title="Profissional Certificada">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-1.5 mb-0.5">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">Studio Juliana Silva</h1>
+</div>
+<p class="font-label-sm text-label-sm text-secondary font-medium">Especialista em Esmaltação em Gel &amp; Nail Care</p>
+<div class="flex items-center gap-1.5 mt-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">4.9</span>
+<span class="font-body-sm text-[11px] text-outline">(128 avaliações)</span>
+</div>
+</div>
+</div>
+<!-- Location Badge -->
+<div class="mt-3.5 pt-3 border-t border-surface-container-high flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-base shrink-0 mt-0.5">location_on</span>
+<span class="font-body-sm text-body-sm leading-tight text-on-surface-variant">Vila Mariana, São Paulo • Sala 42 <span class="text-outline text-xs">(Próximo ao Metrô Ana Rosa)</span></span>
+</div>
+<!-- Welcoming Note -->
+<div class="mt-3 bg-surface-container-low rounded-xl p-3 border border-outline-variant/30 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">sentiment_satisfied</span>
+<p class="font-body-sm text-body-sm italic text-on-surface leading-snug">
+            "Olá! Escolha seus serviços e o melhor horário para seu atendimento no Studio Juliana. Te espero! ✨"
+          </p>
+</div>
+</section>
+<!-- Step 1: Services Selection -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-headline-sm text-xs flex items-center justify-center font-bold">1</span>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Escolha o serviço</h2>
+</div>
+<span class="font-label-sm text-[11px] text-secondary font-medium bg-tertiary-fixed/60 px-2.5 py-0.5 rounded-full">1 Selecionado</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Active / Selected Service Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 border-2 border-primary-container shadow-sm relative transition-all duration-150">
+<div class="flex justify-between items-start mb-1.5">
+<div class="flex-1 pr-2">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-base font-bold text-primary">Esmaltação em Gel Completa</span>
+</div>
+<div class="flex items-center gap-2.5 mt-1 text-on-surface-variant">
+<span class="flex items-center gap-1 font-label-sm text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">schedule</span> 1h 15min
+                  </span>
+<span class="text-outline-variant">•</span>
+<span class="font-headline-sm text-sm font-bold text-primary">R$ 90,00</span>
+</div>
+</div>
+<!-- Selected Radio Checkmark -->
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/90 leading-relaxed mt-2 border-t border-surface-container pt-2">
+              Inclui cutilagem russa, hidratação profunda das cutículas e acabamento premium com durabilidade de até 21 dias.
+            </p>
+</div>
+<!-- Other Service Option 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-3.5 border border-outline-variant/60 flex items-center justify-between hover:border-secondary transition-colors duration-150">
+<div class="flex-1 pr-3">
+<h3 class="font-headline-sm text-sm font-semibold text-on-surface">Spa dos Pés &amp; Pedicure Completa</h3>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant">
+<span class="font-label-sm text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">schedule</span> 50min
+                </span>
+<span class="text-outline-variant">•</span>
+<span class="font-headline-sm text-xs font-semibold text-primary">R$ 75,00</span>
+</div>
+</div>
+<button aria-label="Adicionar Spa dos Pés" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-primary-container hover:bg-surface-container active:scale-95 transition-all">
+<span class="material-symbols-outlined text-base">add</span>
+</button>
+</div>
+<!-- Other Service Option 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-3.5 border border-outline-variant/60 flex items-center justify-between hover:border-secondary transition-colors duration-150">
+<div class="flex-1 pr-3">
+<h3 class="font-headline-sm text-sm font-semibold text-on-surface">Blindagem de Unhas Naturais</h3>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant">
+<span class="font-label-sm text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">schedule</span> 45min
+                </span>
+<span class="text-outline-variant">•</span>
+<span class="font-headline-sm text-xs font-semibold text-primary">R$ 65,00</span>
+</div>
+</div>
+<button aria-label="Adicionar Blindagem de Unhas" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-primary-container hover:bg-surface-container active:scale-95 transition-all">
+<span class="material-symbols-outlined text-base">add</span>
+</button>
+</div>
+<!-- Other Service Option 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-3.5 border border-outline-variant/60 flex items-center justify-between hover:border-secondary transition-colors duration-150">
+<div class="flex-1 pr-3">
+<h3 class="font-headline-sm text-sm font-semibold text-on-surface">Manutenção de Alongamento em Gel</h3>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant">
+<span class="font-label-sm text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">schedule</span> 1h 30min
+                </span>
+<span class="text-outline-variant">•</span>
+<span class="font-headline-sm text-xs font-semibold text-primary">R$ 110,00</span>
+</div>
+</div>
+<button aria-label="Adicionar Manutenção de Alongamento" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-primary-container hover:bg-surface-container active:scale-95 transition-all">
+<span class="material-symbols-outlined text-base">add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Step 2: Date Picker (Outubro 2025) -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-headline-sm text-xs flex items-center justify-center font-bold">2</span>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Escolha o dia</h2>
+</div>
+<span class="font-label-md text-xs font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_month</span> Outubro 2025
+          </span>
+</div>
+<!-- Horizontal scrollable days row -->
+<div class="flex items-center gap-2.5 overflow-x-auto pb-1.5 pt-0.5 custom-scrollbar -mx-1 px-1">
+<!-- Seg 14 (Lotado) -->
+<button class="flex flex-col items-center justify-center min-w-[62px] h-[78px] rounded-xl bg-surface-container-high/60 border border-outline-variant/30 text-outline opacity-60 cursor-not-allowed" disabled="">
+<span class="font-label-sm text-[11px] font-medium">Seg</span>
+<span class="font-headline-sm text-base font-bold my-0.5">14</span>
+<span class="font-label-sm text-[10px] text-error font-medium">Lotado</span>
+</button>
+<!-- Ter 15 (Hoje - Selecionado) -->
+<button class="flex flex-col items-center justify-center min-w-[66px] h-[82px] rounded-2xl bg-primary-container text-on-primary shadow-md border-2 border-primary-container relative scale-102 transition-transform">
+<div class="absolute -top-1.5 bg-secondary-fixed text-on-secondary-fixed-variant text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase tracking-wider">Hoje</div>
+<span class="font-label-sm text-[11px] font-medium opacity-90 mt-1">Ter</span>
+<span class="font-headline-sm text-lg font-bold leading-none my-0.5">15</span>
+<span class="font-label-sm text-[10px] text-secondary-fixed font-semibold">4 vagas</span>
+</button>
+<!-- Qua 16 -->
+<button class="flex flex-col items-center justify-center min-w-[62px] h-[78px] rounded-xl bg-surface-container-lowest border border-outline-variant/60 text-on-surface hover:border-secondary active:scale-95 transition-all">
+<span class="font-label-sm text-[11px] text-on-surface-variant font-medium">Qua</span>
+<span class="font-headline-sm text-base font-bold my-0.5 text-on-surface">16</span>
+<span class="font-label-sm text-[10px] text-emerald-700 font-medium">4 vagas</span>
+</button>
+<!-- Qui 17 -->
+<button class="flex flex-col items-center justify-center min-w-[62px] h-[78px] rounded-xl bg-surface-container-lowest border border-outline-variant/60 text-on-surface hover:border-secondary active:scale-95 transition-all">
+<span class="font-label-sm text-[11px] text-on-surface-variant font-medium">Qui</span>
+<span class="font-headline-sm text-base font-bold my-0.5 text-on-surface">17</span>
+<span class="font-label-sm text-[10px] text-emerald-700 font-medium">6 vagas</span>
+</button>
+<!-- Sex 18 -->
+<button class="flex flex-col items-center justify-center min-w-[62px] h-[78px] rounded-xl bg-surface-container-lowest border border-outline-variant/60 text-on-surface hover:border-secondary active:scale-95 transition-all">
+<span class="font-label-sm text-[11px] text-on-surface-variant font-medium">Sex</span>
+<span class="font-headline-sm text-base font-bold my-0.5 text-on-surface">18</span>
+<span class="font-label-sm text-[10px] text-emerald-700 font-medium">3 vagas</span>
+</button>
+<!-- Sab 19 -->
+<button class="flex flex-col items-center justify-center min-w-[62px] h-[78px] rounded-xl bg-surface-container-lowest border border-outline-variant/60 text-on-surface hover:border-secondary active:scale-95 transition-all">
+<span class="font-label-sm text-[11px] text-on-surface-variant font-medium">Sáb</span>
+<span class="font-headline-sm text-base font-bold my-0.5 text-on-surface">19</span>
+<span class="font-label-sm text-[10px] text-emerald-700 font-medium">2 vagas</span>
+</button>
+</div>
+</section>
+<!-- Step 3: Time Slot Selection -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-headline-sm text-xs flex items-center justify-center font-bold">3</span>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Horários livres para Terça, 15/10</h2>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- 09:00 -->
+<button class="h-12 rounded-xl bg-surface-container-lowest border border-outline-variant/80 hover:border-secondary flex items-center justify-center gap-1.5 text-on-surface font-headline-sm text-sm font-semibold active:scale-98 transition-all">
+<span class="material-symbols-outlined text-base text-outline">schedule</span>
+            09:00
+          </button>
+<!-- 10:30 (Selected) -->
+<button class="h-12 rounded-xl bg-primary-container text-on-primary border-2 border-primary-container shadow-sm flex items-center justify-center gap-1.5 font-headline-sm text-sm font-bold relative active:scale-98 transition-all">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            10:30
+            <span class="text-[10px] font-medium bg-on-primary/20 px-1.5 py-0.5 rounded ml-1">Selecionado</span>
+</button>
+<!-- 14:00 -->
+<button class="h-12 rounded-xl bg-surface-container-lowest border border-outline-variant/80 hover:border-secondary flex items-center justify-center gap-1.5 text-on-surface font-headline-sm text-sm font-semibold active:scale-98 transition-all">
+<span class="material-symbols-outlined text-base text-outline">schedule</span>
+            14:00
+          </button>
+<!-- 16:30 -->
+<button class="h-12 rounded-xl bg-surface-container-lowest border border-outline-variant/80 hover:border-secondary flex items-center justify-center gap-1.5 text-on-surface font-headline-sm text-sm font-semibold active:scale-98 transition-all">
+<span class="material-symbols-outlined text-base text-outline">schedule</span>
+            16:30
+          </button>
+</div>
+<!-- Security / Reservation Notice -->
+<div class="bg-surface-container-low rounded-xl px-3 py-2 border border-outline-variant/40 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">lock</span>
+<p class="font-body-sm text-xs text-on-surface-variant font-medium leading-tight">
+            Horário pré-reservado por 10 minutos para você concluir seu agendamento.
+          </p>
+</div>
+</section>
+<!-- Step 4: Client Info Inputs -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-headline-sm text-xs flex items-center justify-center font-bold">4</span>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Seus dados</h2>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/60 shadow-sm flex flex-col gap-3.5">
+<!-- Nome -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-xs font-semibold text-on-surface-variant flex items-center justify-between" for="client-name">
+<span class="">Nome completo *</span>
+<span class="text-outline text-[11px] font-normal">Como prefere ser chamada</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg pointer-events-none">person</span>
+<input class="w-full h-11 pl-10 pr-3 rounded-xl border border-outline-variant/80 bg-surface-container-lowest text-on-surface font-body-md text-sm focus:border-secondary focus:ring-2 focus:ring-secondary/10 outline-none transition-all" id="client-name" placeholder="Ex: Mariana Oliveira" type="text" value="Mariana Oliveira">
+</div>
+</div>
+<!-- WhatsApp -->
+<div class="flex flex-col gap-1.5">
+<div class="flex flex-col gap-1.5 mb-2">
+<label class="font-label-md text-xs font-semibold text-on-surface-variant flex items-center justify-between" for="client-email">
+<span class="">E-mail *</span>
+<span class="text-emerald-700 text-[11px] font-semibold flex items-center gap-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Confirmação por e-mail
+</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg pointer-events-none">mail</span>
+<input class="w-full h-11 pl-10 pr-3 rounded-xl border border-outline-variant/80 bg-surface-container-lowest text-on-surface font-body-md text-sm focus:border-secondary focus:ring-2 focus:ring-secondary/10 outline-none transition-all" id="client-email" placeholder="mariana.oliveira@email.com" type="email" value="mariana.oliveira@email.com">
+</div>
+</div><label class="font-label-md text-xs font-semibold text-on-surface-variant flex items-center justify-between" for="client-phone">
+<span class="">WhatsApp (opcional)</span>
+<span class="text-outline text-[11px] font-normal">Apenas para urgências</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg pointer-events-none">phone_iphone</span>
+<input class="w-full h-11 pl-10 pr-3 rounded-xl border border-outline-variant/80 bg-surface-container-lowest text-on-surface font-body-md text-sm focus:border-secondary focus:ring-2 focus:ring-secondary/10 outline-none transition-all" id="client-phone" placeholder="(11) 98765-4321" type="tel" value="(11) 98765-4321">
+</div>
+</div>
+<!-- Observações (Opcional) -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-xs font-semibold text-on-surface-variant flex items-center justify-between" for="client-notes">
+<span class="">Observações (opcional)</span>
+<span class="text-outline text-[11px]">Alergias, unhas frágeis, etc.</span>
+</label>
+<textarea class="w-full p-3 rounded-xl border border-outline-variant/80 bg-surface-container-lowest text-on-surface font-body-md text-sm focus:border-secondary focus:ring-2 focus:ring-secondary/10 outline-none transition-all resize-none" id="client-notes" placeholder="Ex: Primeira vez no estúdio, cutículas sensíveis..." rows="2"></textarea>
+</div>
+</div>
+</section>
+<!-- Studio Trust & Guarantee Banner -->
+<section class="bg-surface-container-low rounded-2xl p-3.5 border border-outline-variant/40 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-xl">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-xs font-bold text-primary">Garantia Encaixa</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant leading-snug">Sem risco de duplicidade. Horário bloqueado na agenda do estúdio em tempo real.</span>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom CTA Bar (High Conversion Summary & Confirmation) -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none px-2 sm:px-0">
+<div class="w-full max-w-md bg-surface-container-lowest border-t border-outline-variant/60 shadow-[0_-8px_25px_rgba(0,0,0,0.08)] px-4 pt-3 pb-4 pointer-events-auto rounded-t-2xl">
+<!-- Summary Strip -->
+<div class="flex items-center justify-between mb-2.5 pb-2.5 border-b border-surface-container">
+<div class="flex flex-col pr-2">
+<span class="font-headline-sm text-xs font-bold text-primary truncate max-w-[220px]">Esmaltação em Gel Completa</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">event</span> Ter, 15 de Outubro às 10:30
+            </span>
+</div>
+<div class="text-right shrink-0">
+<span class="font-headline-sm text-base font-extrabold text-primary">R$ 90,00</span>
+<span class="block font-label-sm text-[10px] text-outline font-medium">Pagamento no local</span>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full h-13 py-3 px-4 rounded-xl bg-primary-container hover:bg-[#8C2F4D] text-on-primary font-headline-sm text-base font-bold shadow-md active:scale-98 transition-all duration-150 flex items-center justify-center gap-2">
+<span class="">Confirmar Agendamento</span>
+<span class="text-secondary-fixed">✨</span>
+</button>
+<!-- WhatsApp Guarantee Micro-copy -->
+<p class="text-center font-label-sm text-[10px] text-on-surface-variant font-medium mt-2 flex items-center justify-center gap-1"><span class="material-symbols-outlined text-xs text-emerald-600">check_circle</span>
+Você receberá a confirmação e comprovante por e-mail</p>
+</div>
+</div>
+</div>
+
+
+</body></html>

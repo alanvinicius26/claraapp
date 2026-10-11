@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Serviços | Encaixa - Gestão para Estúdios de Beleza</title>
+<!-- Material Symbols Google Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration matching Design System & Brand Tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed": "#3f0018",
+            "error": "#ba1a1a",
+            "primary": "#500021",
+            "tertiary-container": "#662521",
+            "tertiary-fixed": "#ffdad6",
+            "outline": "#877275",
+            "surface-variant": "#e6e2dc",
+            "on-background": "#1d1b18",
+            "secondary": "#9d3d5a",
+            "on-tertiary-container": "#e78b84",
+            "background": "#fef9f3",
+            "on-secondary-fixed": "#3f0019",
+            "surface-dim": "#ded9d4",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "secondary-container": "#ff8aa9",
+            "primary-container": "#6e1936",
+            "surface-container": "#f2ede7",
+            "on-tertiary-fixed-variant": "#76312d",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#e6e2dc",
+            "on-secondary-container": "#781f3e",
+            "error-container": "#ffdad6",
+            "surface-tint": "#9c3e59",
+            "secondary-fixed-dim": "#ffb1c3",
+            "inverse-on-surface": "#f5f0ea",
+            "surface-bright": "#fef9f3",
+            "primary-fixed-dim": "#ffb1c2",
+            "on-surface": "#1d1b18",
+            "surface-container-low": "#f8f3ed",
+            "primary-fixed": "#ffd9e0",
+            "on-primary-fixed-variant": "#7e2642",
+            "tertiary-fixed-dim": "#ffb3ad",
+            "surface-container-lowest": "#ffffff",
+            "outline-variant": "#dac0c4",
+            "surface": "#fef9f3",
+            "on-tertiary-fixed": "#3d0606",
+            "inverse-primary": "#ffb1c2",
+            "on-primary-container": "#f2829f",
+            "inverse-surface": "#32302c",
+            "on-error": "#ffffff",
+            "tertiary": "#4a0f0e",
+            "on-surface-variant": "#544245",
+            "secondary-fixed": "#ffd9e0",
+            "surface-container-high": "#ece7e2",
+            "on-secondary-fixed-variant": "#7f2543"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-2xl": "3rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "number-metric": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "number-metric": ["2rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "headline-xl": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Warm ambient elevation shadow adhering to Warm Editorial Studio Guidelines */
+    .warm-ambient-shadow {
+      box-shadow: 0 8px 30px -4px rgba(110, 25, 54, 0.06), 0 2px 8px -2px rgba(47, 41, 40, 0.04);
+    }
+    .modal-drawer-shadow {
+      box-shadow: -10px 0 40px -6px rgba(80, 0, 33, 0.08), -2px 0 10px -2px rgba(47, 41, 40, 0.04);
+    }
+    /* Custom scrollbar for boutique feel */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF5EF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #dac0c4;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #877275;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md min-h-screen selection:bg-secondary-fixed selection:text-primary">
+<div class="flex min-h-screen">
+<!-- 1. BARRA LATERAL ESQUERDA FIXA (SideNavBar - JSON Source of Truth) -->
+<aside class="fixed top-0 left-0 h-screen w-64 flex flex-col justify-between bg-surface-container-lowest dark:bg-surface-container-low border-r border-outline-variant dark:border-outline z-30">
+<!-- Top Brand Anchor & Public Page Pill -->
+<div class="p-5 pb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm font-headline-md font-bold">
+            E
+          </div>
+<div>
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight block">Encaixa</span>
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+              studio-juliana
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</span>
+</div>
+</div>
+<!-- Studio Public Booking Link CTA -->
+<a class="mt-4 flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary-container transition-all text-on-surface-variant group" href="#public-link">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="storefront">storefront</span>
+<span class="text-label-sm font-label-sm truncate text-on-surface">Minha página de reservas</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[16px] transition-colors" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+<!-- Navigation Tabs (Semantically matching: 'Serviços' active with Wine/Bordeaux token) -->
+<nav class="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
+<!-- Agenda -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#agenda">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_today">calendar_today</span>
+<span>Agenda</span>
+</a>
+<!-- Clientes -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#clientes">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span>Clientes</span>
+</a>
+<!-- Serviços (ACTIVE NAVIGATION: style_active_navigation) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container-high dark:bg-surface-variant text-primary dark:text-inverse-primary font-label-md border-l-4 border-primary-container shadow-sm font-semibold" href="#servicos">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="spa" data-weight="fill" style="font-variation-settings: 'FILL' 1;">spa</span>
+<span>Serviços</span>
+<span class="ml-auto text-label-sm px-2 py-0.5 rounded-full bg-secondary-fixed text-primary font-bold">14</span>
+</a>
+<!-- Recebimentos -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#recebimentos">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span>Recebimentos</span>
+</a>
+<!-- Meu Espaço -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#meuespaco">
+<span class="material-symbols-outlined text-[20px]" data-icon="storefront">storefront</span>
+<span>Meu Espaço</span>
+</a>
+<!-- Minha Assinatura -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant font-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150 group" href="#assinatura">
+<span class="material-symbols-outlined text-[20px] text-secondary group-hover:scale-105 transition-transform" data-icon="loyalty">loyalty</span>
+<div class="flex flex-col leading-tight">
+<span>Minha Assinatura</span>
+<span class="text-[11px] text-outline font-normal">Plano Pro • R$ 19,90/mês</span>
+</div>
+</a>
+</nav>
+<!-- Footer User Profile & System Settings -->
+<div class="p-3 border-t border-outline-variant dark:border-outline space-y-1 bg-surface-container-lowest">
+<!-- User Profile Pill -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-primary font-bold text-label-md ring-1 ring-outline-variant">
+              JS
+            </div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-label-md font-semibold text-on-surface truncate">Juliana Silva</span>
+<span class="text-[11px] text-outline truncate">juliana@studiolux.com</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline hover:text-primary cursor-pointer text-[18px]" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Settings item from JSON footer -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-low hover:text-on-surface transition-colors" href="#configuracoes">
+<span class="material-symbols-outlined text-[19px] text-outline" data-icon="settings">settings</span>
+<span class="text-body-sm font-label-md">Configurações</span>
+</a>
+</div>
+</aside>
+<!-- MAIN PRODUCTIVITY CANVAS (Shifted by 16rem / 256px) -->
+<main class="ml-64 flex-1 flex flex-col min-w-0 pb-16">
+<!-- Top Utility App Bar (Sticky, Borderless Elevation via subtle shift) -->
+<header class="sticky top-0 z-20 w-full bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant/60 px-8 py-3.5 flex items-center justify-between">
+<!-- Breadcrumb & Studio Domain Indicator -->
+<div class="flex items-center gap-2 text-body-sm text-outline">
+<span class="hover:text-primary transition-colors cursor-pointer">Início</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-semibold">Catálogo de Serviços</span>
+<span class="ml-3 px-2 py-0.5 rounded-full bg-surface-container text-[11px] font-medium text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Online em encaixa.me/studio-juliana
+          </span>
+</div>
+<!-- Trailing Utility Actions -->
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant" title="Compartilhar catálogo">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+</button>
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant" title="Notificações do estúdio">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<div class="h-4 w-px bg-outline-variant mx-1"></div>
+<a class="inline-flex items-center gap-1.5 text-label-sm font-label-sm text-primary hover:text-secondary transition-colors font-medium" href="#preview-agenda">
+<span class="material-symbols-outlined text-[16px]" data-icon="visibility">visibility</span>
+            Ver como cliente
+          </a>
+</div>
+</header>
+<!-- CONTENT BODY WRAPPER -->
+<div class="px-8 pt-7 pb-10 space-y-7 max-w-[1440px] w-full mx-auto">
+<!-- 2. CABEÇALHO PRINCIPAL DA PÁGINA COM AÇÕES -->
+<section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+<div>
+<h1 class="text-headline-xl font-headline-xl font-bold text-primary tracking-tight">Serviços</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1 max-w-2xl">
+              Cadastre e organize os serviços oferecidos no seu estúdio e na sua página de reservas online. Defina valores, duração e fotos de portfólio.
+            </p>
+</div>
+<!-- Botão Principal de Ação "+ Novo serviço" -->
+<div class="flex items-center gap-3 flex-shrink-0">
+<button class="inline-flex items-center gap-2 bg-primary-container hover:bg-[#8C2F4D] text-on-primary px-5 py-2.5 rounded-[10px] font-label-md font-semibold shadow-sm hover:shadow transition-all duration-150 active:scale-95" onclick="toggleDrawer(true)">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+<span>Novo serviço</span>
+</button>
+</div>
+</section>
+<!-- 5. ESTATÍSTICAS RÁPIDAS DE SERVIÇOS (Quick Metric Pills / Bento Banner) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card Métrica 1: Serviços Ativos -->
+<div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-5 warm-ambient-shadow flex items-start justify-between">
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm font-medium text-outline uppercase tracking-wider">Serviços Cadastrados</span>
+<div class="flex items-baseline gap-2">
+<span class="text-number-metric font-number-metric font-bold text-primary">14</span>
+<span class="text-label-sm text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full ring-1 ring-emerald-200">12 visíveis online</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">2 serviços em rascunho / arquivados</p>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]" data-icon="spa">spa</span>
+</div>
+</div>
+<!-- Card Métrica 2: Serviço Mais Agendado -->
+<div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-5 warm-ambient-shadow flex items-start justify-between">
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm font-medium text-outline uppercase tracking-wider">Mais Agendado no Mês</span>
+<div class="flex items-baseline gap-1.5">
+<span class="text-headline-md font-headline-md font-bold text-on-surface truncate">Alongamento em Fibra</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<strong class="font-semibold text-primary">34 agendamentos</strong> nos últimos 30 dias
+              </p>
+</div>
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<!-- Card Métrica 3: Ticket Médio por Serviço -->
+<div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-5 warm-ambient-shadow flex items-start justify-between">
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm font-medium text-outline uppercase tracking-wider">Ticket Médio Estimado</span>
+<div class="flex items-baseline gap-2">
+<span class="text-number-metric font-number-metric font-bold text-primary">R$ 96,40</span>
+<span class="text-label-sm text-primary font-semibold bg-primary-fixed px-2 py-0.5 rounded-full">Por atendimento</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Tempo médio de cadeira: 1h 15min</p>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]" data-icon="query_stats">query_stats</span>
+</div>
+</div>
+</section>
+<!-- FILTROS & BARRA DE BUSCA INTEGRADAS -->
+<section class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-4 warm-ambient-shadow flex flex-col md:flex-row md:items-center justify-between gap-4">
+<!-- Filtros de Categoria em Chips Horizontais -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+<button class="px-3.5 py-1.5 rounded-full text-label-md font-semibold bg-primary text-on-primary transition-colors flex items-center gap-1.5 shadow-sm">
+<span>Todos</span>
+<span class="text-xs bg-white/20 px-1.5 py-0.2 rounded-full font-bold">14</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-label-md font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center gap-1.5 border border-outline-variant/60">
+<span>Unhas &amp; Alongamento</span>
+<span class="text-xs bg-surface-container px-1.5 py-0.2 rounded-full text-outline font-semibold">6</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-label-md font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center gap-1.5 border border-outline-variant/60">
+<span>Sobrancelhas &amp; Cílios</span>
+<span class="text-xs bg-surface-container px-1.5 py-0.2 rounded-full text-outline font-semibold">4</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-label-md font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center gap-1.5 border border-outline-variant/60">
+<span>Estética &amp; Spa</span>
+<span class="text-xs bg-surface-container px-1.5 py-0.2 rounded-full text-outline font-semibold">4</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-label-md font-medium text-outline hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center gap-1.5 border border-dashed border-outline-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="archive">archive</span>
+<span>Arquivados</span>
+<span class="text-xs bg-surface-container px-1.5 py-0.2 rounded-full text-outline font-semibold">2</span>
+</button>
+</div>
+<!-- Input de Busca Rápida -->
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[19px]" data-icon="search">search</span>
+<input class="w-full h-[38px] pl-9 pr-4 rounded-[10px] bg-background border border-outline-variant text-body-sm text-on-surface placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all" placeholder="Buscar serviço por nome..." type="text"/>
+</div>
+</section>
+<!-- 3. GRID INTELIGENTE DE CARTÕES DE SERVIÇOS (Editorial Beauty Studio Visual) -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- SERVIÇO 1: Alongamento em Gel com Fibra de Vidro (Destaque Principal) -->
+<article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl overflow-hidden warm-ambient-shadow flex flex-col group hover:border-secondary/40 transition-all duration-200">
+<!-- Imagem de Portfólio com Badges Superpostas -->
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up editorial de unhas com alongamento em fibra de vidro perfeitamente curvadas e esmaltação nude translúcida com brilho espelhado, sob luz suave de estúdio de beleza em tom quente, pele impecável e toalha de algodão rosé ao fundo em atmosfera calma e profissional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXzKFq5Gv2ybrvSy2eBXbNODrnxDfrsUlsUBF5Ax9pyy8dyb5VVEDyMUd_MsWoMUWvuibhseOUZdw8STNkpNIhoNY2S9fcmLuhpSaaOYK7adTGTLBIp2Jm-snzJ7TvLfHEVLxpTJI7N3ftNip5Y4jyrmTnb55LCufidYFz2aT_W0fd2gq-i2FHr1F9cs2Mc1oTOuzPwEiILjEXodAWhSb23DRBeUSH6BIfGTtz4W3N4Sq5jdqXwBJtYA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+<!-- Badges de Categoria & Tag de Cor de Agenda -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-label-sm font-semibold bg-surface-container-lowest/90 backdrop-blur-sm text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#6E1936] ring-2 ring-white"></span>
+                  Unhas &amp; Alongamento
+                </span>
+</div>
+<!-- Duração Badge -->
+<div class="absolute bottom-3 left-3 text-white text-label-sm font-medium flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[15px]" data-icon="schedule">schedule</span>
+                1h 45min
+              </div>
+<!-- Pill de Preço em Destaque na Foto -->
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-sm text-primary font-headline-sm font-bold px-3 py-1 rounded-xl shadow-sm">
+                R$ 130,00
+              </div>
+</div>
+<!-- Conteúdo do Card -->
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-start justify-between gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">
+                    Alongamento em Gel com Fibra de Vidro
+                  </h3>
+<!-- Menu de Ações de Cartão -->
+<div class="relative flex-shrink-0">
+<button class="p-1 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                  Aplicação completa estruturada com fibra de vidro ultrafina, curvatura C natural, cuticulagem combinada e esmaltação em gel de alta durabilidade.
+                </p>
+</div>
+<!-- Rodapé do Card: Visibilidade Online Switch & Ações de Edição -->
+<div class="pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<!-- Toggle Visível Online -->
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+<span class="text-label-sm font-label-sm font-medium text-on-surface">Visível online</span>
+</label>
+<!-- Ações Rápidas: Editar, Duplicar, Arquivar -->
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" onclick="toggleDrawer(true)" title="Editar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" title="Duplicar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-red-50 transition-colors" title="Arquivar serviço (mantém histórico)">
+<span class="material-symbols-outlined text-[18px]" data-icon="archive">archive</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- SERVIÇO 2: Manicure Express + Esmaltação em Gel -->
+<article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl overflow-hidden warm-ambient-shadow flex flex-col group hover:border-secondary/40 transition-all duration-200">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Fotografia em close-up de mãos femininas descansando sobre uma toalha macia de linho bege em estúdio aconchegante, exibindo esmaltação perfeita em tom bordô elegante com acabamento brilhante impecável, iluminação lateral difusa natural e estética serena e limpa." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa9-Uc0u7Evp-oZwtE7_3Sx4SQzfI_L3Sz9zubn_ob2BpSU5m7dX9uOkcU1STYIIBx7Y8sfz6rEOGieF6sZE3mrP9P_kqA-s-LfNht6F9T-FWT6In6Nzb3ysXhwMiqybvShzdcLTG8yzPoc66hh_Gx3h9RN9Dj8l43RC5SkPoqEtmj59KaFYy3K8ThceTTilmeV7WvlBCDa1_cqj-0X7hX9ZRy7Lx5dtdXl8iadbaHi7T2KIvwX4WFBg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-label-sm font-semibold bg-surface-container-lowest/90 backdrop-blur-sm text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#8C2F4D] ring-2 ring-white"></span>
+                  Unhas &amp; Alongamento
+                </span>
+</div>
+<div class="absolute bottom-3 left-3 text-white text-label-sm font-medium flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[15px]" data-icon="schedule">schedule</span>
+                50 min
+              </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-sm text-primary font-headline-sm font-bold px-3 py-1 rounded-xl shadow-sm">
+                R$ 65,00
+              </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-start justify-between gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">
+                    Manicure Express + Esmaltação
+                  </h3>
+<div class="relative flex-shrink-0">
+<button class="p-1 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                  Higienização profunda, cutilagem técnica delicada, hidratação de cutículas com blend de óleos vegetais e esmaltação clássica ou gel.
+                </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+<span class="text-label-sm font-label-sm font-medium text-on-surface">Visível online</span>
+</label>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" onclick="toggleDrawer(true)" title="Editar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" title="Duplicar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-red-50 transition-colors" title="Arquivar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="archive">archive</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- SERVIÇO 3: Design de Sobrancelhas c/ Henna Personalizada -->
+<article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl overflow-hidden warm-ambient-shadow flex flex-col group hover:border-secondary/40 transition-all duration-200">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Retrato fotográfico focado nos olhos e sobrancelhas impecavelmente desenhadas de uma jovem mulher, técnica de henna com degradê sutil e sombreado perfeito, iluminação suave frontal que ressalta os detalhes da pele com frescor natural em ambiente acolhedor de clínica estética." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKpON_ZU4A7TvR9dCLkKLfVTwnNaz8kZqwJ2fuDtxl33aKrpwstGZh7sWqaipeHYPyad_RCuf_uwaHryV5xv2v6RH4ryDg0HufMtD_UbzEnqpDuadaHzjvTQON-Aqhg_H3vM4t2ez6jCkxlFJE9NTFVVBDgw99wTEh-V5CrfJO4ott0jsYE2HKcbZQ2EIZn1-bzV12OViZoSoYpjKtrFRuxtyTWMN_ZLJxCZByIGFUCbG9LIw8ESJ_OA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-label-sm font-semibold bg-surface-container-lowest/90 backdrop-blur-sm text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#B85D38] ring-2 ring-white"></span>
+                  Sobrancelhas &amp; Cílios
+                </span>
+</div>
+<div class="absolute bottom-3 left-3 text-white text-label-sm font-medium flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[15px]" data-icon="schedule">schedule</span>
+                45 min
+              </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-sm text-primary font-headline-sm font-bold px-3 py-1 rounded-xl shadow-sm">
+                R$ 75,00
+              </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-start justify-between gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">
+                    Design de Sobrancelhas c/ Henna
+                  </h3>
+<div class="relative flex-shrink-0">
+<button class="p-1 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                  Mapeamento facial biométrico com paquímetro para simetria ideal, higienização, epilação com pinça de precisão e aplicação de henna orgânica.
+                </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+<span class="text-label-sm font-label-sm font-medium text-on-surface">Visível online</span>
+</label>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" onclick="toggleDrawer(true)" title="Editar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" title="Duplicar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-red-50 transition-colors" title="Arquivar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="archive">archive</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- SERVIÇO 4: Spa Completo dos Pés com Plástica Podal -->
+<article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl overflow-hidden warm-ambient-shadow flex flex-col group hover:border-secondary/40 transition-all duration-200">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Detalhe sereno de tratamento de spa dos pés com água morna aromatizada em bacia cerâmica artesanal, pétalas de flores secas e toalha macia dobrada em tom terra cota, transmitindo relaxamento, cuidado terapêutico e luxo silencioso de estúdio de beleza." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi6fbcbVyfznDBKJrOXoI6nDUEEPM4PTJm4HHrbhe7P5HuZcCqQHtVl82Le35keg4OyF31cAvy_Su-wZ0glh4cdy0W7Cpok9ol8lIca0Xmax_xaDuGFDDqVAxVjLucNM5O_BhsearQEij4pZ-Ybq0OkXNRHAvbB4ixGDyKP9z42Ev-ciovpqbI1xDdrpDX8KncSYEf-To7_T1un4HOKoP2ZT62qYQjVEvjWPAtiQD9PjRFhCLSLi9_Vg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-label-sm font-semibold bg-surface-container-lowest/90 backdrop-blur-sm text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#4A6B58] ring-2 ring-white"></span>
+                  Estética &amp; Spa
+                </span>
+</div>
+<div class="absolute bottom-3 left-3 text-white text-label-sm font-medium flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[15px]" data-icon="schedule">schedule</span>
+                1h 15min
+              </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-sm text-primary font-headline-sm font-bold px-3 py-1 rounded-xl shadow-sm">
+                R$ 110,00
+              </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-start justify-between gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">
+                    Spa Completo dos Pés com Plástica
+                  </h3>
+<div class="relative flex-shrink-0">
+<button class="p-1 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                  Renovação celular intensa com emolientes tópicos seguros, esfoliação com sais marinhos, massagem relaxante podal e máscara nutritiva.
+                </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+<span class="text-label-sm font-label-sm font-medium text-on-surface">Visível online</span>
+</label>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" onclick="toggleDrawer(true)" title="Editar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" title="Duplicar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-red-50 transition-colors" title="Arquivar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="archive">archive</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- SERVIÇO 5: Lash Lifting & Hidratação de Fios -->
+<article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl overflow-hidden warm-ambient-shadow flex flex-col group hover:border-secondary/40 transition-all duration-200">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Fotografia macro de cílios naturais perfeitamente curvados e alinhados para cima através de procedimento de lash lifting, com aplicação de sérum hidratante e iluminação quente de salão boutique em fundo suavemente desfocado." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVgl5pnBZUyyLRdG5hhm8zmqS_PZiYf8_oIUd8Mi584LTKRFGbPlTS_ZNsEyoljs1u8hJpRJD8CyHJQn-Rs94eltrIUOH2dr7X73JO6hqIJPiN3ECU-BUklDHEvvlm5MAmdjdHb5wZjUOpRH9HTuOQEpDWvGj885wLtDYT5HQlbk5pRVUiEQjRGIv-l7ffdX5EADjO9h_hK5bxH-DX0RC9cHz5R5fKb6TIUChkORcHsmuOC-c7b8g2IA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-label-sm font-semibold bg-surface-container-lowest/90 backdrop-blur-sm text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#B85D38] ring-2 ring-white"></span>
+                  Sobrancelhas &amp; Cílios
+                </span>
+</div>
+<div class="absolute bottom-3 left-3 text-white text-label-sm font-medium flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[15px]" data-icon="schedule">schedule</span>
+                1h 00min
+              </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-sm text-primary font-headline-sm font-bold px-3 py-1 rounded-xl shadow-sm">
+                R$ 95,00
+              </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-start justify-between gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">
+                    Lash Lifting &amp; Tintura
+                  </h3>
+<div class="relative flex-shrink-0">
+<button class="p-1 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                  Curvatura anatômica dos cílios naturais a partir da raiz com efeito rímel de longa duração, banho de queratina e pigmentação preta profunda.
+                </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+<span class="text-label-sm font-label-sm font-medium text-on-surface">Visível online</span>
+</label>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" onclick="toggleDrawer(true)" title="Editar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container-low transition-colors" title="Duplicar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-red-50 transition-colors" title="Arquivar serviço">
+<span class="material-symbols-outlined text-[18px]" data-icon="archive">archive</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- SERVIÇO 6 (ESTADO: ARQUIVADO / OCULTO ONLINE) -->
+<article class="bg-surface-container-low/60 border border-dashed border-outline-variant rounded-2xl overflow-hidden flex flex-col group opacity-85 hover:opacity-100 transition-all duration-200">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Tratamento facial estético com aplicação de máscara de argila branca purificante sobre a face de uma cliente relaxada em uma maca estofada de estúdio de beleza contemporâneo, luz âmbar aconchegante e recipientes de cerâmica neutra dispostos ao lado." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTen55KNKnZFY9fmA6n_nUZ5vp6jr7ESiCmPH88rYM2B7S0R83ygK3l-os41T29gHKsy1ZHH_Noe_f5Ih65ShAH789BUmVqTYlNHdFCLWEubFFlvFFUz4St6WyI-_S4Uatjn6xwvAuWl_mE8Qxg-Y_Xrv7HWX374rfzMoHdpXz7HcE-1h85o-klOrEWECm3ZQkjRMC9gfq9AYTBI8nBe-tnDonhq35AousbV-X2vWzPVQXNSdSTS7zgA"/>
+<div class="absolute inset-0 bg-black/30"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-label-sm font-semibold bg-inverse-surface text-inverse-on-surface shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="archive">archive</span>
+                  Arquivado
+                </span>
+</div>
+<div class="absolute bottom-3 left-3 text-white text-label-sm font-medium flex items-center gap-1 bg-black/60 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[15px]" data-icon="schedule">schedule</span>
+                1h 30min
+              </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-sm text-outline font-headline-sm font-semibold line-through px-3 py-1 rounded-xl">
+                R$ 140,00
+              </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-start justify-between gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-outline leading-tight">
+                    Limpeza de Pele Profunda (Promoção)
+                  </h3>
+<span class="text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-outline">Histórico preservado</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline line-clamp-2">
+                  Procedimento temporariamente pausado. Não aceita novos agendamentos mas mantém todos os relatórios financeiros anteriores intactos.
+                </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<span class="text-label-sm text-outline italic">Não listado para clientes</span>
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-1 text-label-sm text-primary font-semibold hover:underline" title="Desarquivar e reativar">
+<span class="material-symbols-outlined text-[16px]" data-icon="unarchive">unarchive</span>
+                    Reativar
+                  </button>
+</div>
+</div>
+</div>
+</article>
+</section>
+</div>
+</main>
+<!-- 4. PAINEL LATERAL INTEGRADO / MODAL DRAWER ("Novo Serviço / Editar Serviço") -->
+<!-- Drawer Overlay Backdrop -->
+<div class="fixed inset-0 bg-on-background/40 backdrop-blur-xs z-40 transition-opacity duration-300 opacity-0 pointer-events-none" id="drawerBackdrop" onclick="toggleDrawer(false)"></div>
+<!-- Sliding Side Panel Drawer (Warm Editorial Aesthetics) -->
+<aside class="fixed top-0 right-0 h-screen w-full max-w-[540px] bg-surface-container-lowest border-l border-outline-variant z-50 transform translate-x-full transition-transform duration-300 ease-in-out modal-drawer-shadow flex flex-col" id="serviceDrawer">
+<!-- Drawer Header -->
+<div class="p-6 border-b border-outline-variant/70 flex items-center justify-between bg-surface-container-lowest sticky top-0 z-10">
+<div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="text-label-sm font-label-sm text-primary uppercase font-bold tracking-wider">Catálogo do Estúdio</span>
+</div>
+<h2 class="text-headline-md font-headline-md font-bold text-on-surface mt-0.5">Novo Serviço</h2>
+</div>
+<button class="p-2 rounded-xl text-outline hover:text-primary hover:bg-surface-container transition-colors" onclick="toggleDrawer(false)" title="Fechar formulário">
+<span class="material-symbols-outlined text-[24px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Drawer Form Scrollable Area -->
+<form class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Campo: Nome do Serviço -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md font-semibold text-on-surface">
+            Nome do serviço <span class="text-error">*</span>
+</label>
+<input class="w-full h-[42px] px-3.5 rounded-[10px] bg-surface-container-lowest border border-outline-variant text-on-surface text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all" placeholder="Ex: Alongamento em Gel com Fibra de Vidro" required="" type="text" value="Alongamento em Gel com Fibra de Vidro"/>
+</div>
+<!-- Linha: Categoria & Cor na Agenda -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Categoria -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md font-semibold text-on-surface">
+              Categoria <span class="text-error">*</span>
+</label>
+<select class="w-full h-[42px] px-3 rounded-[10px] bg-surface-container-lowest border border-outline-variant text-on-surface text-body-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all">
+<option selected="">Unhas &amp; Alongamento</option>
+<option>Sobrancelhas &amp; Cílios</option>
+<option>Estética Facial</option>
+<option>Spa &amp; Massoterapia</option>
+<option>Depilação</option>
+</select>
+</div>
+<!-- Cor de Identificação na Agenda -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md font-semibold text-on-surface">
+              Cor na agenda
+            </label>
+<div class="flex items-center gap-2 h-[42px] px-2.5 rounded-[10px] border border-outline-variant bg-surface-container-lowest">
+<button class="w-6 h-6 rounded-full bg-[#6E1936] ring-2 ring-primary-container ring-offset-1" type="button"></button>
+<button class="w-5 h-5 rounded-full bg-[#8C2F4D] hover:scale-110 transition-transform" type="button"></button>
+<button class="w-5 h-5 rounded-full bg-[#B85D38] hover:scale-110 transition-transform" type="button"></button>
+<button class="w-5 h-5 rounded-full bg-[#4A6B58] hover:scale-110 transition-transform" type="button"></button>
+<button class="w-5 h-5 rounded-full bg-[#6B5A75] hover:scale-110 transition-transform" type="button"></button>
+</div>
+</div>
+</div>
+<!-- Linha: Preço (R$) & Duração Estimada -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Preço -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md font-semibold text-on-surface">
+              Preço cobrado (R$) <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-outline font-semibold text-body-sm">R$</span>
+<input class="w-full h-[42px] pl-9 pr-3 rounded-[10px] bg-surface-container-lowest border border-outline-variant text-on-surface font-semibold text-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all" required="" type="text" value="130,00"/>
+</div>
+</div>
+<!-- Duração com seletor rápido -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md font-semibold text-on-surface">
+              Duração estimada <span class="text-error">*</span>
+</label>
+<select class="w-full h-[42px] px-3 rounded-[10px] bg-surface-container-lowest border border-outline-variant text-on-surface text-body-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all">
+<option>30 minutos</option>
+<option>45 minutos</option>
+<option>1 hora</option>
+<option selected="">1 hora e 45 min</option>
+<option>2 horas</option>
+</select>
+</div>
+</div>
+<!-- Seletor Rápido de Duração (Chips) -->
+<div class="flex items-center gap-1.5 pt-0.5">
+<span class="text-[11px] font-semibold text-outline uppercase mr-1">Rápido:</span>
+<button class="px-2.5 py-1 text-label-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button">30m</button>
+<button class="px-2.5 py-1 text-label-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button">45m</button>
+<button class="px-2.5 py-1 text-label-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button">1h</button>
+<button class="px-2.5 py-1 text-label-sm rounded-lg bg-secondary-fixed text-primary font-bold" type="button">1h 45m</button>
+<button class="px-2.5 py-1 text-label-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button">2h</button>
+</div>
+<!-- Área de Upload de Foto de Exemplo do Procedimento com Preview Estético -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="block text-label-md font-label-md font-semibold text-on-surface">
+              Foto de exemplo do procedimento
+            </label>
+<span class="text-[11px] text-outline">Aparece na sua página pública</span>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-4 bg-background flex flex-col items-center justify-center text-center group hover:border-secondary/60 transition-colors cursor-pointer relative overflow-hidden">
+<div class="flex items-center gap-4 w-full">
+<!-- Preview thumbnail -->
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0 relative border border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Exemplo em miniatura de unha esculpida com técnica de fibra de vidro e esmaltação perfeita brilhante em fundo neutro e toalha de salão estética." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzvnvJzfz6UDkSlgWoVu-ob9TcAVd29nsF0KxEAivu6MgkiCKAACw79zNwAQIj1HFlr-CdkWmfDA9p9F2q9884g6IhEYK9-lTZ-xWvXhgvMoL8vphmG3Bp4rsA3sNzowmeYlXA4Nw7E_5RKIPeGjRUXgckCeJurg_ox9TUzLeIB16Q5ejhlrCajcH2kh_upt5S8WuptDyDhA9RWIhucRe3tC9B_0ck4QZ7XYhx58m2yYRvQpd3K9j65g"/>
+</div>
+<!-- Text details -->
+<div class="text-left flex-1 min-w-0">
+<p class="text-label-md font-semibold text-on-surface truncate">alongamento-fibra-resultado.jpg</p>
+<p class="text-[12px] text-outline">JPEG ou PNG até 5MB • Formato paisagem recomendado</p>
+<div class="mt-1 flex items-center gap-2">
+<span class="text-primary text-[12px] font-semibold hover:underline">Trocar imagem</span>
+<span class="text-outline text-[12px]">•</span>
+<span class="text-error text-[12px] hover:underline">Remover</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Descrição Detalhada para a Página Pública de Agendamento -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="block text-label-md font-label-md font-semibold text-on-surface">
+              Descrição do serviço
+            </label>
+<span class="text-[11px] text-outline">Visível para suas clientes</span>
+</div>
+<textarea class="w-full p-3 rounded-[10px] bg-surface-container-lowest border border-outline-variant text-body-sm text-on-surface focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all resize-none" placeholder="Explique o passo a passo, benefícios, ou cuidados necessários para a cliente..." rows="3">Aplicação completa estruturada com fibra de vidro ultrafina, curvatura C natural, cuticulagem combinada e esmaltação em gel de alta durabilidade.</textarea>
+</div>
+<!-- Seção de Regras e Opções de Agendamento Online -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/70 space-y-3.5">
+<span class="text-label-sm font-semibold text-on-surface block uppercase tracking-wider">Regras de Reserva</span>
+<!-- Opção 1: Exibir na página pública -->
+<label class="flex items-start justify-between gap-3 cursor-pointer">
+<div class="space-y-0.5">
+<span class="text-label-md font-semibold text-on-surface block">Exibir na página pública de reservas</span>
+<p class="text-[12px] text-on-surface-variant">Clientes podem selecionar e solicitar este serviço no seu link online.</p>
+</div>
+<div class="relative inline-flex items-center flex-shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+<!-- Opção 2: Intervalo automático de limpeza/higienização -->
+<label class="flex items-start justify-between gap-3 cursor-pointer pt-2 border-t border-outline-variant/40">
+<div class="space-y-0.5">
+<span class="text-label-md font-semibold text-on-surface block">Intervalo de limpeza automático (+15 min)</span>
+<p class="text-[12px] text-on-surface-variant">Bloqueia 15 min na sua agenda após o procedimento para higienizar materiais.</p>
+</div>
+<div class="relative inline-flex items-center flex-shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+</div>
+</form>
+<!-- Drawer Action Buttons (Fixed Bottom) -->
+<div class="p-5 border-t border-outline-variant/70 bg-surface-container-lowest flex items-center justify-end gap-3 sticky bottom-0 z-10">
+<button class="px-5 py-2.5 rounded-[10px] border border-outline-variant text-on-surface font-label-md font-semibold hover:bg-surface-container-low transition-colors" onclick="toggleDrawer(false)" type="button">
+          Cancelar
+        </button>
+<button class="px-6 py-2.5 rounded-[10px] bg-primary-container hover:bg-[#8C2F4D] text-on-primary font-label-md font-semibold shadow-sm transition-all duration-150 active:scale-98 flex items-center gap-1.5" onclick="toggleDrawer(false)" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+<span>Salvar serviço</span>
+</button>
+</div>
+</aside>
+</div>
+<!-- Micro-interactions Script for Smooth Drawer Open/Close -->
+<script>
+    function toggleDrawer(open) {
+      const drawer = document.getElementById('serviceDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      
+      if (open) {
+        drawer.classList.remove('translate-x-full');
+        drawer.classList.add('translate-x-0');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('translate-x-0');
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+      }
+    }
+  </script>
+</body></html>
