@@ -6,7 +6,7 @@ export const migrations = ["schema", "hardening", "quality", "multiservice", "bo
 // Order in which production receives the pending scheduling migration: after the
 // billing plans and platform administration migrations already published.
 export const productionMigrations = [...migrations.filter((name) => name !== "scheduling_integrity"),
-  "billing_plans", "platform_admin", "scheduling_integrity"];
+  "billing_plans", "platform_admin", "scheduling_integrity", "parallel_bookings"];
 
 export async function migrateScheduling(db, names = productionMigrations) {
   await db.exec(`create role anon; create role authenticated; create role service_role bypassrls;

@@ -10,7 +10,7 @@
     "dev": "vite --host 127.0.0.1 --port 3000 --strictPort",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --test tests/domain.test.js tests/service-selection.test.js tests/availability.test.js tests/booking-policy.test.js tests/deployment-config.test.js tests/clara.test.js tests/clara-dialogue.test.js tests/production.test.js tests/sql.local.test.js tests/billing-edge.test.js tests/billing-plans.sql.test.js tests/scheduling.test.js tests/platform-admin.sql.test.js tests/platform-admin.edge.test.js",
+    "test": "node --test tests/domain.test.js tests/service-selection.test.js tests/availability.test.js tests/booking-policy.test.js tests/deployment-config.test.js tests/clara.test.js tests/clara-dialogue.test.js tests/production.test.js tests/sql.local.test.js tests/billing-edge.test.js tests/billing-plans.sql.test.js tests/scheduling.test.js tests/parallel-bookings.test.js tests/platform-admin.sql.test.js tests/platform-admin.edge.test.js",
     "test:integration": "node --test --test-concurrency=1 tests/integration.test.js tests/multiservice.integration.test.js",
     "check:release": "npm test && npm run build",
     "test:scheduling:concurrency": "node --test tests/scheduling.concurrent.test.js",

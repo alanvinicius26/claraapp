@@ -112,6 +112,30 @@ test("real PostgreSQL: independent transactions serialize bookings and configura
       await c.query("rollback");
       await admin.query("update public.working_hours set enabled=true where studio_id=$1", [studio.id]);
     });
+    const nails = (await one("insert into public.services(studio_id,name,duration,price,allows_parallel,parallel_limit) values($1,'Encaixe QA',45,40,true,3) returning id", [studio.id])).id;
+    await admin.query("update public.professionals set accepts_parallel=true,parallel_online=true where id=$1", [p1]);
+    await t.test("encaixe: 8 simultaneous inserts for a limit of 3 commit exactly 3", async () => {
+      const results = await Promise.allSettled(contenders.map((c) => write(c, p1, nails)));
+      assert.equal(results.filter((r) => r.status === "fulfilled").length, 3);
+      for (const result of results.filter((r) => r.status === "rejected")) assert.equal(result.reason.code, "23P01");
+      await clean();
+    });
+    await t.test("encaixe: 8 concurrent public RPC calls fill the 3 places and create 3 clients", async () => {
+      const before = Number((await one("select count(*) n from public.clients")).n);
+      const results = await Promise.allSettled(contenders.map((c) => c.query("select public.book_appointment_team($1,$2,$3,'QA Encaixe','','11999998888','',$4)", [studio.slug, [nails], at(), p1])));
+      assert.equal(results.filter((r) => r.status === "fulfilled").length, 3);
+      assert.equal(Number((await one("select count(*) n from public.clients")).n), before + 3);
+      await clean();
+    });
+    await t.test("encaixe racing exclusive services never mixes them", async () => {
+      const results = await Promise.allSettled(contenders.map((c, i) => write(c, p1, i % 2 ? nails : free)));
+      const rows = (await admin.query("select parallel_limit from public.appointments where studio_id=$1", [studio.id])).rows;
+      assert.equal(results.filter((r) => r.status === "fulfilled").length, rows.length);
+      if (rows.some((r) => r.parallel_limit === 1)) assert.equal(rows.length, 1);
+      else assert.ok(rows.length >= 1 && rows.length <= 3);
+      await clean();
+    });
+    await admin.query("update public.professionals set accepts_parallel=false,parallel_online=false where id=$1", [p1]);
     console.log("PostgreSQL version:", (await one("select version() v")).v);
   } finally {
     await Promise.allSettled(clients.map((c) => c.end()));
