@@ -1,0 +1,868 @@
+/*
+ * Final design layer (October 2026). Loaded last; the #root prefix lets a
+ * single coherent type scale win over the older layered stylesheets,
+ * including their mobile rules that shrank text to 6–9px.
+ *
+ * Scale: label 11 · meta 12 · small 13 · body 14 · lead 15 · h3 16 · h2 19 · h1 32
+ */
+:root {
+  --ink: #2b1d22;
+  --text: #5f5256;
+  --soft: #8a7b7e;
+  --surface: #ffffff;
+  --shadow-sm: 0 1px 2px #2b1d220a;
+  --shadow-md: 0 1px 2px #2b1d220a, 0 10px 30px -18px #2b1d2229;
+  --shadow-lg: 0 2px 4px #2b1d220d, 0 24px 48px -24px #2b1d2240;
+  --radius: 18px;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Headings ---------- */
+#root .content h1,
+#root .page-title h1 {
+  letter-spacing: -0.9px;
+  line-height: 1.15;
+}
+#root .content h2 {
+  letter-spacing: -0.3px;
+}
+#root .auth-card h2 {
+  letter-spacing: -0.5px;
+}
+#root .page-title p {
+  font-size: 15px;
+  color: var(--text);
+}
+
+/* ---------- Uppercase labels ---------- */
+#root .eyebrow,
+#root .workspace-label,
+#root .nav-label,
+#root .clara-day-eyebrow,
+#root .clara-day-next-label,
+#root .plan-top span {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  font-weight: 700;
+}
+
+/* ---------- Meta / micro text floor ---------- */
+#root .micro,
+#root .content-footer,
+#root .content-footer span,
+#root .today-note,
+#root .breadcrumb span,
+#root .breadcrumb strong,
+#root .topbar-right .micro,
+#root .demo-bar span,
+#root .demo-bar a,
+#root .client-visit-meta,
+#root .service-timing,
+#root .search-field span,
+#root .sidebar-note p,
+#root .sidebar-note strong,
+#root .profile span,
+#root .profile strong,
+#root .preview-bottom,
+#root .preview-profile span,
+#root .preview-profile p,
+#root .clara-day-progress,
+#root .appointment-time span,
+#root .appointment-price span,
+#root .success-text,
+#root p.micro,
+#root .bar-col small {
+  font-size: 12px;
+}
+#root .breadcrumb strong,
+#root .profile strong,
+#root .sidebar-note strong {
+  font-size: 13px;
+}
+#root .appointment-body p,
+#root .focus-service p,
+#root .focus-notes p,
+#root .metric p,
+#root .note-box p,
+#root .notice,
+#root .notice p,
+#root .notice span,
+#root .service-info p,
+#root .studio-label,
+#root .public-link span,
+#root .day-caption,
+#root .clara-day-note,
+#root .clara-day-next span,
+#root .plan-features span,
+#root .check-field,
+#root .muted,
+#root .field > span,
+#root .elapsed span,
+#root .link-display span {
+  font-size: 13px;
+}
+#root .focus-service b,
+#root .appointment-price strong,
+#root .history-item > strong,
+#root td,
+#root td strong {
+  font-size: 14px;
+}
+#root th {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* ---------- Badges and pills ---------- */
+#root .badge,
+#root .visit-pill,
+#root .category-pill,
+#root .service-duration,
+#root .tiny-count,
+#root .team-chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  line-height: 1.2;
+}
+#root .badge {
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+#root .category-pill {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #ffffffd9;
+  backdrop-filter: blur(6px);
+}
+#root .service-art strong {
+  font-size: 14px;
+}
+#root .avatar {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+#root .avatar.large {
+  font-size: 20px;
+}
+
+/* ---------- Buttons ---------- */
+#root .button,
+#root .clara-day-primary,
+#root .clara-day-chat,
+#root .today-button,
+#root .tabs button,
+#root .account-exit span,
+#root .toggle-label {
+  font-size: 14px;
+}
+#root .button.compact,
+#root .today-button,
+#root .tabs button,
+#root .toggle-label,
+#root .text-button {
+  font-size: 13px;
+}
+#root .button {
+  font-weight: 700;
+  letter-spacing: 0;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+#root .button.primary {
+  box-shadow: 0 1px 0 #ffffff1f inset, 0 8px 18px -10px #6e1936b3;
+}
+#root .button.primary:hover:not(:disabled) {
+  background: #5b122c;
+  transform: translateY(-1px);
+}
+#root .button.secondary:hover:not(:disabled) {
+  border-color: #c9a2b0;
+  background: #fffafb;
+}
+#root .button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ---------- Surfaces ---------- */
+#root .app-layout .panel,
+#root .app-layout .metric,
+#root .app-layout .service-card,
+#root .app-layout .client-item,
+#root .app-layout .appointment {
+  border-color: #ece2de;
+  box-shadow: var(--shadow-sm);
+}
+#root .app-layout .panel,
+#root .app-layout .metric {
+  box-shadow: var(--shadow-md);
+}
+#root .app-layout .appointment {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+#root .app-layout .appointment:hover {
+  border-color: #dcc3cb;
+  box-shadow: var(--shadow-md);
+}
+#root .app-layout .service-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+#root .app-layout .service-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+#root .metric strong {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.6px;
+}
+
+/* ---------- Sidebar and top bar ---------- */
+#root .sidebar nav a {
+  font-size: 14.5px;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+#root .sidebar nav a:not(.active):hover {
+  background: #f6eeec;
+  color: var(--wine);
+}
+#root .sidebar nav a.active {
+  font-weight: 700;
+}
+#root .sidebar nav a small {
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 22px;
+  text-align: center;
+  border-radius: 999px;
+}
+#root .topbar {
+  backdrop-filter: saturate(1.3) blur(10px);
+}
+
+/* ---------- Agenda toolbar ---------- */
+#root .date-toolbar {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#root .toolbar-end {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  min-width: 0;
+}
+#root .pro-filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+#root .pro-filter svg {
+  position: absolute;
+  left: 12px;
+  color: var(--wine);
+  pointer-events: none;
+}
+#root .pro-filter select {
+  height: 38px;
+  min-width: 0;
+  max-width: 230px;
+  margin: 0;
+  padding: 0 32px 0 36px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+#root .day-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  text-transform: capitalize;
+}
+#root .day-caption .text-button {
+  text-transform: none;
+}
+#root .week-strip button span {
+  font-size: 11px;
+  white-space: nowrap;
+}
+#root .week-strip button small {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* ---------- Receipts ---------- */
+#root .table-more {
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 4px;
+}
+
+/* ---------- Clients ---------- */
+#root .client-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+#root .client-summary strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Subscription ---------- */
+#root .plan-features span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#root .plan-features svg {
+  flex-shrink: 0;
+  color: #f3c9a8;
+}
+#root .plan-promises {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 26px;
+  display: grid;
+  gap: 4px;
+}
+#root .plan-promises li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+#root .plan-promises li:last-child {
+  border-bottom: 0;
+}
+#root .plan-promises svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--wine);
+}
+#root .plan-promises strong {
+  display: block;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+#root .plan-promises span {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ---------- Auth ---------- */
+#root .auth-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--wine);
+}
+#root .auth-back:hover {
+  text-decoration: underline;
+}
+#root .auth-switch,
+#root .auth-foot,
+#root .auth-top span,
+#root .auth-story footer {
+  font-size: 13px;
+}
+#root .auth-feature {
+  font-size: 14px;
+}
+
+/* ---------- Hours editor (Meu espaço + Equipe) ---------- */
+.hours-editor {
+  container-type: inline-size;
+  margin: 16px 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+.hours-editor-head,
+.hours-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(260px, 1.1fr) minmax(260px, 1.3fr);
+  gap: 16px;
+  align-items: center;
+  padding: 12px 16px;
+}
+.hours-editor-head {
+  padding-block: 10px;
+  background: #faf6f3;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+.hours-row + .hours-row {
+  border-top: 1px solid #f1e9e6;
+}
+.hours-row.is-off {
+  background: #fcfaf9;
+}
+.hours-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-width: 0;
+}
+.hours-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.hours-toggle .switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: #ddd0cc;
+  transition: background-color 0.2s ease;
+}
+.hours-toggle .switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px #0003;
+  transition: transform 0.2s ease;
+}
+.hours-toggle input:checked + .switch {
+  background: var(--wine);
+}
+.hours-toggle input:checked + .switch::after {
+  transform: translateX(16px);
+}
+.hours-toggle input:focus-visible + .switch {
+  outline: 3px solid #b9778f;
+  outline-offset: 2px;
+}
+.hours-toggle strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.hours-row.is-off .hours-toggle strong {
+  color: var(--soft);
+}
+.hours-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+.hours-range span {
+  font-size: 12px;
+  color: var(--soft);
+}
+#root .hours-range input {
+  width: auto;
+  min-width: 0;
+  flex: 1 1 0;
+  max-width: 116px;
+  height: 38px;
+  margin: 0;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  background: #fff;
+}
+.hours-break {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.hours-break-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.hours-break-toggle input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--wine);
+}
+.hours-break-toggle svg {
+  color: var(--soft);
+}
+.hours-off {
+  grid-column: 2 / -1;
+  font-size: 13px;
+  color: var(--soft);
+  font-style: italic;
+}
+/* Fit the actual panel width, including desktop's narrow team column. */
+@container (max-width: 760px) {
+  .hours-editor-head {
+    display: none;
+  }
+  .hours-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .hours-off {
+    grid-column: auto;
+  }
+  .hours-range,
+  .hours-break,
+  .hours-off {
+    padding-left: 50px;
+  }
+}
+@container (max-width: 360px) {
+  .hours-range,
+  .hours-break,
+  .hours-off {
+    padding-left: 0;
+  }
+}
+
+/* ---------- Team ---------- */
+.team-roster-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.team-roster-head p {
+  max-width: 560px;
+}
+.team-meter {
+  flex-shrink: 0;
+  text-align: right;
+}
+.team-meter strong {
+  display: block;
+  font-size: 28px;
+  color: var(--wine);
+  line-height: 1;
+}
+.team-meter strong small {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--soft);
+}
+.team-meter-track {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+.team-meter-track i {
+  width: 28px;
+  height: 6px;
+  border-radius: 99px;
+  background: #ece2de;
+}
+.team-meter-track i.on {
+  background: var(--wine);
+}
+#root .team-roster .team-capacity {
+  margin: 4px 0 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+#root .team-roster .team-capacity p {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+#root .team-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 74px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  text-align: left;
+  color: var(--ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+#root button.team-card:hover {
+  border-color: #d6b8c2;
+}
+#root .team-card.selected {
+  border-color: var(--wine);
+  box-shadow: 0 0 0 3px #6e19361a;
+  background: #fffafb;
+}
+#root .team-card.inactive {
+  opacity: 0.7;
+}
+.team-card .avatar {
+  flex-shrink: 0;
+}
+.team-card-text {
+  flex: 1;
+  min-width: 0;
+}
+.team-card-text strong {
+  display: block;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.team-card-text small {
+  font-size: 12px;
+  color: var(--soft);
+}
+#root .team-chip {
+  flex-shrink: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eef2ec;
+  color: #4f6b53;
+}
+#root .team-add {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  border-style: dashed;
+  background: #fcf8f7;
+}
+#root .team-add .field {
+  margin: 0;
+}
+#root .team-add .button {
+  width: 100%;
+  justify-content: center;
+}
+.team-config {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
+  gap: 20px;
+  align-items: start;
+  margin-top: 20px;
+}
+#root .team-config .panel {
+  margin: 0;
+}
+.team-profile-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.team-profile-head h2 {
+  margin: 2px 0 0;
+}
+#root .team-schedule .eyebrow {
+  display: block;
+  margin-bottom: 6px;
+}
+#root .team-schedule > p {
+  font-size: 13px;
+  color: var(--text);
+}
+#root .page-equipe .team-config + .panel,
+#root .page-equipe .team-roster + .panel {
+  margin-top: 20px;
+}
+@media (max-width: 1100px) {
+  .team-config {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .team-roster-head {
+    flex-direction: column;
+  }
+  .team-meter {
+    text-align: left;
+  }
+  .team-meter-track {
+    justify-content: flex-start;
+  }
+  .team-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  #root .content h1,
+  #root .page-title h1 {
+    font-size: 28px;
+    letter-spacing: -0.6px;
+  }
+  #root .page-title p {
+    font-size: 14px;
+  }
+  #root .toolbar-end {
+    width: 100%;
+    margin-left: 0;
+  }
+  #root .pro-filter {
+    flex: 1;
+  }
+  #root .pro-filter select {
+    width: 100%;
+    max-width: none;
+  }
+  #root .client-summary {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  #root .client-summary > div:last-child {
+    grid-column: 1 / -1;
+  }
+}
+#root .clara-day-next-label {
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* ---------- Fixes after visual review ---------- */
+#root .hours-range input {
+  flex: 0 1 112px;
+  width: 112px;
+  max-width: 112px;
+}
+#root .hours-break .hours-range {
+  padding-left: 0;
+}
+#root .studio-link-field input {
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 0 0 8px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 14px;
+  color: var(--ink);
+}
+#root .team-card-text small {
+  display: block;
+  line-height: 1.4;
+}
+@media (max-width: 420px) {
+  #root .hours-range input {
+    width: 100px;
+    max-width: 100px;
+  }
+}
+#root .history-item div strong {
+  font-size: 14px;
+}
+#root .history-item p {
+  font-size: 12px;
+}
+#root .client-summary span,
+#root .focus-service span {
+  font-size: 12px;
+}
+#root .plan-features {
+  margin-bottom: 18px;
+}
+#root .sidebar nav a {
+  font-size: 14px;
+}
+#root input:not([type="checkbox"]):not([type="radio"]),
+#root select,
+#root textarea {
+  font-size: 14px;
+}
+#root .auth-copy > p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+#root .auth-card > p {
+  font-size: 14px;
+}
+@media (max-width: 767px) {
+  /* 16px keeps iOS Safari from zooming into focused fields. */
+  #root input:not([type="checkbox"]):not([type="radio"]),
+  #root select,
+  #root textarea {
+    font-size: 16px;
+  }
+}
+#root .sr-only {
+  position: absolute;
+  width: 1px;
+  min-width: 0;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+#root .bar-chart {
+  position: relative;
+}
+#root .divider-text {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+}
+#root .bottom-nav a span {
+  font-size: 11px;
+  font-weight: 600;
+}
+#root .metric > div > span:first-child {
+  font-size: 13px;
+}
+#root .mobile-studio small {
+  font-size: 12px;
+}
+#root .catalog-link p,
+#root .online-how span {
+  font-size: 12px;
+}
+@media (max-width: 767px) {
+  #root .metric > div > span:first-child {
+    font-size: 12px;
+  }
+}
+#root .identity-banner p {
+  font-size: 12px;
+}
+#root .identity-banner strong,
+#root .identity-banner h3 {
+  font-size: 15px;
+}

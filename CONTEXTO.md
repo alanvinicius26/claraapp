@@ -1,5 +1,61 @@
 # Minha Clara — leia primeiro ao retomar
 
+## WhatsApp/n8n em STANDBY — 14/10/2026, LOCAL, atualização mais recente
+- Usuário pediu isolar toda a atualização de WhatsApp/n8n para que um commit não a mostre aos usuários. Chave de build `VITE_WHATSAPP_ENABLED` (`scripts/deployment-config.js` → `whatsappFeature`, `src/features.js`), desligada por padrão; só o valor exato `true` ou o modo `dev:whatsapp` liga.
+- Desligada: sem item/página "Conversas WhatsApp" (rota cai na agenda), sem caixa de autorização e reserva volta a `book_appointment_team`. Build conferido: nenhum chunk/CSS/texto do WhatsApp novo; resta só o nome `book_appointment_whatsapp` na lista de roteamento de `lib.js` (inofensivo). Ligada: chunk `WhatsApp-*.js` volta.
+- Backend continua pronto e inerte: migrações SQL não aplicadas; função `booking` aceita a nova ação mas o frontend não a chama; função `whatsapp` não publicada; n8n oficial inativo. Simulador local e fluxo [LOCAL] continuam funcionando.
+- 469 testes aprovados (1 novo para a chave), build aprovado, demonstração conferida no navegador com a chave desligada. Nada commitado/publicado.
+
+## Correções WhatsApp após revisão — 14/10/2026, LOCAL, atualização mais recente
+- Usuário pediu corrigir 3 problemas encontrados na revisão completa. Somente `supabase/whatsapp.sql`, `supabase/whatsapp_operations.sql` (ainda não aplicadas em nenhum Supabase), testes e guia alterados.
+- Unificação de clientes: gatilho `whatsapp_appointment_changed` agora transfere a autorização quando só o cliente mudou e o cadastro principal tem o mesmo número; mensagens continuam pendentes. Número diferente/ausente segue invalidando (conservador, mantém a regra de contato alterado).
+- Número sem o nono dígito: nova `encaixa_private.whatsapp_canonical` (55+DDD+8 dígitos iniciados 6–9 recebe o 9; fixos e outros países inalterados), usada por `whatsapp_phone` e na entrada `whatsapp_inbound`. SAIR do número antigo revoga a autorização e não cria conversa duplicada. Comportamento da Meta com número real ainda não homologado.
+- Saúde: `whatsapp_operations` conta falhas/incertezas de mensagens (`updated_at`) e eventos falhos de entrada (`available_at`) só da última hora; incidente fecha sozinho. `whatsapp_claim` passou a gravar `updated_at` em template_required/attempts_exhausted.
+- Validação: 468 testes (3 novos de regressão), 5 concorrentes PostgreSQL nativo, build aprovados. Nada publicado; banco remoto, n8n e Meta intactos. Pendência conhecida não corrigida: eventos de canal conectado mas desativado falham após 5 tentativas (~8 min).
+
+## Atendimento completo — 13/10/2026, LOCAL, atualização mais recente
+- Usuário autorizou montar o fluxo completo profissional. Implementados: `whatsapp_operations.sql` após `whatsapp.sql`, inbox persistente, dispatcher transacional, contadores/incidentes e confirmação única de encaminhamento humano. Menu oficial tem botões. Estado incerto continua sem reenvio.
+- Conexão por estabelecimento: `src/WhatsAppConnection.jsx`, `whatsapp-connection.js`, backend `connections.js`; JWT/owner, sessão única expira10min, vínculo WABA/número conferido, token cifrado AES-GCM/AAD studio_id, sem token global no entrypoint. Conectar deixa disabled; desconectar cancela fila e remove token. Registro PIN separado, sync de modelos aprovados. Meta não configurada nem chamada de verdade.
+- n8n: `ClaraFullLocal01` — Clara — Atendimento completo [LOCAL], importado, executado e publicado. `ClaraFullLive01` — [OFICIAL], importado INATIVO com URL do projeto Supabase atual preparada, função ainda não publicada e credencial não configurada. Relógio antigo `ClaraWaQueueSim01` despublicado; conteúdo preservado. Original `fWw0sNDvnpUn1Vr1` e entrada fictícia preservados.
+- Validado: 465 testes gerais, 5 concorrentes PostgreSQL, build. UI confirmou conexão aguardando Meta e entrada persistente→encaminhamento→ack simulado→bot pausado via n8n. Logs `.local/whatsapp-complete-*`. Banco remoto/deploy/Meta intactos.
+- Guia ATUAL: `WHATSAPP-ATENDIMENTO.md`; documento anterior marcado histórico. Novas variáveis servidor: META_APP_ID, META_SIGNUP_CONFIG_ID, META_ONBOARDING_ENABLED=false, META_SIGNUP_COEXISTENCE=false, WHATSAPP_TOKEN_ENCRYPTION_KEY, N8N_WAKE_URL opcional. Segredos não versionados. Endereços/ordem de migrações no guia.
+
+## WhatsApp + n8n — 13/10/2026, implementação LOCAL
+- Pedido: integrar atendimento determinístico, link de reserva, atendimento humano, confirmação/lembrete, consentimento e isolamento; Meta bloqueada por 130497, sem investigar nem enviar mensagens reais.
+- Implementados `supabase/whatsapp.sql`, função `whatsapp`, wrapper transacional `book_appointment_whatsapp`, painel `src/WhatsApp.jsx`, simulador persistente isolado e dois workflows n8n. Documentação completa em `WHATSAPP-N8N.md`; rascunhos de modelos e variáveis em `integrations/whatsapp`.
+- Banco de produção NÃO alterado. Ordem futura: dependências existentes, scheduling_integrity, parallel_bookings, whatsapp.sql; funções booking/whatsapp antes do frontend. Não publicar somente o frontend atual.
+- n8n Docker local 2.42.7: workflows `ClaraWaQueueSim01` (fila) e `ClaraWaInboxSim01` (entrada fictícia) importados/executados, credencial local no gerenciador. Original `fWw0sNDvnpUn1Vr1` preservado. O relógio da fila foi configurado apenas para o simulador local; conferir estado atual no n8n antes de modificá-lo.
+- Simulação: `npm run whatsapp:sim` + `npm run dev:whatsapp`; painel `http://127.0.0.1:3000/#/demo/conversas`, porta8787 para a ponte, Docker usa host.docker.internal:8787. Banco e segredos em `.local/whatsapp-sim`, ignorados pelo Git. Não expor os valores.
+- Validação: 455 testes gerais + 4 concorrentes PostgreSQL aprovados; build aprovado (avisos antigos Lucide). Fluxo no navegador e n8n testado até confirmação e lembrete. Viewport da ferramenta não aplicou largura móvel; validação visual móvel da nova tela pendente.
+- Janela de 24h desde entrada da cliente, modelos aprovados fora dela, sem franquia presumida de mil mensagens. HTTP aceito não significa entregue. Falhas ambíguas ficam incertas sem reenvio; recibos HMAC atualizam somente mensagens oficiais. Opt-out revoga notificações; reativação automática não implementada.
+
+## Correções da revisão — 13/10/2026, LOCAL
+- Recebimentos: o gráfico de “Hoje” agora usa somente o dia atual; semana e mês preservados. Conferido no navegador: 1, 7 e 31 barras, respectivamente, em outubro.
+- “Clientes que voltam” conta visitas concluídas dentro dos últimos 30 dias, incluindo os limites do período no fuso de São Paulo; histórico antigo e datas futuras não entram.
+- Expediente: layout usa a largura do próprio editor (container query), com campos flexíveis para evitar sobreposição e corte em Equipe e Meu espaço. Equipe validada em 320/375/768/1280/1440px; Meu espaço em 320/375/1440px.
+- Adicionados 3 testes de regressão em tests/insights.test.js, incluídos em npm test. Total: 439 testes aprovados; build aprovado, somente avisos existentes do Lucide. Nenhum backend, dado remoto ou publicação alterado.
+
+## Apresentação profissional — 12/10/2026, LOCAL
+- Pedido: deixar a Clara com cara profissional e atrativa para profissionais de beleza e apresentável a investidores. Tudo LOCAL; nada publicado, nenhum backend, migração ou dado remoto alterado.
+- Nova página inicial pública `src/Landing.jsx` + `landing.css`: visitantes sem sessão em `#/` veem a landing; login em `#/entrar`, cadastro em `#/cadastro` (Auth ganhou `initialMode` e link "Conhecer a Clara"). Rotas de token/erro continuam abrindo o login; sessão ativa continua indo ao painel. Preços vêm de `PLANS`. Sem depoimentos ou números inventados.
+- `src/polish.css` (carregado por último, prefixo `#root`): escala tipográfica com mínimo legível (o CSS móvel antigo tinha textos de 6–9px), campos com 16px no celular (evita zoom do iOS), cartões/botões/menu refinados.
+- `src/Insights.jsx` + `insights.css`: "Visão do negócio" na agenda (faturamento dos últimos 7 dias completos vs. anteriores, ticket médio, clientes que voltam, reservas online, gráfico de 14 dias) e, em Recebimentos, faturamento por dia + formas de pagamento; tabela com "Mostrar mais" e ordem recentes→futuros.
+- `src/HoursEditor.jsx`: expediente compacto (linha por dia, chave liga/desliga) em Meu espaço e Equipe; mesmos campos/RPCs. Equipe reorganizada em cartões de profissionais, medidor de vagas e configuração lado a lado.
+- Agenda: filtro de profissional na barra de datas, contagem de horários por dia na semana. Clientes: última visita, plural corrigido. Serviços: ícone por categoria, categorias "Maquiagem & produção" e "Estética & depilação". Assinatura (demo): benefícios e link para `#/cadastro`.
+- Demonstração (`src/demo.js`): 12 clientes com telefones fictícios (faixa 90000-0xxx), 6 serviços (inclui cabelo e maquiagem), 4 semanas de histórico e 6 dias futuros gerados de forma determinística; os 6 atendimentos de hoje e os 5 primeiros clientes mantidos para as fixtures.
+- Validação: 436 testes aprovados, build aprovado (só avisos do Lucide). Conferência visual desktop 1440 e celular 375 de todas as telas, sem rolagem horizontal, sem texto abaixo de 11px, sem erros no console; interações de expediente, equipe e rotas testadas na demonstração. Publicação segue exigindo aprovação explícita.
+
+## Alinhamento das imagens — 12/10/2026, LOCAL
+- Corrigidos os deslocamentos herdados da arte antiga: Clara dentro do cartão da agenda, imagem de acesso no fluxo da página, Equipe centralizada e compartilhamento em grade. Ilustrações com proporção quadrada preservada; estados vazios, conquistas e WhatsApp com espaços estáveis.
+- Corrigida também a largura mínima da prévia de agendamento online que fazia o cartão ultrapassar celulares de 320px. Margens da conquista consideram a largura útil da tela.
+- Conferência visual local em 320/390px e desktop, medições de layout em 320/768/1280px e das cinco variações da agenda. Build aprovado; somente avisos existentes do Lucide. Dados, regras de encaixes e backend preservados. Não publicado.
+
+## Clara em 15 poses — 11/10/2026, implementação LOCAL
+- Pedido: aplicar as 15 imagens após conferir as modificações recentes. Base revisada: commit 65dbe5b, sem código modificado fora do Git no início. Preservadas as alterações de Serviços, Equipe e encaixes.
+- `src/ClaraArt.jsx` centraliza as poses. Aplicadas por contexto: acesso/cadastro, onboarding, agenda e lembrete, estados vazios, Equipe, compartilhamento, avatar/chat, WhatsApp e conquistas. Imagens originais em `design-references/clara/15-poses-2026-10-11`; 15 WebP de 768px em `src/assets/clara-poses` (1,16 MB total), gerados por `scripts/optimize-clara-poses.py`.
+- 436 testes aprovados e build aprovado. Conferência visual desktop/mobile390px e troca de estados em `/.local/clara-presence-preview.html`, com dados fictícios. Detalhes e mapa em `design-references/clara/15-poses-2026-10-11/APLICACAO.md`.
+- Nenhum registro remoto, migração ou backend alterado. Não houve nova auditoria do banco de produção. NÃO publicado; regra de aprovação abaixo e dependências remotas de agendamento/encaixes continuam válidas.
+
 ## Git + encaixes — 11/10/2026, LOCAL, nada publicado
 - Repositório Git criado (branch main, LF fixo via .gitattributes/core.autocrlf=false, .local/dist/.env ignorados; nenhum segredo encontrado nos arquivos versionados). Commits usam a identidade global do Git (Alan Vinicius). Sem remoto configurado.
 - scheduling_integrity.sql verificada na ordem REAL de produção (após billing_plans e platform_admin): testes PGlite e 9 testes PostgreSQL nativo concorrentes passaram. Continua NÃO aplicada no Supabase; leitura remota não refeita nesta sessão.

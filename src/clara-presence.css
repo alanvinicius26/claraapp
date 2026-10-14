@@ -1,6 +1,6 @@
 .clara-empty { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 25px; align-items: center; border: 1px solid #ead9d8; border-radius: 20px; padding: 20px 28px; background: radial-gradient(ellipse at bottom left, #f1ded8, transparent 68%), #fffaf5; margin: 20px 0; }
-.clara-empty-art { align-self: end; border-bottom: 1px solid #d5b5ad; }
-.clara-empty-art img { display: block; width: 100%; height: auto; }
+.clara-empty-art { align-self: center; }
+.clara-empty-art img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
 .clara-presence-label { color: #976656; font-size: 8px; letter-spacing: 1.4px; line-height: 1.8; font-weight: 600; }
 .clara-empty .clara-empty-copy h3 { color: #5c2037; font-size: 20px; line-height: 1.35; margin: 9px 0; letter-spacing: -.4px; }
 .clara-empty .clara-empty-copy p { color: #80666a; font-size: 12px; line-height: 1.8; margin: 0; max-width: 430px; }
@@ -11,10 +11,10 @@
 .clara-empty-help { background: transparent; color: #6e1936; }
 .clara-empty-primary:hover { background: #50132a; }
 .clara-empty-help:hover { background: #f2e4e2; }
-.clara-milestone { position: fixed; z-index: 150; right: 24px; bottom: 112px; width: 350px; max-width: calc(100vw - 32px); border: 1px solid #e5c9ca; border-radius: 22px; box-shadow: 0 16px 56px #3e152c33; background: #fff9f3; padding: 22px; animation: clara-moment-enter .35s ease-out; }
+.clara-milestone { position: fixed; z-index: 150; right: 24px; bottom: 112px; width: 350px; max-width: calc(100% - 48px); border: 1px solid #e5c9ca; border-radius: 22px; box-shadow: 0 16px 56px #3e152c33; background: #fff9f3; padding: 22px; animation: clara-moment-enter .35s ease-out; }
 .clara-milestone-close { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 38px; height: 38px; color: #6e1936; background: transparent; border-radius: 50%; z-index: 1; }
-.clara-milestone-art { position: relative; width: 112px; margin: -4px auto 12px; border-bottom: 1px solid #e5c9ca; }
-.clara-milestone-art img { display: block; width: 100%; height: auto; }
+.clara-milestone-art { position: relative; width: 112px; margin: 0 auto 12px; }
+.clara-milestone-art img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
 .clara-milestone-art > svg { position: absolute; right: -16px; top: 22px; color: #b78455; }
 .clara-milestone .clara-milestone-copy { text-align: center; }
 .clara-milestone .clara-milestone-copy h3 { font-size: 19px; line-height: 1.4; letter-spacing: -.4px; color: #5c2037; margin: 7px 0; }
@@ -30,8 +30,23 @@
   .clara-empty .clara-empty-copy h3 { font-size: 18px; }
   .clara-empty-actions { justify-content: center; gap: 5px; }
   .clara-empty-actions button { min-height: 44px; }
-  .clara-milestone { right: 16px; bottom: calc(170px + env(safe-area-inset-bottom)); padding: 18px; max-height: calc(100dvh - 190px); overflow-y: auto; }
+  .clara-milestone { right: 16px; bottom: calc(170px + env(safe-area-inset-bottom)); padding: 18px; max-width: calc(100% - 32px); max-height: calc(100dvh - 190px); overflow-y: auto; }
   .clara-milestone-art { width: 85px; }
   .clara-milestone .clara-milestone-copy h3 { font-size: 17px; }
 }
 @media(prefers-reduced-motion: reduce) { .clara-milestone { animation: none; } }
+
+.clara-onboarding-art { display: block; width: 140px; max-width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; margin: 0 auto 20px; }
+.app-layout .page-title.clara-team-title { display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: 22px; }
+.clara-team-art { display: block; flex: 0 0 110px; width: 110px; height: auto; aspect-ratio: 1; object-fit: contain; }
+.clara-team-title > div { min-width: 0; }
+.clara-sharing-heading { display: grid; grid-template-columns: minmax(0, 1fr) 128px; align-items: center; gap: 18px; margin-bottom: 16px; }
+.clara-sharing-art { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.clara-sharing-heading h2 { margin-bottom: 0; }
+.clara-sharing-heading .badge { white-space: normal; }
+@media(max-width: 720px) {
+  .app-layout .page-title.clara-team-title { flex-direction: row; gap: 12px; align-items: center; }
+  .clara-team-art { flex-basis: 78px; width: 78px; }
+  .clara-sharing-heading { grid-template-columns: minmax(0, 1fr) 80px; gap: 12px; }
+  .clara-onboarding-art { width: 110px; }
+}

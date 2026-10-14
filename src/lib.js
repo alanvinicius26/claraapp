@@ -11,6 +11,16 @@ export const supabase = createClient(
   },
 );
 export async function rpc(name, args = {}) {
+  // Explicit dev-only mode: public booking and conversations use the isolated simulator.
+  if (import.meta.env.DEV && import.meta.env.VITE_WHATSAPP_SIMULATION === "true" &&
+      (name === "whatsapp_owner" || ["booking_page", "available_slots_team", "available_dates_team", "book_appointment_whatsapp", "manage_booking"].includes(name))) {
+    const response = await apiFetch("/whatsapp-sim/rpc", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, args }),
+    });
+    const body = await response.json();
+    if (!response.ok) throw new Error(body.message || "Falha na simulação local.");
+    return body.data;
+  }
   if (
     [
       "booking_page",
@@ -20,6 +30,7 @@ export async function rpc(name, args = {}) {
       "available_slots_team",
       "available_dates_team",
       "book_appointment_team",
+      "book_appointment_whatsapp",
       "book_appointment",
       "book_appointment_multi",
       "manage_booking",

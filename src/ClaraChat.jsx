@@ -2,8 +2,7 @@ import { slotTime } from "../supabase/functions/clara/reschedule.js";
 import { whatsappLink } from "./clara-whatsapp";
 import React, { useEffect, useRef, useState } from "react";
 import { X, Send, LoaderCircle } from "lucide-react";
-import claraPortrait from "./assets/clara-personagem-v1.webp";
-import claraPresenting from "./assets/clara-apontando-v1.webp";
+import ClaraArt from "./ClaraArt";
 import { supabase, query } from "./lib";
 import "./clara.css";
 const greeting={role:"assistant",text:"Sou a Clara, sua assistente ✨\nComo posso deixar seu dia mais leve?"};
@@ -101,10 +100,10 @@ export default function ClaraChat({demo=false,notice,onRescheduled,userId,openRe
   finally{clearTimeout(timeout);if(active===generation.current){inFlight.current=false;setBusy(false);field.current?.focus();}}
  }
  return <>
-  <button ref={launcher} className="clara-launcher" title="Pergunte à Clara" aria-label={open?"Fechar chat da Clara":"Pergunte à Clara"} aria-expanded={open} aria-controls="clara-chat" onClick={()=>{if(open)close();else{opener.current=launcher.current;setOpen(true);}}}><span className="clara-portrait"><img src={claraPortrait} alt="" /></span><span className="clara-help-badge" aria-hidden="true">?</span></button>
+  <button ref={launcher} className="clara-launcher" title="Pergunte à Clara" aria-label={open?"Fechar chat da Clara":"Pergunte à Clara"} aria-expanded={open} aria-controls="clara-chat" onClick={()=>{if(open)close();else{opener.current=launcher.current;setOpen(true);}}}><span className="clara-portrait"><ClaraArt pose="confident" /></span><span className="clara-help-badge" aria-hidden="true">?</span></button>
   {open&&<div className="clara-backdrop" onMouseDown={e=>{if(e.target===e.currentTarget)close();}}>
    <section id="clara-chat" ref={panel} className="clara-panel" role="dialog" aria-modal="true" aria-labelledby="clara-title" onKeyDown={keys}>
-    <header className="clara-header"><span className="clara-avatar clara-portrait"><img src={claraPortrait} alt="" /></span><div><h2 id="clara-title">Clara</h2><p>Sua assistente · Clara</p></div><button type="button" aria-label="Fechar chat" onClick={close}><X size={21}/></button></header>
+    <header className="clara-header"><span className="clara-avatar clara-portrait"><ClaraArt pose={busy || error ? "thinking" : "confident"} /></span><div><h2 id="clara-title">Clara</h2><p>Sua assistente · Clara</p></div><button type="button" aria-label="Fechar chat" onClick={close}><X size={21}/></button></header>
     <div className="clara-messages" role="log" aria-live="polite" aria-relevant="additions text">
      {messages.map((m,i)=><div key={i} className={"clara-message "+m.role}>{m.text}
       {m.actions?.map(a=><button className="clara-action" key={a.id} disabled={busy} onClick={()=>send(a.label.replace('Ver / remarcar:','Remarcar:'),{kind:'select',appointmentId:a.id})}>{a.label.replace('Ver / remarcar:','Remarcar:')}</button>)}
@@ -132,7 +131,7 @@ export default function ClaraChat({demo=false,notice,onRescheduled,userId,openRe
 export function WhatsAppDraft({draft}) {
  const [text,setText]=useState(draft.text),[copied,setCopied]=useState(false);
  const link=whatsappLink(draft.phone,text);
- return <div className="clara-whatsapp"><div className="clara-draft-intro"><img src={claraPresenting} alt="" width="1536" height="1024" decoding="async" /><strong>Prontinho!<br/>Vamos avisar sua cliente?</strong></div><label>Mensagem para o cliente<textarea value={text} onChange={e=>setText(e.target.value)} rows={7}/></label>
+ return <div className="clara-whatsapp"><div className="clara-draft-intro"><ClaraArt pose="phone" loading="lazy" /><strong>Prontinho!<br/>Vamos avisar sua cliente?</strong></div><label>Mensagem para o cliente<textarea value={text} onChange={e=>setText(e.target.value)} rows={7}/></label>
  {link&&text.trim()?<a className="clara-action" href={link} target="_blank" rel="noopener noreferrer">Enviar</a>:<small>Cadastre um telefone brasileiro com DDD para abrir a conversa. Você pode copiar a mensagem.</small>}
  <button className="clara-action" onClick={async()=>{try{await navigator.clipboard.writeText(text);setCopied(true);}catch{setCopied(false);}}}>{copied?"Mensagem copiada":"Copiar mensagem"}</button><small>Revise o texto e toque em enviar no WhatsApp.</small></div>;
 }

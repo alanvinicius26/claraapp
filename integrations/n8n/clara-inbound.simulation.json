@@ -1,0 +1,135 @@
+{
+  "name": "Clara — Cliente inicia conversa [SIMULAÇÃO]",
+  "active": false,
+  "nodes": [
+    {
+      "id": "eb48308b-04eb-4916-9814-44dc179a428c",
+      "name": "Executar manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "85c714cc-f266-448b-aba5-963fda97f587",
+      "name": "Mensagem fictícia",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        250,
+        0
+      ],
+      "parameters": {
+        "jsCode": "return [{json:{channel:'sim-studio-1',event_id:'sim-n8n-'+$execution.id,phone:'5511900000101',text:'Olá',timestamp:new Date().toISOString()}}];"
+      },
+      "notes": "Altere text para Agendar ou Falar com atendente. Nunca use contatos reais neste fluxo."
+    },
+    {
+      "id": "3d4f0778-2706-4ef7-8abc-c66cea629cc2",
+      "name": "Registrar entrada",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        500,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8787/simulate-inbound",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "clara-whatsapp-local-header",
+          "name": "Clara — ponte local (simulação)"
+        }
+      },
+      "retryOnFail": false,
+      "notes": "Autenticação no gerenciador de credenciais. Não inserir segredo no workflow. Retentativas e duplicidades são controladas pela Clara."
+    },
+    {
+      "id": "73a0a61d-9b54-4dfa-a61e-6ede53bc8dfe",
+      "name": "Processar respostas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        750,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8787/process",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "clara-whatsapp-local-header",
+          "name": "Clara — ponte local (simulação)"
+        }
+      },
+      "retryOnFail": false,
+      "notes": "Autenticação no gerenciador de credenciais. Não inserir segredo no workflow. Retentativas e duplicidades são controladas pela Clara."
+    }
+  ],
+  "connections": {
+    "Executar manualmente": {
+      "main": [
+        [
+          {
+            "node": "Mensagem fictícia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem fictícia": {
+      "main": [
+        [
+          {
+            "node": "Registrar entrada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar entrada": {
+      "main": [
+        [
+          {
+            "node": "Processar respostas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "saveExecutionProgress": false,
+    "saveManualExecutions": false,
+    "saveDataErrorExecution": "none",
+    "saveDataSuccessExecution": "none"
+  },
+  "id": "ClaraWaInboxSim01"
+}

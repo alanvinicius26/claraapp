@@ -47,6 +47,15 @@ export function MobileNav({ prefix, page }) {
 export function WeekStrip({ day, setDay, appointments }) {
   const weekday = new Date(day + "T12:00:00Z").getUTCDay();
   const start = shiftDate(day, -((weekday + 6) % 7));
+  const busy = (d) =>
+    appointments.filter(
+      (a) =>
+        a.starts_at &&
+        !["cancelled", "blocked"].includes(a.status) &&
+        new Date(a.starts_at).toLocaleDateString("en-CA", {
+          timeZone: "America/Sao_Paulo",
+        }) === d,
+    ).length;
   return (
     <div className="week-strip" aria-label="Dias da semana">
       {Array.from({ length: 7 }, (_, i) => shiftDate(start, i)).map((d) => (
@@ -67,20 +76,7 @@ export function WeekStrip({ day, setDay, appointments }) {
               .replace(".", "")}
           </small>
           <strong>{Number(d.slice(-2))}</strong>
-          <span>
-            {d === today()
-              ? "Hoje"
-              : appointments.some(
-                    (a) =>
-                      a.starts_at &&
-                      new Date(a.starts_at).toLocaleDateString("en-CA", {
-                        timeZone: "America/Sao_Paulo",
-                      }) === d &&
-                      !["cancelled", "blocked"].includes(a.status),
-                  )
-                ? "•"
-                : "—"}
-          </span>
+          <span>{d === today() ? "Hoje" : busy(d) ? busy(d) + (busy(d) === 1 ? " horário" : " horários") : "Livre"}</span>
         </button>
       ))}
     </div>

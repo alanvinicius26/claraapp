@@ -11,3 +11,7 @@ verify_jwt = false
 
 [functions.stripe-webhook]
 verify_jwt = false
+
+# Bridge uses its own server secret; Meta webhook uses raw-body HMAC verification.
+[functions.whatsapp]
+verify_jwt = false

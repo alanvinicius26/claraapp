@@ -1,9 +1,11 @@
 .clara-day {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: 136px minmax(0, 1fr) 200px;
+  grid-template-areas: "art copy next" "actions actions actions";
+  align-items: center;
   gap: 20px 28px;
-  margin: 100px 0 26px;
+  margin: 24px 0 26px;
   padding: 28px 30px 24px;
   border: 1px solid #754055;
   border-radius: 22px;
@@ -13,14 +15,15 @@
   animation: clara-day-enter .4s ease-out;
 }
 .clara-day-character {
-  position: absolute;
-  width: 244px;
+  grid-area: art;
+  display: block;
+  width: 100%;
   height: auto;
-  right: 18px;
-  top: -123px;
+  aspect-ratio: 1;
+  object-fit: contain;
   pointer-events: none;
 }
-.clara-day-copy { min-width: 0; }
+.clara-day-copy { grid-area: copy; min-width: 0; }
 .clara-day-eyebrow { display: flex; align-items: center; gap: 7px; color: #e7c4b2; font-size: 9px; font-weight: 600; letter-spacing: 1.8px; }
 .clara-day-eyebrow > span { width: 5px; height: 5px; border-radius: 50%; background: #dfb296; }
 .clara-day .clara-day-copy h2 { margin: 12px 0 10px; color: #fff5e9; font-size: 28px; line-height: 1.25; letter-spacing: -.8px; font-weight: 500; overflow-wrap: anywhere; }
@@ -28,11 +31,11 @@
 .clara-day .clara-day-summary { margin: 0; color: #fff5e9; font-size: 14px; line-height: 1.6; }
 .clara-day .clara-day-note { margin: 4px 0 0; color: #d8b9bd; font-size: 12px; line-height: 1.6; }
 .clara-day-scope { display: inline-block; margin-top: 9px; color: #e7c4b2; font-size: 11px; }
-.clara-day-next { display: flex; flex-direction: column; justify-content: center; gap: 7px; min-width: 0; padding: 25px 0 0 22px; border-left: 1px solid #dfb29635; }
+.clara-day-next { grid-area: next; display: flex; flex-direction: column; justify-content: center; gap: 7px; min-width: 0; padding: 12px 0 12px 22px; border-left: 1px solid #dfb29635; }
 .clara-day-next-label { display: flex; gap: 7px; align-items: center; color: #e7c4b2; font-size: 8px; letter-spacing: 1.3px; }
 .clara-day-next strong { color: #fff5e9; font-weight: 500; font-size: 16px; overflow-wrap: anywhere; }
 .clara-day-next > span:last-child { color: #e3c7c9; font-size: 12px; line-height: 1.6; }
-.clara-day-actions { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.clara-day-actions { grid-area: actions; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .clara-day-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; padding: 10px 15px; border-radius: 10px; font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; transition: background .2s, transform .2s; }
 .clara-day-actions button:hover { transform: translateY(-1px); }
 .clara-day-actions button svg { flex-shrink: 0; }
@@ -44,20 +47,18 @@
 .clara-day-progress { margin-left: auto; color: #e3c7c9; font-size: 11px; }
 @keyframes clara-day-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (max-width: 1150px) {
-  .clara-day { grid-template-columns: minmax(0, 1fr) 185px; gap: 18px; padding: 24px; }
-  .clara-day-character { width: 220px; top: -111px; right: 8px; }
-  .clara-day-next { padding-left: 18px; }
+  .clara-day { grid-template-columns: 110px minmax(0, 1fr); grid-template-areas: "art copy" "next next" "actions actions"; gap: 18px; padding: 24px; }
+  .clara-day-next { border-left: 0; border-top: 1px solid #dfb29635; padding: 14px 0 0; }
 }
 @media (max-width: 720px) {
-  .clara-day { display: block; margin-top: 88px; padding: 20px 18px 18px; border-radius: 18px; }
-  .clara-day-character { width: 156px; top: -79px; right: 4px; }
-  .clara-day-eyebrow { max-width: calc(100% - 94px); font-size: 8px; line-height: 1.6; letter-spacing: 1.2px; }
-  .clara-day .clara-day-copy h2 { margin: 14px 0 8px; font-size: 24px; }
+  .clara-day { grid-template-columns: 84px minmax(0, 1fr); gap: 16px 14px; padding: 20px 18px 18px; border-radius: 18px; }
+  .clara-day-eyebrow { font-size: 8px; line-height: 1.6; letter-spacing: 1.2px; }
+  .clara-day .clara-day-copy h2 { margin: 10px 0 8px; font-size: 22px; }
   .clara-day .clara-day-summary { font-size: 13px; }
   .clara-day .clara-day-note { display: none; }
-  .clara-day-next { border-left: 0; border-top: 1px solid #dfb29635; margin-top: 16px; padding: 13px 0 0; gap: 5px; }
+  .clara-day-next { padding-top: 13px; gap: 5px; }
   .clara-day-next strong { font-size: 14px; }
-  .clara-day-actions { margin-top: 16px; gap: 8px; align-items: stretch; }
+  .clara-day-actions { gap: 8px; align-items: stretch; }
   .clara-day-actions button { flex: 1 1 0; min-width: 0; min-height: 44px; font-size: 11px; line-height: 1.5; padding: 10px; gap: 6px; }
   .clara-day-progress { width: 100%; margin: 2px 0 0; font-size: 10px; }
 }

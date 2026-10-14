@@ -32,3 +32,9 @@ export function allowCustomerSharing(env) {
     (env.VERCEL_TARGET_ENV || env.VERCEL_ENV) === "production"
   );
 }
+
+// WhatsApp/n8n service is on standby: hidden unless explicitly enabled for a build.
+// The local simulator mode always shows it; nothing else turns it on implicitly.
+export function whatsappFeature(env, simulation = false) {
+  return simulation || env.VITE_WHATSAPP_ENABLED === "true";
+}

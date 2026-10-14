@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Brand, { BrandMark } from "./Brand";
 import { canShareLinks, sharingUnavailable } from "./sharing";
+import { whatsappEnabled } from "./features";
 import {
   Flower2,
   ShieldCheck,
@@ -274,6 +275,7 @@ export function Booking({ slug, notify }) {
   const [submitError, setSubmitError] = useState("");
   const slotsRef = useRef(null);
   const contactRef = useRef(null);
+  const bookingRequest = useRef(null);
   useEffect(() => {
     let current = true;
     setLoading(true);
@@ -305,7 +307,7 @@ export function Booking({ slug, notify }) {
     setBusy(true);
     setSubmitError("");
     try {
-      const result = await rpc("book_appointment_team", {
+      const args = {
         p_slug: slug,
         p_services: serviceIds,
         p_professional: professionalId,
@@ -314,7 +316,19 @@ export function Booking({ slug, notify }) {
         p_email: (f.email || "").trim(),
         p_phone: normalizePhone(f.phone),
         p_notes: f.notes || "",
-      });
+      };
+      let result;
+      if (whatsappEnabled) {
+        // Standby service: per-booking consent and replay-safe request id.
+        args.p_whatsapp_opt_in = f.whatsapp_opt_in === "on";
+        const fingerprint = JSON.stringify(args);
+        if (bookingRequest.current?.fingerprint !== fingerprint) {
+          bookingRequest.current = { fingerprint, id: crypto.randomUUID() };
+        }
+        result = await rpc("book_appointment_whatsapp", { ...args, p_request_id: bookingRequest.current.id });
+      } else {
+        result = await rpc("book_appointment_team", args);
+      }
       go("/manage/" + result.token);
     } catch (err) {
       setSubmitError(errorMessage(err));
@@ -560,6 +574,10 @@ export function Booking({ slug, notify }) {
                     Website
                     <input name="website" tabIndex={-1} autoComplete="off" />
                   </label>
+                  {whatsappEnabled && <label className="check-field">
+                    <input name="whatsapp_opt_in" type="checkbox" />
+                    Autorizo {data.studio.name} a enviar confirmação, alterações e lembrete deste agendamento pelo WhatsApp. Posso cancelar enviando SAIR.
+                  </label>}
                   <div className="booking-total">
                     <div>
                       <p>Com {data.professionals.find((p) => p.id === professionalId)?.name}</p>

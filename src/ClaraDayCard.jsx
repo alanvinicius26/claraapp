@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight, CalendarDays, MessageCircle, RefreshCw } from "lucide-react";
-import clara from "./assets/clara-apontando-v1.webp";
+import ClaraArt from "./ClaraArt";
 import { claraDaySummary } from "./clara-day";
 import "./clara-day.css";
 
@@ -14,8 +14,13 @@ export default function ClaraDayCard({ appointments, day, professionalId, profes
   }, []);
   const summary = claraDaySummary(appointments, { day, professionalId, now });
   const firstName = name?.trim().split(/\s+/)[0] || "";
+  const minutesUntilNext = summary.next ? (Date.parse(summary.next.starts_at) - now.getTime()) / 60000 : Infinity;
+  const pose = unavailable ? "thinking"
+    : summary.nextDay === day && minutesUntilNext <= 60 ? "reminder"
+    : summary.count > 0 && summary.completed === summary.count ? "approval"
+    : summary.count ? "agenda" : "idea";
   return <section className="clara-day" aria-labelledby="clara-day-title">
-    <img className="clara-day-character" src={clara} alt="" width="1536" height="1024" decoding="async" />
+    <ClaraArt className="clara-day-character" pose={pose} />
     <div className="clara-day-copy">
       <span className="clara-day-eyebrow"><span /> SEU DIA COM A CLARA</span>
       <h2 id="clara-day-title">{summary.greeting}{firstName ? `, ${firstName}` : ""}<span>.</span></h2>

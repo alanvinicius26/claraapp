@@ -1,0 +1,343 @@
+{
+  "id": "ClaraFullLive01",
+  "name": "Clara — Atendimento completo [OFICIAL]",
+  "active": false,
+  "nodes": [
+    {
+      "id": "904a1ee0-62db-463b-bd16-4035f462898e",
+      "name": "Iniciar operação",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "a76a5806-3323-4f70-88e2-551e04c9db67",
+      "name": "Verificação a cada minuto",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        180
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "5ce9d103-1115-4127-87be-2e9aa86469f6",
+      "webhookId": "225ce8e6-f0d5-4231-a1b3-99e2d3c5b82e",
+      "name": "Acordar com novo evento",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -180
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "clara-whatsapp-production-header",
+          "name": "Clara — ponte oficial"
+        }
+      },
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "clara-operations",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "options": {}
+      }
+    },
+    {
+      "id": "d3ca7d5c-f781-4a26-a8cd-3e8b64730b1a",
+      "name": "Receber e encaminhar atendimentos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "clara-whatsapp-production-header",
+          "name": "Clara — ponte oficial"
+        }
+      },
+      "retryOnFail": false,
+      "parameters": {
+        "method": "POST",
+        "url": "https://gtqcehwvddvqllicnreu.supabase.co/functions/v1/whatsapp/inbox",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {
+          "timeout": 120000
+        }
+      }
+    },
+    {
+      "id": "34c78980-2ac3-4007-a68a-348a20743107",
+      "name": "Enviar respostas e notificações devidas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        600,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "clara-whatsapp-production-header",
+          "name": "Clara — ponte oficial"
+        }
+      },
+      "retryOnFail": false,
+      "parameters": {
+        "method": "POST",
+        "url": "https://gtqcehwvddvqllicnreu.supabase.co/functions/v1/whatsapp/process",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {
+          "timeout": 120000
+        }
+      }
+    },
+    {
+      "id": "0ca6ec79-9fc0-49d4-9bb8-6c08f392c05b",
+      "name": "Verificar pendências e falhas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "clara-whatsapp-production-header",
+          "name": "Clara — ponte oficial"
+        }
+      },
+      "retryOnFail": false,
+      "parameters": {
+        "method": "POST",
+        "url": "https://gtqcehwvddvqllicnreu.supabase.co/functions/v1/whatsapp/health",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {
+          "timeout": 120000
+        }
+      }
+    },
+    {
+      "id": "798fe785-7f53-4bf9-a170-91f8f00b5b94",
+      "name": "Precisa de atenção?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2228fe93-ff92-4969-8bc1-95ad87eeeafb",
+              "leftValue": "={{ $json.needs_attention }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "ea1ac8b7-b468-44c8-90cb-63c2d4167b71",
+      "name": "Registrar incidente sem dados pessoais",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1500,
+        -100
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "clara-whatsapp-production-header",
+          "name": "Clara — ponte oficial"
+        }
+      },
+      "retryOnFail": false,
+      "parameters": {
+        "method": "POST",
+        "url": "https://gtqcehwvddvqllicnreu.supabase.co/functions/v1/whatsapp/incident",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {
+          "timeout": 120000
+        }
+      }
+    },
+    {
+      "id": "71ae93a1-03fe-4083-a3a7-d46c0b64afb4",
+      "name": "Ciclo concluído",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1750,
+        70
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "7aaa640e-f6e6-4d24-bb7c-465808687a36",
+      "name": "Como o atendimento funciona",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        260,
+        -530
+      ],
+      "parameters": {
+        "width": 1380,
+        "height": 330,
+        "content": "## Clara — Atendimento completo [OFICIAL]\n\n**Entrada oficial:** Meta → webhook HTTPS da Clara → assinatura conferida → evento salvo no banco → este fluxo. O webhook de despertar recebe só {} com autenticação.\n\n**Receber e encaminhar:** identifica o estabelecimento → evita repetir entrada → saudação com botões → Agendar envia o link correto; Atendente registra solicitação e pausa o bot. Recibos atualizam o histórico.\n\n**Respostas e notificações:** envio manual do painel + confirmação ao reservar + lembrete configurado + alteração/cancelamento. Confere consentimento, janela de 24h/modelo, pausa humana e versão da reserva.\n\n**Confiabilidade:** a Clara mantém filas, isolamento, bloqueios simultâneos e tentativas. Resultado incerto nunca é reenviado automaticamente. HTTP aceito não significa entregue.\n\nConfigurar os quatro nós HTTP e a credencial oficial antes de ativar. O envio também depende das travas do servidor e de cada estabelecimento."
+      }
+    }
+  ],
+  "connections": {
+    "Iniciar operação": {
+      "main": [
+        [
+          {
+            "node": "Receber e encaminhar atendimentos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificação a cada minuto": {
+      "main": [
+        [
+          {
+            "node": "Receber e encaminhar atendimentos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acordar com novo evento": {
+      "main": [
+        [
+          {
+            "node": "Receber e encaminhar atendimentos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Receber e encaminhar atendimentos": {
+      "main": [
+        [
+          {
+            "node": "Enviar respostas e notificações devidas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar respostas e notificações devidas": {
+      "main": [
+        [
+          {
+            "node": "Verificar pendências e falhas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar pendências e falhas": {
+      "main": [
+        [
+          {
+            "node": "Precisa de atenção?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Precisa de atenção?": {
+      "main": [
+        [
+          {
+            "node": "Registrar incidente sem dados pessoais",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ciclo concluído",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar incidente sem dados pessoais": {
+      "main": [
+        [
+          {
+            "node": "Ciclo concluído",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "saveExecutionProgress": false,
+    "saveManualExecutions": false,
+    "saveDataErrorExecution": "none",
+    "saveDataSuccessExecution": "none"
+  }
+}

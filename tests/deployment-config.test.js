@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   validateDeploymentEnv,
   allowCustomerSharing,
+  whatsappFeature,
 } from "../scripts/deployment-config.js";
 
 const valid = {
@@ -60,4 +61,14 @@ test("customer sharing is blocked in Vercel previews and custom environments", (
     }),
     false,
   );
+});
+
+test("WhatsApp service stays hidden unless explicitly enabled", () => {
+  assert.equal(whatsappFeature({}), false);
+  assert.equal(whatsappFeature({ VERCEL: "1", VERCEL_ENV: "production" }), false);
+  for (const value of ["1", "TRUE", "yes", " true", ""]) {
+    assert.equal(whatsappFeature({ VITE_WHATSAPP_ENABLED: value }), false);
+  }
+  assert.equal(whatsappFeature({ VITE_WHATSAPP_ENABLED: "true" }), true);
+  assert.equal(whatsappFeature({}, true), true);
 });

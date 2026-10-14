@@ -6,6 +6,18 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "clara-whatsapp-sim",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "whatsapp:sim"],
+      "port": 8787
+    },
+    {
+      "name": "clara-dev-whatsapp",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:whatsapp"],
+      "port": 3000
     }
   ]
 }

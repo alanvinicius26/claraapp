@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { rpc, errorMessage } from "./lib";
 import { BrandMark } from "./Brand";
+import { Check, ShieldCheck, CalendarCheck, Sparkles, Repeat2 } from "lucide-react";
 import {
   billingRequest,
   paymentUrl,
@@ -227,7 +228,9 @@ export default function Subscription({
               "Controle dos recebimentos",
               "Assistente Clara",
             ].map((text) => (
-              <span key={text}>{text}</span>
+              <span key={text}>
+                <Check size={15} aria-hidden="true" /> {text}
+              </span>
             ))}
           </div>
           <p>
@@ -270,7 +273,37 @@ export default function Subscription({
               <p>
                 Esta é uma demonstração. Crie seu espaço para conhecer a Clara.
               </p>
-              <a className="button primary" href="#/">
+              <ul className="plan-promises">
+                <li>
+                  <CalendarCheck size={20} aria-hidden="true" />
+                  <span>
+                    <strong>Sete dias grátis, sem cartão</strong>
+                    Use a agenda completa antes de decidir.
+                  </span>
+                </li>
+                <li>
+                  <Sparkles size={20} aria-hidden="true" />
+                  <span>
+                    <strong>Todos os recursos em todos os planos</strong>
+                    O valor muda só pelo tamanho da equipe.
+                  </span>
+                </li>
+                <li>
+                  <Repeat2 size={20} aria-hidden="true" />
+                  <span>
+                    <strong>Mensal, sem fidelidade</strong>
+                    Troque de plano ou cancele quando quiser.
+                  </span>
+                </li>
+                <li>
+                  <ShieldCheck size={20} aria-hidden="true" />
+                  <span>
+                    <strong>Pagamento protegido</strong>
+                    Cobrança processada pela Stripe.
+                  </span>
+                </li>
+              </ul>
+              <a className="button primary" href="#/cadastro">
                 Criar meu espaço
               </a>
             </>

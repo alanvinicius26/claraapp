@@ -6,17 +6,24 @@ import { rescheduleMessage } from "./clara-whatsapp";
 import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import ErrorBoundary from "./ErrorBoundary";
 import Subscription from "./Subscription";
+import { whatsappEnabled } from "./features";
 import Admin, { AdminLink } from "./Admin";
 import { observeSession, recoveryUser } from "./session.js";
 import { createDashboardLoader, indexClientVisits } from "./dashboard-data.js";
 import Brand, { BrandLogo, BrandMark } from "./Brand";
+import Landing from "./Landing";
 import ClientMerge from "./ClientMerge";
 import Team from "./Team";
 import ClaraChat from "./ClaraChat";
 import ClaraDayCard from "./ClaraDayCard";
 import { ClaraEmptyState, ClaraMilestone } from "./ClaraPresence";
 import { claraMilestoneFor, claimClaraMilestone } from "./clara-milestones";
-import claraWelcome from "./assets/clara-apontando-v1.webp";
+import ClaraArt from "./ClaraArt";
+import HoursEditor from "./HoursEditor";
+import { BusinessPulse, PeriodInsights } from "./Insights";
+// Standby service: only bundled and routed when explicitly enabled at build time.
+// The condition is inlined (not `whatsappEnabled`) so the bundler drops the chunk when off.
+const WhatsApp = import.meta.env.VITE_WHATSAPP_ENABLED === "true" ? React.lazy(() => import("./WhatsApp")) : null;
 import StudioLinkField from "./StudioLinkField";
 import { canShareLinks, sharingUnavailable } from "./sharing";
 import { createRoot } from "react-dom/client";
@@ -59,6 +66,9 @@ import {
   AlertCircle,
   ExternalLink,
   Scissors,
+  Gem,
+  Brush,
+  Eye,
 } from "lucide-react";
 import { supabase, rpc, query, errorMessage } from "./lib";
 import {
@@ -85,6 +95,7 @@ import "./styles.css";
 import "./enhancements.css";
 import "./redesign.css";
 import "./account-exit.css";
+import "./polish.css";
 import {
   MobileNav,
   WeekStrip,
@@ -239,7 +250,7 @@ function App() {
     const params = new URLSearchParams(location.hash.slice(1));
     if (params.has("error") || params.has("error_code")) {
       notify("Este link de acesso expirou ou já foi usado. Solicite um novo link.", true);
-      history.replaceState(null, "", location.pathname + location.search + "#/");
+      history.replaceState(null, "", location.pathname + location.search + "#/entrar");
     }
   }, [notify]);
   return (
@@ -270,8 +281,10 @@ function App() {
         <Dashboard key="demo" demo path={path} notify={notify} />
       ) : session ? (
         path === "/admin" ? <Admin key={session.user.id} notify={notify} /> : <Dashboard key={session.user.id} session={session} path={path} notify={notify} />
+      ) : path === "/" || path === "/inicio" ? (
+        <Landing />
       ) : (
-        <Auth key="login" notify={notify} />
+        <Auth key={path === "/cadastro" ? "signup" : "login"} initialMode={path === "/cadastro" ? "signup" : "login"} notify={notify} />
       )}{" "}
       {toast && (
         <div role="status" className={`toast ${toast.error ? "error" : ""}`}>
@@ -285,8 +298,8 @@ function App() {
     </>
   );
 }
-function Auth({ notify, recovery, onRecovered }) {
-  const [mode, setMode] = useState(recovery ? "recover" : "login");
+function Auth({ notify, recovery, onRecovered, initialMode = "login" }) {
+  const [mode, setMode] = useState(recovery ? "recover" : initialMode);
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
   const [email, setEmail] = useState("");
@@ -382,17 +395,14 @@ function Auth({ notify, recovery, onRecovered }) {
         <Brand />
         <div className="auth-copy">
           <span className="eyebrow">MAIS TEMPO PARA O QUE VOCÊ AMA</span>
+          <ClaraArt
+            className="auth-clara"
+            pose={sent ? "approval" : mode === "login" ? "down" : mode === "signup" ? "welcome" : "confident"}
+            fetchPriority="high"
+            decoding="async"
+          />
           <h1>
             <span className="auth-headline-lead">
-              <img
-                className="auth-clara"
-                src={claraWelcome}
-                alt=""
-                width="1536"
-                height="1024"
-                fetchPriority="high"
-                decoding="async"
-              />
               Você cuida.
             </span>
             <span className="auth-headline-end">A Clara <em>organiza.</em></span>
@@ -417,7 +427,11 @@ function Auth({ notify, recovery, onRecovered }) {
       </section>
       <section className="auth-main">
         <div className="auth-top">
-          <span>Seu próximo capítulo começa aqui.</span>
+          {recovery ? <span>Seu próximo capítulo começa aqui.</span> : (
+            <a className="auth-back" href="#/">
+              <ChevronLeft size={16} /> Conhecer a Clara
+            </a>
+          )}
           <Leaf size={22} />
         </div>
         <div className="auth-card">
@@ -597,6 +611,7 @@ function Onboarding({ onDone, notify }) {
     <div className="onboarding">
       <Brand />
       <div className="panel">
+        <ClaraArt className="clara-onboarding-art" pose="presenting" />
         <span className="eyebrow">BEM-VINDA AO SEU NOVO ESPAÇO</span>
         <h1>Vamos dar a sua cara?</h1>
         <p>Comece com o básico. Depois, você pode ajustar cada detalhe.</p>
@@ -638,6 +653,7 @@ const nav = [
   ["agenda", "Minha agenda", CalendarDays],
   ["clientes", "Clientes", Users],
   ["equipe", "Equipe", Users],
+  ...(whatsappEnabled ? [["conversas", "Conversas WhatsApp", MessageCircle]] : []),
   ["servicos", "Serviços", Flower2],
   ["recebimentos", "Recebimentos", Wallet],
   ["espaco", "Meu espaço", Store],
@@ -956,7 +972,7 @@ function Dashboard({ session, demo, path, notify }) {
               <Sparkles size={15} /> Você está explorando uma demonstração com
               dados fictícios.
             </span>
-            <a href="#/">
+            <a href="#/cadastro">
               Criar meu espaço <ArrowRight size={15} />
             </a>
           </div>
@@ -1066,20 +1082,22 @@ function Dashboard({ session, demo, path, notify }) {
                         <ChevronRight size={18} />
                       </button>
                     </div>
-                    <button
-                      className="today-button"
-                      onClick={() => setDay(today())}
-                    >
-                      Hoje
-                    </button>
+                    <div className="toolbar-end">
+                      <label className="pro-filter">
+                        <Users size={16} aria-hidden="true" />
+                        <select aria-label="Agenda da profissional" value={professionalFilter} onChange={(e) => { setProfessionalFilter(e.target.value); setFocusedId(null); }}>
+                          <option value="">Todas as profissionais</option>
+                          {professionals.map((p) => <option key={p.id} value={p.id}>{p.name}{p.active ? "" : " (inativa)"}</option>)}
+                        </select>
+                      </label>
+                      <button
+                        className="today-button"
+                        onClick={() => setDay(today())}
+                      >
+                        Hoje
+                      </button>
+                    </div>
                   </div>
-                  <Field label="Agenda da profissional">
-                    <select value={professionalFilter} onChange={(e) => { setProfessionalFilter(e.target.value); setFocusedId(null); }}>
-                      <option value="">Todas as profissionais</option>
-                      {professionals.map((p) => <option key={p.id} value={p.id}>{p.name}{p.active ? "" : " (inativa)"}</option>)}
-                    </select>
-                  </Field>
-                  <a className="text-button" href={`#${prefix}equipe`}>Gerenciar equipe e expedientes</a>
                   <WeekStrip
                     day={day}
                     setDay={setDay}
@@ -1087,12 +1105,11 @@ function Dashboard({ session, demo, path, notify }) {
                   />
                   <div className="day-caption">
                     {dateLabel(day)}
-                    <span>
-                      <i /> Confirmados
-                    </span>
+                    <a className="text-button" href={`#${prefix}equipe`}>Gerenciar equipe e expedientes</a>
                   </div>
                   {selectedDay.length === 0 ? (
                     <ClaraEmptyState
+                      pose="agenda"
                       title={appointments.length === 0 ? "Seu primeiro horário começa aqui" : "Um espaço para o próximo encontro"}
                       actionLabel={day < today() ? "Ver agenda de hoje" : "Agendar um horário"}
                       onAction={() => day < today() ? setDay(today()) : open("appointment")}
@@ -1193,12 +1210,14 @@ function Dashboard({ session, demo, path, notify }) {
                       ? "Exemplo ilustrativo"
                       : "Agenda atualizada automaticamente"}
                   </div>
+                  <BusinessPulse appointments={appointments} />
                 </aside>
               </div>
             </>
           )}
           {page === "clientes" && <Clients {...pageProps} />}
           {page === "equipe" && <Team {...pageProps} />}
+          {WhatsApp && page === "conversas" && <React.Suspense fallback={null}><WhatsApp studio={studio} demo={demo} notify={notify} /></React.Suspense>}
           {page === "servicos" && <Services {...pageProps} />}
           {page === "recebimentos" && <Receipts {...pageProps} />}
           {page === "espaco" && <Space {...pageProps} />}
@@ -1282,7 +1301,16 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
   const client = filtered.find((c) => c.id === selected) || filtered[0];
   const history = appointments
     .filter((a) => a.client_id === client?.id)
-    .sort((a, b) => b.starts_at.localeCompare(a.starts_at));
+    // Most recent first up to now; upcoming ones follow in date order.
+    .sort((a, b) => {
+      const now = new Date().toISOString();
+      const af = new Date(a.starts_at).toISOString() > now;
+      const bf = new Date(b.starts_at).toISOString() > now;
+      if (af !== bf) return af ? 1 : -1;
+      return af
+        ? a.starts_at.localeCompare(b.starts_at)
+        : b.starts_at.localeCompare(a.starts_at);
+    });
   return (
     <>
       <PageTitle
@@ -1328,6 +1356,7 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
       </div>
       {!filtered.length ? (
         <ClaraEmptyState
+          pose={clients.length ? "thinking" : "notes"}
           title={clients.length ? "Vamos procurar de outro jeito?" : "Vamos conhecer sua primeira cliente?"}
           actionLabel={clients.length ? "Limpar busca e filtros" : "Cadastrar primeira cliente"}
           onAction={() => clients.length ? (setSearch(""), setFilter("all")) : open("client")}
@@ -1360,7 +1389,7 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
                   <strong>{c.name}</strong>
                   <p>{c.phone || c.email || "Contato não informado"}</p>
                   <span className="client-visit-meta">
-                    {visits(c).length} visitas concluídas
+                    {visits(c).length} {visits(c).length === 1 ? "visita concluída" : "visitas concluídas"}
                     {nextVisit(c)
                       ? ` · Próximo: ${new Date(nextVisit(c).starts_at).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" })}`
                       : " · Sem próximo horário"}
@@ -1378,8 +1407,7 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
                   <Avatar large name={client.name} />
                   <div>
                     <h2>{client.name}</h2>
-                    <p>{client.email || "Sem e-mail cadastrado"}</p>
-                    <p>{client.phone}</p>
+                    <p>{[client.phone, client.email].filter(Boolean).join(" · ") || "Contato não informado"}</p>
                   </div>
                 </div>
                 <Button
@@ -1405,6 +1433,14 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
                         .filter((a) => a.status === "completed")
                         .reduce((sum, a) => sum + Number(a.price), 0),
                     )}
+                  </strong>
+                </div>
+                <div>
+                  <span>Última visita</span>
+                  <strong>
+                    {history.find((a) => a.status === "completed")
+                      ? new Date(history.find((a) => a.status === "completed").starts_at).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo", day: "2-digit", month: "short" })
+                      : "—"}
                   </strong>
                 </div>
               </div>
@@ -1437,8 +1473,6 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
                 )}
               </div>
               <h3>Histórico de cuidados</h3>
-              {history.length > historyShown && <Button className="secondary" onClick={() => setHistoryShown(n => n + 30)}>Mostrar mais atendimentos</Button>}
-              <ClientMerge key={client.id} client={client} clients={clients} protect={protect} mutate={mutate} saving={saving} />
               {history.length ? (
                 history.slice(0, historyShown).map((a) => (
                   <button
@@ -1462,6 +1496,8 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
               ) : (
                 <p className="muted">Os atendimentos aparecerão aqui.</p>
               )}
+              {history.length > historyShown && <Button className="secondary" onClick={() => setHistoryShown(n => n + 30)}>Mostrar mais atendimentos</Button>}
+              <ClientMerge key={client.id} client={client} clients={clients} protect={protect} mutate={mutate} saving={saving} />
             </section>
           )}
         </div>
@@ -1469,6 +1505,17 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
     </>
   );
 }
+const categoryLooks = [
+  [/unha|manicure|p[eé]s/i, Gem, 0],
+  [/cabelo|escova|corte/i, Scissors, 2],
+  [/maquiagem|make/i, Brush, 1],
+  [/olhar|sobrancelha|c[ií]lio/i, Eye, 2],
+  [/spa|bem-estar|est[eé]tica|depila/i, Flower2, 3],
+];
+const categoryIcon = (category = "") =>
+  categoryLooks.find(([pattern]) => pattern.test(category))?.[1] || Leaf;
+const categoryTone = (category = "", index) =>
+  categoryLooks.find(([pattern]) => pattern.test(category))?.[2] ?? index % 4;
 function Services({ services, open, protect, mutate, studio, copyLink, demo, onClara }) {
   const [filter, setFilter] = useState("active");
   const [search, setSearch] = useState("");
@@ -1522,6 +1569,7 @@ function Services({ services, open, protect, mutate, studio, copyLink, demo, onC
       </div>
       {!list.length ? (
         <ClaraEmptyState
+          pose={services.length ? "thinking" : "idea"}
           title={services.length ? "Seu cuidado pode estar em outro filtro" : "Vamos dar espaço ao seu talento?"}
           actionLabel={services.length ? "Ver todos os serviços" : "Criar primeiro serviço"}
           onAction={() => services.length ? (setSearch(""), setFilter("all")) : open("service")}
@@ -1534,7 +1582,7 @@ function Services({ services, open, protect, mutate, studio, copyLink, demo, onC
               className={`service-card ${!s.active ? "archived" : ""}`}
               key={s.id}
             >
-              <div className={`service-art art-${i % 4}`}>
+              <div className={`service-art art-${categoryTone(s.category, i)}`}>
                 <span className="category-pill">{s.category}</span>
                 {s.image_url && (
                   <img
@@ -1543,13 +1591,7 @@ function Services({ services, open, protect, mutate, studio, copyLink, demo, onC
                     alt={s.name}
                   />
                 )}
-                {i % 3 === 0 ? (
-                  <Flower2 />
-                ) : i % 3 === 1 ? (
-                  <Scissors />
-                ) : (
-                  <Leaf />
-                )}
+                {React.createElement(categoryIcon(s.category))}
                 <span className="service-duration">
                   <Clock3 size={13} />
                   {s.duration} min
@@ -1616,6 +1658,8 @@ function Receipts({ appointments, payments, paid, open }) {
   const [month, setMonth] = useState(today().slice(0, 7));
   const [filter, setFilter] = useState("all");
   const [period, setPeriod] = useState("month");
+  const [rows, setRows] = useState(30);
+  useEffect(() => { setRows(30); }, [month, period, filter]);
   const weekStart = shiftDate(
     today(),
     -((new Date(today() + "T12:00:00Z").getUTCDay() + 6) % 7),
@@ -1642,9 +1686,18 @@ function Receipts({ appointments, payments, paid, open }) {
     selected,
     payments.filter((p) => selected.some((a) => a.id === p.appointment_id)),
   );
-  const visible = selected.filter(
-    (a) => filter === "all" || (filter === "paid" ? paid(a.id) : !paid(a.id)),
-  );
+  const visible = selected
+    .filter(
+      (a) => filter === "all" || (filter === "paid" ? paid(a.id) : !paid(a.id)),
+    )
+    .sort((a, b) => b.starts_at.localeCompare(a.starts_at));
+  const lastDay = new Date(Number(month.slice(0, 4)), Number(month.slice(5, 7)), 0).getDate();
+  const range =
+    period === "month"
+      ? [month + "-01", month + "-" + String(lastDay).padStart(2, "0")]
+      : period === "today"
+        ? [today(), today()]
+        : [weekStart, shiftDate(weekStart, 6)];
   function exportCsv() {
     download(
       `recebimentos-${month}.csv`,
@@ -1730,6 +1783,13 @@ function Receipts({ appointments, payments, paid, open }) {
           detail="Valores ainda não registrados"
         />
       </div>
+      <PeriodInsights
+        appointments={selected}
+        all={appointments}
+        payments={payments}
+        from={range[0]}
+        to={range[1]}
+      />
       <div className="panel">
         <div className="section-head">
           <h2>Atendimentos do período</h2>
@@ -1763,7 +1823,7 @@ function Receipts({ appointments, payments, paid, open }) {
                 </tr>
               </thead>
               <tbody>
-                {visible.map((a) => (
+                {visible.slice(0, rows).map((a) => (
                   <tr key={a.id}>
                     <td>
                       {new Date(a.starts_at).toLocaleDateString("pt-BR", {
@@ -1802,6 +1862,13 @@ function Receipts({ appointments, payments, paid, open }) {
                 ))}
               </tbody>
             </table>
+            {visible.length > rows && (
+              <div className="table-more">
+                <Button className="secondary" onClick={() => setRows((n) => n + 30)}>
+                  Mostrar mais {Math.min(30, visible.length - rows)} de {visible.length - rows}
+                </Button>
+              </div>
+            )}
           </div>
         ) : (
           <Empty icon={Wallet} title="Tudo começa com um atendimento">
@@ -2044,104 +2111,7 @@ function Space({ studio, protect, mutate, notify, demo, copyLink }) {
             >
               <Copy size={16} /> Repetir segunda de terça a sexta
             </button>
-            {hours.map((h) => (
-              <div className="hours-day" key={h.weekday}>
-                <label className="check-field">
-                  <input
-                    type="checkbox"
-                    checked={h.enabled}
-                    onChange={(e) =>
-                      change(h.weekday, "enabled", e.target.checked)
-                    }
-                  />
-                  <strong>
-                    {
-                      [
-                        "Domingo",
-                        "Segunda-feira",
-                        "Terça-feira",
-                        "Quarta-feira",
-                        "Quinta-feira",
-                        "Sexta-feira",
-                        "Sábado",
-                      ][h.weekday]
-                    }
-                  </strong>
-                  {!h.enabled && <span className="micro">Descanso</span>}
-                </label>
-                {h.enabled && (
-                  <>
-                    <div className="form-row">
-                      <Field label="Abre">
-                        <input
-                          aria-label={`Abre ${h.weekday}`}
-                          type="time"
-                          required
-                          value={h.opens}
-                          onChange={(e) =>
-                            change(h.weekday, "opens", e.target.value)
-                          }
-                        />
-                      </Field>
-                      <Field label="Fecha">
-                        <input
-                          aria-label={`Fecha ${h.weekday}`}
-                          type="time"
-                          required
-                          value={h.closes}
-                          onChange={(e) =>
-                            change(h.weekday, "closes", e.target.value)
-                          }
-                        />
-                      </Field>
-                    </div>
-                    <label className="check-field">
-                      <input
-                        type="checkbox"
-                        checked={!!h.break_start}
-                        onChange={(e) => {
-                          change(
-                            h.weekday,
-                            "break_start",
-                            e.target.checked ? "12:00" : null,
-                          );
-                          change(
-                            h.weekday,
-                            "break_end",
-                            e.target.checked ? "13:00" : null,
-                          );
-                        }}
-                      />{" "}
-                      Pausa durante o dia
-                    </label>
-                    {h.break_start && (
-                      <div className="form-row">
-                        <Field label="Início da pausa">
-                          <input
-                            type="time"
-                            required
-                            value={h.break_start}
-                            onChange={(e) =>
-                              change(h.weekday, "break_start", e.target.value)
-                            }
-                          />
-                        </Field>
-                        <Field label="Fim da pausa">
-                          <input
-                            type="time"
-                            required
-                            value={h.break_end || ""}
-                            onChange={(e) =>
-                              change(h.weekday, "break_end", e.target.value)
-                            }
-                          />
-                        </Field>
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
-            ))}
+            <HoursEditor hours={hours} change={change} breakLabel="Pausa durante o dia" />
             <Button
               className="primary full"
               icon={Check}
@@ -2178,18 +2148,23 @@ function Online({ studio, services, demo, copyLink, notify }) {
       />
       <div className="online-grid">
         <div>
-          <div className="panel">
-            <span className="badge completed">
-              {studio.active ? "Reservas online ativas" : "Reservas pausadas"}
-            </span>
-            <h2>Seu endereço de cuidado.</h2>
+          <div className="panel clara-sharing-panel">
+            <div className="clara-sharing-heading">
+              <div>
+                <span className="badge completed">
+                  {studio.active ? "Reservas online ativas" : "Reservas pausadas"}
+                </span>
+                <h2>Seu endereço de cuidado.</h2>
+              </div>
+              <ClaraArt className="clara-sharing-art" pose="left" loading="lazy" />
+            </div>
             <p>
               Coloque na bio do Instagram, compartilhe no WhatsApp ou envie
               depois de um atendimento.
             </p>
             <div className="link-display">
               <Link2 size={20} />
-              <span>{demo ? "Seu link aparecerá aqui" : link}</span>
+              <span>{demo ? `${location.host}/#/booking/${studio.slug}` : link}</span>
             </div>
             <div className="button-row">
               <Button className="primary" icon={Copy} onClick={copyLink}>
@@ -2735,6 +2710,8 @@ function Editor({
                     "Olhar & beleza",
                     "Bem-estar & spa",
                     "Cabelo & estilo",
+                    "Maquiagem & produção",
+                    "Estética & depilação",
                     "Outros",
                   ].map((x) => (
                     <option key={x}>{x}</option>

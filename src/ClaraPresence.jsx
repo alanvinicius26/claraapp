@@ -1,12 +1,11 @@
 import React from "react";
 import { ArrowRight, MessageCircle, Sparkles, X } from "lucide-react";
-import guide from "./assets/clara-guia-v1.webp";
-import celebrating from "./assets/clara-celebrando-v1.webp";
+import ClaraArt from "./ClaraArt";
 import "./clara-presence.css";
 
-export function ClaraEmptyState({ title, children, actionLabel, onAction, onHelp }) {
+export function ClaraEmptyState({ title, children, actionLabel, onAction, onHelp, pose = "presenting" }) {
   return <section className="clara-empty">
-    <div className="clara-empty-art"><img src={guide} alt="" width="1254" height="1254" loading="lazy" decoding="async" /></div>
+    <div className="clara-empty-art"><ClaraArt pose={pose} loading="lazy" /></div>
     <div className="clara-empty-copy">
       <span className="clara-presence-label">UM PASSO DE CADA VEZ, COM A CLARA</span>
       <h3>{title}</h3>
@@ -28,7 +27,7 @@ export function ClaraMilestone({ kind, onClose }) {
   if (!moment) return null;
   return <aside className="clara-milestone" aria-label="Uma conquista com a Clara">
     <button className="clara-milestone-close" type="button" onClick={onClose} aria-label="Fechar comemoração"><X size={18} /></button>
-    <div className="clara-milestone-art"><img src={celebrating} alt="" width="1254" height="1254" decoding="async" /><Sparkles size={22} aria-hidden="true" /></div>
+    <div className="clara-milestone-art"><ClaraArt pose={kind === "first-service" ? "celebrating" : "heart"} /><Sparkles size={22} aria-hidden="true" /></div>
     <div className="clara-milestone-copy" role="status" aria-atomic="true">
       <span className="clara-presence-label">UMA CONQUISTA SUA</span>
       <h3>{moment.title}</h3><p>{moment.text}</p>

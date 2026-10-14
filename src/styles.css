@@ -1854,12 +1854,12 @@ tr:last-child td {
 }
 .auth-clara {
   display: block;
-  position: absolute;
-  width: 6.05em;
-  max-width: none;
+  width: 200px;
+  max-width: 100%;
   height: auto;
-  left: calc(100% - 3.12em);
-  bottom: calc(100% - 1.05em);
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin-top: 20px;
   pointer-events: none;
   user-select: none;
 }
@@ -1879,7 +1879,6 @@ tr:last-child td {
   line-height: 1.15;
   letter-spacing: -1px;
   margin: 25px 0;
-  padding-top: 3.2em;
 }
 .auth-copy h1 em {
   color: #d9b4a1;
@@ -2641,10 +2640,11 @@ tr:last-child td {
     grid-template-columns: repeat(2, 1fr);
   }
   .online-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .phone-preview {
     width: 320px;
+    max-width: 100%;
     margin: 0 auto;
   }
   .topbar-right .micro {
@@ -3110,6 +3110,7 @@ tr:last-child td {
     font-size: clamp(30px, 10vw, 40px);
     margin: 15px 0;
   }
+  .auth-clara { width: 140px; margin-top: 16px; }
   .auth-copy .eyebrow {
     font-size: 7px;
   }

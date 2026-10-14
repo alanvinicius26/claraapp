@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { supabase, query, rpc, errorMessage } from "./lib";
 
 import Resources from "./Resources";
+import ClaraArt from "./ClaraArt";
+import HoursEditor from "./HoursEditor";
+import { initials } from "./domain";
+import { UserPlus } from "lucide-react";
 import {
   MAX_PROFESSIONALS,
   teamSize,
@@ -130,9 +134,11 @@ export default function Team({
     setHours((rows) =>
       rows.map((h) => (h.weekday === weekday ? { ...h, [field]: value } : h)),
     );
+  const used = Math.min(count, MAX_PROFESSIONALS);
   return (
     <>
-      <div className="page-title">
+      <div className="page-title clara-team-title">
+        <ClaraArt className="clara-team-art" pose="right" loading="lazy" />
         <div>
           <span className="eyebrow">CADA PROFISSIONAL, SUA AGENDA</span>
           <h1>Equipe do salão</h1>
@@ -142,109 +148,128 @@ export default function Team({
           </p>
         </div>
       </div>
-      <section className="panel team-capacity" aria-live="polite">
-        <h2>
-          {count} de {MAX_PROFESSIONALS} atendentes
-        </h2>
-        <p>
-          O proprietário ocupa a primeira vaga, mesmo com a agenda desativada.
-          Somente os demais atendentes ativos ocupam vagas adicionais.
-        </p>
-        {capacityError ? (
-          <>
-            <p>Não foi possível consultar o limite do plano.</p>
-            <button
-              className="button secondary"
-              onClick={() => setRetry((n) => n + 1)}
-            >
-              Consultar limite novamente
-            </button>
-          </>
-        ) : !capacity ? (
-          <p>Consultando seu plano...</p>
-        ) : full ? (
-          <p>
-            Você atingiu o limite de cinco atendentes. Desative um atendente
-            adicional antes de adicionar outro.
-          </p>
-        ) : !mayAdd ? (
-          <>
+      <section className="panel team-roster" aria-live="polite">
+        <div className="team-roster-head">
+          <div>
+            <h2>Sua equipe</h2>
             <p>
-              {capacity.can_use && nextPlan
-                ? `Para ampliar a equipe, escolha o plano de ${formatAmount(nextPlan.amount)}/mês em Minha assinatura.`
-                : "Regularize sua assinatura para adicionar atendentes. Você pode desativar os excedentes mantendo o histórico."}
+              O proprietário ocupa a primeira vaga, mesmo com a agenda
+              desativada. Somente os demais atendentes ativos ocupam vagas
+              adicionais.
             </p>
-            <a
-              className="button secondary"
-              href={demo ? "#/demo/assinatura" : "#/app/assinatura"}
-            >
-              Ver planos e assinatura
-            </a>
-          </>
-        ) : (
-          <p>
-            Você pode usar até {capacity.effective_limit} atendentes no acesso
-            atual. Adicionar alguém não faz cobranças automáticas.
-          </p>
-        )}
-      </section>
-      <Resources
-        studio={studio}
-        protect={protect}
-        mutate={mutate}
-        saving={saving}
-        demo={demo}
-      />
-      <form
-        className="panel"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!mayAdd) return;
-          const form = e.currentTarget;
-          const name = new FormData(form).get("name").trim();
-          protect(() =>
-            mutate(async () => {
-              await query(
-                supabase
-                  .from("professionals")
-                  .insert({ studio_id: studio.id, name }),
-              );
-              form.reset();
-            }, "Profissional adicionada."),
-          );
-        }}
-      >
-        <h2>Adicionar profissional</h2>
-        <label className="field">
-          <span>Nome</span>
-          <input
-            name="name"
-            required
-            minLength={2}
-            maxLength={100}
-            disabled={!mayAdd}
-          />
-        </label>
-        <button className="button primary" disabled={saving || !mayAdd}>
-          Adicionar à equipe
-        </button>
-      </form>
-      <label className="field">
-        <span>Profissional para configurar</span>
-        <select value={id || ""} onChange={(e) => setSelected(e.target.value)}>
+          </div>
+          <div className="team-meter" aria-label={`${count} de ${MAX_PROFESSIONALS} atendentes`}>
+            <strong>
+              {count}
+              <small> de {MAX_PROFESSIONALS} atendentes</small>
+            </strong>
+            <span className="team-meter-track" aria-hidden="true">
+              {Array.from({ length: MAX_PROFESSIONALS }, (_, i) => (
+                <i key={i} className={i < used ? "on" : ""} />
+              ))}
+            </span>
+          </div>
+        </div>
+        <div className="team-capacity">
+          {capacityError ? (
+            <>
+              <p>Não foi possível consultar o limite do plano.</p>
+              <button
+                className="button secondary"
+                onClick={() => setRetry((n) => n + 1)}
+              >
+                Consultar limite novamente
+              </button>
+            </>
+          ) : !capacity ? (
+            <p>Consultando seu plano...</p>
+          ) : full ? (
+            <p>
+              Você atingiu o limite de cinco atendentes. Desative um atendente
+              adicional antes de adicionar outro.
+            </p>
+          ) : !mayAdd ? (
+            <>
+              <p>
+                {capacity.can_use && nextPlan
+                  ? `Para ampliar a equipe, escolha o plano de ${formatAmount(nextPlan.amount)}/mês em Minha assinatura.`
+                  : "Regularize sua assinatura para adicionar atendentes. Você pode desativar os excedentes mantendo o histórico."}
+              </p>
+              <a
+                className="button secondary"
+                href={demo ? "#/demo/assinatura" : "#/app/assinatura"}
+              >
+                Ver planos e assinatura
+              </a>
+            </>
+          ) : (
+            <p>
+              Você pode usar até {capacity.effective_limit} atendentes no acesso
+              atual. Adicionar alguém não faz cobranças automáticas.
+            </p>
+          )}
+        </div>
+        <div className="team-cards" role="group" aria-label="Profissional para configurar">
           {professionals.map((p) => (
-            <option value={p.id} key={p.id}>
-              {p.name}
-              {p.active ? "" : " (inativa)"}
-            </option>
+            <button
+              type="button"
+              key={p.id}
+              className={`team-card ${p.id === id ? "selected" : ""} ${p.active ? "" : "inactive"}`}
+              aria-pressed={p.id === id}
+              onClick={() => setSelected(p.id)}
+            >
+              <span className="avatar">{initials(p.name)}</span>
+              <span className="team-card-text">
+                <strong>{p.name}</strong>
+                <small>
+                  {p.is_default ? "Proprietária · " : ""}
+                  {p.active ? "Atendendo" : "Inativa"}
+                </small>
+              </span>
+              {p.accepts_parallel && <span className="team-chip">Encaixes</span>}
+            </button>
           ))}
-        </select>
-      </label>
+          <form
+            className="team-card team-add"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!mayAdd) return;
+              const form = e.currentTarget;
+              const name = new FormData(form).get("name").trim();
+              protect(() =>
+                mutate(async () => {
+                  await query(
+                    supabase
+                      .from("professionals")
+                      .insert({ studio_id: studio.id, name }),
+                  );
+                  form.reset();
+                }, "Profissional adicionada."),
+              );
+            }}
+          >
+            <label className="field">
+              <span>Adicionar profissional</span>
+              <input
+                name="name"
+                required
+                minLength={2}
+                maxLength={100}
+                placeholder="Nome da profissional"
+                disabled={!mayAdd}
+              />
+            </label>
+            <button className="button primary" disabled={saving || !mayAdd}>
+              <UserPlus size={16} /> Adicionar à equipe
+            </button>
+          </form>
+        </div>
+      </section>
       {person && (
-        <>
+        <div className="team-config">
           <form
             key={[person.id, person.name, person.active, person.accepts_parallel, person.parallel_online].join()}
-            className="panel"
+            className="panel team-profile"
             onSubmit={(e) => {
               e.preventDefault();
               const f = new FormData(e.currentTarget);
@@ -278,7 +303,13 @@ export default function Team({
               );
             }}
           >
-            <h2>Dados da profissional</h2>
+            <div className="team-profile-head">
+              <span className="avatar large">{initials(person.name)}</span>
+              <div>
+                <span className="eyebrow">DADOS DA PROFISSIONAL</span>
+                <h2>{person.name}</h2>
+              </div>
+            </div>
             <label className="field">
               <span>Nome de exibição</span>
               <input
@@ -309,7 +340,7 @@ export default function Team({
             </button>
           </form>
           <form
-            className="panel"
+            className="panel team-schedule"
             onSubmit={(e) => {
               e.preventDefault();
               protect(() =>
@@ -339,6 +370,7 @@ export default function Team({
               );
             }}
           >
+            <span className="eyebrow">EXPEDIENTE INDIVIDUAL</span>
             <h2>Expediente de {person.name}</h2>
             <p>
               {inherited
@@ -356,104 +388,21 @@ export default function Team({
             ) : !loaded ? (
               <p>Carregando expediente...</p>
             ) : (
-              <div className="team-hours">
-                {hours.map((h) => (
-                  <fieldset key={h.weekday}>
-                    <legend>{days[h.weekday]}</legend>
-                    <label className="check-field">
-                      <input
-                        type="checkbox"
-                        checked={h.enabled}
-                        onChange={(e) =>
-                          change(h.weekday, "enabled", e.target.checked)
-                        }
-                      />{" "}
-                      Atende neste dia
-                    </label>
-                    <div className="form-row">
-                      <label className="field">
-                        <span>Início</span>
-                        <input
-                          type="time"
-                          required
-                          disabled={!h.enabled}
-                          value={h.opens.slice(0, 5)}
-                          onChange={(e) =>
-                            change(h.weekday, "opens", e.target.value)
-                          }
-                        />
-                      </label>
-                      <label className="field">
-                        <span>Fim</span>
-                        <input
-                          type="time"
-                          required
-                          disabled={!h.enabled}
-                          value={h.closes.slice(0, 5)}
-                          onChange={(e) =>
-                            change(h.weekday, "closes", e.target.value)
-                          }
-                        />
-                      </label>
-                    </div>
-                    <label className="check-field">
-                      <input
-                        type="checkbox"
-                        disabled={!h.enabled}
-                        checked={!!h.break_start}
-                        onChange={(e) => {
-                          change(
-                            h.weekday,
-                            "break_start",
-                            e.target.checked ? "12:00" : null,
-                          );
-                          change(
-                            h.weekday,
-                            "break_end",
-                            e.target.checked ? "13:00" : null,
-                          );
-                        }}
-                      />{" "}
-                      Pausa de almoço
-                    </label>
-                    {h.break_start != null && (
-                      <div className="form-row">
-                        <label className="field">
-                          <span>Início da pausa</span>
-                          <input
-                            type="time"
-                            required
-                            disabled={!h.enabled}
-                            value={h.break_start.slice(0, 5)}
-                            onChange={(e) =>
-                              change(h.weekday, "break_start", e.target.value)
-                            }
-                          />
-                        </label>
-                        <label className="field">
-                          <span>Fim da pausa</span>
-                          <input
-                            type="time"
-                            required
-                            disabled={!h.enabled}
-                            value={(h.break_end || "").slice(0, 5)}
-                            onChange={(e) =>
-                              change(h.weekday, "break_end", e.target.value)
-                            }
-                          />
-                        </label>
-                      </div>
-                    )}
-                  </fieldset>
-                ))}
-              </div>
+              <HoursEditor hours={hours} change={change} breakLabel="Pausa de almoço" />
             )}
             <button className="button primary" disabled={saving || !loaded}>
               Salvar expediente individual
             </button>
           </form>
-        </>
+        </div>
       )}
+      <Resources
+        studio={studio}
+        protect={protect}
+        mutate={mutate}
+        saving={saving}
+        demo={demo}
+      />
     </>
   );
 }

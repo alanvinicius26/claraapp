@@ -22,11 +22,13 @@ const names = [
   "available_slots_team",
   "available_dates_team",
   "book_appointment_team",
+  "book_appointment_whatsapp",
   "book_appointment",
   "book_appointment_multi",
   "manage_booking",
 ];
 const parameters: Record<string, string[]> = {
+  book_appointment_whatsapp: ["p_slug", "p_services", "p_start", "p_name", "p_email", "p_phone", "p_notes", "p_professional", "p_whatsapp_opt_in", "p_request_id"],
   available_slots_team: ["p_slug", "p_services", "p_date", "p_token", "p_professional"],
   available_dates_team: ["p_slug", "p_services", "p_after", "p_until", "p_token", "p_professional"],
   book_appointment_team: ["p_slug", "p_services", "p_start", "p_name", "p_email", "p_phone", "p_notes", "p_professional"],
@@ -98,7 +100,9 @@ Deno.serve(async (req) => {
     if (
       Object.keys(args).some((key) => !parameters[action].includes(key)) ||
       Object.entries(args).some(([key, v]) =>
-        key === "p_services"
+        key === "p_whatsapp_opt_in"
+          ? typeof v !== "boolean"
+          : key === "p_services"
           ? !Array.isArray(v) ||
             v.length < 1 ||
             v.length > 20 ||
@@ -133,6 +137,7 @@ Deno.serve(async (req) => {
       action === "book_appointment" ||
       action === "book_appointment_multi" ||
       action === "book_appointment_team" ||
+      action === "book_appointment_whatsapp" ||
       (action === "manage_booking" && args.p_action && args.p_action !== "get");
     const limited = await db("booking_rate_limit", {
       p_bucket: `${write ? "write" : "read"}:${fingerprint}`,

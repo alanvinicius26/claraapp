@@ -1,5 +1,9 @@
 # Minha Clara
 
+**Atendimento completo — 13/10/2026:** [WHATSAPP-ATENDIMENTO.md](WHATSAPP-ATENDIMENTO.md) descreve os workflows LOCAL/OFICIAL, a conexão por estabelecimento, a entrada persistente e a futura ativação Meta. LOCAL ativo no n8n; OFICIAL inativo; nenhum envio real ou deploy.
+
+**WhatsApp + n8n — 13/10/2026, local:** integração com fila persistente, consentimento, atendimento humano e simulador isolado. Veja [WHATSAPP-N8N.md](WHATSAPP-N8N.md) para executar, importar workflows, conferir testes e preparar o canal oficial. Nenhum envio real ou deploy desta integração foi realizado.
+
 **Correção visual publicada:** a marca visível é **Clara**, sem o antigo sufixo, com nova logo profissional. Por pedido do usuário, a frase **“Você cuida. A Clara organiza.”**, os textos anteriores, a personagem, as cores e o layout foram restaurados/preservados. Publicada em https://encaixa-eta.vercel.app/, deploy `dpl_CLX7DEbh5fHCSsAwdDVGzgj752FU`. O pacote visual foi derivado da versão anterior de produção e preserva as regras da agenda. O build completo local depende da migração de agendamento ainda não aprovada/aplicada. Domínio `minhaclara.com` comprado segundo o usuário, ainda não conectado. Prompts e assets em `design-references/clara/logo/clara-logo-v2.md`.
 
 **Domínio e e-mails — 07/10/2026:** domínio `minhaclara.com` conectado à Vercel por DNS na Hostinger, com HTTPS validado; `www` redireciona ao endereço principal. Detalhes em `DOMINIO.md`. Falta criar a conta Brevo e configurar SMTP/URLs de autenticação, reenvio e entrega de e-mails. Instruções locais da Edge Function Clara não foram republicadas no deploy visual. Os nomes anteriores abaixo são histórico.
