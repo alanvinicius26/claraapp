@@ -23,6 +23,7 @@ import ClaraArt from "./ClaraArt";
 import HoursEditor from "./HoursEditor";
 import { BusinessPulse, PeriodInsights, localDay } from "./Insights";
 import BookingAlerts from "./BookingAlerts";
+import AccessNotice from "./AccessNotice";
 import { demoAlerts } from "./booking-alerts";
 // Standby service: only bundled and routed when explicitly enabled at build time.
 // The condition is inlined (not `whatsappEnabled`) so the bundler drops the chunk when off.
@@ -1003,6 +1004,11 @@ function Dashboard({ session, demo, path, notify }) {
               Criar meu espaço <ArrowRight size={15} />
             </a>
           </div>
+        )}
+        {!demo && studio?.id && <AccessNotice ownerId={session.user.id} page={page} prefix={prefix} />}
+        {import.meta.env.DEV && demo && location.search.includes("aviso-acesso") && (
+          <AccessNotice ownerId="demo-preview" page={page} prefix={prefix}
+            previewStatus={{ can_use: false, billing_enabled: true, has_subscription: false, status: "trial", trial_ends_at: new Date(Date.now() - 36e5).toISOString() }} />
         )}
         {failure && (
           <div className="notice error">

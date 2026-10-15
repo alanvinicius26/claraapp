@@ -1,5 +1,12 @@
 # Minha Clara — leia primeiro ao retomar
 
+## Aviso de teste/plano encerrado — 15/10/2026, PUBLICADO (estado atual do site)
+- Vercel produção dpl_3i7kXjmL49kMmTeo3RKTvJf1Xgkg READY (minhaclara.com/www/encaixa-eta), pacote .local/vercel/clara-access-20261015; prévia dpl_CzWpQjEvxVuQ1kts83V4A1xWwfHe conferida. JS/CSS no ar idênticos ao pacote; landing, demonstração, sino e reservas sem erros. Aviso com conta real bloqueada não visto por mim (sem credenciais). Pose escolhida pelo usuário: 14-lembrete. Reversão: promover dpl_4aiKjkH7mAo6uL4sDXVbzniVD1zM.
+- Pedido: ao fim do teste de 7 dias, mostrar aviso com botão para Minha assinatura. src/access-notice.js (regra) + AccessNotice.jsx + access-notice.css. Usa billing_status (can_use); nenhum backend alterado (o banco já bloqueia gravações e reservas online).
+- Mensagens distintas: teste grátis terminou, pagamento não confirmado (past_due/unpaid/incomplete), assinatura terminou, equipe acima do limite do plano. Janela uma vez por sessão do navegador e por situação; faixa fixa em todas as páginas exceto Minha assinatura; dados seguem consultáveis.
+- Rechecagem: troca de página, foco/visibilidade, a cada 5 min e no instante exato em que o teste/período/acesso admin termina.
+- Prévia só local: demonstração com ?aviso-acesso (fora do build). 492 testes, build ok, conferido desktop e 375px sem erros.
+
 ## PUBLICADO: avisos de reservas + lembrar e-mail — 15/10/2026 (estado atual do site)
 - Pedido do usuário: deploy na Vercel. Vercel produção dpl_4aiKjkH7mAo6uL4sDXVbzniVD1zM READY, aliases minhaclara.com/www/encaixa-eta. Pacote .local/vercel/clara-alerts-20261015 (build completo, WhatsApp desligado, sem botão de simulação; vercel.json estático igual ao anterior). Prévia dpl_3SC6nWCbBAV9xqG1VnnXQxZBGQFJ conferida antes.
 - Conferido no ar: JS/CSS idênticos ao pacote, CSP e no-cache presentes, landing, login com “Lembrar meu e-mail”, sino na demonstração e reservas reais sem erros de console. Tempo real com conta logada não testado por mim (sem credenciais); banco já tinha as duas migrações de avisos.
