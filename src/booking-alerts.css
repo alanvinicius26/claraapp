@@ -1,0 +1,111 @@
+.booking-alerts {
+  position: relative;
+  display: inline-flex;
+}
+.alerts-bell {
+  position: relative;
+}
+.alerts-count {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: var(--wine);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 17px;
+  text-align: center;
+}
+.alerts-panel {
+  position: fixed;
+  z-index: 1000;
+  width: min(360px, calc(100vw - 32px));
+  max-height: min(560px, calc(100vh - 96px));
+  overflow: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(48, 41, 42, 0.16);
+  padding: 14px;
+  text-align: left;
+}
+.alerts-head {
+  display: grid;
+  gap: 2px;
+  padding: 2px 4px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.alerts-head small,
+.alerts-settings small,
+.alerts-empty {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.alerts-list {
+  list-style: none;
+  margin: 6px 0;
+  padding: 0;
+}
+.alert-item {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+.alert-item:hover,
+.alert-item:focus-visible {
+  background: var(--blush);
+}
+.alert-item svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--green);
+}
+.alert-item.client_cancelled svg {
+  color: var(--wine);
+}
+.alert-item > span {
+  display: grid;
+  gap: 2px;
+  font-size: 13px;
+}
+.alert-item small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.alerts-empty {
+  margin: 12px 4px;
+}
+.alerts-settings {
+  display: grid;
+  gap: 6px;
+  border-top: 1px solid var(--line);
+  padding: 10px 4px 2px;
+}
+.alerts-settings .check-field {
+  font-size: 13px;
+}
+.alerts-settings .text-button {
+  justify-content: flex-start;
+  padding: 4px 0;
+  min-height: 0;
+}
+@media (max-width: 767px) {
+  .alerts-panel {
+    right: 16px !important;
+    left: 16px;
+    width: auto;
+  }
+}

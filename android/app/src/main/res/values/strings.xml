@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Clara</string>
+    <string name="title_activity_main">Clara</string>
+    <string name="package_name">com.minhaclara.app</string>
+    <string name="custom_url_scheme">com.minhaclara.app</string>
+</resources>

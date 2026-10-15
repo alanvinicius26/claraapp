@@ -1,5 +1,25 @@
 # Minha Clara — leia primeiro ao retomar
 
+## PUBLICADO: avisos de reservas + lembrar e-mail — 15/10/2026 (estado atual do site)
+- Pedido do usuário: deploy na Vercel. Vercel produção dpl_4aiKjkH7mAo6uL4sDXVbzniVD1zM READY, aliases minhaclara.com/www/encaixa-eta. Pacote .local/vercel/clara-alerts-20261015 (build completo, WhatsApp desligado, sem botão de simulação; vercel.json estático igual ao anterior). Prévia dpl_3SC6nWCbBAV9xqG1VnnXQxZBGQFJ conferida antes.
+- Conferido no ar: JS/CSS idênticos ao pacote, CSP e no-cache presentes, landing, login com “Lembrar meu e-mail”, sino na demonstração e reservas reais sem erros de console. Tempo real com conta logada não testado por mim (sem credenciais); banco já tinha as duas migrações de avisos.
+- Reversão do site: promover dpl_5CppoUtYhJjaK8KsGSdxtscVwePp (publicação de 14/10). Código publicado ainda NÃO commitado (git status com mudanças locais).
+
+## Correções da auditoria — 15/10/2026, LOCAL
+- Android: backup desligado (allowBackup=false + data_extraction_rules). Modo ao vivo protegido em 3 camadas: android:live limpa restos ao iniciar/encerrar, novo npm run android:release, e Gradle bloqueia builds release com server.url/cleartext (testado com JDK 21 em ~/.jdks/jbr-21.0.11: bloqueia com restos, libera limpo; debug livre). O JBR do Android Studio é Java 25 (incompatível com Gradle 8.14).
+- Avisos: createAlertTracker evita aviso silencioso durante a primeira leitura e refaz a leitura a cada (re)conexão. Migração booking_notifications_retention.sql (90 dias) APLICADA em produção em 15/10 (20261015131715) após ensaio com rollback: aviso de 120 dias apagado, recente e reais preservados, anon sem acesso.
+- Limite de tentativas da função booking NÃO é burlável por X-Forwarded-For (testado em produção: IPs falsos caíram no balde do IP real).
+- Observado no ensaio: testes grátis de 2 contas venceram 15/10 08:36 (status trial, sem assinatura nem acesso admin) e estão bloqueadas para gravações e novas reservas online, incluindo o estúdio manicuretest; a 3ª conta vence 15/10 16:48 e tem 1 acesso concedido pelo admin. Nenhuma alteração feita.
+- 488 testes, build ok, demonstração conferida. Pendente no painel: proteção de senha vazada (Auth) e decisão sobre apagar encaixa_backup_20261014.
+
+## Avisos de reservas em tempo real — 14/10/2026, migração em PRODUÇÃO, site NÃO publicado
+- Atualização: migração 20261014233536 clara_booking_notifications APLICADA em produção após ensaio com rollback (reserva fictícia gerou new_booking; nada restou). Tabela na publicação supabase_realtime; advisors só acrescentaram mark_notifications_seen (esperado). Site publicado ainda é o anterior: avisos só aparecem no app local (localhost usa o banco de produção) até publicar o frontend. Reservas feitas pelo localhost são REAIS.
+- Login: opção “Lembrar meu e-mail neste aparelho” (src/remembered-login.js, só o e-mail; senha fica com o gerenciador do navegador via autocomplete username/current-password). 483 testes.
+- Pedido: saber de reservas sem atualizar a página, preparando o caminho para app Capacitor. Detalhes e roteiro em AVISOS-RESERVAS.md.
+- Nova migração supabase/booking_notifications.sql (após parallel_bookings): studio_notifications + gatilho zz_notify_owner (só ações da cliente pelo link público: nova reserva, remarcação, cancelamento) + mark_notifications_seen + publicação supabase_realtime. NÃO aplicada em produção.
+- Frontend: sino no topo (BookingAlerts.jsx), mensagem na tela, som por aparelho, contador no título, notificação do navegador com aba oculta, clique abre a agenda no atendimento. Entrega isolada em createAlertDelivery (trocar por plugin Capacitor no app). Demonstração com avisos de exemplo.
+- Validação: 481 testes (12 novos), build aprovado, demonstração conferida em desktop e 375px sem erros. Tempo real contra Supabase real ainda não testado (tabela não existe em produção; projeto de testes pausado).
+
 ## PUBLICADO EM PRODUÇÃO — 14/10/2026 (estado atual)
 - Usuário autorizou publicar tudo o que estava local, exceto WhatsApp (standby), com backup e commit antes. Commit 55c50af na main (zip duplicado de poses em design-references deixado fora do Git).
 - Backup: schema privado `encaixa_backup_20261014` no Supabase de produção (cópia das 22 tabelas de public/encaixa_private, sem acesso a anon/authenticated; pode ser removido quando não for mais necessário). Local: `.local/releases/before-encaixes-20261014` (definições anteriores de team_slots/available_slots_team, restrição antiga e roteiro de reversão NÃO executado).

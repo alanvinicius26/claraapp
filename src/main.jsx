@@ -9,6 +9,7 @@ import Subscription from "./Subscription";
 import { whatsappEnabled } from "./features";
 import Admin, { AdminLink } from "./Admin";
 import { observeSession, recoveryUser } from "./session.js";
+import { rememberedEmail, rememberEmail } from "./remembered-login.js";
 import { createDashboardLoader, indexClientVisits } from "./dashboard-data.js";
 import Brand, { BrandLogo, BrandMark } from "./Brand";
 import Landing from "./Landing";
@@ -20,7 +21,9 @@ import { ClaraEmptyState, ClaraMilestone } from "./ClaraPresence";
 import { claraMilestoneFor, claimClaraMilestone } from "./clara-milestones";
 import ClaraArt from "./ClaraArt";
 import HoursEditor from "./HoursEditor";
-import { BusinessPulse, PeriodInsights } from "./Insights";
+import { BusinessPulse, PeriodInsights, localDay } from "./Insights";
+import BookingAlerts from "./BookingAlerts";
+import { demoAlerts } from "./booking-alerts";
 // Standby service: only bundled and routed when explicitly enabled at build time.
 // The condition is inlined (not `whatsappEnabled`) so the bundler drops the chunk when off.
 const WhatsApp = import.meta.env.VITE_WHATSAPP_ENABLED === "true" ? React.lazy(() => import("./WhatsApp")) : null;
@@ -302,7 +305,9 @@ function Auth({ notify, recovery, onRecovered, initialMode = "login" }) {
   const [mode, setMode] = useState(recovery ? "recover" : initialMode);
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
-  const [email, setEmail] = useState("");
+  const loginStorage = useMemo(() => { try { return window.localStorage; } catch { return null; } }, []);
+  const [email, setEmail] = useState(() => (recovery ? "" : rememberedEmail(loginStorage)));
+  const [remember, setRemember] = useState(true);
   const [resendAt, setResendAt] = useState(0);
   const [now, setNow] = useState(Date.now);
   const sending = useRef(false);
@@ -380,6 +385,7 @@ function Auth({ notify, recovery, onRecovered, initialMode = "login" }) {
             password: f.password,
           }),
         );
+        rememberEmail(loginStorage, f.email, remember);
         navigate("/app/agenda");
       }
     } catch (err) {
@@ -499,7 +505,7 @@ function Auth({ notify, recovery, onRecovered, initialMode = "login" }) {
                   label="Seu e-mail"
                   name="email"
                   type="email"
-                  autoComplete="email"
+                  autoComplete={mode === "login" ? "username" : "email"}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="voce@seuestudio.com"
@@ -518,6 +524,12 @@ function Auth({ notify, recovery, onRecovered, initialMode = "login" }) {
                   placeholder={mode === "login" ? "Sua senha" : "Pelo menos 8 caracteres"}
                   required
                 />
+              )}
+              {mode === "login" && (
+                <label className="check-field remember-login">
+                  <input type="checkbox" checked={remember} onChange={(e) => { setRemember(e.target.checked); if (!e.target.checked) rememberEmail(loginStorage, "", false); }} />
+                  Lembrar meu e-mail neste aparelho
+                </label>
               )}
               {mode === "login" && (
                 <button
@@ -718,6 +730,7 @@ function Dashboard({ session, demo, path, notify }) {
       if (mounted.current) { setFailure(true); if (!quiet || force) notify(errorMessage(err), true); }
     } finally { if (mounted.current) setLoading(false); }
   }, [demo, loader, notify]);
+  const refreshAfterAlert = useCallback(() => reload(true, true), [reload]);
   useEffect(() => {
     reload();
     if (demo) return;
@@ -934,6 +947,20 @@ function Dashboard({ session, demo, path, notify }) {
             <strong>{nav.find((n) => n[0] === page)[1]}</strong>
           </div>
           <div className="topbar-right">
+            {studio?.id && (
+              <BookingAlerts
+                key={demo ? "demo" : studio.id}
+                studioId={studio.id}
+                demoItems={demo ? demoAlerts(appointments) : undefined}
+                notify={notify}
+                onChange={refreshAfterAlert}
+                onOpen={(alert) => {
+                  if (alert.payload?.starts_at) setDay(localDay(alert.payload.starts_at));
+                  if (alert.appointment_id) { setFocusedId(alert.appointment_id); setAgendaJump(alert.appointment_id); }
+                  location.hash = "#" + prefix + "agenda";
+                }}
+              />
+            )}
             <button
               className="icon-button"
               onClick={copyLink}
