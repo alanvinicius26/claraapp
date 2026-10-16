@@ -21,6 +21,12 @@ export function alertText({ kind, payload = {} }) {
       body: [...who, `agora ${when(payload.starts_at)}`].join(" · ") +
         (payload.previous_starts_at ? ` (antes ${when(payload.previous_starts_at)})` : ""),
     };
+  // Owner-only hint from the database: this WhatsApp already has a record here.
+  if (payload.returning) {
+    const n = Number(payload.previous_visits) || 0;
+    const visits = n ? (n === 1 ? "1 visita concluída" : `${n} visitas concluídas`) : "";
+    return { title: "Nova reserva · já é cliente", body: [...who, when(payload.starts_at), visits].filter(Boolean).join(" · ") };
+  }
   return { title: "Nova reserva", body: [...who, when(payload.starts_at)].filter(Boolean).join(" · ") };
 }
 

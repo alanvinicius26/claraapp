@@ -99,6 +99,15 @@ export const demoClients = [
   notes: i === 2 ? "Prefere formato amendoado e tons naturais." : "",
   created_at: new Date(Date.now() - (120 - i * 9) * 86400000).toISOString(),
 }));
+// Same person booked online with another name variant: shows duplicate detection.
+demoClients.push({
+  id: "c12",
+  name: "Mariana S.",
+  email: "mariana@exemplo.invalid",
+  phone: "11900000101",
+  notes: "",
+  created_at: new Date(Date.now() - 5 * 86400000).toISOString(),
+});
 const appointment = (id, date, t, c, s, status, professional, source = "studio") => ({
   id,
   studio_id: "demo",

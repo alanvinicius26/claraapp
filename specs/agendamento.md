@@ -2,7 +2,7 @@
 
 As regras vivem no **banco** (Supabase/Postgres). A interface só mostra o que o banco libera, e toda gravação é revalidada no banco. Mudanças aqui exigem plano resumido aprovado antes (ver `CLAUDE.md`).
 
-Migrações que definem estas regras, na ordem aplicada em produção: `schema` → `hardening` → `quality` → `multiservice` → `booking_readiness` → `product_completion` → `team` → `custom_links` → `clara*` → `production_readiness` → `billing` → `billing_plans` → `platform_admin` → `scheduling_integrity` → `parallel_bookings` → `booking_notifications` → `booking_notifications_retention`.
+Migrações que definem estas regras, na ordem aplicada em produção: `schema` → `hardening` → `quality` → `multiservice` → `booking_readiness` → `product_completion` → `team` → `custom_links` → `clara*` → `production_readiness` → `billing` → `billing_plans` → `platform_admin` → `scheduling_integrity` → `parallel_bookings` → `booking_notifications` → `booking_notifications_retention` → `client_duplicates` (local, ainda não aplicada).
 
 ## Configurações do estúdio (`public.studios`)
 | Campo | Padrão | Faixa | Uso |
@@ -59,7 +59,14 @@ Função `public.manage_booking(token, action, start)`:
 ## Avisos à dona (tempo real)
 - Tabela `public.studio_notifications` (RLS: só a dona lê), publicada no Supabase Realtime.
 - Gatilho `encaixa_private.notify_owner` só registra ações **sem usuário logado** (rota pública): nova reserva online, remarcação e cancelamento pela cliente. Ações da dona (painel, Clara) não geram aviso.
+- Nova reserva cujo WhatsApp já existe em outro cadastro ativo do estúdio recebe `returning: true` e `previous_visits` no aviso ("Nova reserva · já é cliente"). Só no aviso da dona; a resposta pública não muda. (`client_duplicates.sql`)
 - `public.mark_notifications_seen` marca como vistos; avisos com mais de **90 dias** são apagados por estúdio (novo aviso ou abertura do sino).
+
+## Clientes duplicados pelo WhatsApp (só no painel)
+- A reserva online continua criando um cadastro novo e nunca consulta, vincula ou devolve clientes existentes.
+- Chave do telefone: `encaixa_private.phone_key` (SQL) = `phoneKey` (`src/client-duplicates.js`): só dígitos, sem 55, 9º dígito restaurado em celular antigo (8 dígitos começando com 6–9); fixo mantém 10 dígitos; inválido = sem chave (nunca agrupa).
+- O painel agrupa cadastros ativos com a mesma chave e sugere como principal o de mais visitas concluídas, depois com próximo horário, depois o mais antigo.
+- `public.merge_client_group(alvo, origens[])`: só a dona do estúdio, todos com a mesma chave, tudo ou nada; reaproveita `merge_clients` (move atendimentos, junta observações, arquiva com `merged_into`) e preenche o e-mail do principal se estiver vazio. Conta com teste vencido não consegue unificar (gatilho de cobrança nos atendimentos).
 
 ## Agenda interna (painel e Clara)
 - Mesmas regras de expediente, pausa, antecedência, horizonte, recursos e capacidade, aplicadas pelos gatilhos em qualquer gravação.

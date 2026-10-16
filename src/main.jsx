@@ -14,6 +14,8 @@ import { createDashboardLoader, indexClientVisits } from "./dashboard-data.js";
 import Brand, { BrandLogo, BrandMark } from "./Brand";
 import Landing from "./Landing";
 import ClientMerge from "./ClientMerge";
+import { DuplicatesPanel, DuplicateSuggestion } from "./ClientDuplicates";
+import { duplicateGroups, groupOf } from "./client-duplicates";
 import Team from "./Team";
 import ClaraChat from "./ClaraChat";
 import ClaraDayCard from "./ClaraDayCard";
@@ -1319,6 +1321,14 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
   const visitIndex = useMemo(() => indexClientVisits(appointments), [appointments]);
   const visits = c => visitIndex.get(c.id)?.completed || [];
   const nextVisit = c => visitIndex.get(c.id)?.next;
+  // Same WhatsApp in more than one record (online bookings always create one).
+  const duplicates = useMemo(() => duplicateGroups(clients, visitIndex), [clients, visitIndex]);
+  const mergeGroup = (target, sources) =>
+    protect(() => mutate(
+      () => rpc("merge_client_group", { p_target: target, p_sources: sources }),
+      "Cadastros unificados. Histórico preservado.",
+      () => setSelected(target),
+    ));
   const filtered = clients.filter(
     (c) =>
       (filter === "all" ||
@@ -1387,6 +1397,13 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
           </button>
         ))}
       </div>
+      <DuplicatesPanel
+        groups={duplicates}
+        visits={(c) => visits(c).length}
+        onMerge={mergeGroup}
+        saving={saving}
+        onSelect={(id) => { setSearch(""); setFilter("all"); setSelected(id); }}
+      />
       {!filtered.length ? (
         <ClaraEmptyState
           pose={clients.length ? "thinking" : "notes"}
@@ -1477,6 +1494,13 @@ function Clients({ clients, appointments, open, protect, mutate, saving, onClara
                   </strong>
                 </div>
               </div>
+              <DuplicateSuggestion
+                group={groupOf(duplicates, client.id)}
+                client={client}
+                visits={(c) => visits(c).length}
+                onMerge={mergeGroup}
+                saving={saving}
+              />
               <div className="note-box">
                 <h3>
                   <LockKeyhole size={15} /> Observações internas
