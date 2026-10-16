@@ -12,6 +12,7 @@ export const demoStudio = {
   min_notice: 120,
   horizon: 30,
   buffer: 15,
+  change_notice_hours: 2,
 };
 export const demoServices = [
   {

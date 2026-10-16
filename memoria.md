@@ -10,7 +10,7 @@ Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kM
 | Arquivo | Papel |
 | --- | --- |
 | `main.jsx` | App, rotas por hash, `Auth`, `Dashboard` e telas (Agenda, Clientes, Serviços, Recebimentos, Meu espaço, Agendamento online) |
-| `booking.jsx` | Página pública `#/booking/:slug` e link da cliente `#/manage/:token` |
+| `booking.jsx`, `booking-policy.js` | Página pública `#/booking/:slug`, link da cliente `#/manage/:token` e prazo para cancelar/remarcar |
 | `lib.js` | Cliente Supabase, `rpc()` (rotas públicas passam pela Edge Function `booking`), `query()` |
 | `dashboard-data.js` | Carga paginada do painel + `dashboard_revision` (atualiza a cada 55–65 s) |
 | `Team.jsx`, `HoursEditor.jsx`, `Resources.jsx`, `ParallelService.jsx` | Equipe, expedientes, salas/macas, encaixes |
@@ -43,6 +43,7 @@ Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kM
 - **Avisos em tempo real** (14–15/10): eventos em `studio_notifications`, só ações da cliente, retenção de 90 dias; som e notificação por aparelho.
 - **Aviso de acesso encerrado** (15/10): janela uma vez por sessão + faixa fixa, botão para Minha assinatura; pose `14-lembrete`.
 - **Clientes duplicados (Opção A, 15–16/10):** detecção e unificação com 1 clique só no painel (Clientes, detalhe da cliente e detalhe do atendimento), pela chave do WhatsApp; aviso privado "já é cliente" no sino. Unificação preserva todo o histórico (inclusive pago), observações, e-mail; nome/e-mail divergentes vão para as observações; acima de 5000 caracteres recusa tudo. Rejeitada a Opção B (vínculo automático na reserva pública) por contrariar a decisão de privacidade e permitir que quem conhece um telefone associe reservas ao histórico de outra pessoa.
+- **Prazo do link da cliente (16/10):** configurável por estúdio em Meu espaço (`studios.change_notice_hours`: 2, 4, 6, 12, 24 ou 48 h; padrão 2). Vale o valor atual do estúdio, inclusive para reservas já feitas (rejeitada a opção de gravar o prazo na reserva). Status confirmado e pagamento registrado continuam iguais. Fora do prazo, botões desabilitados e WhatsApp do estúdio.
 - **Login:** lembra só o e-mail no aparelho; senha fica com o gerenciador do navegador.
 - **WhatsApp em standby:** código e simulador prontos, escondidos por `VITE_WHATSAPP_ENABLED`; migrações `whatsapp*.sql` não aplicadas.
 - **Android:** backup do app desligado; modo ao vivo protegido (scripts + trava no Gradle para builds release).
@@ -62,6 +63,7 @@ Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kM
 1. Decidir e executar a remoção do backup `encaixa_backup_20261014`.
 2. Ativar a proteção de senhas vazadas no painel do Supabase (se o plano permitir).
 3. Publicar a unificação de clientes: ensaiar e aplicar `client_duplicates.sql`, depois publicar o site (antes do site a tela não quebra, mas o botão de unificar falha sem a função).
-4. Preparar o app Android para a loja: origem na `billing`, deep links de e-mail, Stripe externo, `@capacitor/local-notifications` e push (FCM).
-5. Otimizar o logo para WebP.
-6. Quando autorizado: ativar o WhatsApp (migrações, função, Meta) seguindo `WHATSAPP-ATENDIMENTO.md`.
+4. Publicar o prazo do link da cliente: conferir em produção a definição atual de `booking_page_before_billing` (a migração a substitui pela versão de `team.sql` + o campo), ensaiar e aplicar `client_change_notice.sql`, depois publicar o site e a função `clara` (texto do guia). O site antigo continua funcionando com a migração; o painel novo só envia o campo quando a coluna existe.
+5. Preparar o app Android para a loja: origem na `billing`, deep links de e-mail, Stripe externo, `@capacitor/local-notifications` e push (FCM).
+6. Otimizar o logo para WebP.
+7. Quando autorizado: ativar o WhatsApp (migrações, função, Meta) seguindo `WHATSAPP-ATENDIMENTO.md`.

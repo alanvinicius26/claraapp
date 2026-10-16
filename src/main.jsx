@@ -31,6 +31,7 @@ import { demoAlerts } from "./booking-alerts";
 // The condition is inlined (not `whatsappEnabled`) so the bundler drops the chunk when off.
 const WhatsApp = import.meta.env.VITE_WHATSAPP_ENABLED === "true" ? React.lazy(() => import("./WhatsApp")) : null;
 import StudioLinkField from "./StudioLinkField";
+import { CHANGE_NOTICE_OPTIONS, changeNoticeHours, changeNoticeLabel } from "./booking-policy";
 import { canShareLinks, sharingUnavailable } from "./sharing";
 import { createRoot } from "react-dom/client";
 import {
@@ -1988,6 +1989,10 @@ function Space({ studio, protect, mutate, notify, demo, copyLink }) {
                 min_notice: Number(f.min_notice),
                 horizon: Number(f.horizon),
                 buffer: Number(f.buffer),
+                // Sent only once the column exists (client_change_notice.sql).
+                ...("change_notice_hours" in studio && {
+                  change_notice_hours: Number(f.change_notice_hours),
+                }),
               })
               .eq("id", studio.id),
           ),
@@ -2106,18 +2111,34 @@ function Space({ studio, protect, mutate, notify, demo, copyLink }) {
               </select>
             </Field>
           </div>
-          <Field label="Intervalo após cada atendimento">
-            <select name="buffer" defaultValue={studio.buffer}>
-              {[0, 5, 10, 15, 20, 30, 60].map((n) => (
-                <option key={n} value={n}>
-                  {n} minutos
-                </option>
-              ))}
-            </select>
-          </Field>
+          <div className="form-row">
+            <Field label="Intervalo após cada atendimento">
+              <select name="buffer" defaultValue={studio.buffer}>
+                {[0, 5, 10, 15, 20, 30, 60].map((n) => (
+                  <option key={n} value={n}>
+                    {n} minutos
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field label="Prazo para a cliente cancelar ou remarcar">
+              <select
+                name="change_notice_hours"
+                defaultValue={changeNoticeHours(studio)}
+              >
+                {CHANGE_NOTICE_OPTIONS.map((n) => (
+                  <option key={n} value={n}>
+                    {n} horas
+                  </option>
+                ))}
+              </select>
+            </Field>
+          </div>
           <div className="note-box">
-            <ShieldCheck size={17} /> As clientes podem cancelar ou remarcar até
-            2 horas antes. Os horários consideram o fuso de São Paulo.
+            <ShieldCheck size={17} /> Pelo link da reserva, a cliente pode
+            cancelar ou remarcar sozinha até {changeNoticeLabel(studio)} antes,
+            se não houver pagamento registrado. Depois disso, ela fala com você
+            pelo WhatsApp. Os horários consideram o fuso de São Paulo.
           </div>
           <Button className="primary" icon={Check}>
             Salvar alterações
@@ -2273,7 +2294,7 @@ function Online({ studio, services, demo, copyLink, notify }) {
             <ShieldCheck size={22} />
             <p>
               Horários protegidos contra sobreposição. Cancelamento e remarcação
-              até 2 horas antes do atendimento.
+              pela cliente até {changeNoticeLabel(studio)} antes do atendimento.
             </p>
           </div>
         </div>

@@ -373,7 +373,7 @@ export default function Landing() {
               <div><Smartphone size={20} /> Sem aplicativo para a cliente baixar</div>
               <div><QrCode size={20} /> QR Code pronto para imprimir</div>
               <div><MessageCircle size={20} /> Compartilhamento direto no WhatsApp</div>
-              <div><Clock3 size={20} /> Remarcação pela cliente até 2h antes</div>
+              <div><Clock3 size={20} /> Remarcação pela cliente no prazo que você escolher</div>
             </div>
           </div>
         </section>

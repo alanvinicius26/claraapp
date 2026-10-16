@@ -2,7 +2,7 @@
 
 As regras vivem no **banco** (Supabase/Postgres). A interface só mostra o que o banco libera, e toda gravação é revalidada no banco. Mudanças aqui exigem plano resumido aprovado antes (ver `CLAUDE.md`).
 
-Migrações que definem estas regras, na ordem aplicada em produção: `schema` → `hardening` → `quality` → `multiservice` → `booking_readiness` → `product_completion` → `team` → `custom_links` → `clara*` → `production_readiness` → `billing` → `billing_plans` → `platform_admin` → `scheduling_integrity` → `parallel_bookings` → `booking_notifications` → `booking_notifications_retention` → `client_duplicates` (local, ainda não aplicada).
+Migrações que definem estas regras, na ordem aplicada em produção: `schema` → `hardening` → `quality` → `multiservice` → `booking_readiness` → `product_completion` → `team` → `custom_links` → `clara*` → `production_readiness` → `billing` → `billing_plans` → `platform_admin` → `scheduling_integrity` → `parallel_bookings` → `booking_notifications` → `booking_notifications_retention` → `client_duplicates` (local, ainda não aplicada) → `client_change_notice` (local, ainda não aplicada; independe de `client_duplicates`).
 
 ## Configurações do estúdio (`public.studios`)
 | Campo | Padrão | Faixa | Uso |
@@ -11,6 +11,7 @@ Migrações que definem estas regras, na ordem aplicada em produção: `schema` 
 | `horizon` | 30 dias | **1–90** | até quantos dias à frente aceita reservas |
 | `buffer` | 15 min | 0–120 | intervalo de limpeza após o atendimento |
 | `active` | true | — | reservas online ligadas/pausadas |
+| `change_notice_hours` | 2 h | **2, 4, 6, 12, 24 ou 48** | prazo para a cliente cancelar/remarcar sozinha pelo link |
 
 ## Cálculo de horários livres
 Funções: `public.available_slots_team` (público), `public.owner_available_slots` (dona), `encaixa_private.scheduling_slots` (núcleo), `encaixa_private.team_slots` (Clara), `public.available_dates_team` (lista de dias).
@@ -52,7 +53,11 @@ Proteções:
 ## Link da cliente (`#/manage/:token`)
 Função `public.manage_booking(token, action, start)`:
 - **Ver:** dados da própria reserva (serviço, horário, profissional, estúdio, status, se há pagamento).
-- **Remarcar** e **cancelar** só quando: status `confirmed`, faltam **≥ 2 horas** para o início e **não há pagamento registrado**.
+- **Remarcar** e **cancelar** só quando: status `confirmed`, faltam **≥ `change_notice_hours`** do estúdio para o início (padrão 2 h; substituiu as 2 horas fixas em 16/10, `client_change_notice.sql`) e **não há pagamento registrado**.
+- O prazo é lido no momento da ação: mudar a configuração vale também para reservas já feitas. A mesma regra está em `manage_booking` e no ramo de remarcação (token) de `available_slots_team`, para a lista de horários e a gravação nunca divergirem. Mensagem: "Alterações online são permitidas até N horas antes."
+- Não confundir com `min_notice` (antecedência para **agendar**, etapa 4 do cálculo): são colunas e regras independentes; uma não altera a outra.
+- A conta é feita entre instantes (`starts_at` < `now()` + N horas), então o resultado é o mesmo em qualquer fuso; os horários mostrados seguem `America/Sao_Paulo`.
+- O prazo aparece para a cliente antes de confirmar (`booking_page` → `studio.change_notice_hours`) e no link (`manage_booking` → `change_notice_hours`). Fora do prazo, o link mostra os botões desabilitados e "Chamar o estúdio no WhatsApp" (se o estúdio tiver telefone).
 - Remarcar: mesma profissional e mesmos serviços; o novo horário precisa estar livre (mesmas regras acima, excluindo a própria reserva).
 - Cada ação gera aviso à dona (`client_rescheduled` / `client_cancelled`).
 

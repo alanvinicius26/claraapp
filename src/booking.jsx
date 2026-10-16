@@ -21,7 +21,7 @@ import { rpc, errorMessage } from "./lib";
 import { SelectionSummary, ServiceBreakdown } from "./ServiceSelection";
 import { summarizeServices } from "./service-selection";
 import { findNextDates } from "./availability";
-import { canManageBooking } from "./booking-policy";
+import { canManageBooking, changeDeadlinePassed, changeNoticeLabel } from "./booking-policy";
 import { normalizePhone, validPhone } from "./contact";
 import {
   money,
@@ -600,7 +600,8 @@ export function Booking({ slug, notify }) {
                   <p className="micro">
                     Seus dados serão usados pelo estúdio para organizar este
                     atendimento. Ao confirmar, você concorda com a regra de
-                    alterações até 2 horas antes.
+                    alterações online até {changeNoticeLabel(studio)} antes
+                    do atendimento.
                   </p>
                   <button className="button primary full" disabled={busy}>
                     {busy ? (
@@ -750,6 +751,11 @@ export function Manage({ token, notify }) {
     );
   const cancelled = booking.status === "cancelled";
   const editable = canManageBooking(booking);
+  const late = changeDeadlinePassed(booking);
+  const notice = changeNoticeLabel(booking);
+  const whatsapp = booking.phone
+    ? `https://wa.me/55${booking.phone.replace(/\D/g, "").replace(/^55(?=\d{10,11}$)/, "")}`
+    : "";
   return (
     <PublicShell>
       <div className="confirmation">
@@ -857,10 +863,10 @@ export function Manage({ token, notify }) {
             </button>
           </>
         )}
-        {booking.phone && (
+        {whatsapp && !late && (
           <a
             className="button secondary full"
-            href={`https://wa.me/55${booking.phone.replace(/\D/g, "").replace(/^55(?=\d{10,11}$)/, "")}`}
+            href={whatsapp}
             target="_blank"
             rel="noreferrer"
           >
@@ -889,6 +895,32 @@ export function Manage({ token, notify }) {
               Quero cancelar
             </button>
           </div>
+        )}
+        {late && (
+          <>
+            <div className="note-box" role="status">
+              Faltam menos de {notice} para o atendimento. Para remarcar ou
+              cancelar, fale com o estúdio.
+            </div>
+            <div className="detail-actions">
+              <button className="button secondary" disabled>
+                Quero remarcar
+              </button>
+              <button className="button danger" disabled>
+                Quero cancelar
+              </button>
+            </div>
+            {whatsapp && (
+              <a
+                className="button primary full"
+                href={whatsapp}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MessageCircle size={17} /> Chamar o estúdio no WhatsApp
+              </a>
+            )}
+          </>
         )}
         {editable && action === "cancel" && (
           <div className="panel confirm-box">
@@ -933,7 +965,7 @@ export function Manage({ token, notify }) {
           </div>
         )}
         <p className="micro">
-          Alterações online até 2 horas antes do atendimento. Depois desse
+          Alterações online até {notice} antes do atendimento. Depois desse
           prazo, converse com o estúdio.
         </p>
         <a className="text-button" href={`#/booking/${booking.slug}`}>

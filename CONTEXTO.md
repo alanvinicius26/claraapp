@@ -1,5 +1,12 @@
 # Minha Clara — leia primeiro ao retomar
 
+## Prazo do link da cliente configurável — 16/10/2026, LOCAL (nada publicado)
+- Pedido: trocar as 2 horas fixas para cancelar/remarcar pelo link por uma configuração do estúdio (2/4/6/12/24/48 h, padrão 2). Decisão do usuário: vale o prazo atual do estúdio, inclusive para reservas existentes.
+- Migração supabase/client_change_notice.sql (após parallel_bookings, independe de client_duplicates): coluna studios.change_notice_hours com check; recria manage_booking (corpo de team.sql), available_slots_team (corpo de parallel_bookings.sql, ramo do token) e booking_page_before_billing (corpo de team.sql + campo). Todas mantêm security definer e search_path ''. Grants preservados (create or replace).
+- Frontend: src/booking-policy.js (opções, rótulo, canManageBooking e changeDeadlinePassed com o prazo do estúdio); booking.jsx mostra o prazo antes de confirmar e no link, e fora do prazo desabilita os botões e mostra "Chamar o estúdio no WhatsApp"; Meu espaço ganhou o seletor (enviado só se a coluna existir); textos de Agendamento online, landing e guia da Clara atualizados; demo com 2 h.
+- Testes: tests/client-change-notice.test.js (padrão em estúdio existente, check, RLS da dona, 24 h bloqueia/12 h libera nas duas funções, remarcação, pagamento e status inalterados) + booking-policy.test.js. 506 testes e build ok. Meu espaço conferido na demonstração em desktop e 375 px. Tela do link fora do prazo NÃO vista no navegador (exige reserva real com a coluna em produção).
+- Antes de aplicar: conferir a definição em produção de booking_page_before_billing (supomos a de team.sql; media.sql não está na ordem de produção).
+
 ## Aviso de teste/plano encerrado — 15/10/2026, PUBLICADO (estado atual do site)
 - Vercel produção dpl_3i7kXjmL49kMmTeo3RKTvJf1Xgkg READY (minhaclara.com/www/encaixa-eta), pacote .local/vercel/clara-access-20261015; prévia dpl_CzWpQjEvxVuQ1kts83V4A1xWwfHe conferida. JS/CSS no ar idênticos ao pacote; landing, demonstração, sino e reservas sem erros. Aviso com conta real bloqueada não visto por mim (sem credenciais). Pose escolhida pelo usuário: 14-lembrete. Reversão: promover dpl_4aiKjkH7mAo6uL4sDXVbzniVD1zM.
 - Pedido: ao fim do teste de 7 dias, mostrar aviso com botão para Minha assinatura. src/access-notice.js (regra) + AccessNotice.jsx + access-notice.css. Usa billing_status (can_use); nenhum backend alterado (o banco já bloqueia gravações e reservas online).
