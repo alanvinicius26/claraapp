@@ -72,6 +72,44 @@ test("duplicate clients by WhatsApp: owner-only detection, alert and one-click m
       await asPublic();
       await assert.rejects(() => db.transaction(async (tx) => { await tx.exec("set local role anon"); await tx.query("select public.merge_client_group($1,$2)", [target, sources]); }));
     });
+
+    await t.test("past, paid and future history moves to the main record; contacts and notes are kept", async () => {
+      const g = await schedulingFixture(db);
+      await asOwner(g.owner);
+      const client = async (name, phone, email, notes) => (await one("insert into public.clients(studio_id,name,phone,email,notes) values($1,$2,$3,$4,$5) returning id", [g.studio.id, name, phone, email, notes])).id;
+      const main = await client("Ana Lima", "(11) 97777-0000", "ana@exemplo.invalid", "Alergia a acetona.");
+      const dup = await client("Ana L.", "11977770000", "ana.l@exemplo.invalid", "Prefere manhã.");
+      const done = async (who, time) => { const a = await g.insert([g.free], g.at(time), g.p1, { client_id: who }); await db.query("update public.appointments set status='completed' where id=$1", [a.id]); return a; };
+      const paidVisit = await done(dup, "09:00");
+      await db.query("insert into public.payments(studio_id,appointment_id,method) values($1,$2,'Pix')", [g.studio.id, paidVisit.id]);
+      await done(main, "11:00");
+      const upcoming = await g.insert([g.free], g.at("13:00"), g.p1, { client_id: dup });
+      await asRole(g.owner, (tx) => tx.query("select public.merge_client_group($1,$2)", [main, [dup]]));
+      const rows = (await db.query("select id,client_id,status from public.appointments where studio_id=$1", [g.studio.id])).rows;
+      assert.ok(rows.every((r) => r.client_id === main), "every appointment points to the main record");
+      assert.equal(rows.filter((r) => r.status === "completed").length, 2);
+      assert.equal((await one("select status from public.appointments where id=$1", [upcoming.id])).status, "confirmed");
+      assert.equal(Number((await one("select count(*) n from public.payments where appointment_id=$1", [paidVisit.id])).n), 1);
+      const kept = await one("select email,notes,merged_into from public.clients where id=$1", [main]);
+      assert.equal(kept.email, "ana@exemplo.invalid");
+      for (const piece of ["Alergia a acetona.", "Prefere manhã.", "“Ana L.”", "e-mail ana.l@exemplo.invalid", "Unificado em"]) assert.ok(kept.notes.includes(piece), piece);
+      assert.equal(kept.merged_into, null);
+      assert.equal((await one("select merged_into from public.clients where id=$1", [dup])).merged_into, main);
+
+      // Main record without e-mail takes the merged one; same name and e-mail need no extra note.
+      const bare = await client("Bia Rocha", "(21) 98888-1111", "", "");
+      const withMail = await client("Bia Rocha", "21988881111", "bia@exemplo.invalid", "");
+      await asRole(g.owner, (tx) => tx.query("select public.merge_client_group($1,$2)", [bare, [withMail]]));
+      const bia = await one("select email,notes from public.clients where id=$1", [bare]);
+      assert.deepEqual([bia.email, bia.notes], ["bia@exemplo.invalid", ""]);
+
+      // Notes over the 5000-character limit: nothing is merged, nothing is cut.
+      const full = await client("Carla Dias", "(31) 96666-2222", "", "x".repeat(4990));
+      const other = await client("Carla D.", "31966662222", "carla@exemplo.invalid", "");
+      await assert.rejects(() => asRole(g.owner, (tx) => tx.query("select public.merge_client_group($1,$2)", [full, [other]])), /5000/);
+      assert.equal((await one("select merged_into from public.clients where id=$1", [other])).merged_into, null);
+      assert.equal((await one("select length(notes) n from public.clients where id=$1", [full])).n, 4990);
+    });
   } finally {
     await db.close();
   }

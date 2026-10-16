@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { duplicateGroups, groupOf } from "./client-duplicates";
+import { indexClientVisits } from "./dashboard-data.js";
 import { Users, Merge } from "lucide-react";
 import "./client-duplicates.css";
 
@@ -34,7 +36,7 @@ export function DuplicatesPanel({ groups, visits, onMerge, saving, onSelect }) {
       <span><strong>{groups.length === 1 ? "1 cliente parece ter cadastro duplicado" : `${groups.length} clientes parecem ter cadastros duplicados`}</strong>
         {" "}({total} cadastros com o mesmo WhatsApp). Revisar e unificar</span>
     </summary>
-    <p className="micro">Reservas online sempre criam um cadastro novo, por privacidade. Unificar junta histórico e observações no cadastro principal; o outro fica arquivado, sem apagar dados. Não há desfazer pelo painel.</p>
+    <p className="micro">Reservas online sempre criam um cadastro novo, por privacidade. Unificar junta histórico, observações e e-mail no cadastro principal; nomes e e-mails diferentes ficam anotados nas observações internas. O outro cadastro fica arquivado, sem apagar dados. Não há desfazer pelo painel.</p>
     <ul>{groups.map((g) => <Group key={g.key + g.clients.map((c) => c.id).join()} group={g} visits={visits} onMerge={onMerge} saving={saving} onSelect={onSelect} />)}</ul>
   </details>;
 }
@@ -57,4 +59,15 @@ export function DuplicateSuggestion({ group, client, visits, onMerge, saving }) 
       </button>}
     </div>
   </div>;
+}
+
+// Appointment detail: same suggestion for the client of this appointment
+// (typically a new online booking), computed from data already in the panel.
+export function AppointmentDuplicateHint({ clientId, clients, appointments, onMerge, saving }) {
+  const index = useMemo(() => indexClientVisits(appointments), [appointments]);
+  const groups = useMemo(() => duplicateGroups(clients, index), [clients, index]);
+  const group = groupOf(groups, clientId);
+  const client = clients.find((c) => c.id === clientId);
+  if (!group || !client) return null;
+  return <DuplicateSuggestion group={group} client={client} visits={(c) => index.get(c.id)?.completed?.length || 0} onMerge={onMerge} saving={saving} />;
 }

@@ -14,7 +14,7 @@ import { createDashboardLoader, indexClientVisits } from "./dashboard-data.js";
 import Brand, { BrandLogo, BrandMark } from "./Brand";
 import Landing from "./Landing";
 import ClientMerge from "./ClientMerge";
-import { DuplicatesPanel, DuplicateSuggestion } from "./ClientDuplicates";
+import { DuplicatesPanel, DuplicateSuggestion, AppointmentDuplicateHint } from "./ClientDuplicates";
 import { duplicateGroups, groupOf } from "./client-duplicates";
 import Team from "./Team";
 import ClaraChat from "./ClaraChat";
@@ -2505,6 +2505,20 @@ function Editor({
             startsAt={item.starts_at}
           />
           {item.notes && <div className="note-box">{item.notes}</div>}
+          {item.client_id && (
+            <AppointmentDuplicateHint
+              clientId={item.client_id}
+              clients={clients}
+              appointments={appointments}
+              saving={saving}
+              onMerge={(target, sources) =>
+                mutate(
+                  () => rpc("merge_client_group", { p_target: target, p_sources: sources }),
+                  "Cadastros unificados. Histórico preservado.",
+                )
+              }
+            />
+          )}
           {paid(item.id) && (
             <div className="notice">
               <CircleCheck size={20} /> Recebido via {paid(item.id).method} ·{" "}

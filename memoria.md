@@ -42,18 +42,19 @@ Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kM
 - **Cobrança:** 7 dias grátis sem cartão; planos por tamanho de equipe (1=R$29,90; 2–3=R$59,90; 4=R$79,90; 5=R$99,90); acesso só por estado confirmado pelo webhook; vencido = só consulta.
 - **Avisos em tempo real** (14–15/10): eventos em `studio_notifications`, só ações da cliente, retenção de 90 dias; som e notificação por aparelho.
 - **Aviso de acesso encerrado** (15/10): janela uma vez por sessão + faixa fixa, botão para Minha assinatura; pose `14-lembrete`.
-- **Clientes duplicados (Opção A, 15/10):** detecção e unificação com 1 clique só no painel, pela chave do WhatsApp; aviso privado "já é cliente" no sino. Rejeitada a Opção B (vínculo automático na reserva pública) por contrariar a decisão de privacidade e permitir que quem conhece um telefone associe reservas ao histórico de outra pessoa.
+- **Clientes duplicados (Opção A, 15–16/10):** detecção e unificação com 1 clique só no painel (Clientes, detalhe da cliente e detalhe do atendimento), pela chave do WhatsApp; aviso privado "já é cliente" no sino. Unificação preserva todo o histórico (inclusive pago), observações, e-mail; nome/e-mail divergentes vão para as observações; acima de 5000 caracteres recusa tudo. Rejeitada a Opção B (vínculo automático na reserva pública) por contrariar a decisão de privacidade e permitir que quem conhece um telefone associe reservas ao histórico de outra pessoa.
 - **Login:** lembra só o e-mail no aparelho; senha fica com o gerenciador do navegador.
 - **WhatsApp em standby:** código e simulador prontos, escondidos por `VITE_WHATSAPP_ENABLED`; migrações `whatsapp*.sql` não aplicadas.
 - **Android:** backup do app desligado; modo ao vivo protegido (scripts + trava no Gradle para builds release).
 - **Publicação:** pacote estático via `scripts/deploy-vercel.ps1`, sempre prévia conferida antes da produção; migrações ensaiadas com rollback; commit antes ou logo após publicar.
 
 ## Problemas conhecidos
-- **Clientes duplicados** nas reservas online continuam sendo criados (decisão de privacidade); agora o painel detecta e unifica. Em produção havia 2 grupos em 7 cadastros (15/10). Migração `client_duplicates.sql` e painel **ainda não publicados**.
+- **Clientes duplicados** nas reservas online continuam sendo criados (decisão de privacidade); agora o painel detecta e unifica. Em produção havia 2 grupos em 7 cadastros (15/10). Migração `client_duplicates.sql` e painel **ainda não publicados** (commit 7fd181b + complementos de 16/10). Detalhe do atendimento não abre na demonstração; conferir com conta real após publicar.
 - **Proteção contra senhas vazadas** desativada no Supabase Auth (pode exigir plano Pro).
 - **Schema `encaixa_backup_20261014`** em produção guarda cópia com dados pessoais (backup de 14/10); decidir data para apagar (sugestão: ~30 dias).
 - **Capacitor:** função `billing` recusa a origem do app; links de e-mail apontam para a origem interna; Stripe precisa abrir no navegador externo; avisos ainda usam API do navegador.
 - **WhatsApp (standby):** eventos de canal conectado mas desativado se perdem após 5 tentativas; opt-out ("SAIR") é definitivo, sem reativação; confirmação com número real da Meta pendente.
+- Não há typecheck no projeto (sem `tsconfig`, `tsc` ou `deno` local); Edge Functions `.ts` só são verificadas ao publicar.
 - Logo `clara-logo-v2.png` com 476 KB carregado em todas as telas.
 - Duas contas com teste vencido em 15/10 (bloqueadas para gravação, comportamento esperado).
 

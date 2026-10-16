@@ -66,7 +66,8 @@ Função `public.manage_booking(token, action, start)`:
 - A reserva online continua criando um cadastro novo e nunca consulta, vincula ou devolve clientes existentes.
 - Chave do telefone: `encaixa_private.phone_key` (SQL) = `phoneKey` (`src/client-duplicates.js`): só dígitos, sem 55, 9º dígito restaurado em celular antigo (8 dígitos começando com 6–9); fixo mantém 10 dígitos; inválido = sem chave (nunca agrupa).
 - O painel agrupa cadastros ativos com a mesma chave e sugere como principal o de mais visitas concluídas, depois com próximo horário, depois o mais antigo.
-- `public.merge_client_group(alvo, origens[])`: só a dona do estúdio, todos com a mesma chave, tudo ou nada; reaproveita `merge_clients` (move atendimentos, junta observações, arquiva com `merged_into`) e preenche o e-mail do principal se estiver vazio. Conta com teste vencido não consegue unificar (gatilho de cobrança nos atendimentos).
+- `public.merge_client_group(alvo, origens[])`: só a dona do estúdio, todos com a mesma chave, tudo ou nada; reaproveita `merge_clients` (move todos os atendimentos, passados e futuros — pagamentos acompanham o atendimento —, junta observações, arquiva com `merged_into`) e preenche o e-mail do principal se estiver vazio. Nome ou e-mail diferentes dos cadastros arquivados viram uma linha datada nas observações internas (“Unificado em DD/MM/AAAA: cadastro “X” · e-mail Y”); se as observações passarem de 5000 caracteres, nada é unificado.
+- A sugestão aparece na tela Clientes (grupos), no detalhe da cliente e no detalhe do atendimento; o painel recarrega após unificar, então visitas e "clientes que voltam" já contam o histórico unificado. Conta com teste vencido não consegue unificar (gatilho de cobrança nos atendimentos).
 
 ## Agenda interna (painel e Clara)
 - Mesmas regras de expediente, pausa, antecedência, horizonte, recursos e capacidade, aplicadas pelos gatilhos em qualquer gravação.

@@ -21,10 +21,14 @@ $$;
 -- One-click merge of a duplicate group into the chosen main record, atomically.
 -- Reuses merge_clients (history, notes, merged_into) and only accepts records
 -- with the same WhatsApp key. The main record keeps its data; an empty e-mail is
--- filled from the first merged record that has one.
+-- filled from the first merged record that has one. Nothing is dropped silently:
+-- a different name or e-mail of a merged record is written to the main record's
+-- internal notes (merge_clients already carries their notes). If the notes would
+-- exceed 5000 characters, nothing is merged.
 create function public.merge_client_group(p_target uuid,p_sources uuid[]) returns jsonb
 language plpgsql security definer set search_path='' as $$
 declare sid uuid; t public.clients; s public.clients; k text; src uuid; mail text:='';
+ names text[]:='{}'; mails text[]:='{}'; final text; trail text:=''; kept text; i integer;
 begin
  select id into sid from public.studios where owner_id=auth.uid() for update;
  if sid is null then raise exception 'Acesso negado.' using errcode='42501'; end if;
@@ -41,11 +45,22 @@ begin
   if s.id is null then raise exception 'Cadastro indisponível. Atualize a lista.'; end if;
   if encaixa_private.phone_key(s.phone)<>k then raise exception 'Só é possível unificar cadastros com o mesmo WhatsApp.'; end if;
   if mail='' and s.email<>'' then mail:=s.email; end if;
+  names:=names||s.name; mails:=mails||s.email;
+ end loop;
+ final:=case when t.email<>'' then t.email else mail end;
+ for i in 1..cardinality(p_sources) loop
+  if lower(trim(names[i]))<>lower(trim(t.name)) or (mails[i]<>'' and lower(mails[i])<>lower(final)) then
+   trail:=concat_ws(E'\n',nullif(trail,''),'Unificado em '||to_char(now() at time zone 'America/Sao_Paulo','DD/MM/YYYY')
+    ||': cadastro “'||names[i]||'”'||case when mails[i]<>'' and lower(mails[i])<>lower(final) then ' · e-mail '||mails[i] else '' end);
+  end if;
  end loop;
  foreach src in array p_sources loop
   perform public.merge_clients(src,p_target);
  end loop;
- if t.email='' and mail<>'' then update public.clients set email=mail where id=p_target; end if;
+ select notes into kept from public.clients where id=p_target;
+ kept:=concat_ws(E'\n\n',nullif(kept,''),nullif(trail,''));
+ if length(kept)>5000 then raise exception 'As observações somadas excedem 5000 caracteres. Revise antes de unificar.'; end if;
+ update public.clients set email=final,notes=kept where id=p_target;
  return jsonb_build_object('target',p_target,'merged',cardinality(p_sources));
 end $$;
 
