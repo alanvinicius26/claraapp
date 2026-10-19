@@ -1,13 +1,26 @@
 # Minha Clara — leia primeiro ao retomar
 
-## Prazo do link da cliente configurável — 16/10/2026, LOCAL (nada publicado)
+## Publicação de 19/10/2026 — PUBLICADO (estado atual do site)
+- Autorizada pelo usuário em ordem: backup → client_change_notice.sql → client_duplicates.sql → verificação → Edge clara → site. Commits publicados: 032bd98, 7fd181b, f00dbbf, f0aa889, 694fcce.
+- Ensaio antes (comando DO que termina em exceção = rollback garantido): coluna em 52 ms + funções em 21 ms, tabela studios não reescrita, permissões conferidas; depois do ensaio produção conferida intacta.
+- Backup: schema privado `encaixa_backup_20261019` (studios: 3 linhas; functions: definições/ACL de manage_booking, available_slots_team, booking_page_before_billing, notify_owner; sem acesso anon/authenticated). Local: `.local/releases/before-client-notice-duplicates-20261019` (functions-before.sql, rollback-database.sql NÃO executado, previous-production-deployment.json).
+- Migrações aplicadas: clara_client_change_notice e clara_client_duplicates (lock_timeout 5s). Verificado: change_notice_hours integer not null default 2 com check, 3/3 estúdios com 2 h; 6 funções com search_path '' (phone_key sem security definer, de propósito); merge_client_group só authenticated; funções públicas só service_role; gatilho notify_owner ativo; booking_page via Edge devolve change_notice_hours=2 e nenhum dado de cliente.
+- Edge clara v16 ACTIVE (verify_jwt=false como antes; só guide.js mudou; OPTIONS 200, POST sem login 401). Reversão: republicar arquivos de supabase/functions/clara do commit 00ed5f8.
+- Vercel: prévia dpl_AQ8cRxVza3efcbTQ6rK1XcYvkLkP conferida (link de acesso temporário; demo Meu espaço com validação do expediente, booking/larihair sem erro, 375 px). Produção dpl_5eTwXK6JugGpxgoV2cLbm4paKbHk READY (minhaclara.com, www, encaixa-eta), pacote `.local/vercel/clara-notice-dups-20261019` + manifesto SHA-256; scripts/verify-release.mjs: 28 arquivos idênticos, cabeçalhos, booking 200 / billing 401 / clara 401 / stripe-webhook 400. Bundle index-CoAw8dkM.js. Reversão do site: promover dpl_3i7kXjmL49kMmTeo3RKTvJf1Xgkg.
+- Não verificado: fluxos com conta real (unificar, salvar expediente da LariHair, link fora do prazo). Não há remote Git (nada enviado).
+
+## Diagnóstico "Erro de conexão" (LariHair) — 19/10/2026
+- Logs: único save_hours dela (18/10 18:42 UTC, Chrome iOS) = 400 por working_hours_check1 (pausa fora do expediente), exibido no site antigo como mensagem genérica. Nenhuma gravação de serviço chegou ao servidor. Expediente dela ainda no padrão; 0 serviços, 0 atendimentos.
+- No site antigo, "Erro de conexão" só vinha de tempo esgotado (15 s fetch / 20 s withDeadline, renovação de sessão, recarga do painel após salvar) ou 57014. Corrigido em 694fcce.
+
+## Prazo do link da cliente configurável — 16/10/2026 (publicado em 19/10)
 - Pedido: trocar as 2 horas fixas para cancelar/remarcar pelo link por uma configuração do estúdio (2/4/6/12/24/48 h, padrão 2). Decisão do usuário: vale o prazo atual do estúdio, inclusive para reservas existentes.
 - Migração supabase/client_change_notice.sql (após parallel_bookings, independe de client_duplicates): coluna studios.change_notice_hours com check; recria manage_booking (corpo de team.sql), available_slots_team (corpo de parallel_bookings.sql, ramo do token) e booking_page_before_billing (corpo de team.sql + campo). Todas mantêm security definer e search_path ''. Grants preservados (create or replace).
 - Frontend: src/booking-policy.js (opções, rótulo, canManageBooking e changeDeadlinePassed com o prazo do estúdio); booking.jsx mostra o prazo antes de confirmar e no link, e fora do prazo desabilita os botões e mostra "Chamar o estúdio no WhatsApp"; Meu espaço ganhou o seletor (enviado só se a coluna existir); textos de Agendamento online, landing e guia da Clara atualizados; demo com 2 h.
 - Testes: tests/client-change-notice.test.js (padrão em estúdio existente, check, RLS da dona, 24 h bloqueia/12 h libera nas duas funções, remarcação, pagamento e status inalterados) + booking-policy.test.js. 506 testes e build ok. Meu espaço conferido na demonstração em desktop e 375 px. Tela do link fora do prazo NÃO vista no navegador (exige reserva real com a coluna em produção).
 - Antes de aplicar: conferir a definição em produção de booking_page_before_billing (supomos a de team.sql; media.sql não está na ordem de produção).
 
-## Aviso de teste/plano encerrado — 15/10/2026, PUBLICADO (estado atual do site)
+## Aviso de teste/plano encerrado — 15/10/2026, PUBLICADO
 - Vercel produção dpl_3i7kXjmL49kMmTeo3RKTvJf1Xgkg READY (minhaclara.com/www/encaixa-eta), pacote .local/vercel/clara-access-20261015; prévia dpl_CzWpQjEvxVuQ1kts83V4A1xWwfHe conferida. JS/CSS no ar idênticos ao pacote; landing, demonstração, sino e reservas sem erros. Aviso com conta real bloqueada não visto por mim (sem credenciais). Pose escolhida pelo usuário: 14-lembrete. Reversão: promover dpl_4aiKjkH7mAo6uL4sDXVbzniVD1zM.
 - Pedido: ao fim do teste de 7 dias, mostrar aviso com botão para Minha assinatura. src/access-notice.js (regra) + AccessNotice.jsx + access-notice.css. Usa billing_status (can_use); nenhum backend alterado (o banco já bloqueia gravações e reservas online).
 - Mensagens distintas: teste grátis terminou, pagamento não confirmado (past_due/unpaid/incomplete), assinatura terminou, equipe acima do limite do plano. Janela uma vez por sessão do navegador e por situação; faixa fixa em todas as páginas exceto Minha assinatura; dados seguem consultáveis.

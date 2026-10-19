@@ -2,7 +2,7 @@
 
 Histórico vivo e enxuto. Atualizar ao concluir cada mudança aprovada. Evidências, IDs de deploy e detalhes de cada sessão ficam em `CONTEXTO.md`.
 
-Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kMmTeo3RKTvJf1Xgkg`), Supabase `gtqcehwvddvqllicnreu` (sa-east-1), último commit `00ed5f8`.
+Estado em **19/10/2026**: produção em minhaclara.com (Vercel `dpl_5eTwXK6JugGpxgoV2cLbm4paKbHk`, commit `694fcce`), Supabase `gtqcehwvddvqllicnreu` (sa-east-1) com `client_change_notice` e `client_duplicates` aplicadas.
 
 ## Arquitetura atual
 
@@ -28,14 +28,14 @@ Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kM
 
 ### Supabase — RPCs usadas pelo app
 - **Públicas (via Edge Function `booking`):** `booking_page`, `available_slots_team`, `available_dates_team`, `book_appointment_team`, `manage_booking` (legado aceito: `available_slots*`, `book_appointment*`; `book_appointment_whatsapp` aceita mas inerte).
-- **Dona (JWT):** `setup_studio`, `owner_available_slots`, `save_hours`, `save_professional_hours`, `merge_clients`, `merge_client_group` (nova, local), `dashboard_revision`, `studio_link_available`, `billing_status`, `mark_notifications_seen`.
+- **Dona (JWT):** `setup_studio`, `owner_available_slots`, `save_hours`, `save_professional_hours`, `merge_clients`, `merge_client_group`, `dashboard_revision`, `studio_link_available`, `billing_status`, `mark_notifications_seen`.
 - **Clara (Edge `clara`):** `clara_request_allowed`, `clara_take_quota`, `clara_read`, `clara_dialogue_get/save/commit`, `clara_reschedule_options`.
 - **Plataforma:** `platform_admin_status`, `admin_accounts`, `admin_history`, `admin_set_access`, `admin_revoke_access`, `admin_coupons_list`.
 - **Internas (`encaixa_private`):** `scheduling_slots`, `team_slots`, `schedule_fits`, `resources_free`, `parallel_fits`, `services_parallel_limit`, `billing_access`, `require_studio_subscription`, `lock_schedule`, `validate_schedule`, `notify_owner`, `resolve_studio`.
 - Tabelas principais: `studios`, `professionals`, `working_hours`, `professional_hours`, `services`, `resources`, `clients`, `appointments`, `appointment_resources`, `payments`, `studio_notifications`; privadas em `encaixa_private` (cobrança, limites, revisões, locks, admin).
 
 ### Edge Functions em produção
-`booking` v12, `clara` v15, `billing` v6, `stripe-webhook` v5. `whatsapp` não publicada.
+`booking` v12, `clara` v16 (19/10: guia com prazo configurável), `billing` v6, `stripe-webhook` v5. `whatsapp` não publicada.
 
 ## Decisões aprovadas
 - **Privacidade na reserva online:** a rota pública nunca consulta clientes existentes; cada reserva cria um cadastro novo. A unificação é manual no painel.
@@ -53,9 +53,10 @@ Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kM
 - **Publicação:** pacote estático via `scripts/deploy-vercel.ps1`, sempre prévia conferida antes da produção; migrações ensaiadas com rollback; commit antes ou logo após publicar.
 
 ## Problemas conhecidos
-- **Clientes duplicados** nas reservas online continuam sendo criados (decisão de privacidade); agora o painel detecta e unifica. Em produção havia 2 grupos em 7 cadastros (15/10). Migração `client_duplicates.sql` e painel **ainda não publicados** (commit 7fd181b + complementos de 16/10). Detalhe do atendimento não abre na demonstração; conferir com conta real após publicar.
+- **Clientes duplicados** nas reservas online continuam sendo criados (decisão de privacidade); agora o painel detecta e unifica. Em produção havia 2 grupos em 7 cadastros (15/10). Unificação publicada em 19/10; ainda não testada com conta real (detalhe do atendimento não abre na demonstração).
+- **Prazo do link da cliente** publicado em 19/10, mas a tela do link fora do prazo ainda não foi vista com reserva real.
 - **Proteção contra senhas vazadas** desativada no Supabase Auth (pode exigir plano Pro).
-- **Schema `encaixa_backup_20261014`** em produção guarda cópia com dados pessoais (backup de 14/10); decidir data para apagar (sugestão: ~30 dias).
+- **Schema `encaixa_backup_20261014`** em produção guarda cópia com dados pessoais (backup de 14/10); decidir data para apagar (sugestão: ~30 dias). **`encaixa_backup_20261019`** (cópia de `studios` + 4 funções anteriores, antes das migrações de 19/10) também tem dados pessoais dos estúdios.
 - **Capacitor:** função `billing` recusa a origem do app; links de e-mail apontam para a origem interna; Stripe precisa abrir no navegador externo; avisos ainda usam API do navegador.
 - **WhatsApp (standby):** eventos de canal conectado mas desativado se perdem após 5 tentativas; opt-out ("SAIR") é definitivo, sem reativação; confirmação com número real da Meta pendente.
 - Não há typecheck no projeto (sem `tsconfig`, `tsc` ou `deno` local); Edge Functions `.ts` só são verificadas ao publicar.
@@ -63,11 +64,9 @@ Estado em **15/10/2026**: produção em minhaclara.com (Vercel `dpl_3i7kXjmL49kM
 - Duas contas com teste vencido em 15/10 (bloqueadas para gravação, comportamento esperado).
 
 ## Próximos passos
-1. Decidir e executar a remoção do backup `encaixa_backup_20261014`.
+1. Decidir e executar a remoção dos backups `encaixa_backup_20261014` e `encaixa_backup_20261019`.
 2. Ativar a proteção de senhas vazadas no painel do Supabase (se o plano permitir).
-3. Publicar a unificação de clientes: ensaiar e aplicar `client_duplicates.sql`, depois publicar o site (antes do site a tela não quebra, mas o botão de unificar falha sem a função).
-4. Publicar o prazo do link da cliente: conferir em produção a definição atual de `booking_page_before_billing` (a migração a substitui pela versão de `team.sql` + o campo), ensaiar e aplicar `client_change_notice.sql`, depois publicar o site e a função `clara` (texto do guia). O site antigo continua funcionando com a migração; o painel novo só envia o campo quando a coluna existe.
-5. Publicar a correção dos erros ao salvar expediente/serviço (só site, 19/10) e avisar a LariHair; o expediente dela ainda está no padrão (nunca foi salvo) e ela ainda não tem serviços.
-6. Preparar o app Android para a loja: origem na `billing`, deep links de e-mail, Stripe externo, `@capacitor/local-notifications` e push (FCM).
-7. Otimizar o logo para WebP.
-8. Quando autorizado: ativar o WhatsApp (migrações, função, Meta) seguindo `WHATSAPP-ATENDIMENTO.md`.
+3. Avisar a LariHair que o expediente pode ser salvo de novo (o dela ainda está no padrão e ela ainda não tem serviços) e conferir com conta real a unificação e o link fora do prazo.
+4. Preparar o app Android para a loja: origem na `billing`, deep links de e-mail, Stripe externo, `@capacitor/local-notifications` e push (FCM).
+5. Otimizar o logo para WebP.
+6. Quando autorizado: ativar o WhatsApp (migrações, função, Meta) seguindo `WHATSAPP-ATENDIMENTO.md`.

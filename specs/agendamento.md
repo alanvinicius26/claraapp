@@ -2,7 +2,7 @@
 
 As regras vivem no **banco** (Supabase/Postgres). A interface só mostra o que o banco libera, e toda gravação é revalidada no banco. Mudanças aqui exigem plano resumido aprovado antes (ver `CLAUDE.md`).
 
-Migrações que definem estas regras, na ordem aplicada em produção: `schema` → `hardening` → `quality` → `multiservice` → `booking_readiness` → `product_completion` → `team` → `custom_links` → `clara*` → `production_readiness` → `billing` → `billing_plans` → `platform_admin` → `scheduling_integrity` → `parallel_bookings` → `booking_notifications` → `booking_notifications_retention` → `client_duplicates` (local, ainda não aplicada) → `client_change_notice` (local, ainda não aplicada; independe de `client_duplicates`).
+Migrações que definem estas regras, na ordem aplicada em produção: `schema` → `hardening` → `quality` → `multiservice` → `booking_readiness` → `product_completion` → `team` → `custom_links` → `clara*` → `production_readiness` → `billing` → `billing_plans` → `platform_admin` → `scheduling_integrity` → `parallel_bookings` → `booking_notifications` → `booking_notifications_retention` → `client_change_notice` → `client_duplicates` (as duas aplicadas em 19/10; independem uma da outra).
 
 ## Configurações do estúdio (`public.studios`)
 | Campo | Padrão | Faixa | Uso |
