@@ -23,6 +23,7 @@ import { ClaraEmptyState, ClaraMilestone } from "./ClaraPresence";
 import { claraMilestoneFor, claimClaraMilestone } from "./clara-milestones";
 import ClaraArt from "./ClaraArt";
 import HoursEditor from "./HoursEditor";
+import { prepareHours } from "./hours-validation.js";
 import { BusinessPulse, PeriodInsights, localDay } from "./Insights";
 import BookingAlerts from "./BookingAlerts";
 import AccessNotice from "./AccessNotice";
@@ -717,12 +718,14 @@ function Dashboard({ session, demo, path, notify }) {
   const loader = useMemo(() => demo ? null : createDashboardLoader({ supabase, query, rpc, ownerId: session.user.id }), [demo, session?.user.id]);
   const mounted = useRef(true);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
-  const reload = useCallback(async (quiet = false, force = true) => {
-    if (demo) return;
+  // Resolves false when the refresh failed; `report = false` lets the caller
+  // explain it (after a successful save the error must not read as a failed save).
+  const reload = useCallback(async (quiet = false, force = true, report = true) => {
+    if (demo) return true;
     if (!quiet) setLoading(true);
     try {
       const data = await loader.load(force);
-      if (!mounted.current) return;
+      if (!mounted.current) return true;
       if (data) {
         setStudio(data.studio);
         setClients(data.clients || []); setServices(data.services || []);
@@ -730,8 +733,10 @@ function Dashboard({ session, demo, path, notify }) {
         setProfessionals(data.professionals || []);
       }
       setFailure(false);
+      return true;
     } catch (err) {
-      if (mounted.current) { setFailure(true); if (!quiet || force) notify(errorMessage(err), true); }
+      if (mounted.current) { setFailure(true); if (report && (!quiet || force)) notify(errorMessage(err), true); }
+      return false;
     } finally { if (mounted.current) setLoading(false); }
   }, [demo, loader, notify]);
   const refreshAfterAlert = useCallback(() => reload(true, true), [reload]);
@@ -768,17 +773,23 @@ function Dashboard({ session, demo, path, notify }) {
     if (mutationBusy.current) return;
     mutationBusy.current = true;
     setSaving(true);
+    let saved = false;
     try {
       const result = await fn();
+      saved = true;
       onSuccess?.(result);
       const milestone = claraMilestoneFor(event, { services, appointments });
       let storage;
       try { storage = window.localStorage; } catch { /* The celebration can work in memory. */ }
-      if (claimClaraMilestone(studio?.id, milestone, storage)) setClaraMoment(milestone);
+      const celebrated = claimClaraMilestone(studio?.id, milestone, storage);
+      if (celebrated) setClaraMoment(milestone);
       else notify(message);
       setModal(null);
-      await reload(true);
+      // The write is done: a slow refresh must not tell the owner to save again.
+      if (!(await reload(true, true, false)) && !celebrated)
+        notify(`${message} A tela será atualizada em instantes.`);
     } catch (err) {
+      if (saved) { console.error(err); return; }
       notify(errorMessage(err), true);
     } finally {
       mutationBusy.current = false;
@@ -2149,10 +2160,12 @@ function Space({ studio, protect, mutate, notify, demo, copyLink }) {
             className="panel hours-panel"
             onSubmit={(e) => {
               e.preventDefault();
+              const checked = prepareHours(hours);
+              if (checked.error) { notify(checked.error, true); return; }
               protect(() =>
                 mutate(
                   () =>
-                    rpc("save_hours", { p_studio: studio.id, p_hours: hours }),
+                    rpc("save_hours", { p_studio: studio.id, p_hours: checked.hours }),
                   "Expediente atualizado.",
                 ),
               );

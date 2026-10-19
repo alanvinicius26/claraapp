@@ -1,15 +1,8 @@
 import React from "react";
 import { Coffee } from "lucide-react";
+import { weekdays, defaultBreak } from "./hours-validation.js";
 
-export const weekdays = [
-  "Domingo",
-  "Segunda-feira",
-  "Terça-feira",
-  "Quarta-feira",
-  "Quinta-feira",
-  "Sexta-feira",
-  "Sábado",
-];
+export { weekdays };
 
 const hhmm = (value) => (value || "").slice(0, 5);
 
@@ -66,8 +59,11 @@ export default function HoursEditor({ hours, change, breakLabel = "Pausa" }) {
                       type="checkbox"
                       checked={hasBreak}
                       onChange={(e) => {
-                        change(h.weekday, "break_start", e.target.checked ? "12:00" : null);
-                        change(h.weekday, "break_end", e.target.checked ? "13:00" : null);
+                        const pause = e.target.checked
+                          ? defaultBreak(h.opens, h.closes)
+                          : { break_start: null, break_end: null };
+                        change(h.weekday, "break_start", pause.break_start);
+                        change(h.weekday, "break_end", pause.break_end);
                       }}
                     />
                     <Coffee size={14} aria-hidden="true" />

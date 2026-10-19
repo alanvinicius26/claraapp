@@ -89,6 +89,60 @@ test("technical errors do not leak SQL while business errors stay readable", () 
     "Escolha outro horário.",
   );
 });
+test("database rules never read as a connection error; real drops do", () => {
+  const connection = /^Erro de conexão/;
+  // Exact 400 body PostgREST returned to the iPhone on 18/10 (save_hours).
+  assert.match(
+    errorMessage({
+      code: "23514",
+      details: "Failing row contains (...)",
+      hint: null,
+      message:
+        'new row for relation "working_hours" violates check constraint "working_hours_check1"',
+    }),
+    /^Confira o expediente: .*pausa precisa ficar dentro/,
+  );
+  assert.match(
+    errorMessage({
+      code: "23514",
+      message:
+        'new row for relation "services" violates check constraint "services_duration_check"',
+    }),
+    /^Confira o serviço: .*duração entre 5 e 480 minutos/,
+  );
+  assert.match(
+    errorMessage({ code: "23514", message: 'new row for relation "clients" violates check constraint "x"' }),
+    /^Algum campo está fora do permitido/,
+  );
+  assert.match(
+    errorMessage({ code: "22007", message: 'invalid input syntax for type time: ""' }),
+    /^Confira os horários/,
+  );
+  assert.equal(
+    errorMessage({ code: "57014", message: "canceling statement due to statement timeout" }),
+    "O servidor demorou para responder. Atualize a página e confira se a alteração foi salva antes de repetir.",
+  );
+  // Business messages stay verbatim, even when they mention "conexão".
+  for (const message of [
+    "Este expediente deixaria um atendimento sem cobertura. Remarque ou cancele os horários afetados primeiro.",
+    "Seu período de acesso terminou ou sua equipe excede o plano. Abra Minha assinatura para continuar.",
+    "Conexão expirada ou já utilizada. Inicie novamente.",
+  ])
+    assert.equal(errorMessage({ code: "P0001", message }), message);
+  assert.match(
+    errorMessage({ code: "P0001", message: "Acesso negado." }),
+    /^Não foi possível autorizar/,
+  );
+  assert.match(errorMessage({ code: "PGRST303", message: "JWT expired" }), /sessão ou link expirou/);
+  // Transport failures as supabase-js reports them, including iOS WebKit.
+  assert.match(errorMessage({ code: "", message: "TypeError: Load failed" }), connection);
+  assert.match(errorMessage({ code: "", message: "TypeError: Failed to fetch" }), connection);
+  assert.match(
+    errorMessage({ code: "", message: "TimeoutError: A conexão demorou demais. Tente novamente." }),
+    connection,
+  );
+  assert.match(errorMessage({ name: "AbortError", message: "signal is aborted without reason" }), connection);
+});
 test("late session bootstrap never restores a signed-out user, cleanup ignores pending work", async () => {
   let listener, resolve;
   const sessions = [];

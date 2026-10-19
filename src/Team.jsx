@@ -4,6 +4,7 @@ import { supabase, query, rpc, errorMessage } from "./lib";
 import Resources from "./Resources";
 import ClaraArt from "./ClaraArt";
 import HoursEditor from "./HoursEditor";
+import { prepareHours } from "./hours-validation.js";
 import { initials } from "./domain";
 import { UserPlus } from "lucide-react";
 import {
@@ -343,27 +344,13 @@ export default function Team({
             className="panel team-schedule"
             onSubmit={(e) => {
               e.preventDefault();
+              const checked = prepareHours(hours);
+              if (checked.error) { notify(checked.error, true); return; }
               protect(() =>
                 mutate(async () => {
                   await rpc("save_professional_hours", {
                     p_professional: id,
-                    p_hours: hours.map(
-                      ({
-                        weekday,
-                        enabled,
-                        opens,
-                        closes,
-                        break_start,
-                        break_end,
-                      }) => ({
-                        weekday,
-                        enabled,
-                        opens,
-                        closes,
-                        break_start,
-                        break_end,
-                      }),
-                    ),
+                    p_hours: checked.hours,
                   });
                   setInherited(false);
                 }, "Expediente da profissional salvo."),

@@ -85,13 +85,31 @@ export function errorMessage(error) {
     return "Escolha uma senha nova e mais forte, com pelo menos 8 caracteres.";
   if (/rate.limit|too.many/i.test(message) || error?.status === 429)
     return "Muitas tentativas. Aguarde alguns minutos e tente novamente.";
+  // Answers from the database carry a code: they are rules or validation,
+  // never the owner's internet, even when the text mentions "timeout".
+  if (code === "23514") {
+    if (/"(working_hours|professional_hours)"/.test(message))
+      return "Confira o expediente: o fim precisa ser depois do início e a pausa precisa ficar dentro do horário de atendimento.";
+    if (/"services"/.test(message))
+      return "Confira o serviço: nome com 2 a 120 caracteres, preço sem valor negativo, duração entre 5 e 480 minutos e até 10 pessoas no encaixe.";
+    return "Algum campo está fora do permitido. Confira os dados e tente novamente.";
+  }
+  if (["22007", "22008"].includes(code))
+    return "Confira os horários preenchidos e tente novamente.";
+  if (code === "23502") return "Preencha todos os campos obrigatórios.";
+  if (code === "57014")
+    return "O servidor demorou para responder. Atualize a página e confira se a alteração foi salva antes de repetir.";
+  // iOS reports a dropped request as "Load failed"; Chrome as "Failed to fetch".
   if (
-    /fetch|network|timeout|abort|connection|conexão|connect/i.test(
+    !code &&
+    /fetch|network|timeout|abort|connection|conexão|connect|load failed/i.test(
       message + " " + error?.name,
     )
   )
     return "Erro de conexão. Confira sua internet e tente novamente. Se estava salvando, atualize antes de repetir.";
-  if (/permission denied|row.level|42501|jwt/i.test(message + " " + code))
+  if (
+    /permission denied|row.level|42501|jwt|^Acesso negado/i.test(message + " " + code)
+  )
     return "Não foi possível autorizar a operação. Entre novamente na sua conta.";
   // Business errors written in Portuguese are safe to show; internal SQL/HTML is not.
   if (
