@@ -1,4 +1,6 @@
 // Shared by the Edge Function and the isolated local simulator. No generative AI.
+import { isActiveMessage, withinSendWindow } from "./hours.js";
+import { verifyWahaSignature, wahaEvent } from "./waha.js";
 const encoder = new TextEncoder();
 export function equalSecret(a, b) {
   if (typeof a !== "string" || typeof b !== "string" || !a || !b) return false;
@@ -20,8 +22,11 @@ export function originFor(env) {
   if ((!local && url.protocol !== "https:") || url.username || url.password || url.search || url.hash || url.pathname !== "/") throw new Error("invalid_origin");
   return url.origin;
 }
+const absoluteLinks = (s, origin) => String(s).replace(/\/\#\/(manage|booking)\//g, `${origin}/#/$1/`);
+// WAHA sends plain text: the greeting already lists "1 — Agendar" and "2 — Falar com atendente".
+export const wahaPayload = (job, origin) => ({ text: absoluteLinks(job.body, origin) });
 export function providerPayload(job, origin) {
-  const absolute = (s) => String(s).replace(/\/\#\/(manage|booking)\//g, `${origin}/#/$1/`);
+  const absolute = (s) => absoluteLinks(s, origin);
   const base = { messaging_product: "whatsapp", recipient_type: "individual", to: job.phone };
   if (job.use_template) {
     const name = job.template?.name || `clara_${job.template_key}_v1`;
@@ -67,20 +72,28 @@ export function metaSender(env, request = fetch, credentialFor) {
     } catch { return { result: "uncertain", error: "provider_result_unknown" }; }
   };
 }
-export async function processQueue({ db, env, send }) {
+export async function processQueue({ db, env, send, now = () => new Date() }) {
   const origin = originFor(env);
   const mode = env.WHATSAPP_MODE || "simulation";
   if (!['simulation','live'].includes(mode)) throw new Error("invalid_mode");
-  const stats = { processed: 0, simulated: 0, accepted: 0, failed: 0, retry: 0, uncertain: 0 };
+  const stats = { processed: 0, simulated: 0, accepted: 0, failed: 0, retry: 0, uncertain: 0, deferred: 0 };
   const deadline = Date.now() + 45000;
   for (let i = 0; i < 20 && Date.now() < deadline; i++) {
     const job = await db("whatsapp_claim", { p_mode: mode });
     if (!job) break;
     let result;
-    try { result = await send(job, providerPayload(job, origin)); }
-    catch { result = { result: "uncertain", error: "provider_result_unknown" }; }
+    // The database already holds active messages outside 08:00–20:00; this second check
+    // covers a worker clock ahead of the database at the window edges.
+    if (job.mode === "live" && isActiveMessage(job) && !withinSendWindow(now())) result = { result: "deferred" };
+    else {
+      try { result = await send(job, job.provider === "waha" ? wahaPayload(job, origin) : providerPayload(job, origin)); }
+      catch { result = { result: "uncertain", error: "provider_result_unknown" }; }
+    }
     await db("whatsapp_finish", { p_id: job.id, p_lease: job.lease_id, p_result: result.result, p_provider: result.provider || null, p_error: result.error || null });
     stats.processed++; stats[result.result]++;
+    // The deferred message is available again at once by the database clock; stop here
+    // instead of claiming it over and over. The next scheduled run continues the queue.
+    if (result.result === "deferred") break;
   }
   // n8n receives counts only, never customer phone, message body or management token.
   return stats;
@@ -109,11 +122,14 @@ export function createHandler({ env, db, send }) {
       return new Response(url.searchParams.get("hub.challenge") || "", { headers: { "Cache-Control": "no-store" } });
     }
     if (req.method !== "POST") return respond({ error: "method_not_allowed" }, 405);
-    if (action !== "webhook" && !equalSecret(req.headers.get("authorization"), `Bearer ${env.CLARA_N8N_SECRET || ""}`)) return respond({ error: "unauthorized" }, 401);
-    if (action !== "webhook" && (env.CLARA_N8N_SECRET || "").length < 32) return respond({ error: "integration_not_configured" }, 503);
+    // Provider webhooks authenticate by signature; every other route is the n8n bridge.
+    const provider = action === "webhook" || action === "waha";
+    if (!provider && !equalSecret(req.headers.get("authorization"), `Bearer ${env.CLARA_N8N_SECRET || ""}`)) return respond({ error: "unauthorized" }, 401);
+    if (!provider && (env.CLARA_N8N_SECRET || "").length < 32) return respond({ error: "integration_not_configured" }, 503);
     try {
       const raw = await readLimited(req);
       if (action === "webhook" && !await verifySignature(raw, req.headers.get("x-hub-signature-256"), env.META_APP_SECRET)) return respond({ error: "invalid_signature" }, 401);
+      if (action === "waha" && !await verifyWahaSignature(raw, req.headers.get("x-webhook-hmac"), req.headers.get("x-webhook-hmac-algorithm"), env.WAHA_WEBHOOK_SECRET)) return respond({ error: "invalid_signature" }, 401);
       let body;
       try { body = JSON.parse(raw || "{}"); } catch { return respond({ error: "invalid_json" }, 400); }
       if (!body || typeof body !== "object" || Array.isArray(body)) return respond({ error: "invalid_event" }, 400);
@@ -138,6 +154,15 @@ export function createHandler({ env, db, send }) {
         if (body.object !== "whatsapp_business_account" || !Array.isArray(body.entry)) return respond({ error: "invalid_event" }, 400);
         const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoder.encode(raw))),v=>v.toString(16).padStart(2,'0')).join('');
         return respond(await db('whatsapp_ingest',{p_key:hash,p_payload:body,p_mode:'live'}));
+      }
+      if (action === "waha") {
+        if (env.WHATSAPP_MODE !== "live") return respond({ error: "live_disabled" }, 403);
+        // Answer 200 right away, also for a conversation in FILA_HUMANO: the message is only
+        // stored. WAHA is never called from here; replies, if any, go through the queue.
+        const payload = wahaEvent(body);
+        if (!payload) return respond({ received: true, ignored: true });
+        const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoder.encode(JSON.stringify(payload)))),v=>v.toString(16).padStart(2,'0')).join('');
+        return respond(await db('whatsapp_ingest',{p_key:hash,p_payload:payload,p_mode:'live'}));
       }
       return respond({ error: "not_found" }, 404);
     } catch (e) {

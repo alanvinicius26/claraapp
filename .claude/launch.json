@@ -18,6 +18,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev:whatsapp"],
       "port": 3000
+    },
+    {
+      "name": "clara-waha-local",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "waha:local"],
+      "port": 8788
     }
   ]
 }

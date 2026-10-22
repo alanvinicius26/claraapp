@@ -11,3 +11,7 @@ playwright-report/
 supabase/.temp/
 supabase/.branches/
 *.log
+
+# Mapa do repositório (skill repo-map)
+.repomap/
+.repomap.cache.v*/

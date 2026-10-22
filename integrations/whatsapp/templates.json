@@ -5,22 +5,22 @@
     "confirmation": {
       "name": "clara_confirmation_v1", "language": "pt_BR", "approved": false,
       "proposed_category": "UTILITY",
-      "body": "Seu agendamento em {{1}} foi confirmado para {{2}} às {{3}} (horário de São Paulo). Serviço: {{4}}. Profissional: {{5}}. Consulte ou gerencie: {{6}}. Para parar notificações, envie SAIR."
+      "body": "Seu agendamento em {{1}} foi confirmado para {{2}} às {{3}} (horário de Brasília). Serviço: {{4}}. Profissional: {{5}}. Consulte ou gerencie: {{6}}. Para parar notificações, envie SAIR."
     },
     "reminder": {
       "name": "clara_reminder_v1", "language": "pt_BR", "approved": false,
       "proposed_category": "UTILITY",
-      "body": "Lembrete do seu agendamento em {{1}}: {{2}} às {{3}} (horário de São Paulo). Serviço: {{4}}. Profissional: {{5}}. Consulte ou gerencie: {{6}}. Para parar notificações, envie SAIR."
+      "body": "Lembrete do seu agendamento em {{1}}: {{2}} às {{3}} (horário de Brasília). Serviço: {{4}}. Profissional: {{5}}. Consulte ou gerencie: {{6}}. Para parar notificações, envie SAIR."
     },
     "reschedule": {
       "name": "clara_reschedule_v1", "language": "pt_BR", "approved": false,
       "proposed_category": "UTILITY",
-      "body": "Seu agendamento em {{1}} foi atualizado: {{2}} às {{3}} (horário de São Paulo). Serviço: {{4}}. Profissional: {{5}}. Consulte ou gerencie: {{6}}. Para parar notificações, envie SAIR."
+      "body": "Seu agendamento em {{1}} foi atualizado: {{2}} às {{3}} (horário de Brasília). Serviço: {{4}}. Profissional: {{5}}. Consulte ou gerencie: {{6}}. Para parar notificações, envie SAIR."
     },
     "cancellation": {
       "name": "clara_cancellation_v1", "language": "pt_BR", "approved": false,
       "proposed_category": "UTILITY",
-      "body": "Seu agendamento em {{1}}, previsto para {{2}} às {{3}} (horário de São Paulo), foi cancelado. Serviço: {{4}}. Profissional: {{5}}. Consulte: {{6}}. Para parar notificações, envie SAIR."
+      "body": "Seu agendamento em {{1}}, previsto para {{2}} às {{3}} (horário de Brasília), foi cancelado. Serviço: {{4}}. Profissional: {{5}}. Consulte: {{6}}. Para parar notificações, envie SAIR."
     },
     "human_followup": {
       "name": "clara_human_followup_v1", "language": "pt_BR", "approved": false,

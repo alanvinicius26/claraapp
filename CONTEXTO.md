@@ -1,5 +1,47 @@
 # Minha Clara — leia primeiro ao retomar
 
+## Teste WAHA com celulares reais — 21/10/2026 — SÓ LOCAL, nada em produção
+- Conectado: celular final 9351 (sessão `clara_teste`). Clientes: final 4330 e, a pedido do usuário, só o final 7431 na lista `allow`.
+- Problemas encontrados e corrigidos:
+  - **Contatos `@lid`:** as primeiras mensagens eram descartadas porque o `from` vinha como `@lid`. Agora `wahaEvent` lê o número de `_data.Info.SenderAlt`/`key.remoteJidAlt`.
+  - **Recibos de outras conversas:** 179 recibos de outras conversas foram gravados e depois apagados do banco local; o executor agora filtra pelos números/LIDs permitidos.
+  - **Id de envio × recibo:** o recibo não casava com o id devolvido pelo `sendText` (`@c.us` × `@lid`). Corrigido com `wahaKey` (`waha:<CHAVE>`), com teste. As 3 primeiras mensagens do 4330 ficaram "aceitas", com o id antigo.
+- Roteiro com o 7431 (19h45–19h53):
+  - menu, link e pedido de assunto entregues;
+  - assunto "Quero marcar um horário" → `FILA_HUMANO`; "Como faz?" sem resposta;
+  - reserva para 22/10 08h00: confirmação segurada em `FILA_HUMANO` e entregue ao encerrar; lembrete 07h45 cancelado `outside_hours`;
+  - `SAIR` → `opted_out`, sem resposta (comportamento original).
+- Observações:
+  - duas mensagens do 7431 não saíram do celular na primeira tentativa (o WAHA não as tinha); reenviadas, chegaram;
+  - um webhook perdido durante o reinício do executor foi reentregue pelo WAHA;
+  - as mensagens `fromMe` digitadas no celular conectado não entram no histórico.
+- Testes: `tests/whatsapp-waha.test.js` passando (9). Nada commitado; nada em produção.
+
+## 4 regras de atendimento WAHA — 21/10/2026 — SÓ LOCAL, nada em produção
+- **Pedido:** fazer sair os avisos de reserva em `FILA_HUMANO`; trocar o texto do fuso por "(horário de Brasília)"; responder uma vez ao `SAIR`; gravar o que a dona digita no celular. Plano aprovado. Decisão extra do usuário: a pausa iniciada pelo celular volta sozinha após 12 h sem a equipe escrever.
+- **Arquivos:**
+  - `supabase/whatsapp_waha.sql`, editado no próprio arquivo, que nunca foi aplicado:
+    - colunas `wa_lid` e `human_until`;
+    - tipos `opt_out_ack` e `team_phone`;
+    - mudanças em `whatsapp_inbound` e `whatsapp_claim_at`, com a confirmação ordenada antes do lembrete quando os dois vencem juntos;
+    - funções novas `public.whatsapp_echo` (só `service_role`) e `encaixa_private.whatsapp_remember_lid`;
+    - `whatsapp_dispatch` recriada para ler `echoes` e `lid`.
+  - `functions/whatsapp/waha.js`: `message.any`, `fromMe` → `echoes` e `lid`.
+  - `integrations/whatsapp/templates.json`: texto do fuso.
+  - `scripts/waha-local.mjs`: assina `message.any` e filtra também os envios do celular conectado.
+- **Testes:**
+  - 4 testes novos no WAHA, e as permissões da `whatsapp_echo` conferidas.
+  - O teste das 03h dependia da ordem sorteada entre confirmação e lembrete; agora a ordem é fixa no claim.
+  - Os testes antigos de `SAIR` (`whatsapp.test.js`) carregam só a migração base e não mudaram.
+  - Mutação: desligar cada uma das 5 regras faz os testes falharem.
+  - Suíte: 527 ok, build ok. Não rodados: `test:whatsapp:concurrency` (Postgres nativo) e o roteiro real.
+
+## WhatsApp via WAHA (adaptador) — 20/10/2026 — SÓ LOCAL, nada em produção
+- Pedido: integração WAHA "blindada contra banimento", com idempotência, janela 08h–20h, visto/digitando, status de atendimento e trava FILA_HUMANO. Avisado antes de editar: o pedido contrariava o plano registrado (Meta oficial em standby), o WAHA é não oficial (risco de banimento real) e a tabela `whatsapp_atendimentos` duplicaria `whatsapp_conversations`. Decisões do usuário: WAHA como adaptador; ampliar a tabela atual; lembrete fora da janela adiantado (se já passou, não envia); confirmação de madrugada segura até 08h.
+- Arquivos: `supabase/whatsapp_waha.sql` (novo; recria `whatsapp_inbound`, `whatsapp_claim` → `encaixa_private.whatsapp_claim_at`, `whatsapp_finish` com `deferred`, todas com `security definer`/`search_path ''` onde já tinham), `functions/whatsapp/waha.js` e `hours.js` (novos), `core.js` (rota `/waha`, portão da janela no worker, payload em texto), `index.ts` (envio por provedor; variáveis WAHA_*), simulador aplica a migração nova por último, `tests/whatsapp-waha.test.js` (9 testes). Testes antigos não alterados.
+- Teste local com WAHA real: `scripts/waha-local.mjs` (`npm run waha:local`, launch `clara-waha-local`), container `clara-waha` com imagem `devlikeapro/waha:gows-2026.9.2` (publicada em 02/10, ~770 MB) em 127.0.0.1:3001, sessão `clara_teste` com webhook HMAC para host.docker.internal:8788. Conferido sem celular: 401 sem assinatura ou com assinatura errada, recibo gravado uma vez, número fora da lista ignorado, QR servido, Host/origem estranhos 403. Pendente: o usuário conectar o celular de teste e preencher "allow".
+- Verificado: 523 testes e build ok. Teste de mutação: desligar a janela, a trava humana ou a chave do inbox faz os testes novos falharem. Não rodado: `test:whatsapp:concurrency` (Postgres nativo), simulador com o banco local existente, WAHA real.
+
 ## Publicação de 19/10/2026 — PUBLICADO (estado atual do site)
 - Autorizada pelo usuário em ordem: backup → client_change_notice.sql → client_duplicates.sql → verificação → Edge clara → site. Commits publicados: 032bd98, 7fd181b, f00dbbf, f0aa889, 694fcce.
 - Ensaio antes (comando DO que termina em exceção = rollback garantido): coluna em 52 ms + funções em 21 ms, tabela studios não reescrita, permissões conferidas; depois do ensaio produção conferida intacta.

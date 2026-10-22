@@ -40,6 +40,10 @@ if (!(await pg.query("select to_regclass('encaixa_private.whatsapp_connections')
 else for(const statement of operations.match(/create function[\s\S]*?\$\$;/g)||[]) await pg.exec(statement.replace('create function','create or replace function'));
 const kindCheck=(await pg.query("select pg_get_constraintdef(oid) definition from pg_constraint where conrelid='public.whatsapp_messages'::regclass and conname='whatsapp_messages_kind_check'")).rows[0].definition;
 if(!kindCheck.includes('handoff')) await pg.exec("begin; alter table public.whatsapp_messages drop constraint whatsapp_messages_kind_check; alter table public.whatsapp_messages add constraint whatsapp_messages_kind_check check(kind in('inbound','greeting','booking_link','confirmation','reschedule','cancellation','reminder','manual','handoff')); commit;");
+// Applied last so its versions of whatsapp_inbound/claim/finish replace the refreshed ones above.
+const waha = await readFile(new URL('../supabase/whatsapp_waha.sql',import.meta.url),'utf8');
+if (!(await pg.query("select 1 from information_schema.columns where table_schema='public' and table_name='whatsapp_conversations' and column_name='status'")).rows.length) await pg.exec(waha);
+else for(const statement of waha.match(/create (or replace )?function[\s\S]*?\$\$;/g)||[]) await pg.exec(statement.replace(/create (or replace )?function/,'create or replace function'));
 const fixtures = (await pg.query("select id,owner_id,slug,name from public.studios where slug in('clara-simulacao','clara-simulacao-b') order by slug")).rows;
 const env = { ...secrets, WHATSAPP_MODE: "simulation", WHATSAPP_LIVE_ENABLED: "false", APP_ORIGIN: "http://127.0.0.1:3000" };
 const signatures = {

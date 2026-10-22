@@ -28,6 +28,12 @@ Se algum pedido meu contradisser uma decisão ou regra de segurança registrada 
 - `npm run android:live` (com `npm run dev` aberto) · `npm run android:release` · `npm run android:open`
 - WhatsApp (só simulação local): `npm run whatsapp:sim` + `npm run dev:whatsapp`
 
+## Mapa do código (skill `repo-map`)
+Quando não souber em que arquivo JS/JSX/TS mora um comportamento, rode o mapa antes de abrir arquivos grandes (`main.jsx`). Instruções de execução no Windows estão na própria skill (`~/.claude/skills/repo-map`). Sempre com:
+`--exclude-glob ".env*,android/*,design-references/*,stitch_encaixa_beauty_scheduling_app/*,marketing/*,public/*,*.md,**/*.md,dist/*"`
+e, se souber nomes, `--mentioned-idents "nomeA,nomeB"`. Ordem: `status` → `update` se desatualizado → ler só os 3–5 primeiros arquivos.
+Não cobre `.sql` (regras do banco): para isso use `specs/agendamento.md`, `memoria.md` e busca direta em `supabase/`.
+
 ## Regras gerais
 - Nunca altere funções SQL do Supabase sem manter `security definer` e `set search_path = ''` onde já existem.
 - Nunca exponha dados de clientes existentes na rota pública `/#/booking/:slug`.
