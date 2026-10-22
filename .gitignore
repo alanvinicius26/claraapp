@@ -15,3 +15,6 @@ supabase/.branches/
 # Mapa do repositório (skill repo-map)
 .repomap/
 .repomap.cache.v*/
+
+# Zip das poses da Clara (as imagens já estão em design-references/clara/15-poses-2026-10-11/)
+design-references/clara/*.zip
